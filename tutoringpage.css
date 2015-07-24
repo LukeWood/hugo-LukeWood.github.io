@@ -1,0 +1,24 @@
+#tutoringpage
+{
+padding: 0px;
+margin: 0px;
+position: absolute;
+z-index: -1;
+top: 0;
+height: auto;
+overflow-y:hidden;
+width: 80%;
+left: 10%;
+background-color: #00cc00;
+border-left: solid 8px #888;
+border-right: solid 8px #888;
+display: none;
+}
+#imagesec3
+{
+	background-image: url("bluesea.jpg");
+}
+#tutoringpage::-webkit-scrollbar {
+    display: none;
+      width: 10px;
+}

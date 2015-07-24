@@ -1,0 +1,71 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="openingSet.css">
+<link rel="stylesheet" type="text/css" href="softwarepage.css">
+<link rel="stylesheet" type="text/css" href="tutoringpage.css">
+<link rel="stylesheet" type="text/css" href="pagecontainer.css">
+
+</head>
+
+<body>
+<div id = "topHome" onclick = "moveOff(1);"> 
+	<h1> Software</h1>
+</div>
+<div id = "bottomHome" onclick = "moveOff(2);"> 
+	<h1> Tutoring </h1>
+</div>
+
+<div id ="leftbuffer" class = "buffer">
+</div>
+<div id = "rightbuffer" class = "buffer">
+</div>
+
+<div id = "softwarepage" class = "pageholder"> 
+
+
+<div class = "solid-section"></div>
+
+<div id = "imagesec1" class = "image-section"></div>
+		
+<div class = "solid-section"></div>
+
+</div>
+
+<div id = "tutoringpage" class = "pageholder"> 
+
+<div class = "solid-section"></div>
+
+<div id = "imagesec3" class = "image-section"></div>
+		
+<div class = "solid-section"></div>
+
+</div>
+</div>
+<script>
+function moveOff(i)
+{
+	document.getElementById('topHome').className += ' upscreen';
+	document.getElementById('bottomHome').className += ' downscreen';
+	document.getElementById('leftbuffer').className += ' moveoffLeft';
+	document.getElementById('rightbuffer').className += ' moveoffRight';
+	if(i ==1)
+	{
+	document.getElementById('softwarepage').className+=' visible';
+	}
+	else
+	{
+		document.getElementById('tutoringpage').className+=' visible';
+	}
+	setTimeout(function () {
+		document.getElementsByTagName("body")[0].setAttribute("class", "scrollablebody");},1500);
+	setTimeout(function () {	
+	document.getElementById('topHome').className += ' hidden';
+	document.getElementById('bottomHome').className += ' hidden';
+	
+
+}, 500);
+}
+</script>
+</body>
+
+</html>

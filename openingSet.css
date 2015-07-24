@@ -1,0 +1,123 @@
+html
+{
+	margin: 0px;
+	padding: 0px;
+}
+body
+{
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+	height: auto;
+	background-color: #000080;
+}
+body::-webkit-scrollbar {
+    display: block;
+      width: 10px;
+}
+body::-webkit-scrollbar-track 
+{
+}
+body::-webkit-scrollbar-thumb 
+{
+	border-radius: 20px;
+    background-color: rgba(150,150,150,.5);
+}
+body::-webkit-scrollbar-corner
+{
+	display: none;
+}
+body::::-webkit-resizer
+{
+	display: none;::-webkit-resizer
+}
+.buffer
+{
+	width: 10%;
+	height: 100%;
+	position: absolute;
+	z-index: -1;
+	background-color: #006400;
+	border-right: solid 8px #888;
+	-webkit-transition: 2s;
+    transition: 2s;
+}
+.moveoffRight
+{
+	right: -15% !important;
+}
+.moveoffLeft
+{
+left: -15% !important;
+}
+#leftbuffer
+{
+	left: 0px;
+}
+#rightbuffer
+{
+	right: 0px;
+}
+.scrollablebody
+{
+	overflow-y:scroll;
+}
+#topHome
+{
+	margin: 0;
+	position: absolute;
+	top: 0%;
+	height: 55%;
+	width: 80%;
+	left: 10%;
+	vertical-align: middle;
+	text-align: center;
+	cursor:pointer;
+	background-color:#035096;
+	box-shadow: -5px;
+	outline: solid #888 8px;
+	
+  	-webkit-transition: top 2s;
+    transition: top 2s;
+}
+.upscreen
+{
+	 top: -100% !important;
+}
+.downscreen
+{
+	 top: 150% !important;
+}
+h1
+{
+Color: white;
+font-family: Impact, Charcoal, sans-serif;
+font-style: bold;
+font-size: 10vw;
+}
+
+.visible
+{
+display: block !important;
+}
+.hidden
+{
+	display: none;
+}
+#bottomHome
+{
+	margin: 0;
+	cursor:pointer;
+	position: absolute;
+	background-color:  #FF6600;
+	top: 55%;
+	vertical-align: middle;
+	 text-align: center;
+	height: 50%;
+	width: 80%;
+	left: 10%;
+  	-webkit-transition: top 2s;
+    transition: top 2s;
+		outline: solid #888 8px;
+	
+}
