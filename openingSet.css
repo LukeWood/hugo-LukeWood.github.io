@@ -36,11 +36,11 @@ body::::-webkit-resizer
 	width: 10%;
 	height: 100%;
 	position: absolute;
-	z-index: -1;
+	z-index: 5;
 	background-color: #006400;
 	border-right: solid 8px #888;
-	-webkit-transition: 2s;
-    transition: 2s;
+	-webkit-transition: 4s;
+    transition: 4s;
 }
 .moveoffRight
 {
@@ -68,8 +68,8 @@ left: -15% !important;
 	position: absolute;
 	top: 0%;
 	height: 55%;
-	width: 80%;
-	left: 10%;
+	width: 100%;
+	left: 0%;
 	vertical-align: middle;
 	text-align: center;
 	cursor:pointer;
@@ -77,8 +77,8 @@ left: -15% !important;
 	box-shadow: -5px;
 	outline: solid #888 8px;
 	
-  	-webkit-transition: top 2s;
-    transition: top 2s;
+  	-webkit-transition: top 4s;
+    transition: top 4s;
 }
 .upscreen
 {
@@ -114,10 +114,10 @@ display: block !important;
 	vertical-align: middle;
 	 text-align: center;
 	height: 50%;
-	width: 80%;
-	left: 10%;
-  	-webkit-transition: top 2s;
-    transition: top 2s;
-		outline: solid #888 8px;
+	width: 100%;
+	left: 0%;
+  	-webkit-transition: top 4s;
+    transition: top 4s;
+	outline: solid #888 8px;
 	
 }

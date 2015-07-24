@@ -1,6 +1,14 @@
 
+#contentpic1
+{
+	position: absolute;
+	top: 50px;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	background-image: url("frog.jpg");
+}
 #imagesec1
 {
 	background-image: url("farmingmountains.jpg");
-
 }
