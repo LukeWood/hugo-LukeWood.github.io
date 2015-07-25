@@ -54,6 +54,16 @@ font-size: 200px;
 	min-height: 200px;
 	background: #fff;
 	border: 5px solid black;
+	color: black;
+	font-family: Impact, Charcoal, sans-serif;
+    text-decoration: none;
+	font-size: 22px;	
+}
+.solid-section .project:hover
+{
+	border: 5px solid gray;
+	color: gray;
+
 }
 .image-section
 {

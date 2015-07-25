@@ -40,9 +40,19 @@
 	border: 6px solid #888;
 	border-radius: 15px;
 	background-image: url("GitHubCombined.png");
+	background-color: #3388ee;
 	background-position: center;
 	background-size: 300px, 100px;
 	display: inline;
+}
+.projectpic
+{
+	width: 80%;
+	height: 80%;
+	left: 0px;
+	top: 0px;
+	margin: 0;
+	padding: 0;
 }
 #solidsec2contentpane
 {
