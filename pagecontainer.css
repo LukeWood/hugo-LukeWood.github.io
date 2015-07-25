@@ -7,9 +7,10 @@ z-index: -3;
 top: 0;
 height: auto;
 overflow-y:hidden;
+overflow-x:hidden;
 width: 100% !important;
 left: 0%;
-background-color: #00cc00;
+background-color: #FF6600;
 display: none;
 }
 .contentpic
@@ -22,17 +23,17 @@ display: none;
 {
 	display: block;
 	position: relative;
-	background-color:  #FF6600;
-	width: 100%;
+	width: 105%;
 	height: 700px;
 }
 .image-section
 {
 	display: block;
 	position: relative;
-	width: 100%;
+	width: 105%;
 	height: 700px;
 	background-position: center;
-	background-repeat: none;
+	background-repeat:  no-repeat;;
 	background-size: 100% auto;
+	background-color: black;
 }

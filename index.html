@@ -22,29 +22,36 @@
 
 <div id = "softwarepage" class = "pageholder"> 
 
-<div class = "solid-section">
+<div class = "solid-section" id = "solidsec1">
 	<div id = "contentpic1" class = "contentpic"></div>
 </div>
 
 <div id = "imagesec1" class = "image-section"></div>
 		
-<div class = "solid-section"></div>
+<div class = "solid-section" id = "solidsec2"></div>
+<div id = "imagesec2" class = "image-section"></div>
+<div id = "solidsec3" class = "solid-section">
+
+<a href = "https://github.com/LukeWoodSMU"><div id = "githubcontainer"></div></a>
+
+</div>
 
 </div>
 
 <div id = "tutoringpage" class = "pageholder"> 
 
-<div class = "solid-section"></div>
+<div id = "solidsec4" class = "solid-section"></div>
 
-<div id = "imagesec3" class = "image-section"></div>
+<div id = "imagesec3" class = "image-section" "background-position: 50% 0px;"></div>
 		
-<div class = "solid-section"></div>
+<div id = "solidsec5" class = "solid-section"></div>
 
 </div>
 
 <script>
 function moveOff(i)
 {
+	//OPENING PAGE JAVASCRIPT
 	document.getElementById('topHome').className += ' upscreen';
 	document.getElementById('bottomHome').className += ' downscreen';
 	document.getElementById('leftbuffer').className += ' moveoffLeft';
@@ -62,10 +69,29 @@ function moveOff(i)
 	setTimeout(function () {	
 	document.getElementById('topHome').className += ' hidden';
 	document.getElementById('bottomHome').className += ' hidden';
-	
 
 }, 3500);
 }
+</script>
+<script>
+//PARRALAX JAVASCRIPT
+
+	var isec1 = document.getElementById('imagesec1');
+	var isec2 = document.getElementById('imagesec2');
+
+	isec1.style.backgroundPosition = "50% " + -(window.pageYOffset/1.5) + 'px';
+
+	var contentpic1 = document.getElementById('contentpic1');
+		contentpic1.style.top =-((window.pageYOffset/2) -300)+ 'px';
+
+function parralax()
+{
+	isec1.style.backgroundPosition = "50% " + -((window.pageYOffset/2) +100)+ 'px';
+	contentpic1.style.top =-((window.pageYOffset/2) -300)+ 'px';
+
+	isec2.style.backgroundPosition = "50% " + -((window.pageYOffset/2) + 1050 -1500) + 'px';
+}
+window.addEventListener("scroll",parralax,false);
 </script>
 </body>
 

@@ -9,7 +9,7 @@ body
 	padding: 0px;
 	overflow: hidden;
 	height: auto;
-	background-color: #000080;
+	background-color: #778855;
 }
 body::-webkit-scrollbar {
     display: block;
@@ -35,28 +35,32 @@ body::::-webkit-resizer
 {
 	width: 10%;
 	height: 100%;
-	position: absolute;
+	position: fixed;
 	z-index: 5;
-	background-color: #006400;
-	border-right: solid 8px #888;
+	background-color: #445522;
+
 	-webkit-transition: 4s;
     transition: 4s;
 }
 .moveoffRight
 {
-	right: -15% !important;
+	right: -35% !important;
 }
 .moveoffLeft
 {
-left: -15% !important;
+left: -35% !important;
 }
 #leftbuffer
 {
 	left: 0px;
+	border-right: solid 8px #888;
+
 }
 #rightbuffer
 {
 	right: 0px;
+	border-left: solid 8px #888;
+
 }
 .scrollablebody
 {
@@ -65,20 +69,37 @@ left: -15% !important;
 #topHome
 {
 	margin: 0;
-	position: absolute;
+	position: fixed;
 	top: 0%;
-	height: 55%;
+	height: 50%;
 	width: 100%;
 	left: 0%;
 	vertical-align: middle;
 	text-align: center;
 	cursor:pointer;
-	background-color:#035096;
+	background-color:#3388ee;
 	box-shadow: -5px;
 	outline: solid #888 8px;
 	
   	-webkit-transition: top 4s;
     transition: top 4s;
+}
+#bottomHome
+{
+	margin: 0;
+	cursor:pointer;
+	position: fixed;
+	background-color:  #ddbbaa;
+	top: 50%;
+	vertical-align: middle;
+	 text-align: center;
+	height: 50%;
+	width: 100%;
+	left: 0%;
+  	-webkit-transition: top 4s;
+    transition: top 4s;
+	outline: solid #888 8px;
+	
 }
 .upscreen
 {
@@ -104,20 +125,4 @@ display: block !important;
 {
 	display: none;
 }
-#bottomHome
-{
-	margin: 0;
-	cursor:pointer;
-	position: absolute;
-	background-color:  #FF6600;
-	top: 55%;
-	vertical-align: middle;
-	 text-align: center;
-	height: 50%;
-	width: 100%;
-	left: 0%;
-  	-webkit-transition: top 4s;
-    transition: top 4s;
-	outline: solid #888 8px;
-	
-}
+

@@ -1,14 +1,51 @@
-
-#contentpic1
+.contentpic
 {
 	position: absolute;
-	top: 50px;
+}
+#contentpic1
+{
+	top: 150px;
+	right: 5%;
 	border-radius: 50%;
-	width: 100px;
-	height: 100px;
+	width: 350px;
+	height: 350px;
 	background-image: url("frog.jpg");
+}
+#githubcontainer
+{
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	top: 150px;
+	right: 15%;
+	width: 300px;
+	height: 100px;
+	border: 6px solid #888;
+	border-radius: 15px;
+	background-image: url("GitHubCombined.png");
+	background-position: center;
+	background-size: 300px, 100px;
+		display: inline;
+}
+
+
+#solidsec1
+{
+		background-color:  #778855;
+}
+#solidsec2
+{
+		background-color:#33ccff;
+}
+#solidsec3
+{
+	 background-color: #777766;
 }
 #imagesec1
 {
-	background-image: url("farmingmountains.jpg");
+	background-image: url("wolf.jpg");
+}
+#imagesec2
+{
+	background-image: url("bluesea.jpg");
 }
