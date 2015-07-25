@@ -31,18 +31,20 @@
 	<div class= "languages" style = "left:35%;">C#: 1 Year</div>
 
 	<div class= "languages" style = "left:55%;">PHP: 1 Year</div>
-	<div id = "java" class= "languages" style = "left:20%;">Java: 9 Years</div>
+	<div id = "java" class= "languages" style = "left:20%;">Java: 7 Years</div>
 
-	<div id = "cpp" class= "languages" style = "left:70%;">C++: 2 Years</div>
+	<div id = "cpp" class= "languages" style = "left:50%;">C++: 2 Years</div>
 	<div class= "languages" style = "left:38%;">Arduino: 1 Year</div>
-	<div class= "languages" style = "left:60%;">Javascript: 2 Years</div>
-	<div class= "languages" style = "left:25%;">CSS: 2 Years</div>
+	<div class= "languages" style = "left:30%;">Javascript: 2 Years</div>
+	<div class= "languages" style = "left:55%;">CSS: 2 Years</div>
 	<div class= "languages" style = "left:35%;">HTML: 2 Years</div>
 
 
 </div>
 		
-<div class = "solid-section" id = "solidsec2"><center>
+<div class = "solid-section" id = "solidsec2">
+	<div id = "solidsec2contentpane">
+	<center>
 	<h3>Projects</h3></center>
 	<center><div class  = "projectholder">
 	<a class = "project"></a>
@@ -55,7 +57,7 @@
 	<a class = "project"></a>
 	<a class = "project"></a>
 	<a class = "project"></a>
-	</div></center>
+	</div></center></div>
 
 </div>
 <div id = "imagesec2" class = "image-section"></div>
@@ -69,9 +71,9 @@
 <li>Cell: (858)-775-1566</li>
 <li>Email: Lswood@smu.edu</li>
 </ul>
-
 </div>
-
+<div id = "aboutme"class = "aboutme"><center><h2>About Me</h2></center>
+<p>My name is Luke, and I am from San Diego, California.  I started programming in 6th grade (basic java) and it was simply a hobby until fairly recently.  This year I began to take programming very seriously and have greatly improved my knowledge on the topic.  At this point I am skilled enough to begin seriously seeking a job opporunity.  I encourage you to check out my github and contact me.<br>I have much more work availible upon request.</p></div>
 </div>
 
 </div>
@@ -121,14 +123,16 @@ function moveOff(i)
 
 	var contentpic1 = document.getElementById('contentpic1');
 	var maintitle1 = document.getElementById('maintitle1');
-
+	var solidsec2contentpane = document.getElementById("solidsec2contentpane");
 	var githublogo = document.getElementById('githubcontainer');
+	var aboutme = document.getElementById('aboutme');
+	var imagesec1 = document.getElementById('imagesec1');
 	var contactInfo1 = document.getElementById('contactInfo1');
 	var contactInfo2 = document.getElementById('contactInfo2');
 	var languages = document.getElementsByClassName("languages");
 	for(var i = 0; i < languages.length; i++)
 	{
-		languages[i].style.bottom=  (-window.pageYOffset) + 'px';
+		languages[i].style.bottom=  (-window.pageYOffset + 10000) + 'px';
 	}
 		contentpic1.style.top =-((window.pageYOffset/2) -100)+ 'px';
 		maintitle1.style.bottom = (window.pageYOffset/2) + 'px';
@@ -139,6 +143,15 @@ function parralax()
 	{
 		languages[i-1].style.bottom=  -((i*200)-(2*(window.pageYOffset))) + 'px';
 	}
+	solidsec2contentpane.style.bottom =  (-( -(2*window.pageYOffset) +2600)) + 'px';
+	if((-( -(2*window.pageYOffset) +2600)) >0)
+	{
+		imagesec1.style.zIndex = "5";
+	}
+	else
+	{
+		imagesec1.style.zIndex = "3";
+	}
 
 	isec1.style.backgroundPosition = "50% " + -((window.pageYOffset/2) +100)+ 'px';
 	contentpic1.style.top =-((window.pageYOffset) -100)+ 'px';
@@ -146,6 +159,8 @@ function parralax()
 
 	isec2.style.backgroundPosition = "50% " + -((window.pageYOffset/2) + 1050 -1500) + 'px';
 		githublogo.style.top =(350-((2*window.pageYOffset/3) -1400))+ 'px';
+		aboutme.style.top =(350-((2*window.pageYOffset/3) -1400))+ 'px';
+
 		contactInfo1.style.top =(650-((window.pageYOffset) -2100))+ 'px';
 	lastPos = window.pageYOffset;
 

@@ -67,6 +67,16 @@ font-size: 200px;
 	background-size: 100% auto;
 	background-color: black;
 }
+.aboutme
+{
+	position: absolute;
+	width: 500px;
+	height: 565px;
+	left: 15%;
+	background-color: #3388ee;
+	border: 6px solid #888;
+	border-radius: 15px;
+}
 .contactInfo
 {
 	width: 300px;
@@ -77,6 +87,15 @@ font-size: 200px;
 	border: 6px solid #888;
 	border-radius: 15px;
 }
+.aboutme p
+{
+padding: 10px;
+line-height: 1.1;
+color: white;
+font-family: Impact, Charcoal, sans-serif;
+font-size: 28;
+}
+
 h2
 {
 color: white;
