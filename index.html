@@ -21,18 +21,56 @@
 </div>
 
 <div id = "softwarepage" class = "pageholder"> 
-
 <div class = "solid-section" id = "solidsec1">
+	<div id = "maintitle1" class = "mainTitle"><center>Luke Wood<center></div>
+
 	<div id = "contentpic1" class = "contentpic"></div>
 </div>
 
-<div id = "imagesec1" class = "image-section"></div>
+<div id = "imagesec1" class = "image-section">
+	<div class= "languages" style = "left:35%;">C#: 1 Year</div>
+
+	<div class= "languages" style = "left:55%;">PHP: 1 Year</div>
+	<div id = "java" class= "languages" style = "left:20%;">Java: 9 Years</div>
+
+	<div id = "cpp" class= "languages" style = "left:70%;">C++: 2 Years</div>
+	<div class= "languages" style = "left:38%;">Arduino: 1 Year</div>
+	<div class= "languages" style = "left:60%;">Javascript: 2 Years</div>
+	<div class= "languages" style = "left:25%;">CSS: 2 Years</div>
+	<div class= "languages" style = "left:35%;">HTML: 2 Years</div>
+
+
+</div>
 		
-<div class = "solid-section" id = "solidsec2"></div>
+<div class = "solid-section" id = "solidsec2"><center>
+	<h3>Projects</h3></center>
+	<center><div class  = "projectholder">
+	<a class = "project"></a>
+	<a class = "project"></a>
+	<a class = "project"></a>
+	<a class = "project"></a>
+	<a class = "project"></a>
+	<a class = "project"></a>
+	<a class = "project"></a>
+	<a class = "project"></a>
+	<a class = "project"></a>
+	<a class = "project"></a>
+	</div></center>
+
+</div>
 <div id = "imagesec2" class = "image-section"></div>
 <div id = "solidsec3" class = "solid-section">
 
-<a href = "https://github.com/LukeWoodSMU"><div id = "githubcontainer"></div></a>
+<a id = "githubcontainer" href = "https://github.com/LukeWoodSMU"></a>
+
+<div id = "contactInfo1" class = "contactInfo">
+<center><h2>Contact Me</h2></center>
+<ul>
+<li>Cell: (858)-775-1566</li>
+<li>Email: Lswood@smu.edu</li>
+</ul>
+
+</div>
 
 </div>
 
@@ -82,14 +120,35 @@ function moveOff(i)
 	isec1.style.backgroundPosition = "50% " + -(window.pageYOffset/1.5) + 'px';
 
 	var contentpic1 = document.getElementById('contentpic1');
-		contentpic1.style.top =-((window.pageYOffset/2) -300)+ 'px';
+	var maintitle1 = document.getElementById('maintitle1');
 
+	var githublogo = document.getElementById('githubcontainer');
+	var contactInfo1 = document.getElementById('contactInfo1');
+	var contactInfo2 = document.getElementById('contactInfo2');
+	var languages = document.getElementsByClassName("languages");
+	for(var i = 0; i < languages.length; i++)
+	{
+		languages[i].style.bottom=  (-window.pageYOffset) + 'px';
+	}
+		contentpic1.style.top =-((window.pageYOffset/2) -100)+ 'px';
+		maintitle1.style.bottom = (window.pageYOffset/2) + 'px';
+var lastPos = 0;
 function parralax()
 {
+	for(var i = 1; i < languages.length+1; i++)
+	{
+		languages[i-1].style.bottom=  -((i*200)-(2*(window.pageYOffset))) + 'px';
+	}
+
 	isec1.style.backgroundPosition = "50% " + -((window.pageYOffset/2) +100)+ 'px';
-	contentpic1.style.top =-((window.pageYOffset/2) -300)+ 'px';
+	contentpic1.style.top =-((window.pageYOffset) -100)+ 'px';
+			maintitle1.style.bottom = (window.pageYOffset/2) + 'px';
 
 	isec2.style.backgroundPosition = "50% " + -((window.pageYOffset/2) + 1050 -1500) + 'px';
+		githublogo.style.top =(350-((2*window.pageYOffset/3) -1400))+ 'px';
+		contactInfo1.style.top =(650-((window.pageYOffset) -2100))+ 'px';
+	lastPos = window.pageYOffset;
+
 }
 window.addEventListener("scroll",parralax,false);
 </script>

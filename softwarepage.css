@@ -1,3 +1,4 @@
+
 .contentpic
 {
 	position: absolute;
@@ -5,11 +6,27 @@
 #contentpic1
 {
 	top: 150px;
-	right: 5%;
+	left: 5%;
 	border-radius: 50%;
-	width: 350px;
-	height: 350px;
+	width: 500px;
+	height: 500px;
 	background-image: url("frog.jpg");
+}
+.languages
+{
+	color: white;
+	position: absolute;
+	font-family: Impact, Charcoal, sans-serif;
+	font-style: bold;
+	font-size: 50;
+}
+#java
+{
+	font-size: 125px;
+}
+#cpp
+{
+	font-size: 75px;
 }
 #githubcontainer
 {
@@ -31,21 +48,29 @@
 
 #solidsec1
 {
+	z-index: 5;
 		background-color:  #778855;
 }
 #solidsec2
 {
+	z-index: 4;
+
 		background-color:#33ccff;
 }
 #solidsec3
 {
+		z-index: 1;
+
 	 background-color: #777766;
 }
 #imagesec1
 {
+		z-index: 3;
 	background-image: url("wolf.jpg");
 }
 #imagesec2
 {
+		z-index: 2;
+
 	background-image: url("bluesea.jpg");
 }

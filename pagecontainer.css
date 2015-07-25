@@ -13,6 +13,18 @@ left: 0%;
 background-color: #FF6600;
 display: none;
 }
+
+.mainTitle
+{
+color: white;
+position: absolute;
+right: 0;
+bottom: 10%;
+width: 60%;
+font-family: Impact, Charcoal, sans-serif;
+font-style: bold;
+font-size: 200px;
+}
 .contentpic
 {
 	background-size: 100% auto;
@@ -24,16 +36,66 @@ display: none;
 	display: block;
 	position: relative;
 	width: 105%;
-	height: 700px;
+	min-height: 700px;
+	max-height: 700px;
+}
+.solid-section .projectholder
+{
+	width: 70%;
+	left: 15%;
+}
+.solid-section .project
+{
+	float: left;
+	margin: 35px;
+	width: 200px;
+	height: 200px;
+	min-width: 200px;
+	min-height: 200px;
+	background: #fff;
+	border: 5px solid black;
 }
 .image-section
 {
 	display: block;
 	position: relative;
 	width: 105%;
-	height: 700px;
+	min-height: 700px;
+	max-height: 700px;
 	background-position: center;
 	background-repeat:  no-repeat;;
 	background-size: 100% auto;
 	background-color: black;
+}
+.contactInfo
+{
+	width: 300px;
+	height: 400px;
+	position: absolute;
+	right: 15%;
+	background-color: #3388ee;
+	border: 6px solid #888;
+	border-radius: 15px;
+}
+h2
+{
+color: white;
+font-family: Impact, Charcoal, sans-serif;
+font-style: bold;
+font-size: 32;
+}
+h3
+{
+color: white;
+font-family: Impact, Charcoal, sans-serif;
+font-style: bold;
+margin: 0px;
+padding: 0px;
+font-size: 100px;	
+}
+ul
+{
+color: white;
+font-family: Impact, Charcoal, sans-serif;
+font-size: 20;
 }
