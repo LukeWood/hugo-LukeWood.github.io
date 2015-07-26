@@ -1,14 +1,23 @@
-<SCRIPT LANGUAGE="JavaScript">
-function moveOff(divName, i)
+function moveOff(i)
 {
-	document.getElementById(divName).className += ' offscreen';
+	//OPENING PAGE JAVASCRIPT
+	document.getElementById('topHome').className += ' upscreen';
+	document.getElementById('bottomHome').className += ' downscreen';
+	document.getElementById('leftbuffer').className += ' moveoffLeft';
+	document.getElementById('rightbuffer').className += ' moveoffRight';
 	if(i ==1)
 	{
-		alert("meow");
+	document.getElementById('softwarepage').className+=' visible';
 	}
 	else
 	{
-		alert("moo");
+		document.getElementById('tutoringpage').className+=' visible';
 	}
+	setTimeout(function () {
+		document.getElementsByTagName("body")[0].setAttribute("class", "scrollablebody");},1500);
+	setTimeout(function () {	
+	document.getElementById('topHome').className += ' hidden';
+	document.getElementById('bottomHome').className += ' hidden';
+
+}, 3500);
 }
-</SCRIPT>

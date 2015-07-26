@@ -5,11 +5,10 @@
 }
 #contentpic1
 {
-	top: 150px;
 	left: 5%;
 	border-radius: 50%;
-	width: 500px;
-	height: 500px;
+	width: 30vw;
+	height: 30vw;
 	background-image: url("frog.jpg");
 }
 .languages
