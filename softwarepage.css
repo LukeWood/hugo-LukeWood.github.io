@@ -19,6 +19,7 @@
 	font-style: bold;
 	font-size: 50;
 }
+
 #java
 {
 	font-size: 125px;
@@ -42,7 +43,6 @@
 	background-color: #3388ee;
 	background-position: center;
 	background-size: 300px, 100px;
-	display: inline;
 }
 .projectpic
 {
