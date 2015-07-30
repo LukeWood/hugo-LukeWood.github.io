@@ -7,8 +7,8 @@
 {
 	left: 5%;
 	border-radius: 50%;
-	width: 30vw;
-	height: 30vw;
+	width: 15vw;
+	height: 15vw;
 	background-image: url("frog.jpg");
 }
 .languages
@@ -33,7 +33,6 @@
 	position: absolute;
 	margin: 0px;
 	padding: 0px;
-	top: 150px;
 	right: 15%;
 	width: 300px;
 	height: 100px;

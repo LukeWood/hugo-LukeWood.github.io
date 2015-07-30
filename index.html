@@ -1,5 +1,6 @@
 <html>
 <head>
+	<title>Luke Wood</title>
 <link rel="stylesheet" type="text/css" href="openingSet.css">
 <link rel="stylesheet" type="text/css" href="softwarepage.css">
 <link rel="stylesheet" type="text/css" href="tutoringpage.css">
@@ -9,6 +10,7 @@
 </head>
 
 <body class = "scrollablebody">
+	<div id = "maincontainer">
 	<div class = "navbar"><center><a onclick = "showSubPage(0);">Software</a><a onclick = "showSubPage(1);">Tutoring</a><a onclick = "scrollTo('contactInfo');">Contact</a></center></div>
 <div id = "topHome" class = "upscreen" onclick = "moveOff(1);"> 
 	
@@ -95,7 +97,10 @@
 <p>Lorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispum</p></div>
 
 </div>
+</div>
 <script>
+	document.getElementById('leftbuffer').className = ' moveoffLeft';
+	document.getElementById('rightbuffer').className = ' moveoffRight';
 function scrollTo(elem)
 {
 	var time = Math.abs(($('#'+elem).offset().top - $(window).scrollTop())*2);
@@ -103,10 +108,11 @@ function scrollTo(elem)
     scrollTop: $("#"+elem).offset().top
  }, time)
 }
-
+var currentPage = 0;
 
 function showSubPage(i)
 {
+	currentPage = i;
 	scrollTo('solidsec1');
 	scrollTo('solidsec4');
 

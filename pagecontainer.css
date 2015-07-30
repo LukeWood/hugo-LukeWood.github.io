@@ -73,14 +73,14 @@ font-size: 8vw;
 	max-height: 700px;
 	background-position: center;
 	background-repeat:  no-repeat;;
-	background-size: 100% auto;
+	background-size: 130% auto;
 	background-color: black;
 }
 .aboutme
 {
 	position: absolute;
 	width: 500px;
-	height: 565px;
+	height: 565px
 	left: 15%;
 	background-color: #3388ee;
 	border: 6px solid #888;
