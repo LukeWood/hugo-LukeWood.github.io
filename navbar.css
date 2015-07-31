@@ -1,27 +1,36 @@
-.navbar
+
+menu
 {
-	z-index: 5;
-	position: fixed;
-	top: 0;
-	left: 0;
-	padding: 0px;
-	margin: 0px;
-	width: 100%;
-	background: rgba(200,200,200,.5);
-	height: 60px;
-	display: inline;
+	right: 0;
 }
-.navbar a
+#rightArrow
 {
-	color: white;
-	font-family: Rockwell, Sans-serif, serif;
-	font-weight: bold;
-	margin-left: 10%;
-	margin-right: 10%;
-	font-size: 50px;
 	cursor: pointer;
+	font-size: 35px;
+	font-family: Rockwell;
+	font-weight: bolder;
+	width: 35px;
+	height: 35px;
+	position: fixed;
+	z-index: 100;
+	border-radius: 25%;
+	top: 45%;
+	right: 5%;
+	background: rgba(200,200,200,.5);
 }
-.navbar a:hover
+#leftArrow
 {
-	color:gray;
+	cursor: pointer;
+	font-family: Rockwell;
+	font-size:35px;
+	font-weight: bolder;
+	width: 35px;
+	height: 35px;
+	position: fixed;
+	z-index: 100;
+		border-radius: 25%;
+
+	top: 45%;
+	left: 5%;
+	background: rgba(200,200,200,.5);
 }

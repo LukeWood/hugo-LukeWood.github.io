@@ -1,0 +1,155 @@
+<html>
+<head>
+	<title>Luke Wood</title>
+<link rel="stylesheet" type="text/css" href="openingSet.css">
+<link rel="stylesheet" type="text/css" href="softwarepage.css">
+<link rel="stylesheet" type="text/css" href="tutoringpage.css">
+<link rel="stylesheet" type="text/css" href="pagecontainer.css">
+<link rel="stylesheet" type="text/css" href="navbar.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+
+<body class = "scrollablebody">
+	<div id = "maincontainer">
+	<div class = "navbar"><center><a onclick = "showSubPage(0);">Software</a><a onclick = "showSubPage(1);">Tutoring</a><a onclick = "scrollTo('contactInfo');">Contact</a></center></div>
+<div id = "topHome" class = "upscreen" onclick = "moveOff(1);"> 
+	
+</div>
+<div id = "bottomHome" class = "downscreen" onclick = "moveOff(2);"> 
+	
+</div>
+
+<div id ="leftbuffer" class = "moveoffLeft buffer hidden">
+</div>
+<div id = "rightbuffer" class = "moveoffRight buffer hidden">
+</div>
+
+<div id = "softwarepage" class = "pageholder"> 
+<div class = "solid-section" id = "solidsec1">
+	<div id = "maintitle1" class = "mainTitle"><center>Luke Wood<center></div>
+
+	<div id = "contentpic1" class = "contentpic"></div>
+</div>
+
+<div id = "imagesec1" class = "image-section">
+	<div class= "languages" style = "left:35%;">C#: 1 Year</div>
+
+	<div class= "languages" style = "left:55%;">PHP: 1 Year</div>
+	<div id = "java" class= "languages" style = "left:20%;">Java: 7 Years</div>
+
+	<div id = "cpp" class= "languages" style = "left:50%;">C++: 2 Years</div>
+	<div class= "languages" style = "left:38%;">Arduino: 1 Year</div>
+	<div class= "languages" style = "left:30%;">Javascript: 2 Years</div>
+	<div class= "languages" style = "left:55%;">CSS: 2 Years</div>
+	<div class= "languages" style = "left:35%;">HTML: 2 Years</div>
+
+
+</div>
+		
+<div class = "solid-section" id = "solidsec2">
+	<div id = "solidsec2contentpane">
+	<center>
+	<h3>Projects</h3></center>
+	<center><div class  = "projectholder">
+		<a class = "project" href = "https://github.com/LukeWoodSMU/Online2dShooter
+"><center><img src = "Gungame.png" class = "projectpic"><br>Gun Game</center></a>
+	</div></center>
+	<a class = "project" href = "https://github.com/LukeWoodSMU/FileEncryptor"><center><img src = "EncryptorIcon.ico" class = "projectpic"><br>File Encryptor</center></a>
+
+	<a class = "project" href = "https://github.com/LukeWoodSMU/AIModule"><center><img src = "java.png" class = "projectpic"><br>Java AI Module</center></a>
+
+	<a class = "project" href = "https://github.com/LukeWoodSMU/AIModuleExample"><center><img src = "addition.jpg" class = "projectpic"><br>AI Module Example</center></a>
+
+	<a class = "project" href = "https://github.com/LukeWoodSMU/LukeWoodSMU.github.io"><center><img src = "www.jpg" class = "projectpic"><br>This Website</center></a>
+
+
+</div>
+</div>
+
+</div>
+
+
+<div id = "tutoringpage" class = "pageholder hidden"> 
+
+<div id = "solidsec4" class = "solid-section">
+<div id = "mainTitle2" class = "mainTitle"><center>Luke Wood<center></div>
+
+</div>
+
+<div id = "imagesec3" class = "image-section" "background-position: 50% 0px;"></div>
+		
+<div id = "solidsec5" class = "solid-section"></div>
+
+</div>
+
+<div id = "imagesec2" class = "image-section">
+
+<a id = "githubcontainer" href = "https://github.com/LukeWoodSMU"></a>
+
+<div id = "contactInfo" class = "contactInfo">
+<center><h2>Contact Me</h2></center>
+<ul>
+<li>Cell: (858)-775-1566</li>
+<li>Email: Lswood@smu.edu</li>
+</ul>
+</div>
+<div id = "aboutme"class = "aboutme"><center><h2>About Me</h2></center>
+<p>Lorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispumLorem ispum</p></div>
+
+</div>
+</div>
+<script>
+	document.getElementById('leftbuffer').className = ' moveoffLeft';
+	document.getElementById('rightbuffer').className = ' moveoffRight';
+function scrollTo(elem)
+{
+	var time = Math.abs(($('#'+elem).offset().top - $(window).scrollTop())*2);
+	$('html, body').animate({
+    scrollTop: $("#"+elem).offset().top
+ }, time)
+}
+var currentPage = 0;
+
+function showSubPage(i)
+{
+	currentPage = i;
+	scrollTo('solidsec1');
+	scrollTo('solidsec4');
+
+	//OPENING PAGE JAVASCRIPT
+	document.getElementById('topHome').className = 'visible';
+	document.getElementById('bottomHome').className = 'visible';
+	document.getElementById('leftbuffer').className = 'buffer visible';
+	document.getElementById('rightbuffer').className = 'buffer visible';
+	
+	setTimeout(function(){	
+		if(i ==0)
+	{
+	document.getElementById('softwarepage').className ='pageholder visible';
+	document.getElementById('tutoringpage').className ='pageholder hidden';
+
+	}
+	else
+	{
+		document.getElementById('tutoringpage').className ='pageholder visible';
+		document.getElementById('softwarepage').className ='pageholder hidden';
+	}
+	document.getElementById('topHome').className = 'visible upscreen';
+	document.getElementById('bottomHome').className = 'visible downscreen';
+	document.getElementById('leftbuffer').className += ' moveoffLeft';
+	document.getElementById('rightbuffer').className += ' moveoffRight';},2000);
+
+	setTimeout(function () {	
+	document.getElementById('topHome').className += ' hidden';
+	document.getElementById('bottomHome').className += ' hidden';
+
+}, 2000);
+}
+</script>
+
+<script src = "parralaxFunction.js">
+
+</script>
+</body>
+
+</html>
