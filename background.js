@@ -11,7 +11,8 @@ function fly(xi,yi)
 {
     this.x = xi;
     this.y = yi;
-
+    this.xin = xi;
+    this.yin =yi;
 }
 
 var canvas = document.getElementById("myCanvas");
@@ -69,11 +70,8 @@ ctx.fillStyle = "rgb("+r+","+g+","+b+")";
 {
 
 var d =Math.sqrt((flies[i].x-cursorX)*(flies[i].x-cursorX)+(flies[i].y-cursorY)*(flies[i].y-cursorY));   
-    if(click == 1)
-    {
-        d = -d;
-    }
-    if(click == 0 || click == 1)
+
+    if(d < 200)
     {
     if(flies[i].x < cursorX)
     {
@@ -92,6 +90,30 @@ var d =Math.sqrt((flies[i].x-cursorX)*(flies[i].x-cursorX)+(flies[i].y-cursorY)*
     {
         flies[i].y-=200/d;
     }
+    }
+    else
+    {
+        if((flies[i].x - flies[i].xin != 0) && (flies[i].y - flies[i].yin !=0))
+        {
+    var d2 =Math.sqrt(((flies[i].x-flies[i].xin)*(flies[i].x-flies[i].xin))+((flies[i].y-flies[i].yin)*(flies[i].y-flies[i].yin)));   
+    if(flies[i].x < flies[i].xin)
+    {
+        flies[i].x+=4;
+    }
+     if(flies[i].y < flies[i].yin)
+    {
+        flies[i].y+=4;
+    }
+    
+    if(flies[i].x > flies[i].xin)
+    {
+        flies[i].x-=4;
+    }
+     if(flies[i].y > flies[i].yin)
+    {
+        flies[i].y-=4;
+    }
+      }
     }
     ctx.fillRect(flies[i].x, flies[i].y,10,10);
 }

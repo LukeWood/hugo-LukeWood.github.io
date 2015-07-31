@@ -2,6 +2,8 @@
 <head>
 <link rel="stylesheet" type="text/css" href="navbar.css">
 <link rel="stylesheet" type="text/css" href="hamburger.css">
+<link rel="stylesheet" type="text/css" href="menu.css">
+<link rel="stylesheet" type="text/css" href="socialmediabuttons.css">
 
 <head>
     <link href='http://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
@@ -27,6 +29,7 @@ canvas
   <!-- Start of navigation toggle -->
  
   <!-- End of navigation toggle -->
+  <div id = "notmenu">
 	<div id = "rightArrow" onclick = "rightArrow();"><center>></center></div>
 	<div id = "leftArrow" onclick = "leftArrow();"><center><</center></div>
 
@@ -34,13 +37,39 @@ canvas
 <canvas id="myCanvas" width="400" height="400">
 Your browser does not support the HTML5 canvas tag.
 </canvas>
- <input id="navigation-checkbox" class="navigation-checkbox" type="checkbox">
+<script src = "background.js">
+</script>
+
+
+
+  <footer>
+								<ul class="social-icons">
+									<li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+									<li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+									<li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
+									<li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+									<li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+									<li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+								</ul>
+  </footer>
+</div>
+ <input id="navigation-checkbox" class="navigation-checkbox" type="checkbox" onclick = "toggleMenu();">
   <label class="navigation-toggle" for="navigation-checkbox">
     <span class="navigation-toggle-icon"></span>
     <span class="navigation-toggle-label">Menu</span>
   </label>
-<script id = "bgscrip" src = "background.js">
-
-</script>
+  <script type="text/javascript">
+  function toggleMenu()
+  {
+    if(document.getElementById("navigation-checkbox").checked)
+    {
+    	document.getElementById("menu").class = "shown";
+    }
+    else
+    {
+    	alert("off");
+    }
+  }
+  </script>
 </body>
 </html>

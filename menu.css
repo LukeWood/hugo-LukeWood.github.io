@@ -1,0 +1,23 @@
+#notmenu
+{
+
+}
+menu
+{
+	background: #888;
+	width: 100px;
+	height: 100%;
+}
+menu .shown
+{
+	z-index: 100;
+	display: block;
+}
+footer
+{
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 10;
+}
