@@ -1,17 +1,33 @@
-#notmenu
-{
-
-}
 menu
 {
+	margin: 0;
+	padding: 10px;
+	position: absolute;
 	background: #888;
-	width: 100px;
-	height: 100%;
+	width: auto;
+	height: auto;
+	right: 0;
+	border: 4px white solid;
+	padding-top: 90px;
 }
-menu .shown
+menu a
 {
-	z-index: 100;
-	display: block;
+	font-family: "Rockwell", sans-serif;
+	font-weight: bold;
+	font-size: 22;
+	padding: 10px;
+	margin: 0;
+	color: white;
+	cursor: pointer;
+}
+menu a:hover
+{
+	font-family: "Rockwell", sans-serif;
+	font-weight: bold;
+	font-size: 22;
+	padding: 10px;
+	margin: 0;
+	color: black;
 }
 footer
 {

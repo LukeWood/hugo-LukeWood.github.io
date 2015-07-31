@@ -43,14 +43,10 @@ Your browser does not support the HTML5 canvas tag.
 
 
   <footer>
-								<ul class="social-icons">
-									<li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
-									<li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
-									<li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
-									<li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
-									<li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
-									<li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
-								</ul>
+  	<a id = "linkdin" class="social-slide"></a>
+  	<a id = "twitter" class="social-slide"></a>
+  	<a id = "facebook" class="social-slide"></a>
+
   </footer>
 </div>
  <input id="navigation-checkbox" class="navigation-checkbox" type="checkbox" onclick = "toggleMenu();">
@@ -58,18 +54,28 @@ Your browser does not support the HTML5 canvas tag.
     <span class="navigation-toggle-icon"></span>
     <span class="navigation-toggle-label">Menu</span>
   </label>
+
+  <menu id = "mnu" class = "notshown" style = "display: none;">
+  	<center>
+  	<a>Skills</a><br>
+  	<a>Projects</a><br>
+  	<a>About Me</a><br>
+  	<a>Contact Me</a><br>
+
+  	</center>
+  </menu>
   <script type="text/javascript">
   function toggleMenu()
   {
     if(document.getElementById("navigation-checkbox").checked)
     {
-    	document.getElementById("menu").class = "shown";
+    	document.getElementById("mnu").style.display = "block";
     }
     else
     {
-    	alert("off");
+    	document.getElementById("mnu").style.display = "none";
     }
   }
   </script>
 </body>
-</html>
+</html>social
