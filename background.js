@@ -61,7 +61,8 @@ currentWindow -=1;
 function paintScreen1()
 {
     ctx.fillStyle = "#000000";
-ctx.fillRect(0,0,width,height);
+    ctx.fillRect(0,0,width,height);
+
 ctx.fillStyle = "rgb("+r+","+g+","+b+")";
 
     for(var i = 0; i < flies.length; i++)
@@ -99,6 +100,7 @@ function paintScreen2()
 {
         ctx.fillStyle = "#000000";
 ctx.fillRect(0,0,width,height);
+
 ctx.fillStyle = "rgb("+r+","+g+","+b+")";
 
       for(var i = -width/2; i < width/2; i+=15)
@@ -122,7 +124,7 @@ function incrementColor()
 {
     if(r >0)
     {
-        r-=2;
+        r-=5;
     }
     else
     {
@@ -131,9 +133,9 @@ function incrementColor()
 }
 else
 {
-    if(r < 254)
+    if(r < 250)
     {
-    r+=2;
+    r+=5;
     }
     else
     {
@@ -144,7 +146,7 @@ if(c)
 {
     if(b >0)
     {
-        b-=2;
+        b-=5;
     }
     else
     {
@@ -153,9 +155,9 @@ if(c)
 }
 else
 {
-    if(b < 254)
+    if(b < 250)
     {
-    b+=2;
+    b+=5;
     }
     else
     {
@@ -166,7 +168,7 @@ if(z)
 {
     if(g >0)
     {
-        g-=2;
+        g-=5;
     }
     else
     {
@@ -175,9 +177,9 @@ if(z)
 }
 else
 {
-    if(g < 254)
+    if(g < 250)
     {
-    g+=2;
+    g+=5;
     }
     else
     {
@@ -193,16 +195,22 @@ function repaint()
         incrementColor();
         paintWelcomeScreen();
     }
-    if(currentWindow == 1)
+    else if(currentWindow == 1)
     {
         incrementColor();
-        paintScreen1();
+        paintScreen2(); 
+
     }
 
     else if(currentWindow ==2)
     {
         incrementColor();
-        paintScreen2(); 
+        paintScreen1();
+
+    }
+    else
+    {
+        currentWindow=0;
     }
 }
 function paintWelcomeScreen()
