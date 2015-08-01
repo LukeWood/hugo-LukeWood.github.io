@@ -4,9 +4,8 @@
 <link rel="stylesheet" type="text/css" href="hamburger.css">
 <link rel="stylesheet" type="text/css" href="menu.css">
 <link rel="stylesheet" type="text/css" href="socialmediabuttons.css">
-
-<head>
-    <link href='http://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+<title>Luke Wood</title>
   </head>
 <style type="text/css">
 body
@@ -56,13 +55,48 @@ Your browser does not support the HTML5 canvas tag.
 
   <menu id = "mnu" class = "notshown" style = "display: none;">
   	<center>
-  	<a>Skills</a><br>
-  	<a>Projects</a><br>
-  	<a>About Me</a><br>
-  	<a>Contact Me</a><br>
+  	<a onclick = "displayContent('skills');">Skills</a><br>
+  	<a onclick = "displayContent('projects');"> Projects</a><br>
+  	<a onclick = "displayContent('aboutMe');">About Me</a><br>
+  	<a onclick = "displayContent('contactMe');">Contact Me</a><br>
 
   	</center>
   </menu>
+  <div id = "skills" class = "contentSection offleft">
+	<center><h1>Skills</h1></center>
+  </div>
+
+   <div id = "projects" class = "contentSection offleft">
+	<center><h1>Projects</h1></center>
+  </div>
+
+   <div id = "aboutMe" class = "contentSection offleft">
+	<center><h1>About Me</h1></center>
+  </div>
+
+   <div id = "contactMe" class = "contentSection offleft">
+	<center><h1>Contact Me</h1></center>
+  </div>
+ 	<script type="text/javascript">
+ 	function displayContent(contentToDisplay)
+	{
+		var shouldShow = true;
+		var toDisplay = document.getElementById(contentToDisplay);
+		if(toDisplay.className =="contentSection shown")
+		{
+		shouldShow = false;
+		}
+	var allOthers = document.getElementsByClassName("contentSection");
+	for(var acb = 0; acb < allOthers.length; acb++)
+	{
+		allOthers[acb].className = "contentSection offLeft";
+	}
+	if(shouldShow)
+	{
+	toDisplay.className = "contentSection shown";
+	}
+	}
+ 	</script>
   <script type="text/javascript">
   function toggleMenu()
   {
@@ -77,4 +111,4 @@ Your browser does not support the HTML5 canvas tag.
   }
   </script>
 </body>
-</html>social
+</html>

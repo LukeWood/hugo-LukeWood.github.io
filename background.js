@@ -54,10 +54,14 @@ function leftArrow()
         if(currentWindow == 0)
     {
     clearInterval(previousInterval);
+    currentWindow = 2;
     }
+    else
+    {
 currentWindow -=1;
-    initialized = false;
+    }
 
+    initialized = false;
 }
 function paintScreen1()
 {
