@@ -6,6 +6,7 @@ document.onmousemove = function(e)
     cursorX = e.pageX;
     cursorY = e.pageY;
 }
+
 setInterval(function(){repaint();}, 50);
 function fly(xi,yi)
 {
@@ -22,6 +23,13 @@ var width = canvas.width;
 var height = canvas.height;
 var ctx = canvas.getContext("2d");
 var flies = new Array();
+window.onresize = function(event) 
+{
+canvas.width = document.body.clientWidth; //document.width is obsolete
+canvas.height = document.body.clientHeight;
+width =canvas.width;
+height= canvas.height;
+};
 for(var i = -width; i < width; i+=35)
 {
     for(var j = -height; j < height; j+=35)
@@ -248,6 +256,18 @@ function paintWelcomeScreen()
     initialized = true;
 }
 }
+function WormHoleScreen()
+{
+    var canvas;
+    var context;
+
+    this.initialize = function(canvas){
+    canvas = canvas;
+    context = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    };
+};
 function Banner(){
 
   var keyword = "Luke";
@@ -282,8 +302,8 @@ function Banner(){
         bgCanvas.width = window.innerWidth;
         bgCanvas.height = window.innerHeight;
     
-        canvas.addEventListener('mousemove', MouseMove, false);
-        canvas.addEventListener('mouseout', MouseOut, false);
+        document.addEventListener('mousemove', MouseMove, false);
+        document.addEventListener('mouseout', MouseOut, false);
             
         start();
     }
