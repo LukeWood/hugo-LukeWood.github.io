@@ -19,6 +19,8 @@
 	background-position: center;
 	margin: none;
 	padding: none;
+	opacity: .75;
+	border: 2px solid rgba(255,255,255,.5);
 }
 .skill p
 {
@@ -41,7 +43,6 @@
 
 	width: 150px;
 	height: 150px;
-	border: solid 2px black;
 	background-image: url("arduino.png");
 	background-size: 80% auto;
 	background-color: #fff;
@@ -50,7 +51,6 @@
 {
 	width: 125px;
 	height: 125px;
-	border: solid 2px black;
 	background-image: url("css.png");
 	background-size: 80% auto;
 	background-color: #fff;
@@ -59,7 +59,6 @@
 {
 	width: 200px;
 	height: 200px;
-	border: solid 2px black;
 	background-image: url("html5.png");
 	background-size: 80% auto;
 	background-color: #fff;
@@ -68,7 +67,6 @@
 {
 		width: 200px;
 	height: 200px;
-	border: solid 2px black;
 	background-image: url("javascript.jpg");
 	background-size: 100% auto;
 	background-color: #fff;
@@ -78,7 +76,6 @@
 
 	width: 300px;
 	height: 300px;
-	border: solid 2px black;
 	background-image: url("java.png");
 	background-size: 80% auto;
 	background-color: #fff;
@@ -89,7 +86,6 @@
 }
 #cpp
 {
-	border: 2px solid black;
 	background-image: url("C++.png");
 	width: 200px;
 	height: 200px;

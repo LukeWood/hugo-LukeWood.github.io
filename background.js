@@ -535,8 +535,8 @@ function Banner(){
 
     for(var i = 0; i < bubs.length; i++)
     {
-      var tempx = Math.floor((Math.random() *600) + 1);
-      var tempy = Math.floor((Math.random() *600) + 1);
+      var tempx = Math.floor((Math.random() *skillsPage.offsetWidth) + 1);
+      var tempy = Math.floor((Math.random() *height) + 1);
       var tempwid = bubs[i].offsetWidth;
       var tempBubble = new bubble(tempx, tempy,tempwid,skillsPage.offsetWidth,skillsPage.offsetHeight);
       bubbles.push(tempBubble);
@@ -560,23 +560,30 @@ function Banner(){
       }
    }  
   }
+
   function bubble(xin, yin, wid, contwid,conthei)
   {
     this.x = xin;
     this.y = yin;
+    while(this.x > contwid - wid)
+    {
+           this.x =Math.floor((Math.random() *skillsPage.offsetWidth) + 1);
+    }
+
     this.width= wid;
     this.contwidth= contwid;
 
     this.contheight = conthei;
-    this.xvel = Math.floor((Math.random() *5) +1);
-    this.yvel =  Math.floor((Math.random() *5) +1);
+    this.xvel = 0;
+    this.xvel = Math.floor((Math.random() *2));
+    this.yvel =  -Math.floor((Math.random() *7) +1);
     if(Math.floor(Math.random()*2) == 0)
     {
         this.xvel = -this.xvel;
     }
     if(Math.floor(Math.random()*2) == 0)
     {
-        this.yvel = -this.yvel;
+       // this.yvel = -this.yvel;
     }
     this.hovered = false;
     this.check = function(i,j)
