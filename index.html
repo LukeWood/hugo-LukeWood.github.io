@@ -77,8 +77,9 @@ Your browser does not support the HTML5 canvas tag.
   </div>
 
 <div id = "skills" class = "contentSection offleft">
-  <div class = "skill" id = "Java">Java: 9 Years</div>
-  <div class = "skill" id = "cpp">C++: 2 Years</div>
+
+  <div class = "skill" id = "Java"><center><p><span class ="lang">Java:</span><br>8 Years Experience</p><center></div>
+  <div class = "skill" id = "cpp"><center><p>C++:<br>2 Years Experience</p><center></div>
 
 </div>
 
@@ -176,9 +177,24 @@ Your browser does not support the HTML5 canvas tag.
 
 
  	<script type="text/javascript">
+  var onSkills = false;
+  var intervalId;
+  var velocitiesX = [3,4,5,6];
+  var velocitiesY = [6,5,4,3];
+  var bubbles = new Array();
+  var bubs;
+
  	function displayContent(contentToDisplay)
 	{
 		var shouldShow = true;
+    if(contentToDisplay=="skills")
+    {
+      onSkills = true;
+    }
+    else
+    {
+      onSkills = false;
+    }
 		var toDisplay = document.getElementById(contentToDisplay);
 		if(toDisplay.className =="contentSection shown")
 		{
@@ -193,8 +209,83 @@ Your browser does not support the HTML5 canvas tag.
 	{
 	toDisplay.className = "contentSection shown";
 	}
-	}
+  else
+  {
+    onSkills = false;
+  }
+    if(intervalId!=null)
+    {
+      clearInterval(intervalId);
+    }
+      if(onSkills)
+      {
+        initBubbles();
+       intervalId = setInterval(moveBubbles, 50);
 
+      }
+	}
+  function initBubbles()
+  {
+    bubs = document.getElementsByClassName("skill");
+    if(bubs.length != bubbles.length)
+    {
+      bubbles = new Array();
+
+    for(var i = 0; i < bubs.length; i++)
+    {
+      var tempx = Math.floor((Math.random() *600) + 1);
+      var tempy = Math.floor((Math.random() *600) + 1);
+      var tempwid = bubs[i].offsetWidth;
+      var tempBubble = new bubble(tempx, tempy,tempwid,tempwid);
+      bubbles.push(tempBubble);
+    }
+    }
+  }
+  var mouse2x;
+  var mouse2y;
+  var skillsPage = document.getElementById("skills");
+  document.onmousemove = handleMouseMove;
+    function handleMouseMove(event)
+    {
+      mouse2x = event.clientX - skillsPage.offsetLeft;
+      mouse2y = event.clientY - skillsPage.offsetTop;
+    }
+  //document.getElementById("mylink").onmouseover = function() { alert("Hover!"); }
+  function moveBubbles()
+  {
+    for(var i = 0; i < bubs.length; i++)
+    {
+      bubbles[i].check(mouse2x, mouse2y);
+      if(bubbles[i].hovered == false)
+      {
+    bubs[i].style.left = bubbles[i].x + "px";
+    bubs[i].style.top = bubbles[i].y + "px";
+    bubbles[i].x += bubbles[i].xvel;
+    bubbles[i].y += bubbles[i].yvel;
+      }
+   }  
+  }
+  function bubble(xin, yin, wid, hei)
+  {
+    this.x = xin;
+    this.y = yin;
+    this.width= wid;
+    this.height = hei;
+    this.xvel = Math.floor((Math.random() *10) - 5);
+    this.yvel =  Math.floor((Math.random() *10) - 5);
+    this.hovered = false;
+    this.check = function(i,j)
+    {
+      if(i >this.x&& j > this.y  && i < (this.x + this.width) && j < (this.y + this.height))
+        { 
+          this.hovered = true
+        }
+        else
+        {
+          this.hovered = false;
+        }
+    }
+  }
  	</script>
   <script type="text/javascript">
   function toggleMenu()
