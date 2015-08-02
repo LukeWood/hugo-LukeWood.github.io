@@ -549,7 +549,6 @@ function Banner(){
     {
         var tempCursorx = cursorX - skillsPage.offsetLeft;
          var tempCursory = cursorY - skillsPage.offsetTop;
-         alert(tempCursory);
       bubbles[i].check(tempCursorx,tempCursory);
       if(bubbles[i].hovered == false)
       {

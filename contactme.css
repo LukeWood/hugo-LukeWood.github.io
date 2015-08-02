@@ -32,7 +32,9 @@
 	color: white;
 	font-family: "Rockwell" sans-serif;
 	font-size: 22;
+	padding-right: 2.5%;
 	padding-left: 2.5%;
+	text-align: justify
 }
 .cantreadthis
 {

@@ -13,26 +13,28 @@ http://flickity.metafizzy.co
   top: 2.5%;
   left: 2.5%;
   font-size: 32;
+  overflow: auto;
   font-family: "Rockwell" sans-serif;
   color: white;
   background: rgb(175,175,175);
 }
 .githubcontainer
 {
-  position: absolute;
+  position: relative;
+  float: right;
   cursor: pointer;
   margin: 0px;
   padding: 0px;
   right: 2.5%;
   bottom: 2.5%;
-  width: 300px;
-  height: 100px;
+  width: 200px;
+  height: 66px;
   border: 6px solid #888;
   border-radius: 15px;
   background-image: url("GitHubCombined.png");
   background-color: #7851a9;
   background-position: center;
-  background-size: 300px, 100px;
+  background-size: 200px, 66px;
 }
 .gallery-cell a
 {
@@ -47,17 +49,19 @@ http://flickity.metafizzy.co
 {
   position: absolute;
   width: 95%;
-  height: 45%;
+  height: 42.5%;
   top: 52.5%;
   left: 2.5%;
   font-family: "Rockwell" sans-serif;
   font-size: 22;
   color: white;
   padding: 5px;
+  overflow: auto;
   background: rgb(175,175,175);
 }
 .gallery-cell .content p
 {
+  text-align: justify;
    margin-left: 2.5%;
    margin-right: 2%;
 }
