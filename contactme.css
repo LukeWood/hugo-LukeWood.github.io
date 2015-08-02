@@ -6,15 +6,26 @@
 	top: 2.5%;
 	width: 95%;
 	left: 2.5%;
+	padding-bottom: 80px;
 	outline: 2px solid white;
 }
 .contactme .textarea
 {
-	position: absolute;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
+	border-bottom: 2px solid white;
+	border-right: 2px solid white;
+
 	width: 49%;
-	height: 98%;
+	height: 100%;
 	left: .5%;
 	top: 1%;
+}
+.socials
+{
+	position: absolute;
+	bottom: 5px;
 }
 .contactme .textarea p
 {

@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="menu.css">
 <link rel="stylesheet" type="text/css" href="socialmediabuttons.css">
 <link rel="stylesheet" href="flickity.css" media="screen">
+<link rel="stylesheet" href="skills.css" media="screen">
 <link rel="stylesheet" href="resume.css" media="screen">
 <link rel="stylesheet" href="contactme.css" media="screen">
 
@@ -48,10 +49,10 @@ Your browser does not support the HTML5 canvas tag.
 
 
   <footer>
-  	<a id = "linkdin" href = "https://www.linkedin.com/profile/add?_ed=0_1_WDQMAelRlNMcJZSU3o9XZ--CJuhWpyJL7fyMsEsein7vSNmUQLAEjeqWG6Ya1UZiNSRLB8ZhH_KsovcMlm-d0Vcu6wbkDnSWUQ0tL_yrU&degree=Bachelors%20of%20Science&fieldOfStudy=Computer%20Science&startYear=2014&endYear=2018&trk=onsite_html" rel="nofollow" target="_blank" class="social-slide"></a>
-  	<a href="https://twitter.com/LukeWoodSMU"id = "twitter" class="social-slide"data-show-count="false"></a>
+  	<a id = "linkdin" href = "https://www.linkedin.com/profile/add?_ed=0_1_WDQMAelRlNMcJZSU3o9XZ--CJuhWpyJL7fyMsEsein7vSNmUQLAEjeqWG6Ya1UZiNSRLB8ZhH_KsovcMlm-d0Vcu6wbkDnSWUQ0tL_yrU&degree=Bachelors%20of%20Science&fieldOfStudy=Computer%20Science&startYear=2014&endYear=2018&trk=onsite_html" rel="nofollow" target="_blank" class="social-slide linkdin"></a>
+  	<a href="https://twitter.com/LukeWoodSMU"id = "twitter" class="social-slide twitter"data-show-count="false"></a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-  <a href = "https://github.com/LukeWoodSMU" class = "social-slide" id = "github"https://github.com/LukeWoodSMU></a>
+  <a href = "https://github.com/LukeWoodSMU" class = "social-slide github" id = "github"https://github.com/LukeWoodSMU></a>
   </footer>
 </div>
  <input id="navigation-checkbox" class="navigation-checkbox" type="checkbox" onclick = "toggleMenu();">
@@ -63,6 +64,7 @@ Your browser does not support the HTML5 canvas tag.
   <menu id = "mnu" class = "notshown" style = "display: none;">
   	<center>
   	<a onclick = "displayContent('resume');">Resume</a><br><br>
+    <a onclick = "displayContent('skills');">Skills</a><br><br>
   	<a onclick = "displayContent('projects');"> Projects</a><br><br>
   	<a onclick = "displayContent('contactMe');">Contact Me</a><br><br>
 
@@ -74,10 +76,14 @@ Your browser does not support the HTML5 canvas tag.
     <div class = "cantreadthis"><center><a href = "resume-1.png">Resume not showing up right? Click here</a></center></div></div>
   </div>
 
+<div id = "skills" class = "contentSection offleft">
+  <div class = "skill" id = "Java">Java: 9 Years</div>
+  <div class = "skill" id = "cpp">C++: 2 Years</div>
+
+</div>
+
    <div id = "projects" class = "contentSection offleft">
   <div class="main-gallery js-flickity">
-
-
      <div class="gallery-cell"><img src = "AIphoto.jpg">
 <div class = "title"><center><h1>AI Module</h1></center>
 
@@ -148,13 +154,21 @@ Your browser does not support the HTML5 canvas tag.
     <div class = "contactme">
 
       <div class = "textarea">
-        <center><h1>About Me</h1></center>
-        <p>My name is Luke Wood.  I am a from San Diego and currently go to school at SMU.  </p>
-        <center><h1>Contact Me</h1></center>
+                <center><h1>Contact Me</h1></center>
         <ul>
           <li>Email: lswood@smu.edu</li>
+          <li>Phone: (###-####-####)</li>
         </ul>
+
+        <center><h1>About Me</h1></center>
+        <p><span class = "tab">My</span> name is Luke Wood.  I am a from San Diego and currently am studying computer science at Southern Methodist University.  Computer Science to me is more than learning to program computers, it is learning how to solve problems in the most efficient way.  Throughout my various pursuits of problem solving I have needed to learn various skills and have become an fast paced learner due to this.  This is approach to problem solving is the most important quality I possess.</p>
+
+
       </div>
+      <div class ="socials">    <a id = "linkdin2" href = "https://www.linkedin.com/profile/add?_ed=0_1_WDQMAelRlNMcJZSU3o9XZ--CJuhWpyJL7fyMsEsein7vSNmUQLAEjeqWG6Ya1UZiNSRLB8ZhH_KsovcMlm-d0Vcu6wbkDnSWUQ0tL_yrU&degree=Bachelors%20of%20Science&fieldOfStudy=Computer%20Science&startYear=2014&endYear=2018&trk=onsite_html" rel="nofollow" target="_blank" class="social-slide linkdin"></a>
+    <a href="https://twitter.com/LukeWoodSMU"id = "twitter2" class="social-slide twitter"data-show-count="false"></a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <a href = "https://github.com/LukeWoodSMU" class = "social-slide github" id = "github2"https://github.com/LukeWoodSMU></a></div>
       <div class = "imgcontainer" id = "img1" ><img src = "me2.jpg"></div>
       <div class = "imgcontainer" id = "img2" ><img src = "me2.jpg"></div>
     </div>

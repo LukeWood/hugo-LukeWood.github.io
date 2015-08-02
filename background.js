@@ -165,13 +165,13 @@ for(var j = 0; j < height; j+=8)
 if(i> cursorX)
 {
 ctx.fillStyle = ctx.fillStyle =  "rgb(0,0,255)";
-ctx.fillRect(i+1,j,2,2);
+ctx.fillRect(i+2,j,2,2);
 }
 if(j > cursorY)
 {
     ctx.fillStyle = ctx.fillStyle =  "rgb(255,0,0)";
 
-ctx.fillRect(i,j+1,2,2);
+ctx.fillRect(i,j+2,2,2);
  
 }
 }

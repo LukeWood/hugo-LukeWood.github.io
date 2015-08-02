@@ -13,15 +13,19 @@
 	background-position: 0px -48px;
 	box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
 }
-#twitter
+.social-slide.twitter
 {
 	background-image: url('twitterscroll.png');
 }
-#linkdin
+.social-slide.linkdin
 {
 	background-image: url('linkdinscroll.png');
 }
-#github
+.social-slide.github
 {
 	background-image: url('githubscroll.png');
+}
+.contactme .social-slide
+{
+	border: 2px solid white;
 }
