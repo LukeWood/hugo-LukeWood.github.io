@@ -2,6 +2,7 @@
 {
 	overflow: hidden;
 	vertical-align: top;
+	background-color: rgba(64, 164, 223,.75);
 }
 .skill
 {
@@ -42,6 +43,15 @@
 	height: 150px;
 	border: solid 2px black;
 	background-image: url("arduino.png");
+	background-size: 80% auto;
+	background-color: #fff;
+}
+#css
+{
+	width: 125px;
+	height: 125px;
+	border: solid 2px black;
+	background-image: url("css.png");
 	background-size: 80% auto;
 	background-color: #fff;
 }

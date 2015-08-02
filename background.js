@@ -1,6 +1,7 @@
 var cursorX =0;
 var cursorY = 0;
 var currentWindow = 0;
+
 document.onmousemove = function(e)
 {
     cursorX = e.pageX;
@@ -479,3 +480,130 @@ function Banner(){
         context.fill();
     }
 }
+  var onSkills = false;
+  var intervalId;
+  var bubbles = new Array();
+  var bubs;
+
+    function displayContent(contentToDisplay)
+    {
+        var shouldShow = true;
+    if(contentToDisplay=="skills")
+    {
+      onSkills = true;
+    }
+    else
+    {
+      onSkills = false;
+    }
+        var toDisplay = document.getElementById(contentToDisplay);
+        if(toDisplay.className =="contentSection shown")
+        {
+        shouldShow = false;
+        }
+    var allOthers = document.getElementsByClassName("contentSection");
+    for(var acb = 0; acb < allOthers.length; acb++)
+    {
+        allOthers[acb].className = "contentSection offLeft";
+    }
+    if(shouldShow)
+    {
+    toDisplay.className = "contentSection shown";
+    }
+  else
+  {
+    onSkills = false;
+  }
+    if(intervalId!=null)
+    {
+      clearInterval(intervalId);
+    }
+      if(onSkills)
+      {
+        initBubbles();
+       intervalId = setInterval(moveBubbles, 50);
+
+      }
+    }
+    var skillsPage = document.getElementById("skills");
+  function initBubbles()
+  {
+    bubs = document.getElementsByClassName("skill");
+    if(bubs.length != bubbles.length)
+    {
+      bubbles = new Array();
+
+    for(var i = 0; i < bubs.length; i++)
+    {
+      var tempx = Math.floor((Math.random() *600) + 1);
+      var tempy = Math.floor((Math.random() *600) + 1);
+      var tempwid = bubs[i].offsetWidth;
+      var tempBubble = new bubble(tempx, tempy,tempwid,skillsPage.offsetWidth,skillsPage.offsetHeight);
+      bubbles.push(tempBubble);
+    }
+    }
+  }
+  function moveBubbles()
+  {
+    for(var i = 0; i < bubs.length; i++)
+    {
+        var tempCursorx = cursorX - skillsPage.offsetLeft;
+         var tempCursory = cursorY - skillsPage.offsetTop;
+         alert(tempCursory);
+      bubbles[i].check(tempCursorx,tempCursory);
+      if(bubbles[i].hovered == false)
+      {
+    bubs[i].style.left = bubbles[i].x + "px";
+    bubs[i].style.top = bubbles[i].y + "px";
+    bubbles[i].x += bubbles[i].xvel;
+    bubbles[i].y += bubbles[i].yvel;
+      }
+   }  
+  }
+  function bubble(xin, yin, wid, contwid,conthei)
+  {
+    this.x = xin;
+    this.y = yin;
+    this.width= wid;
+    this.contwidth= contwid;
+
+    this.contheight = conthei;
+    this.xvel = Math.floor((Math.random() *5) +1);
+    this.yvel =  Math.floor((Math.random() *5) +1);
+    if(Math.floor(Math.random()*2) == 0)
+    {
+        this.xvel = -this.xvel;
+    }
+    if(Math.floor(Math.random()*2) == 0)
+    {
+        this.yvel = -this.yvel;
+    }
+    this.hovered = false;
+    this.check = function(i,j)
+    {
+      if(i >this.x&& j > this.y  && i < (this.x + this.width) && j < (this.y + this.width))
+        { 
+         this.hovered = true
+        }
+        else
+        {
+          this.hovered = false;
+        }
+        if(this.x +this.width < 0)
+        {
+          this.x = this.contwidth;
+        }
+        if(this.y +this.width < 0)
+        {
+          this.y = this.contheight;
+        }
+        if(this.x> this.contwidth)
+        {
+          this.x = -this.width;
+        }
+        if(this.y> this.contheight)
+        {
+          this.y = -this.width;
+        }
+    }
+  }

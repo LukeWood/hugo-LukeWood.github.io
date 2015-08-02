@@ -43,8 +43,7 @@ canvas
 <canvas id="myCanvas" width="400" height="400">
 Your browser does not support the HTML5 canvas tag.
 </canvas>
-<script src = "background.js">
-</script>
+
 
 
 
@@ -85,6 +84,8 @@ Your browser does not support the HTML5 canvas tag.
   <div class = "skill" id = "arduino"><center><p>Arduino:<br>1 Year</p><center></div>
   <div class = "skill" id = "html5"><center><p>HTML &<br>HTML5:<br>2 Years</p><center></div>
   <div class = "skill" id = "javascript"><center><p>Javascript:<br>2 Years</p><center></div>
+    <div class = "skill" id = "css"><center><p>CSS:<br>2 Years</p><center></div>
+
 
 </div>
 
@@ -180,133 +181,6 @@ Your browser does not support the HTML5 canvas tag.
     </div>
   </div>
 
-
- 	<script type="text/javascript">
-  var onSkills = false;
-  var intervalId;
-  var bubbles = new Array();
-  var bubs;
-
- 	function displayContent(contentToDisplay)
-	{
-		var shouldShow = true;
-    if(contentToDisplay=="skills")
-    {
-      onSkills = true;
-    }
-    else
-    {
-      onSkills = false;
-    }
-		var toDisplay = document.getElementById(contentToDisplay);
-		if(toDisplay.className =="contentSection shown")
-		{
-		shouldShow = false;
-		}
-	var allOthers = document.getElementsByClassName("contentSection");
-	for(var acb = 0; acb < allOthers.length; acb++)
-	{
-		allOthers[acb].className = "contentSection offLeft";
-	}
-	if(shouldShow)
-	{
-	toDisplay.className = "contentSection shown";
-	}
-  else
-  {
-    onSkills = false;
-  }
-    if(intervalId!=null)
-    {
-      clearInterval(intervalId);
-    }
-      if(onSkills)
-      {
-        initBubbles();
-       intervalId = setInterval(moveBubbles, 50);
-
-      }
-	}
-    var skillsPage = document.getElementById("skills");
-  function initBubbles()
-  {
-    bubs = document.getElementsByClassName("skill");
-    if(bubs.length != bubbles.length)
-    {
-      bubbles = new Array();
-
-    for(var i = 0; i < bubs.length; i++)
-    {
-      var tempx = Math.floor((Math.random() *600) + 1);
-      var tempy = Math.floor((Math.random() *600) + 1);
-      var tempwid = bubs[i].offsetWidth;
-      var tempBubble = new bubble(tempx, tempy,tempwid,skillsPage.offsetWidth,skillsPage.offsetHeight);
-      bubbles.push(tempBubble);
-    }
-    }
-  }
-  var mouse2x;
-  var mouse2y;
-  document.onmousemove = handleMouseMove;
-    function handleMouseMove(event)
-    {
-      mouse2x = event.clientX - skillsPage.offsetLeft;
-      mouse2y = event.clientY - skillsPage.offsetTop;
-    }
-  function moveBubbles()
-  {
-    for(var i = 0; i < bubs.length; i++)
-    {
-      bubbles[i].check(mouse2x, mouse2y);
-      if(bubbles[i].hovered == false)
-      {
-    bubs[i].style.left = bubbles[i].x + "px";
-    bubs[i].style.top = bubbles[i].y + "px";
-    bubbles[i].x += bubbles[i].xvel;
-    bubbles[i].y += bubbles[i].yvel;
-      }
-   }  
-  }
-  function bubble(xin, yin, wid, contwid,conthei)
-  {
-    this.x = xin;
-    this.y = yin;
-    this.width= wid;
-    this.contwidth= contwid;
-
-    this.contheight = conthei;
-    this.xvel = Math.floor((Math.random() *10) - 5);
-    this.yvel =  Math.floor((Math.random() *10) - 5);
-    this.hovered = false;
-    this.check = function(i,j)
-    {
-      if(i >this.x&& j > this.y  && i < (this.x + this.width) && j < (this.y + this.width))
-        { 
-         this.hovered = true
-        }
-        else
-        {
-          this.hovered = false;
-        }
-        if(this.x +this.width < 0)
-        {
-          this.x = this.contwidth;
-        }
-        if(this.y +this.width < 0)
-        {
-          this.y = this.contheight;
-        }
-        if(this.x> this.contwidth)
-        {
-          this.x = -this.width;
-        }
-        if(this.y> this.contheight)
-        {
-          this.y = -this.width;
-        }
-    }
-  }
- 	</script>
   <script type="text/javascript">
   function toggleMenu()
   {
@@ -320,5 +194,7 @@ Your browser does not support the HTML5 canvas tag.
     }
   }
   </script>
+  <script src = "background.js">
+</script>
 </body>
 </html>
