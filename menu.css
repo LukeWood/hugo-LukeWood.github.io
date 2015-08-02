@@ -40,6 +40,7 @@ footer
 	width: auto;
 	height: 80%;
 	width: 60%;
+	z-index: 10;
 	max-height: 75vw !important;
 	border: 4px white solid;
 	background-color: rgba(175,175,175,.5);

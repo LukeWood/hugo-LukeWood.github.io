@@ -78,8 +78,13 @@ Your browser does not support the HTML5 canvas tag.
 
 <div id = "skills" class = "contentSection offleft">
 
-  <div class = "skill" id = "Java"><center><p><span class ="lang">Java:</span><br>8 Years Experience</p><center></div>
-  <div class = "skill" id = "cpp"><center><p>C++:<br>2 Years Experience</p><center></div>
+  <div class = "skill" id = "Java"><center><p><span class ="lang">Java:</span><br>8 Years</p><center></div>
+
+  <div class = "skill" id = "cpp"><center><p>C++:<br>2 Years</p><center></div>
+
+  <div class = "skill" id = "arduino"><center><p>Arduino:<br>1 Year</p><center></div>
+  <div class = "skill" id = "html5"><center><p>HTML &<br>HTML5:<br>2 Years</p><center></div>
+  <div class = "skill" id = "javascript"><center><p>Javascript:<br>2 Years</p><center></div>
 
 </div>
 
@@ -179,8 +184,6 @@ Your browser does not support the HTML5 canvas tag.
  	<script type="text/javascript">
   var onSkills = false;
   var intervalId;
-  var velocitiesX = [3,4,5,6];
-  var velocitiesY = [6,5,4,3];
   var bubbles = new Array();
   var bubs;
 
@@ -224,6 +227,7 @@ Your browser does not support the HTML5 canvas tag.
 
       }
 	}
+    var skillsPage = document.getElementById("skills");
   function initBubbles()
   {
     bubs = document.getElementsByClassName("skill");
@@ -236,21 +240,19 @@ Your browser does not support the HTML5 canvas tag.
       var tempx = Math.floor((Math.random() *600) + 1);
       var tempy = Math.floor((Math.random() *600) + 1);
       var tempwid = bubs[i].offsetWidth;
-      var tempBubble = new bubble(tempx, tempy,tempwid,tempwid);
+      var tempBubble = new bubble(tempx, tempy,tempwid,skillsPage.offsetWidth,skillsPage.offsetHeight);
       bubbles.push(tempBubble);
     }
     }
   }
   var mouse2x;
   var mouse2y;
-  var skillsPage = document.getElementById("skills");
   document.onmousemove = handleMouseMove;
     function handleMouseMove(event)
     {
       mouse2x = event.clientX - skillsPage.offsetLeft;
       mouse2y = event.clientY - skillsPage.offsetTop;
     }
-  //document.getElementById("mylink").onmouseover = function() { alert("Hover!"); }
   function moveBubbles()
   {
     for(var i = 0; i < bubs.length; i++)
@@ -265,24 +267,42 @@ Your browser does not support the HTML5 canvas tag.
       }
    }  
   }
-  function bubble(xin, yin, wid, hei)
+  function bubble(xin, yin, wid, contwid,conthei)
   {
     this.x = xin;
     this.y = yin;
     this.width= wid;
-    this.height = hei;
+    this.contwidth= contwid;
+
+    this.contheight = conthei;
     this.xvel = Math.floor((Math.random() *10) - 5);
     this.yvel =  Math.floor((Math.random() *10) - 5);
     this.hovered = false;
     this.check = function(i,j)
     {
-      if(i >this.x&& j > this.y  && i < (this.x + this.width) && j < (this.y + this.height))
+      if(i >this.x&& j > this.y  && i < (this.x + this.width) && j < (this.y + this.width))
         { 
-          this.hovered = true
+         this.hovered = true
         }
         else
         {
           this.hovered = false;
+        }
+        if(this.x +this.width < 0)
+        {
+          this.x = this.contwidth;
+        }
+        if(this.y +this.width < 0)
+        {
+          this.y = this.contheight;
+        }
+        if(this.x> this.contwidth)
+        {
+          this.x = -this.width;
+        }
+        if(this.y> this.contheight)
+        {
+          this.y = -this.width;
         }
     }
   }

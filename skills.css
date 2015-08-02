@@ -1,11 +1,21 @@
+#skills
+{
+	overflow: hidden;
+	vertical-align: top;
+}
 .skill
 {
+	overflow: hidden;
+	    -moz-user-select: none; 
+        -khtml-user-select: none; 
+        -webkit-user-select: none; 
+        -o-user-select: none; 
 	position: absolute;
 	border-radius: 50%;
-	vertical-align: middle;
+	display: inline-block;
+	vertical-align: top;
 	background-repeat: no-repeat;
 	background-position: center;
-	overflow: hidden;
 	margin: none;
 	padding: none;
 }
@@ -14,21 +24,48 @@
 	margin: none;
 	padding: none;
 	display: none;
-	background: #888;
+	background: #000;
 	width: 80%;
 	height: 80%;
 	font-family: "Rockwell" sans-serif;
-	font-size: 32;
+	font-size: 26;
 	color: white;
 }
 .lang
 {
-	font-size: 40;
+	font-size: 30;
+}
+#arduino
+{
+
+	width: 150px;
+	height: 150px;
+	border: solid 2px black;
+	background-image: url("arduino.png");
+	background-size: 80% auto;
+	background-color: #fff;
+}
+#html5
+{
+	width: 200px;
+	height: 200px;
+	border: solid 2px black;
+	background-image: url("html5.png");
+	background-size: 80% auto;
+	background-color: #fff;
+}
+#javascript
+{
+		width: 200px;
+	height: 200px;
+	border: solid 2px black;
+	background-image: url("javascript.jpg");
+	background-size: 100% auto;
+	background-color: #fff;
 }
 #Java
 {
-	top: 0px;
-	left: 0px;
+
 	width: 300px;
 	height: 300px;
 	border: solid 2px black;
@@ -42,9 +79,9 @@
 }
 #cpp
 {
+	border: 2px solid black;
+	background-image: url("C++.png");
 	width: 200px;
 	height: 200px;
-	top: 100px;
-	left: 500px;
 	background-color: #fe1;
 }
