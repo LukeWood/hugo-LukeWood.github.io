@@ -16,7 +16,32 @@ http://flickity.metafizzy.co
   font-family: "Rockwell" sans-serif;
   color: white;
   background: rgb(175,175,175);
-
+}
+.githubcontainer
+{
+  position: absolute;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+  right: 2.5%;
+  bottom: 2.5%;
+  width: 300px;
+  height: 100px;
+  border: 6px solid #888;
+  border-radius: 15px;
+  background-image: url("GitHubCombined.png");
+  background-color: #7851a9;
+  background-position: center;
+  background-size: 300px, 100px;
+}
+.gallery-cell a
+{
+  text-decoration: none;
+}
+.gallery-cell h2
+{
+   margin-left: 2.5%;
+  color: white;
 }
 .gallery-cell .content
 {

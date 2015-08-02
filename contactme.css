@@ -1,0 +1,52 @@
+.contactme
+{
+	position: absolute;
+	background: rgb(125,125,125);
+	height: 95%;
+	top: 2.5%;
+	width: 95%;
+	left: 2.5%;
+	outline: 2px solid white;
+}
+.contactme .textarea
+{
+	position: absolute;
+	width: 49%;
+	height: 98%;
+	left: .5%;
+	top: 1%;
+}
+.contactme h1
+{
+	font-family: "Rockwell" sans-serif;
+	font-size: 32;
+	font-weight: bolder;
+	color: white;
+}
+.contactme li
+{
+	text-decoration: none;
+}
+.contactme .imgcontainer
+{
+	position: absolute;
+	width: 49%;
+	height: 49%;
+	overflow: hidden;
+}
+.contactme img
+{
+	width: 100%;
+	height: auto;
+	position: absolute;
+}
+.contactme #img1
+{
+	top: 1%;
+	right: 1%;
+}
+.contactme #img2
+{
+	top: 50.5%;
+	right: 1%;
+}
