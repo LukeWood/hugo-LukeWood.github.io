@@ -46,6 +46,10 @@ footer
 	-webkit-transition:left 1s linear; /* Safari */
     transition:left  1s linear;
 }
+#resume
+{
+	max-height: auto !important;
+}
 .contentSection.shown
 {
 	left: 20%;

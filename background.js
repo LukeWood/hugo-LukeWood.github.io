@@ -62,7 +62,7 @@ function leftArrow()
         if(currentWindow == 0)
     {
     clearInterval(previousInterval);
-    currentWindow = 2;
+    currentWindow = 4;
     }
     else
     {
@@ -148,6 +148,32 @@ var d =(70)*(i+j)/Math.sqrt((width/2+i-cursorX)*(width/2+i-cursorX)+(height/2+j-
     var di = (i/(i+j)) * d;
 ctx.fillRect(width/2+i-di,height/2+j-dj,3,3);
  
+}
+}
+
+}
+function paintScreen4()
+{
+
+ctx.fillStyle = "#000000";
+ctx.fillRect(0,0,width,height);
+ctx.fillStyle =  "rgb(255,0,0)";
+for(var i = 0; i < width; i+=8)
+{
+for(var j = 0; j < height; j+=8)
+{
+if(i> cursorX)
+{
+ctx.fillStyle = ctx.fillStyle =  "rgb(0,0,255)";
+ctx.fillRect(i+1,j,2,2);
+}
+if(j > cursorY)
+{
+    ctx.fillStyle = ctx.fillStyle =  "rgb(255,0,0)";
+
+ctx.fillRect(i,j+1,2,2);
+ 
+}
 }
 }
 
@@ -242,10 +268,37 @@ function repaint()
         paintScreen1();
 
     }
+    else if(currentWindow == 3)
+    {
+        paintScreen3();
+    }
+    else if (currentWindow ==4)
+    {
+        paintScreen4();
+    }
     else
     {
         currentWindow=0;
     }
+}
+function paintScreen3()
+{
+ctx.fillStyle = "#000000";
+ctx.fillRect(0,0,width,height);
+incrementColor();
+ctx.fillStyle = "#ffffff";
+for(var i = -width/2; i <width/2; i+=7)
+{
+for(var j = -height/2; j <height/2; j+=7)
+{
+var d =((width/4+height/4)+i+j)/Math.sqrt((width/2+i-cursorX)*(width/2+i-cursorX)+(height/2+j-cursorY)*(height/2+j-cursorY));
+    var dj = (j/(i+j)) * d;
+    var di = (i/(i+j)) * d;
+ 
+ctx.fillRect(width/2+i-di,height/2+j-dj,1,1);
+ 
+}
+}
 }
 function paintWelcomeScreen()
 {
