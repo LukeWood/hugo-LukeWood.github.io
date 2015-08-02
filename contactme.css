@@ -16,6 +16,25 @@
 	left: .5%;
 	top: 1%;
 }
+.contactme .textarea p
+{
+	color: white;
+	font-family: "Rockwell" sans-serif;
+	font-size: 22;
+	padding-left: 2.5%;
+}
+.cantreadthis
+{
+	background-color: #fff;
+	border-top: 2px solid black;
+	width: 100%;
+}
+.cantreadthis a
+{
+	font-size: 32;
+	text-decoration: none;
+	color: blue;
+}
 .contactme h1
 {
 	font-family: "Rockwell" sans-serif;
@@ -25,7 +44,9 @@
 }
 .contactme li
 {
-	text-decoration: none;
+	font-family: "Rockwell" sans-serif;
+	font-size: 22;
+	color:white;
 }
 .contactme .imgcontainer
 {
