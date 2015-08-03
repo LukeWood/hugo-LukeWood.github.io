@@ -18,6 +18,10 @@ http://flickity.metafizzy.co
   color: white;
   background: rgb(175,175,175);
 }
+.gallery-cell h1
+{
+  font-size: 40;
+}
 .githubcontainer
 {
   position: relative;

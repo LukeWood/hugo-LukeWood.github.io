@@ -36,7 +36,7 @@ footer
 .contentSection
 {
 	position: absolute;
-	top: 10%;
+	bottom: 10%;
 	width: auto;
 	height: 80%;
 	width: 60%;
