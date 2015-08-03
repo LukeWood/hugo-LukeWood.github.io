@@ -11,10 +11,10 @@
 }
 .contactme .textarea
 {
+	float: left;
 	position: relative;
 	overflow-y: auto;
 	overflow-x: hidden;
-	border-bottom: 2px solid white;
 	border-right: 2px solid white;
 
 	width: 49%;
@@ -30,6 +30,8 @@
 }
 .socials
 {
+	width: 100%;
+	border-top: 2px solid white;
 	position: absolute;
 	bottom: 5px;
 }
@@ -69,25 +71,18 @@
 }
 .contactme .imgcontainer
 {
-	position: absolute;
-	width: 49%;
-	height: 49%;
+	display: inline;
+	float: right;
+	width: 50%;
+	height: 100%;
 	overflow: hidden;
+	padding: 2px;
 }
-.contactme img
+.contactme .imgcontainer img
 {
 	width: 100%;
-	height: auto;
-	position: absolute;
+	height: 50%;
+	margin-top: 5px;
+	float: right;
 	vertical-align:middle
-}
-.contactme #img1
-{
-	top: 1%;
-	right: 1%;
-}
-.contactme #img2
-{
-	top: 50.5%;
-	right: 1%;
 }
