@@ -206,6 +206,18 @@ Your browser does not support the HTML5 canvas tag.
   </div>
 
   <script type="text/javascript">
+  var contentSections=document.getElementsByClassName("contentSection");
+  var topOffset;
+  var docHeight = "innerHeight" in window 
+               ? window.innerHeight
+               : document.documentElement.offsetHeight; 
+  var contentSectionHeight = contentSections[0].offsetHeight;
+
+  topOffset = docHeight/2 -contentSectionHeight/2;
+  for(var i = 0; i < contentSections.length; i++)
+  {
+    contentSections[i].style.bottom = topOffset;
+  }
   function toggleMenu()
   {
     if(document.getElementById("navigation-checkbox").checked)
