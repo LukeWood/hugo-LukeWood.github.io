@@ -98,6 +98,11 @@
 	background-size: 80% auto;
 	background-color: #fff;
 }
+.skill:hover
+{
+	background-image: none !important;
+	background-color: black !important;
+}
 .skill:hover p
 {
 	display: block;
