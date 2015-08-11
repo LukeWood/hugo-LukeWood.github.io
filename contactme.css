@@ -84,5 +84,16 @@
 	height: 50%;
 	margin-top: 5px;
 	float: right;
-	vertical-align:middle
+	vertical-align:middle;
+	background-size:cover; 
+    background-position:center center; 
+    background-repeat:no-repeat; 
+}
+#me1
+{
+	background-image: url("me2.jpg");
+}
+#me2
+{
+	background-image: url("skiing.jpg");
 }
