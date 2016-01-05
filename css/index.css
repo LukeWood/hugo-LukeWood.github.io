@@ -1,0 +1,86 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+body
+{
+	background: white;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#outerbackground
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-radius: 30px;
+	width: 98%;
+	left: 1%;
+	top: 1%;
+	height: 98%;
+	background: white;
+	overflow: hidden;
+}
+#page
+{
+	background: white;
+	opacity: 0;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+#load
+{
+width: 100%;
+height: 100%;
+background: rgba(0,250,250,.35);
+opacity: 1;
+-webkit-transition: opacity 1s ease-in-out;
+-moz-transition: opacity 1s ease-in-out;
+transition: opacity 1s ease-in-out;
+}
+#overlay
+{
+	position:absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,250,250,.35);
+	z-index:2;
+}
+#background
+{
+	z-index:1;
+	height: 100%;
+	width: 100%;
+	background-image: url("cliffjumping.jpg");
+	background-size: cover;
+	background-position: top left;
+}
+#content
+{
+	position: absolute;
+	z-index:3;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+#LukeWood
+{
+	cursor:default;
+	color: white;
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	font-family: Rockwell;
+	font-size:15vw;
+}
