@@ -1,0 +1,39 @@
+#container
+{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	bottom: 0;
+}
+#contentpanel
+{
+	position: absolute;
+	border-radius: 30px;
+	z-index: 12;
+	width: 10vh;
+	top: 5vh;
+	margin-left: 1%;
+	opacity: 0;
+	-webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+.project
+{
+	width: 20vh;
+	height: 20vh;
+	border: solid rgb(0,200,200) 2px;
+	margin: 10px;
+	border-radius: 10px;
+	overflow: hidden;
+	cursor: pointer;
+	background: white;
+}
+.projectimage
+{
+	position: relative;
+	left: 0;
+	top: 0;
+	height: 20vh;
+	width: 20vh;
+}
