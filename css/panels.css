@@ -39,6 +39,7 @@
 }
 .projectdescriptor
 {
+	overflow: auto;
 	position: absolute;
 	left: 25vh;
 	top: 7vh;
@@ -59,4 +60,33 @@ h2
 	color: white;
 	font-family: Rockwell;
 	font-size:5vw;
+}
+.projectdescriptor li
+{
+	cursor:default;
+	color: white;
+	font-family: Rockwell;
+	font-size: 3vw;
+}
+
+.projectdescriptor p
+{
+	cursor:default;
+	color: white;
+	font-family: Rockwell;
+	font-size: 3vw;
+}
+.projectdescriptor h3
+{
+	cursor:default;
+	margin: 20px;
+	color: white;
+	font-family: Rockwell;
+	font-size: 3vw;
+	display: inline-block;
+	border: solid white 2px;
+}
+.projectdescriptor h3:hover
+{
+	border: solid rgb(150,150,150) 2px;
 }

@@ -65,3 +65,11 @@ function toggle(targ)
 		target.setAttribute("shown","true");
 	}
 }
+
+function askredirect(target)
+{
+	if(confirm("You are about to be redirected to the homepage of the selected project, continue?"))
+	{
+		window.location = target;
+	}
+}

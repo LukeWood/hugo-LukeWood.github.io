@@ -53,8 +53,7 @@ transition: opacity 1s ease-in-out;
 	left: 0;
 	width: 100%;
 	height: 100%;
-		border-radius: 30px;
-
+	border-radius: 30px;
 	background-color: rgba(0,250,250,.25);
 	z-index:2;
 }
@@ -85,4 +84,12 @@ transition: opacity 1s ease-in-out;
 	left: 50%;
 	font-family: Rockwell;
 	font-size:15vw;
+}
+#contact
+{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	font-family:Rockwell;
+	background-color: rgba(255,255,255,.7);
 }

@@ -28,7 +28,7 @@
 
 <div id = "content">
 <h1 id = "LukeWood" class = "noselect">Luke<br>Wood</h1>
-
+<div id = "contact"><center>Copyright Luke Wood 2016 &bull; (858)-775-1566 &bull; lswood@smu.edu &bull; On Github as LukeWoodSMU</center></div>
 </div>
 </div>
 <div id = "container">
@@ -36,15 +36,33 @@
 <center>
 <div target = "employeetrack" class = "project"><img src = "img/employeetracking.jpg" class = "projectimage"></div>
 <div target = "nodefileserver"class = "project"><img src = "img/nodejs.png" class = "projectimage"></div>
-<a href = "http://lukewoodsmu.github.io/StarWarsJS/"><div class = "project"><img src = "img/starwarsjs.jpg" class = "projectimage"></div></a>
+<div class = "project"><img onclick = "askredirect('http://lukewoodsmu.github.io/StarWarsJS/');"src = "img/starwarsjs.jpg" class = "projectimage"></div>
 <div target = "onelinejsgames"class = "project"><img src = "img/snake.jpg" class = "projectimage"></div>
 </center>
 </div>
 </div>
 
-<div class = "projectdescriptor" id = "employeetrack"><center><h2 class = "noselect">Employee Tracker</h2></center></div>
-<div class = "projectdescriptor" id = "nodefileserver"><center><h2 class = "noselect">Node File Server</h2></center></div>
-<div class = "projectdescriptor" id = "onelinejsgames"><center><h2 class = "noselect">Single Line Javascript Games</h2></center></div>
+<div class = "projectdescriptor" id = "employeetrack"><center><h2 class = "noselect">Employee Tracker</h2>
+<li>Java Server and Client</li>
+<li>Real Time Image Transfer</li>
+<li>Database Integration</li>
+<li>Bi-directional Messaging System</li>
+</center>
+</div>
+
+<div class = "projectdescriptor" id = "nodefileserver"><center><h2 class = "noselect">Node File Server</h2>
+<li>Node.js Server</li>
+<li>Use of the Socket.io framework</li>
+<li>Allows for remote storage of files</li>
+<li>Allows for the removal of files from server</li>
+</center></div>
+<div class = "projectdescriptor" id = "onelinejsgames"><center><h2 class = "noselect">Single Line Javascript Games</h2></center>
+<p>These Games are Examples of some of the games I have written in Javascript.  Click on one of the buttons to add that game to this page.</p>
+<center><h3 id = "snakebut" onclick = "initSnake('snakeCont');document.getElementById('snakebut').setAttribute('onclick','');">Snake</h3><div id = "snakeCont"></div>
+<h3 id = "tictacbut" onclick = "initTicTacToe('tictactoecont');document.getElementById('tictacbut').setAttribute('onclick','');">TicTacToe</h3><div id = "tictactoecont"></div></center>
+<script src = "js/snake.js"></script>
+<script src = "js/tictactoe.js"></script>
+</div>
 
 </div>
 <script src = "js/format.js">
