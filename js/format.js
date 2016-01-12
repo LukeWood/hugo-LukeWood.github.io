@@ -44,7 +44,24 @@ function startScroll()
 		})();
 	}
 }
+var allPanelDescriptors = document.getElementsByClassName("projectdescriptor");
 function toggle(targ)
 {
-	var target = document.getElementById("target");
+	var target = document.getElementById(targ);
+	var shown = target.getAttribute("shown");
+	for(var i = 0; i < allPanelDescriptors.length; i++)
+	{
+		allPanelDescriptors[i].style.opacity = "0";
+		allPanelDescriptors[i].setAttribute("shown","false");
+	}
+	if(shown === "true")
+	{
+		target.style.opacity = "0";
+		target.setAttribute("shown","false");
+	}
+	else
+	{
+		target.style.opacity = "1";
+		target.setAttribute("shown","true");
+	}
 }
