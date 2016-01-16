@@ -29,7 +29,8 @@ function startScroll()
 			var py = bounding.top + 100;
 			var distance = Math.sqrt((px - x)*(px-x)+(py-y)*(py-y));
 			var opactoset = 1-(distance / maxDistance);
-			opactoset = opactoset * opactoset;
+			if(opactoset<.75){opactoset=.75;}
+			opactoset = opactoset * opactoset*opactoset;
 			allPanels[i].style.opacity = ""+opactoset;
 		}
 	}
