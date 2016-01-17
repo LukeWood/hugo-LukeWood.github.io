@@ -42,7 +42,7 @@
 	overflow: auto;
 	position: absolute;
 	left: 25vh;
-	top: 7vh;
+	top: -80vh;
 	width: 80%;
 	height: 80vh;
 	border-radius: 20px;
@@ -50,9 +50,9 @@
 	background: rgba(0,200,200,.7);
 	opacity: 0;
 	z-index:20;
-    -webkit-transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    transition: opacity 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 h2
 {
@@ -91,4 +91,16 @@ h2
 .projectdescriptor h3:hover
 {
 	border: solid rgb(150,150,150) 2px;
+}
+#rapExample
+{
+	background: black;
+	border: solid black 2px;
+	border-radius: 5px;
+	float:left;
+	width: 100%;
+}
+#rapExample:hover
+{
+	background:white;
 }

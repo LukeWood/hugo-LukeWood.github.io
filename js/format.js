@@ -54,16 +54,20 @@ function toggle(targ)
 	{
 		allPanelDescriptors[i].style.opacity = "0";
 		allPanelDescriptors[i].setAttribute("shown","false");
+		allPanelDescriptors[i].style.top = "-80vh";
+
 	}
 	if(shown === "true")
 	{
 		target.style.opacity = "0";
 		target.setAttribute("shown","false");
+		target.style.top = "-80vh";
 	}
 	else
 	{
 		target.style.opacity = "1";
 		target.setAttribute("shown","true");
+		target.style.top = "7vh";
 	}
 }
 
