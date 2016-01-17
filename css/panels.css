@@ -96,16 +96,31 @@ h2
 {
 	border: solid rgb(150,150,150) 2px;
 }
-#rapExample
+.rapExample
 {
 	background: black;
 	border: solid black 2px;
 	border-radius: 5px;
 	float:left;
+	font-size: 25;
 	margin-left:5%;
 	width: 90%;
 }
-#rapExample:hover
+.title
+{
+	font-weight: bold;
+}
+.cleanRapExample
+{
+	background: white;
+	border: solid black 2px;
+	border-radius: 5px;
+	float:left;
+	font-size: 25;
+	margin-left:5%;
+	width: 90%;
+}
+.rapExample:hover
 {
 	background:white;
 }
