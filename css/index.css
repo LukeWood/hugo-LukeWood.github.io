@@ -6,6 +6,7 @@
 body
 {
 	background: white;
+	overflow-y: hidden;
 }
 .noselect {
     -webkit-touch-callout: none;
