@@ -47,12 +47,16 @@
 	height: 80vh;
 	border-radius: 20px;
 	padding: 20px;
-	background: rgba(0,200,200,.7);
+	background: rgba(0,200,200,.85);
 	opacity: 0;
 	z-index:20;
     -webkit-transition: all 1s ease-in-out;
     -moz-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
+}
+.bold
+{
+	font-weight: bold;
 }
 h2
 {
@@ -72,9 +76,9 @@ h2
 
 .projectdescriptor p
 {
+	padding: 10px;
 	cursor:default;
 	color: white;
-	font-family: Rockwell;
 	font-size: 3vw;
 }
 .projectdescriptor h3
@@ -98,9 +102,16 @@ h2
 	border: solid black 2px;
 	border-radius: 5px;
 	float:left;
-	width: 100%;
+	margin-left:5%;
+	width: 90%;
 }
 #rapExample:hover
 {
 	background:white;
+}
+.github
+{
+	color:purple;
+	font-size: 3vw;
+	text-decoration: none;
 }
