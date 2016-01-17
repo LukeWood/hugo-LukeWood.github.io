@@ -47,7 +47,7 @@
 	height: 80vh;
 	border-radius: 20px;
 	padding: 20px;
-	background: rgb(0,200,200);
+	background: rgba(0,200,200,.7);
 	opacity: 0;
 	z-index:20;
     -webkit-transition: opacity 1s ease-in-out;
@@ -65,6 +65,7 @@ h2
 {
 	cursor:default;
 	color: white;
+	float:left;
 	font-family: Rockwell;
 	font-size: 3vw;
 }
@@ -84,6 +85,7 @@ h2
 	font-family: Rockwell;
 	font-size: 3vw;
 	display: inline-block;
+	border-radius: 5px;
 	border: solid white 2px;
 }
 .projectdescriptor h3:hover
