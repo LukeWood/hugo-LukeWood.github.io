@@ -1,9 +1,10 @@
-#container
+#foreground
 {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	bottom: 0;
+	overflow: hidden;
 }
 #contentpanel
 {
@@ -20,22 +21,25 @@
 }
 .project
 {
-	width: 20vh;
-	height: 20vh;
+	position: absolute;
+	width: 200px;
+	height: 200px;
 	border: solid rgb(0,200,200) 2px;
 	margin: 10px;
+	opacity:.5;
 	border-radius: 10px;
 	overflow: hidden;
 	cursor: pointer;
-	background: white;
+	z-index:2;
+	-webkit-transition: top 10s ease-in-out;
+    -moz-transition: top 10s ease-in-out;
+    transition: top 10s ease-in-out;
 }
 .projectimage
 {
-	position: relative;
-	left: 0;
-	top: 0;
-	height: 20vh;
-	width: 20vh;
+	position: absolute;
+	height: 200px;
+	width: 200px;
 }
 .projectdescriptor
 {
