@@ -31,6 +31,26 @@ foreground.appendChild(tile);
 }
 tick();
 setInterval(tick,12000);
+	var allPanels = document.getElementsByClassName("project");
+	document.onmousemove = function(e)
+	{
+		var x = e.clientX;
+		var y = e.clientY;
+		var maxDistance = window.innerWidth*window.innerWidth + window.innerHeight*window.innerHeight;
+		maxDistance = Math.sqrt(maxDistance);
+		for(var i = 0; i < allPanels.length; i++)
+		{
+			var bounding = allPanels[i].getBoundingClientRect();
+			var px = bounding.left + 100;
+			var py = bounding.top + 100;
+			var distance = Math.sqrt((px - x)*(px-x)+(py-y)*(py-y));
+			var opactoset = 1-(distance / maxDistance);
+			if(opactoset<.75){opactoset=.75;}
+			opactoset = opactoset * opactoset*opactoset;
+			allPanels[i].style.opacity = ""+opactoset;
+		}
+	}
+
 
 function tick()
 {
