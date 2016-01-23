@@ -50,6 +50,7 @@ body
 {
 	cursor:default;
 	color: white;
+	font-weight: bolder;
 	position: absolute;
 	top: 25%;
 	left: 50%;
@@ -60,6 +61,7 @@ body
 {
 	position: absolute;
 	bottom: 0;
+	z-index:4;
 	width: 100%;
 	font-family:Rockwell;
 	background-color: rgba(255,255,255,.7);
