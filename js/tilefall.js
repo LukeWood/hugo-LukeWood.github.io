@@ -63,7 +63,7 @@ tile.appendChild(img);
 else if(rNumber ==3)
 {
 var img = document.createElement("img");
-img.setAttribute("src","img/snake.png");
+img.setAttribute("src","img/snake.jpg");
 img.setAttribute("class","projectimage");
 tile.setAttribute("target","onelinejsgames");
 tile.appendChild(img);
