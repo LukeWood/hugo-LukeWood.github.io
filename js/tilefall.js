@@ -14,23 +14,97 @@ var width = window.innerWidth;
 var foreground = document.getElementById("foreground");
 var ySpeed = 200;
 var tiles = [];
-
+var currentNum = 1;
 for(var i = -200;i< height + 201;i+=210)
 {
 for(var j = -200; j < width+201;j+=210)
 {	
-var tile = document.createElement("div");
-var rNumber = Math.floor(Math.random()*25);
-tile = initTile(tile,rNumber);
+var rNumber = Math.floor(Math.random()*3);
 
+var tile = document.createElement("div");
+if(rNumber ==1)
+{
+tile = initTile(tile,currentNum);
+currentNum++;
+if(currentNum > 5)
+{
+	currentNum = 1;
+}
 var positionInfo = "left: "+j+";top: "+i+";"+"background-color:"+getRandomColor()+";";
 tile.setAttribute("style",positionInfo);
 tiles.push(tile);
 foreground.appendChild(tile);
 }
 }
+}
+
 tick();
-setInterval(tick,12000);
+setInterval(tick,10050);
+
+function initTile(tile,rNumber)
+{
+var initfunc = true;
+if(rNumber==1)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/Matlabicon.png");
+img.setAttribute("class","projectimage");
+tile.setAttribute("target","helloai");
+tile.appendChild(img);
+}
+else if(rNumber ==2)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/neuralnet.png");
+img.setAttribute("class","projectimage");
+tile.setAttribute("target","neuralrap");
+tile.appendChild(img);
+}
+else if(rNumber ==3)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/snake.png");
+img.setAttribute("class","projectimage");
+tile.setAttribute("target","onelinejsgames");
+tile.appendChild(img);
+}
+else if(rNumber ==4)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/starwarsjs.png");
+img.setAttribute("class","projectimage");
+initfunc = false;
+(function(){tile.onclick = function(){askredirect('http://lukewoodsmu.github.io/StarWarsJS/')};})();
+tile.appendChild(img);
+}
+
+else if(rNumber ==5)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/nodejs.png");
+img.setAttribute("class","projectimage");
+tile.setAttribute("target","fileserver");
+tile.appendChild(img);
+}
+else
+{
+tile.setAttribute("target","");
+}
+if(initfunc)
+{
+	(function(){
+		var target = tile.getAttribute("target");
+		tile.onclick = function()
+		{
+		toggle(target);	
+		};
+		})();
+}
+tile.setAttribute("class","project");
+return tile;
+
+}
+
 	var allPanels = document.getElementsByClassName("project");
 	document.onmousemove = function(e)
 	{
@@ -71,60 +145,6 @@ for(var i = 0; i < tiles.length; i++)
 function setTimeRestore(elem)
 {
 setTimeout(function(){elem.style.display = "block";},10000);
-}
-function initTile(tile,rNumber)
-{
-var initfunc = true;
-if(rNumber==1)
-{
-var img = document.createElement("img");
-img.setAttribute("src","img/Matlabicon.png");
-img.setAttribute("class","projectimage");
-tile.setAttribute("target","helloai");
-tile.appendChild(img);
-}
-else if(rNumber ==2)
-{
-var img = document.createElement("img");
-img.setAttribute("src","img/neuralnet.png");
-img.setAttribute("class","projectimage");
-tile.setAttribute("target","neuralrap");
-tile.appendChild(img);
-}
-else if(rNumber ==3)
-{
-var img = document.createElement("img");
-img.setAttribute("src","img/snake.png");
-img.setAttribute("class","projectimage");
-tile.setAttribute("target","onelinejsgames");
-tile.appendChild(img);
-}
-else if(rNumber ==4)
-{
-var img = document.createElement("img");
-img.setAttribute("src","img/starwarsjs.png");
-img.setAttribute("class","projectimage");
-initfunc = false;
-(function(){tile.onclick = function(){askredirect('http://lukewoodsmu.github.io/StarWarsJS/')};})();
-tile.appendChild(img);
-}
-else
-{
-tile.setAttribute("target","");
-}
-if(initfunc)
-{
-	(function(){
-		var target = tile.getAttribute("target");
-		tile.onclick = function()
-		{
-		toggle(target);	
-		};
-		})();
-}
-tile.setAttribute("class","project");
-return tile;
-
 }
 }
 
