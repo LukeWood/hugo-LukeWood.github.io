@@ -22,11 +22,11 @@ for(var j = -200; j < width+201;j+=210)
 var rNumber = Math.floor(Math.random()*3);
 
 var tile = document.createElement("div");
-if(rNumber ==1)
+if(rNumber !=1)
 {
 tile = initTile(tile,currentNum);
 currentNum++;
-if(currentNum > 5)
+if(currentNum > 6)
 {
 	currentNum = 1;
 }
@@ -83,6 +83,14 @@ var img = document.createElement("img");
 img.setAttribute("src","img/nodejs.png");
 img.setAttribute("class","projectimage");
 tile.setAttribute("target","fileserver");
+tile.appendChild(img);
+}
+else if(rNumber ==6)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/wordSearch.jpg");
+img.setAttribute("class","projectimage");
+tile.setAttribute("target","wordsearcher");
 tile.appendChild(img);
 }
 else

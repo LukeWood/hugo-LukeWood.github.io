@@ -45,7 +45,7 @@
 {
 	overflow: auto;
 	position: absolute;
-	left: 25vh;
+	left: 10%;
 	top: -80vh;
 	width: 80%;
 	height: 80vh;
@@ -133,4 +133,35 @@ h2
 	color:purple;
 	font-size: 3vw;
 	text-decoration: none;
+}
+h4
+{
+	font-size:30;
+}
+#inputfile
+{
+	border: solid black 1px;
+	display: inline-block;
+	color:black;
+	background-color: white;
+	padding: 20px;
+}
+#outputfile
+{
+	border: solid black 1px;
+	display: inline-block;
+	margin-top: 20px;
+	color: black;
+	background-color: white;
+	padding: 20px;
+}
+#outputfile p 
+{
+	color: black;
+	font-size: 25;
+}
+#inputfile p 
+{
+	color: black;
+	font-size: 25;
 }
