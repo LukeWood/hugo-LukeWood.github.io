@@ -71,10 +71,9 @@ tile.appendChild(img);
 else if(rNumber ==4)
 {
 var img = document.createElement("img");
-img.setAttribute("src","img/starwarsjs.png");
+img.setAttribute("src","img/starwarsjs.jpg");
 img.setAttribute("class","projectimage");
-initfunc = false;
-(function(){tile.onclick = function(){askredirect('http://lukewoodsmu.github.io/StarWarsJS/')};})();
+tile.setAttribute("target","starwarsjs");
 tile.appendChild(img);
 }
 
