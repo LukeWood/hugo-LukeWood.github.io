@@ -31,9 +31,9 @@
 	overflow: hidden;
 	cursor: pointer;
 	z-index:2;
-	-webkit-transition: top 10s ease-in-out;
-    -moz-transition: top 10s ease-in-out;
-    transition: top 10s ease-in-out;
+	-webkit-transition: top 10s linear;
+    -moz-transition: top 10s linear;
+    transition: top 10s linear;
 }
 .projectimage
 {
