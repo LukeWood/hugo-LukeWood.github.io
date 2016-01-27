@@ -19,14 +19,14 @@ for(var i = -200;i< height + 201;i+=210)
 {
 for(var j = -200; j < width+201;j+=210)
 {	
-var rNumber = Math.floor(Math.random()*3);
+var rNumber = Math.floor(Math.random()*2);
 
 var tile = document.createElement("div");
 if(rNumber !=1)
 {
 tile = initTile(tile,currentNum);
 currentNum++;
-if(currentNum > 6)
+if(currentNum > 7)
 {
 	currentNum = 1;
 }
@@ -93,6 +93,14 @@ img.setAttribute("class","projectimage");
 tile.setAttribute("target","wordsearcher");
 tile.appendChild(img);
 }
+else if(rNumber ==7)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/matrixpic.gif");
+img.setAttribute("class","projectimage");
+tile.setAttribute("target","linearlib");
+tile.appendChild(img);
+}
 else
 {
 tile.setAttribute("target","");
@@ -109,7 +117,6 @@ if(initfunc)
 }
 tile.setAttribute("class","project");
 return tile;
-
 }
 
 	var allPanels = document.getElementsByClassName("project");
@@ -126,7 +133,7 @@ return tile;
 			var py = bounding.top + 100;
 			var distance = Math.sqrt((px - x)*(px-x)+(py-y)*(py-y));
 			var opactoset = 1-(distance / maxDistance);
-			if(opactoset<.75){opactoset=.75;}
+			if(opactoset<.5){opactoset=.5;}
 			opactoset = opactoset * opactoset*opactoset;
 			allPanels[i].style.opacity = ""+opactoset;
 		}
@@ -149,6 +156,7 @@ for(var i = 0; i < tiles.length; i++)
 		tiles[i].style.top = y+"px";
 }
 }
+
 function setTimeRestore(elem)
 {
 setTimeout(function(){elem.style.display = "block";},10000);
