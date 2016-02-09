@@ -9,6 +9,11 @@ function getRandomColor() {
 }
 function createTiles()
 {
+var allTilesList = document.getElementsByClassName("projectimage");
+for(var i = 0; i < allTilesList.length; i++)
+{
+allTilesList[i].parentNode.removeChild(element);
+}
 var height = window.innerHeight;
 var width = window.innerWidth;
 var foreground = document.getElementById("foreground");
@@ -19,11 +24,7 @@ for(var i = -200;i< height + 201;i+=210)
 {
 for(var j = -200; j < width+201;j+=210)
 {	
-var rNumber = Math.floor(Math.random()*2);
-
 var tile = document.createElement("div");
-if(rNumber !=1)
-{
 tile = initTile(tile,currentNum);
 currentNum++;
 if(currentNum > 7)
@@ -36,10 +37,6 @@ tiles.push(tile);
 foreground.appendChild(tile);
 }
 }
-}
-
-tick();
-setInterval(tick,10050);
 
 function initTile(tile,rNumber)
 {
@@ -140,22 +137,7 @@ return tile;
 	}
 
 
-function tick()
-{
-var max=0;
-for(var i = 0; i < tiles.length; i++)
-{
-		var y=  tiles[i].offsetTop;
-		if(max<y){max=y;}
-		y = y+ySpeed;
-		if(y>height+200){
-			y = -200;
-			tiles[i].style.display="none";
-			setTimeRestore(tiles[i]);
-		}
-		tiles[i].style.top = y+"px";
-}
-}
+
 
 function setTimeRestore(elem)
 {
@@ -167,47 +149,13 @@ setTimeout(function(){elem.style.display = "block";},10000);
 var allPanelDescriptors = document.getElementsByClassName("projectdescriptor");
 function toggle(targ)
 {
-	if(targ =="")
-	{
-	for(var i = 0; i < allPanelDescriptors.length; i++)
-	{
-		allPanelDescriptors[i].style.opacity = "0";
-		allPanelDescriptors[i].setAttribute("shown","false");
-		allPanelDescriptors[i].style.top = "-80vh";
-		allPanelDescriptors[i].style.overflow="hidden";
-	}
-	}
-	else
-	{
-	var target = document.getElementById(targ);
-	var shown = target.getAttribute("shown");
-	for(var i = 0; i < allPanelDescriptors.length; i++)
-	{
-		allPanelDescriptors[i].style.opacity = "0";
-		allPanelDescriptors[i].setAttribute("shown","false");
-		allPanelDescriptors[i].style.top = "-80vh";
-		allPanelDescriptors[i].style.overflow="hidden";
-	}
-	if(shown === "true")
-	{
-		target.style.opacity = "0";
-		target.setAttribute("shown","false");
-		target.style.top = "-80vh";
-		target.style.overflow="hidden";
-	}
-	else
-	{
-		target.style.opacity = "1";
-		target.setAttribute("shown","true");
-		target.style.top = "7vh";
-		setTimeout(function(){target.style.overflow="auto";},1000);
-	}
-	}
+	document.getElementById("projectDescriptor").style.top = "0";
+	document.getElementById("projectPDF").setAttribute("src","pdf/"+targ+".pdf");
 }
 function askredirect(target)
 {
 		window.location = target;
 
 }
-
+window.addEventListener("resize",createTiles,false);
 createTiles();
