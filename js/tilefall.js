@@ -46,7 +46,7 @@ if(rNumber==1)
 var img = document.createElement("img");
 img.setAttribute("src","img/Matlabicon.png");
 img.setAttribute("class","projectimage");
-tile.setAttribute("target","helloai");
+tile.setAttribute("target","stringrep");
 tile.appendChild(img);
 }
 else if(rNumber ==2)
