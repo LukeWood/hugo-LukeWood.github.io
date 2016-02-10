@@ -34,7 +34,7 @@ alternate = false;
 else
 {
 	alternate = true;
-	tile = initTile(tile,Math.floor(Math.random()*7));
+	tile = initTile(tile,Math.floor(Math.random()*7)+1);
 }
 currentNum++;
 if(currentNum > 7)
