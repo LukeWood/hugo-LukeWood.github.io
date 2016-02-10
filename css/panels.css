@@ -77,7 +77,7 @@ h2
 	top: -110%;
 	left:0%;
 	height:100vh;
-	background: rgba(0,0,0,.5);
+	background: rgba(0,0,0,.75);
 	-webkit-transition: all 1s ease-in-out;
     -moz-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;

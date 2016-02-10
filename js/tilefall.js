@@ -29,6 +29,7 @@ var tile = document.createElement("div");
 if(alternate)
 {
 tile = initTile(tile,currentNum);
+currentNum++;
 alternate = false;
 }
 else
@@ -36,7 +37,6 @@ else
 	alternate = true;
 	tile = initTile(tile,Math.floor(Math.random()*7)+1);
 }
-currentNum++;
 if(currentNum > 7)
 {
 	currentNum = 1;
