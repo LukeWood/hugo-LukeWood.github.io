@@ -73,19 +73,26 @@ h2
 #projectDescriptor
 {
 	position: absolute;
-	width:80%;
+	width:100%;
 	top: -110%;
-	left:10%;
+	left:0%;
 	height:100vh;
-	background: rgba(255,255,255,.5);
+	background: rgba(0,0,0,.5);
 	-webkit-transition: all 1s ease-in-out;
     -moz-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
 }
 #projectPDF
 {
-	width: 100%;
+	position: absolute;
+	left: 12.5%;
+	width: 75%;
 	height:100%;
+}
+#closebar
+{
+	width: 100%;
+	height: 40px;background: white;
 }
 #close
 {

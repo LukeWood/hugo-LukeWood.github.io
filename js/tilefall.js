@@ -20,12 +20,22 @@ var foreground = document.getElementById("foreground");
 var ySpeed = 200;
 var tiles = [];
 var currentNum = 1;
+var alternate = false;
 for(var i = -200;i< height + 201;i+=210)
 {
 for(var j = -200; j < width+201;j+=210)
 {	
 var tile = document.createElement("div");
+if(alternate)
+{
 tile = initTile(tile,currentNum);
+alternate = false;
+}
+else
+{
+	alternate = true;
+	tile = initTile(tile,Math.floor(Math.random()*7));
+}
 currentNum++;
 if(currentNum > 7)
 {
