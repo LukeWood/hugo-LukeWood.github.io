@@ -111,7 +111,7 @@ tile.appendChild(img);
 else if(rNumber ==8)
 {
 var img = document.createElement("img");
-img.setAttribute("src","img/grapherjs.png");
+img.setAttribute("src","img/grapherjs.jpg");
 img.setAttribute("class","projectimage");
 tile.setAttribute("target","http://lukewoodsmu.github.io/Grapherjs/");
 tile.appendChild(img);
