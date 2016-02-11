@@ -74,7 +74,7 @@ h2
 {
 	position: absolute;
 	width:100%;
-	top: -110%;
+	top: -111%;
 	left:0%;
 	height:100vh;
 	background: rgba(0,0,0,.75);
@@ -85,6 +85,7 @@ h2
 #projectPDF
 {
 	position: absolute;
+	background: white;
 	left: 12.5%;
 	width: 75%;
 	height:100%;

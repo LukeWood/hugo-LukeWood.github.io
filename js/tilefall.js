@@ -35,9 +35,9 @@ alternate = false;
 else
 {
 	alternate = true;
-	tile = initTile(tile,Math.floor(Math.random()*7)+1);
+	tile = initTile(tile,Math.floor(Math.random()*8)+1);
 }
-if(currentNum > 7)
+if(currentNum > 8)
 {
 	currentNum = 1;
 }
@@ -56,7 +56,7 @@ if(rNumber==1)
 var img = document.createElement("img");
 img.setAttribute("src","img/Matlabicon.png");
 img.setAttribute("class","projectimage");
-tile.setAttribute("target","stringrep");
+tile.setAttribute("target","pdf/stringrep.pdf");
 tile.appendChild(img);
 }
 else if(rNumber ==2)
@@ -64,7 +64,7 @@ else if(rNumber ==2)
 var img = document.createElement("img");
 img.setAttribute("src","img/neuralnet.png");
 img.setAttribute("class","projectimage");
-tile.setAttribute("target","neuralrap");
+tile.setAttribute("target","pdf/neuralrap.pdf");
 tile.appendChild(img);
 }
 else if(rNumber ==3)
@@ -72,15 +72,15 @@ else if(rNumber ==3)
 var img = document.createElement("img");
 img.setAttribute("src","img/snake.jpg");
 img.setAttribute("class","projectimage");
-tile.setAttribute("target","onelinejsgames");
+tile.setAttribute("target","pdf/onelinejsgames.pdf");
 tile.appendChild(img);
 }
 else if(rNumber ==4)
-{
+{//Here
 var img = document.createElement("img");
 img.setAttribute("src","img/starwarsjs.jpg");
 img.setAttribute("class","projectimage");
-tile.setAttribute("target","starwarsjs");
+tile.setAttribute("target","pdf/starwarsjs.pdf");
 tile.appendChild(img);
 }
 
@@ -89,7 +89,7 @@ else if(rNumber ==5)
 var img = document.createElement("img");
 img.setAttribute("src","img/nodejs.png");
 img.setAttribute("class","projectimage");
-tile.setAttribute("target","fileserver");
+tile.setAttribute("target","pdf/fileserver.pdf");
 tile.appendChild(img);
 }
 else if(rNumber ==6)
@@ -97,7 +97,7 @@ else if(rNumber ==6)
 var img = document.createElement("img");
 img.setAttribute("src","img/wordSearch.jpg");
 img.setAttribute("class","projectimage");
-tile.setAttribute("target","wordsearcher");
+tile.setAttribute("target","pdf/wordsearcher.pdf");
 tile.appendChild(img);
 }
 else if(rNumber ==7)
@@ -105,7 +105,15 @@ else if(rNumber ==7)
 var img = document.createElement("img");
 img.setAttribute("src","img/matrixpic.gif");
 img.setAttribute("class","projectimage");
-tile.setAttribute("target","linearlib");
+tile.setAttribute("target","pdf/linearlib.pdf");
+tile.appendChild(img);
+}
+else if(rNumber ==8)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/grapherjs.png");
+img.setAttribute("class","projectimage");
+tile.setAttribute("target","http://lukewoodsmu.github.io/Grapherjs/");
 tile.appendChild(img);
 }
 else
@@ -160,7 +168,7 @@ var allPanelDescriptors = document.getElementsByClassName("projectdescriptor");
 function toggle(targ)
 {
 	document.getElementById("projectDescriptor").style.top = "0";
-	document.getElementById("projectPDF").setAttribute("src","pdf/"+targ+".pdf");
+	document.getElementById("projectPDF").setAttribute("src",targ);
 }
 function askredirect(target)
 {
