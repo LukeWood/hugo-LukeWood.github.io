@@ -35,9 +35,9 @@ alternate = false;
 else
 {
 	alternate = true;
-	tile = initTile(tile,Math.floor(Math.random()*8)+1);
+	tile = initTile(tile,Math.floor(Math.random()*9)+1);
 }
-if(currentNum > 8)
+if(currentNum > 9)
 {
 	currentNum = 1;
 }
@@ -114,6 +114,14 @@ var img = document.createElement("img");
 img.setAttribute("src","img/grapherjs.jpg");
 img.setAttribute("class","projectimage");
 tile.setAttribute("target","http://lukewoodsmu.github.io/Grapherjs/");
+tile.appendChild(img);
+}
+else if(rNumber ==9)
+{
+var img = document.createElement("img");
+img.setAttribute("src","img/life.png");
+img.setAttribute("class","projectimage");
+tile.setAttribute("target","pdf/life.pdf");
 tile.appendChild(img);
 }
 else
