@@ -1,7 +1,7 @@
 var Project = React.createClass({
 	getInitialState: function()
 	{
-			this.timer = setInterval(this.tick,Math.floor(Math.random() * 200));
+			this.timer = setInterval(this.tick,Math.floor(Math.random() * 100));
 			return{
 			dec:false,
 			opac:0,			
@@ -75,4 +75,26 @@ var ProjectList = React.createClass({displayName:"ProjectList",
 		      );
 	}
 });
+var projects = [{"href":"http://lukewoodsmu.github.io/EarthMeteors/",
+		"text":"Earth Data Visualization"},
+		{"href":"https://lukewoodsmu.github.io/pyrap/",
+		"text":"Neural Network Rapper"}];		
 
+var Title = React.createClass({
+	render: function()
+	{
+		return(
+			<center><h1>Luke Wood</h1></center>
+		      )
+	}
+});
+		
+ReactDOM.render(
+	(
+	 <div>
+	 <Title />
+	<ProjectList projects={projects}/>
+	</div>
+	),
+	document.getElementById('content')
+);
