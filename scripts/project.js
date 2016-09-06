@@ -102,13 +102,14 @@ var Title = React.createClass({displayName:"Title",
 		var style={
 					margin:"25px",
 					fontSize:200,
-					fontFamily:"Rockwell, sans-serif"
+					fontFamily:"'Passion One', cursive, serif"
 		};
 		    return (
 			    <center><h1 className="noselect" style={style}>Luke Wood</h1></center>
 			   );
 	}
-});		
+});
+
 $.ajax({
 	dataType:"json",
 	url:"projects.json",

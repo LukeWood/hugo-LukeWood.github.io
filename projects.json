@@ -1,6 +1,16 @@
-[{"href":"http://lukewoodsmu.github.io/EarthMeteors/",
-"text":"Earth Data Visualization","key":1},
-{"href":"https://lukewoodsmu.github.io/pyrap/",
-"text":"Neural Network Rapper","key":2},
-{"href":"https://github.com/lukewoodsmu/FantasticersSearchEnginer/",
-"text":"TF/IDF Reverse Indexed Search Engine","key":3}]
+[
+{"text":"Earth Data Visualization",
+"href":"http://lukewoodsmu.github.io/EarthMeteors/",
+"key":1},
+
+{"text":"Neural Network Rapper",
+"href":"https://lukewoodsmu.github.io/pyrap/",
+"key":2},
+
+{"text":"TF/IDF Reverse Indexed Search Engine",
+"href":"https://github.com/lukewoodsmu/FantasticersSearchEnginer/",
+"key":3},
+
+{"text":"Automated Surf Report Texts",
+"href":"https://github.com/LukeWoodSMU/DailySurfReport","key":4}
+]
