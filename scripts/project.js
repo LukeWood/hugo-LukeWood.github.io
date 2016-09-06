@@ -1,12 +1,15 @@
 var Project = React.createClass({
 	getInitialState: function()
 	{
+			var y = Math.floor(Math.random() * window.innerHeight);
+			var color = Math.floor(y/window.innerHeight * 255);
 			this.timer = setInterval(this.tick,Math.floor(Math.random() * 100));
 			return{
 			dec:false,
 			opac:0,			
 			x:Math.floor(Math.random() * window.innerWidth),
-			y:Math.floor(Math.random() * window.innerHeight)};
+			y:y,
+			color:"rgb("+color+","+color+","+color+")"};
 	},
 	tick: function()
 	{
@@ -19,8 +22,11 @@ var Project = React.createClass({
 			if(opac<=0){
 				clearInterval(this.timer);
 				this.timer = setInterval(this.tick,Math.floor(Math.random() * 200));
+				var y = Math.floor(Math.random() * window.innerHeight);
+				var color = Math.floor(y/window.innerHeight * 255);
 				this.setState({x:Math.floor(Math.random() * window.innerWidth),
-						y:Math.floor(Math.random() * window.innerHeight),
+						y:y,
+						color:"rgb("+color+","+color+","+color+")",
 						dec:false});
 			}
 		}
@@ -47,7 +53,7 @@ var Project = React.createClass({
 		    	fontFamily:"Rockwell, sans-serif",
 		    	fontWeight:"bolder",
 		    	fontSize:"32px",
-		    	color:"white",
+		    	color:this.state.color,
 		    	textDecoration:"none",
 			position: 'absolute',
 			left:this.state.x.toString() + "px",
@@ -80,21 +86,9 @@ var projects = [{"href":"http://lukewoodsmu.github.io/EarthMeteors/",
 		{"href":"https://lukewoodsmu.github.io/pyrap/",
 		"text":"Neural Network Rapper"}];		
 
-var Title = React.createClass({
-	render: function()
-	{
-		return(
-			<center><h1>Luke Wood</h1></center>
-		      )
-	}
-});
-		
 ReactDOM.render(
 	(
-	 <div>
-	 <Title />
 	<ProjectList projects={projects}/>
-	</div>
 	),
 	document.getElementById('content')
 );
