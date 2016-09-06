@@ -2,8 +2,8 @@ var Project = React.createClass({
 	getInitialState: function()
 	{
 			var y = 350 + Math.floor(Math.random() *(window.innerHeight-350));
-			var color = Math.floor(y/window.innerHeight * 255);
-			this.timer = setInterval(this.tick,Math.floor(Math.random() * 100));
+			var color =255;// Math.floor(y/window.innerHeight * 255);
+			this.timer = setInterval(this.tick,Math.floor(Math.random() * 65));
 			return{
 			dec:false,
 			opac:0,			
@@ -24,6 +24,11 @@ var Project = React.createClass({
 	{
 		if(this.state.hover)
 			return;
+		if(this.state.pause>=1)
+		{
+			this.setState({pause:this.state.pause-1});
+			return;
+		}
 		var dec = this.state.dec;
 		var x = this.state.x;
 		var y = this.state.y;
@@ -34,7 +39,7 @@ var Project = React.createClass({
 				clearInterval(this.timer);
 				this.timer = setInterval(this.tick,Math.floor(Math.random() * 200));
 				var y = 350 + Math.floor(Math.random() *(window.innerHeight-350));
-				var color = Math.floor(y/window.innerHeight * 255);
+				var color = 255;//Math.floor(y/window.innerHeight * 255);
 				this.setState({x:Math.floor(Math.random() * window.innerWidth),
 						y:y,
 						color:"rgb("+color+","+color+","+color+")",
@@ -48,7 +53,7 @@ var Project = React.createClass({
 			}
 			if(opac>=1)
 			{
-				this.setState({dec:true});
+				this.setState({pause:Math.floor(Math.random()*50),dec:true});
 			}
 		}
 		this.setState({opac:opac});
