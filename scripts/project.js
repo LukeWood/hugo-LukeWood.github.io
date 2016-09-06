@@ -1,7 +1,7 @@
 var Project = React.createClass({
 	getInitialState: function()
 	{
-			var y = Math.floor(Math.random() * window.innerHeight);
+			var y = 350 + Math.floor(Math.random() *(window.innerHeight-350));
 			var color = Math.floor(y/window.innerHeight * 255);
 			this.timer = setInterval(this.tick,Math.floor(Math.random() * 100));
 			return{
@@ -33,7 +33,7 @@ var Project = React.createClass({
 			if(opac<=0){
 				clearInterval(this.timer);
 				this.timer = setInterval(this.tick,Math.floor(Math.random() * 200));
-				var y = Math.floor(Math.random() * window.innerHeight);
+				var y = 350 + Math.floor(Math.random() *(window.innerHeight-350));
 				var color = Math.floor(y/window.innerHeight * 255);
 				this.setState({x:Math.floor(Math.random() * window.innerWidth),
 						y:y,
@@ -74,7 +74,7 @@ var Project = React.createClass({
 		
 		    React.createElement("a",{
 			    onMouseEnter:this.onMouseEnterHandler,
-		    style:styles,className:'Project',href:this.props.href},this.props.text)
+		    style:styles,className:'Project noselect',href:this.props.href},this.props.text)
 	   );
 	}
 });
@@ -90,12 +90,26 @@ var ProjectList = React.createClass({displayName:"ProjectList",
 					);
 			});
 		return(
-			<div className="ProjectList">
+			<div className="ProjectList noselect">
 				{projectNodes}
 			</div>
 		      );
 	}
 });
+var Title = React.createClass({displayName:"Title",
+	render: function()
+	{
+		var style={
+					margin:"25px",
+					fontSize:200,
+					fontFamily:"Rockwell, sans-serif"
+		};
+		    return (
+			    <center><h1 className="noselect" style={style}>Luke Wood</h1></center>
+			   );
+	}
+});
+
 var projects = [{"href":"http://lukewoodsmu.github.io/EarthMeteors/",
 		"text":"Earth Data Visualization","key":1},
 		{"href":"https://lukewoodsmu.github.io/pyrap/",
@@ -104,7 +118,10 @@ var projects = [{"href":"http://lukewoodsmu.github.io/EarthMeteors/",
 		"text":"TF/IDF Reverse Indexed Search Engine","key":3}];		
 ReactDOM.render(
 	(
+	 <div>
+	 <Title/>
 	<ProjectList projects={projects}/>
+	</div>
 	),
 	document.getElementById('content')
 );
