@@ -11,8 +11,19 @@ var Project = React.createClass({
 			y:y,
 			color:"rgb("+color+","+color+","+color+")"};
 	},
+    	onMouseEnterHandler: function(e){
+		this.setState({hover:true});
+		$(e.currentTarget).one("mouseleave",function(e){
+			this.onMouseLeaveHandler();
+		}.bind(this));
+	},
+    	onMouseLeaveHandler: function(){
+	this.setState({hover:false});
+	},
 	tick: function()
 	{
+		if(this.state.hover)
+			return;
 		var dec = this.state.dec;
 		var x = this.state.x;
 		var y = this.state.y;
@@ -44,11 +55,7 @@ var Project = React.createClass({
 	},
 	render: function()
 	{
-   	return (
-		
-		    React.createElement("a",{
-		    style:
-		    {
+	var styles ={
 			opacity:this.state.opac,
 		    	fontFamily:"Rockwell, sans-serif",
 		    	fontWeight:"bolder",
@@ -57,9 +64,17 @@ var Project = React.createClass({
 		    	textDecoration:"none",
 			position: 'absolute',
 			left:this.state.x.toString() + "px",
-		   	top:this.state.y.toString()+'px'
-		    }
-	    	,className:'Project',href:this.props.href},this.props.text)
+		   	top:this.state.y.toString()+'px'};
+	if(this.state.hover)
+	{
+		styles.opacity = 1;
+		styles.color = "rgb(50,50,255)";
+	}
+   	return (
+		
+		    React.createElement("a",{
+			    onMouseEnter:this.onMouseEnterHandler,
+		    style:styles,className:'Project',href:this.props.href},this.props.text)
 	   );
 	}
 });
