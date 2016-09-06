@@ -97,10 +97,11 @@ var ProjectList = React.createClass({displayName:"ProjectList",
 	}
 });
 var projects = [{"href":"http://lukewoodsmu.github.io/EarthMeteors/",
-		"text":"Earth Data Visualization"},
+		"text":"Earth Data Visualization","key":1},
 		{"href":"https://lukewoodsmu.github.io/pyrap/",
-		"text":"Neural Network Rapper"}];		
-
+		"text":"Neural Network Rapper","key":2},
+		{"href":"https://github.com/lukewoodsmu/FantasticersSearchEnginer/",
+		"text":"TF/IDF Reverse Indexed Search Engine","key":3}];		
 ReactDOM.render(
 	(
 	<ProjectList projects={projects}/>
