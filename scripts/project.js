@@ -113,7 +113,8 @@ $.ajax({
 	dataType:"json",
 	url:"projects.json",
 	success:function(data){
-	ReactDOM.render(
+		console.log(data);
+		ReactDOM.render(
 		(
 		 <div>
 		 <Title/>
@@ -121,6 +122,8 @@ $.ajax({
 		</div>
 		),
 		document.getElementById('content')
-	);
+	);},
+	error:function(xhr,error){
+		console.debug(xhr);console.debug(error);
 	}	
 });
