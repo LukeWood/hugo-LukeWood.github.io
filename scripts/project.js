@@ -76,10 +76,3 @@ var ProjectList = React.createClass({displayName:"ProjectList",
 	}
 });
 
-var projects = [{"href":"http://lukewoodsmu.github.io/EarthMeteors/",
-		"text":"Earth Data Visualization"}];
-ReactDOM.render(
-	<ProjectList projects={projects}/>,
-	document.getElementById('content')
-);
-
