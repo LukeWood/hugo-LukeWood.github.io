@@ -108,20 +108,19 @@ var Title = React.createClass({displayName:"Title",
 			    <center><h1 className="noselect" style={style}>Luke Wood</h1></center>
 			   );
 	}
+});		
+$.ajax({
+	dataType:"json",
+	url:"projects.json",
+	success:function(data){
+	ReactDOM.render(
+		(
+		 <div>
+		 <Title/>
+		<ProjectList projects={data}/>
+		</div>
+		),
+		document.getElementById('content')
+	);
+	}	
 });
-
-var projects = [{"href":"http://lukewoodsmu.github.io/EarthMeteors/",
-		"text":"Earth Data Visualization","key":1},
-		{"href":"https://lukewoodsmu.github.io/pyrap/",
-		"text":"Neural Network Rapper","key":2},
-		{"href":"https://github.com/lukewoodsmu/FantasticersSearchEnginer/",
-		"text":"TF/IDF Reverse Indexed Search Engine","key":3}];		
-ReactDOM.render(
-	(
-	 <div>
-	 <Title/>
-	<ProjectList projects={projects}/>
-	</div>
-	),
-	document.getElementById('content')
-);
