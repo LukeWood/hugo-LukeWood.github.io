@@ -1,14 +1,52 @@
+var currentLocs = [];
+function genNextPoint()
+{
+	var windowpts = [{x:0,y:350},{x:window.innerWidth,y:350},{x:0,y:window.innerHeight},{x:window.innerWidth,y:window.innerHeight}];
+	var allpts = [];
+	for(var i = 0; i < windowpts.length; i++)
+	{
+		allpts.push(windowpts[i]);
+	}
+	for(var i = 0; i < currentLocs.length; i++)
+	{
+		allpts.push(currentLocs[i]);
+	}
+	var dx = 5;
+	var dy = 5;
+	var pt={x: Math.floor(Math.random() * window.innerWidth),
+		y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
+	var distance = window.innerWidth+window.innerHeight;
+	while(distance < (window.innerWidth + window.innerHeight)/15){
+		var pt={x: Math.floor(Math.random() * window.innerWidth),
+		y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
+		var td = 10000;
+		for(var i = 0; i < allpts.length; i++)
+		{
+			var dx = allpts[i].x - pt.x;
+			var dy = allpts[i].y - pt.y;
+			dx*=dx;
+			dy*=dy;
+			var d = Math.sqrt(dx+dy);
+			if(d < td)
+				td = d;
+		}
+		distance = td;
+	}
+	currentLocs.push(pt);
+	return pt;
+}
+
 var Project = React.createClass({
 	getInitialState: function()
 	{
-			var y = 350 + Math.floor(Math.random() *(window.innerHeight-350));
+			var pt = genNextPoint();
 			var color =255;// Math.floor(y/window.innerHeight * 255);
 			this.timer = setInterval(this.tick,Math.floor(Math.random() * 65));
 			return{
 			dec:false,
 			opac:0,			
-			x:Math.floor(Math.random() * window.innerWidth),
-			y:y,
+			x:pt.x,
+			y:pt.y,
 			color:"rgb("+color+","+color+","+color+")"};
 	},
     	onMouseEnterHandler: function(e){
@@ -38,10 +76,21 @@ var Project = React.createClass({
 			if(opac<=0){
 				clearInterval(this.timer);
 				this.timer = setInterval(this.tick,Math.floor(Math.random() * 200));
-				var y = 350 + Math.floor(Math.random() *(window.innerHeight-350));
+				var index = -1;
+			       	for(var i = 0; i < currentLocs.length; i++)
+				{
+					if(currentLocs[i].x == this.state.x && currentLocs[i].y == this.state.y)
+					{
+						index = i;
+					}
+				}
+				if(index != -1){
+					currentLocs.splice(index,1);
+				}
+				var pt = genNextPoint();
 				var color = 255;//Math.floor(y/window.innerHeight * 255);
-				this.setState({x:Math.floor(Math.random() * window.innerWidth),
-						y:y,
+				this.setState({x:pt.x,
+						y:pt.y,
 						color:"rgb("+color+","+color+","+color+")",
 						dec:false});
 			}
@@ -85,8 +134,7 @@ var Project = React.createClass({
 });
 
 var ProjectList = React.createClass({displayName:"ProjectList",
-	render: function()
-	{
+	render: function(){
 		var projectNodes = this.props.projects.map(function(project)
 			{
 				return(
