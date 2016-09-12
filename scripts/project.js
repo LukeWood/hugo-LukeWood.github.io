@@ -138,7 +138,7 @@ var ProjectList = React.createClass({displayName:"ProjectList",
 		var projectNodes = this.props.projects.map(function(project)
 			{
 				return(
-					<Project href={project.href} text={project.text}>
+					<Project key={project.key} href={project.href} text={project.text}>
 					</Project>
 					);
 			});
@@ -207,7 +207,7 @@ var MenuList = React.createClass({displayName:"MenuList",
 		var projectNodes = this.props.projects.map(function(project)
 			{
 				return(
-					<MenuItem href={project.href} text={project.text}></MenuItem>
+					<MenuItem key={project.key} href={project.href} text={project.text}></MenuItem>
 					);
 			});
 		return(
