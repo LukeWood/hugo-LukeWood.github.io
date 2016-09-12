@@ -223,7 +223,7 @@ var Title = React.createClass({displayName:"Title",
 		var style={
 					margin:"25px",
 					fontSize:200,
-					fontFamily:" 'Source Code Pro', sans-serif",
+					fontFamily:"'Orbitron', sans-serif",
 					fontWeight:200
 		};
 		    return (
