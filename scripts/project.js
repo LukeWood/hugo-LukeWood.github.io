@@ -111,8 +111,8 @@ var Project = React.createClass({
 	{
 	var styles ={
 			opacity:this.state.opac,
-		    	fontFamily:"Rockwell, sans-serif",
-		    	fontWeight:"bolder",
+		    	fontFamily:" 'Source Code Pro', sans-serif",
+		    	fontWeight:"200",
 		    	fontSize:"32px",
 		    	color:this.state.color,
 		    	textDecoration:"none",
@@ -156,7 +156,7 @@ var MenuList = React.createClass({displayName:"MenuList",
 			{
 				return(
 					<div>
-					<a href={project.href}>{project.text}</a>
+					<a key={project.key} href={project.href}>{project.text}</a>
 					</div>
 					);
 			});
@@ -173,7 +173,8 @@ var Title = React.createClass({displayName:"Title",
 		var style={
 					margin:"25px",
 					fontSize:200,
-					fontFamily:"'Passion One', cursive, serif"
+					fontFamily:" 'Source Code Pro', sans-serif",
+					fontWeight:200
 		};
 		    return (
 			    <center><h1 className="noselect" style={style}>Luke Wood</h1></center>
