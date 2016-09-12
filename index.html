@@ -36,51 +36,175 @@
 	}
 	#trademark
 	{
+		z-index:11;
 		position:fixed;
 		padding:2px;
 		border-top:solid white 2px;
 		width:100%;
-		background-color:rgba(120,120,120,.4);
+		background-color:rgba(180,180,180,.8);
 		font-size:20;
 		font-family:"Rockwell",sans-serif;
 		bottom:0;
 	}
+	#buttoncontainer
+	{
+		width:400px;
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:10;
+	}
+	#buttoncontainer p
+	{
+			font-family:'Source Code Pro', sans-serif;
+			font-size:40px;
+			font-weight:200;
+			color: #4ea24e;
+			
+			display:inline;
+	}
 	#menuButton
 	{
-	width:50px;
-	height:50px;
-	z-index:10;
-	position:absolute;
-	left:0;
-	top:0;
+	margin:7px;
+	width:40px;
+	height:40px;
+	}
+	#cover
+	{	
+		background:#000;
+		opacity:.5;
+		z-index:8;
+		width:100%;
+		height:100%;
+		position:absolute;
+		left:0;
+		top:0;
+		display:none;
+		border-bottom:solid white 2px;
 	}
 	#menu
 	{
+	z-index:9;
 	position:absolute;
 	top:0;
 	left:0;
-	padding-top:60px;
+	padding-top:54px;
 	border-right:solid white 2px;
 	display:none;
-	background-color:rgba(120,120,120,.4);
+	background-color:rgba(180,180,180,1);
+	border-bottom:solid white 2px;
 	width:400px;
 	height:100%;
 	}
+	@import "compass/css3";
+
+body {
+  background: darken(#34c4e8, 10%);
+  padding: 60px;
+}
+h1  {
+  color: lighten(#34c4e8, 30%);
+  font-family: 'Source Code Pro', sans-serif;
+  font-weight: 200;
+  margin: 0 0 40px;
+  text-align: center;
+}
+
+.menu {
+  cursor: pointer;
+  margin: 0 auto;
+  padding-left: 1.25em;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow:visible;
+}
+.menu-global {
+  backface-visibility: hidden;
+  position: absolute;
+  left: 0;
+  border-top: 7px solid #4ea24e;
+  width: 100%;
+  transition: 0.55s;
+}
+.menu-top {
+  top: 0;
+}
+.menu-middle {
+  top: 18px;
+}
+.menu-bottom {
+  top: 36px;
+}
+.menu-top-click {
+  backface-visibility: hidden;
+  top: 15px;
+  transform: rotate(50deg);
+  transition: 0.55s 0.5s;
+}
+.menu-middle-click {
+  opacity: 0;
+}
+.menu-bottom-click {
+  backface-visibility: hidden;
+  top: 15px;
+  transform: rotate(-410deg);
+  transition: 0.55s 0.5s;
+}
     </style>
   </head>
   <body>
- 
-	<button id = "menuButton">X</button>
+	<div id = "buttoncontainer"><p>MENU</p>
+	<div class="menu" id="menuButton">
+	<span class="menu-global menu-top"></span>
+	<span class="menu-global menu-middle"></span>
+	<span class="menu-global menu-bottom"></span>
+	</div>
+	</div>
 	<div id="menu"><div style="height:100vh"><div id = "inner"></div></div></div>
-
+	<div id="cover"></div>
     <div id="content"></div>
     <div id="trademark"><center>Created using React.js &#169 Luke Wood 2016</center></div>
 	
 	 <script>
+	 
+		 var Menu = {
+	  
+	  el: {
+		ham: $('.menu'),
+		menuTop: $('.menu-top'),
+		menuMiddle: $('.menu-middle'),
+		menuBottom: $('.menu-bottom')
+	  },
+	  
+	  init: function() {
+		Menu.bindUIactions();
+	  },
+	  
+	  bindUIactions: function() {
+		Menu.el.ham
+			.on(
+			  'click',
+			function(event) {
+			Menu.activateMenu(event);
+			event.preventDefault();
+		  }
+		);
+	  },
+	  
+	  activateMenu: function() {
+		Menu.el.menuTop.toggleClass('menu-top-click');
+		Menu.el.menuMiddle.toggleClass('menu-middle-click');
+		Menu.el.menuBottom.toggleClass('menu-bottom-click'); 
+	  }
+	};
+
+	Menu.init();
+	 
 	$("#menuButton").click(function(){
 	if($("#menu").is(":visible"))
-	{$("#menu").slideUp(650)}
-	else{$("#menu").slideDown(650);}});
+	{$("#menu").slideUp(650);$("#cover").slideUp(650)}
+	else{$("#menu").slideDown(650);$("#cover").slideDown(650)}});
 	</script>
     <script type="text/babel" src="scripts/project.js"></script>
   </body>

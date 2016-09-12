@@ -152,11 +152,22 @@ var ProjectList = React.createClass({displayName:"ProjectList",
  
 var MenuList = React.createClass({displayName:"MenuList",
 	render: function(){
+		var style={
+					
+					fontSize:32,
+					textDecoration:"none",
+					fontFamily:" 'Source Code Pro', sans-serif",
+					fontWeight:200
+		};
+		var border={
+			borderTop:"solid white 1px",
+			borderBottom:"solid white 1px"
+		}
 		var projectNodes = this.props.projects.map(function(project)
 			{
 				return(
-					<div>
-					<a key={project.key} href={project.href}>{project.text}</a>
+					<div style={border}>
+					<a key={project.key} style={style} href={project.href}>{project.text}</a>
 					</div>
 					);
 			});
