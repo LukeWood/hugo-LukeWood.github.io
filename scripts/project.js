@@ -143,9 +143,27 @@ var ProjectList = React.createClass({displayName:"ProjectList",
 					);
 			});
 		return(
-			<div className="ProjectList noselect">
+			<div className={"ProjectList noselect"}>
 				{projectNodes}
 			</div>
+		      );
+	}
+});
+ 
+var MenuList = React.createClass({displayName:"MenuList",
+	render: function(){
+		var projectNodes = this.props.projects.map(function(project)
+			{
+				return(
+					<div>
+					<a href={project.href}>{project.text}</a>
+					</div>
+					);
+			});
+		return(
+				<center>
+				{projectNodes}
+				</center>
 		      );
 	}
 });
@@ -167,16 +185,23 @@ $.ajax({
 	dataType:"json",
 	url:"projects.json",
 	success:function(data){
-		console.log(data);
 		ReactDOM.render(
 		(
 		 <div>
+
 		 <Title/>
 		<ProjectList projects={data}/>
 		</div>
 		),
 		document.getElementById('content')
-	);},
+	);
+		ReactDOM.render(
+		(
+		 <div>
+			<MenuList projects={data}/>
+		</div>
+		),
+		document.getElementById("inner"));},
 	error:function(xhr,error){
 		console.debug(xhr);console.debug(error);
 	}	

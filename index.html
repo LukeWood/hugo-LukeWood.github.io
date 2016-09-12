@@ -10,6 +10,7 @@
     <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
     <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
     <link src="styles/fonts.css"></link>
+    <link src="styles/hamburger.css"></link>
     <style>
 	.noselect
 	{
@@ -38,16 +39,49 @@
 		padding:2px;
 		border-top:solid white 2px;
 		width:100%;
-		background:#aaa;
+		background-color:rgba(120,120,120,.4);
+		font-size:20;
 		font-family:"Rockwell",sans-serif;
 		bottom:0;
+	}
+	#menuButton
+	{
+	width:50px;
+	height:50px;
+	z-index:10;
+	position:absolute;
+	left:0;
+	top:0;
+	}
+	#menu
+	{
+	position:absolute;
+	top:0;
+	left:0;
+	padding-top:60px;
+	border-right:solid white 2px;
+	display:none;
+	background-color:rgba(120,120,120,.4);
+	width:400px;
+	height:100%;
 	}
     </style>
   </head>
   <body>
+ 
+	<button id = "menuButton">X</button>
+	<div id="menu"><div style="height:100vh"><div id = "inner"></div></div></div>
+
     <div id="content"></div>
     <div id="trademark"><center>Created using React.js &#169 Luke Wood 2016</center></div>
+	
+	 <script>
+	$("#menuButton").click(function(){
+	if($("#menu").is(":visible"))
+	{$("#menu").slideUp(650)}
+	else{$("#menu").slideDown(650);}});
+	</script>
     <script type="text/babel" src="scripts/project.js"></script>
-    <script type="text/babel" src="scripts/index.js"></script>
   </body>
 </html>
+
