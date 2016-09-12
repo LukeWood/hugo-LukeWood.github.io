@@ -51,6 +51,7 @@
 	}
 	#buttoncontainer p
 	{
+			cursor:pointer;
 			position:absolute;
 			left:80px;
 			font-family:'Source Code Pro', sans-serif;

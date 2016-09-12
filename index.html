@@ -57,7 +57,7 @@
     </style>
   </head>
   <body>
-	<div id = "buttoncontainer"><p>MENU</p>
+	<div id = "buttoncontainer"><p id="menutext" class="noselect">MENU</p>
 	<div class="menu" id="menuButton">
 	<span class="menu-global menu-top"></span>
 	<span class="menu-global menu-middle"></span>
@@ -71,7 +71,7 @@
     <div id="trademark"><center>Created using React.js &#169 Luke Wood 2016</center></div>
 	
 	 <script>
-	 
+		
 		 var Menu = {
 	  
 	  el: {
@@ -104,7 +104,11 @@
 	};
 
 	Menu.init();
-	 
+	$("#menutext").click(function(){
+	Menu.activateMenu();
+	if($("#menu").is(":visible"))
+	{$("#menu").slideUp(650);$("#cover").slideUp(650)}
+	else{$("#menu").slideDown(650);$("#cover").slideDown(650)}});
 	$("#menuButton").click(function(){
 	if($("#menu").is(":visible"))
 	{$("#menu").slideUp(650);$("#cover").slideUp(650)}
