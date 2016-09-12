@@ -46,6 +46,15 @@
 		font-family:"Rockwell",sans-serif;
 		bottom:0;
 	}
+	#top
+	{
+		background:rgba(180,180,180,.7);
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:58px;
+	}
 	#buttoncontainer
 	{
 		width:400px;
@@ -56,11 +65,12 @@
 	}
 	#buttoncontainer p
 	{
+			position:absolute;
+			left:80px;
 			font-family:'Source Code Pro', sans-serif;
 			font-size:40px;
 			font-weight:200;
 			color: #4ea24e;
-			
 			display:inline;
 	}
 	#menuButton
@@ -71,8 +81,7 @@
 	}
 	#cover
 	{	
-		background:#000;
-		opacity:.5;
+		background: url(img/background.jpg) no-repeat center center fixed; 
 		z-index:8;
 		width:100%;
 		height:100%;
@@ -80,7 +89,6 @@
 		left:0;
 		top:0;
 		display:none;
-		border-bottom:solid white 2px;
 	}
 	#menu
 	{
@@ -91,7 +99,7 @@
 	padding-top:54px;
 	border-right:solid white 2px;
 	display:none;
-	background-color:rgba(180,180,180,1);
+	background-color:rgba(180,180,180,.6);
 	border-bottom:solid white 2px;
 	width:400px;
 	height:100%;
@@ -161,6 +169,7 @@ h1  {
 	<span class="menu-global menu-bottom"></span>
 	</div>
 	</div>
+	<div id="top"></div>
 	<div id="menu"><div style="height:100vh"><div id = "inner"></div></div></div>
 	<div id="cover"></div>
     <div id="content"></div>
