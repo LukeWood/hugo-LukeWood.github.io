@@ -81,7 +81,13 @@
 	}
 	#cover
 	{	
+		border-bottom:solid white 4px;
 		background: url(img/background.jpg) no-repeat center center fixed; 
+		background-attachment:fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
 		z-index:8;
 		width:100%;
 		height:100%;
@@ -104,19 +110,8 @@
 	width:400px;
 	height:100%;
 	}
-	@import "compass/css3";
-
-body {
-  background: darken(#34c4e8, 10%);
-  padding: 60px;
-}
-h1  {
-  color: lighten(#34c4e8, 30%);
-  font-family: 'Source Code Pro', sans-serif;
-  font-weight: 200;
-  margin: 0 0 40px;
-  text-align: center;
-}
+	
+@import "compass/css3";
 
 .menu {
   cursor: pointer;
