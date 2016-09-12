@@ -4,9 +4,11 @@
 "key":1},
 
 {"text":"Neural Network Rapper",
-"href":"https://lukewoodsmu.github.io/pyrap/",
+"href":"https://github.com/LukeWoodSMU/PyRap",
 "key":2},
 
 {"text":"Automated Surf Report Texts",
-"href":"https://github.com/LukeWoodSMU/DailySurfReport","key":3}
+"href":"https://github.com/LukeWoodSMU/DailySurfReport","key":3},
+{"text":"Command Line Facebook Messenger",
+"href":"https://github.com/LukeWoodSMU/CommandLine-Facebook-Chat","key":3}
 ]
