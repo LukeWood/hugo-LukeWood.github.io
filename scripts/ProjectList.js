@@ -126,10 +126,7 @@ var Project = React.createClass({
 		styles.color = "rgb(50,50,255)";
 	}
    	return (
-		
-		    React.createElement("a",{
-			    onMouseEnter:this.onMouseEnterHandler,
-		    style:styles,className:'Project noselect',href:this.props.href},this.props.text)
+			<a style={styles} className={'Project noselect'} href={this.props.href}>{this.props.text}</a>
 	   );
 	}
 });
