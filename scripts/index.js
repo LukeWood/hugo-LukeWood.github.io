@@ -2,6 +2,14 @@
 var ProjectList = window.ProjectList;
 var MenuList = window.MenuList;
 
+function main()
+{
+	if(window.mobile)
+		renderMobile();
+	else
+		renderDesktop();
+}
+
 //Title is in index because its pretty simple and standalone
 var Title = React.createClass({displayName:"Title",
 	render: function()
@@ -17,29 +25,38 @@ var Title = React.createClass({displayName:"Title",
 			   );
 	}
 });
+function renderMobile()
+{
+	renderDesktop();
+}
 
-$.ajax({
-	dataType:"json",
-	url:"projects.json",
-	success:function(data){
-		ReactDOM.render(
-		(
-		 <div>
+function renderDesktop()
+{
+	$.ajax({
+		dataType:"json",
+		url:"projects.json",
+		success:function(data){
+			ReactDOM.render(
+			(
+			 <div>
 
-		 <Title/>
-		<ProjectList projects={data}/>
-		</div>
-		),
-		document.getElementById('content')
-	);
-		ReactDOM.render(
-		(
-		 <div>
-			<MenuList projects={data}/>
-		</div>
-		),
-		document.getElementById("inner"));},
-	error:function(xhr,error){
-		console.debug(xhr);console.debug(error);
-	}	
-});
+			 <Title/>
+			<ProjectList projects={data}/>
+			</div>
+			),
+			document.getElementById('content')
+		);
+			ReactDOM.render(
+			(
+			 <div>
+				<MenuList projects={data}/>
+			</div>
+			),
+			document.getElementById("inner"));},
+		error:function(xhr,error){
+			console.debug(xhr);console.debug(error);
+		}	
+	});
+}
+
+main();
