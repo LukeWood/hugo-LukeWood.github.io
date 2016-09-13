@@ -68,7 +68,6 @@
 	}
 	#cover
 	{	
-		border-bottom:solid white 4px;
 		background: url(img/background.jpg) no-repeat center center fixed; 
 		background-attachment:fixed;
 		-webkit-background-size: cover;
