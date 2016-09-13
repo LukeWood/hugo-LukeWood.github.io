@@ -27,7 +27,6 @@ var Title = React.createClass({displayName:"Title",
 });
 function renderMobile()
 {
-	
 	$.ajax({
 		dataType:"json",
 		url:"projects.json",
