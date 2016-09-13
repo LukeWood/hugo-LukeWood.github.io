@@ -16,10 +16,17 @@ function genNextPoint()
 	var dy = 5;
 	var pt={x: Math.floor(Math.random() * window.innerWidth),
 		y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
-	var distance = window.innerWidth+window.innerHeight;
-	while(distance < (window.innerWidth + window.innerHeight)/15){
+	var points = [];
+	for(var i; i < 10; i++)
+	{
 		var pt={x: Math.floor(Math.random() * window.innerWidth),
 		y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
+		points.push(pt);
+	}
+	var distance = window.innerWidth+window.innerHeight;
+	var finalpt = points[0]
+	for(var pt in points)
+	{
 		var td = 10000;
 		for(var i = 0; i < allpts.length; i++)
 		{
@@ -31,10 +38,14 @@ function genNextPoint()
 			if(d < td)
 				td = d;
 		}
-		distance = td;
+		if(distance > td)
+		{
+			distance = td;
+			finalpt = pt;
+		}
 	}
-	currentLocs.push(pt);
-	return pt;
+	currentLocs.push(finalpt);
+	return finalpt;
 }
 
 var Project = React.createClass({
@@ -148,5 +159,5 @@ var ProjectList = React.createClass({displayName:"ProjectList",
 		      );
 	}
 });
-
+window.Project = Project;
 window.ProjectList = ProjectList;

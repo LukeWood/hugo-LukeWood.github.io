@@ -27,7 +27,30 @@ var Title = React.createClass({displayName:"Title",
 });
 function renderMobile()
 {
-	renderDesktop();
+	
+	$.ajax({
+		dataType:"json",
+		url:"projects.json",
+		success:function(data){
+			ReactDOM.render(
+			(
+			 <div>
+			<ProjectList projects={data}/>
+			</div>
+			),
+			document.getElementById('content')
+		);
+			ReactDOM.render(
+			(
+			 <div>
+				<MenuList projects={data}/>
+			</div>
+			),
+			document.getElementById("inner"));},
+		error:function(xhr,error){
+			console.debug(xhr);console.debug(error);
+		}	
+	});
 }
 
 function renderDesktop()
