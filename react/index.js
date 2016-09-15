@@ -36,7 +36,6 @@ function renderMobile()
 	menu.style.display="inline-block";
 	txt.style.marginLeft="0";
 	menu.style.marginRight="0";
-	
 	$("#buttoncontainer").click(function(){
 	Menu.activateMenu();
 	if($("#menu").is(":visible"))
