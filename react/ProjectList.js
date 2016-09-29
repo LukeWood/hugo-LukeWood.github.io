@@ -133,7 +133,8 @@ var Project = React.createClass({
 		   	top:this.state.y.toString()+'px'};
 	if(this.state.hover)
 	{
-		styles.opacity = 1;
+		styles.opacity = "1";
+                styles.zIndex = "1000";
 		styles.color = "#bbb";
 		styles.border= "solid #bbb 2px";
 		styles.backgroundColor = "#222";
