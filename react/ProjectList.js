@@ -2,50 +2,51 @@ var currentLocs = [];
 
 function genNextPoint()
 {
-	var windowpts = [{x:0,y:350},{x:window.innerWidth,y:350},{x:0,y:window.innerHeight},{x:window.innerWidth,y:window.innerHeight}];
-	var allpts = [];
-	for(var i = 0; i < windowpts.length; i++)
-	{
-		allpts.push(windowpts[i]);
-	}
-	for(var i = 0; i < currentLocs.length; i++)
-	{
-		allpts.push(currentLocs[i]);
-	}
-	var dx = 5;
-	var dy = 5;
-	var pt={x: Math.floor(Math.random() * window.innerWidth),
-		y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
-	var points = [];
-	for(var i; i < 10; i++)
-	{
+	// var windowpts = [{x:0,y:350},{x:window.innerWidth,y:350},{x:0,y:window.innerHeight},{x:window.innerWidth,y:window.innerHeight}];
+	// var allpts = [];
+	// for(var i = 0; i < windowpts.length; i++)
+	// {
+	// 	allpts.push(windowpts[i]);
+	// }
+	// for(var i = 0; i < currentLocs.length; i++)
+	// {
+	// 	allpts.push(currentLocs[i]);
+	// }
+	// var dx = 5;
+	// var dy = 5;s
+	// var pt={x: Math.floor(Math.random() * window.innerWidth),
+	// 	y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
+	// var points = [];
+	// for(var i; i < 10; i++)
+	// {
 		var pt={x: Math.floor(Math.random() * window.innerWidth),
 		y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
-		points.push(pt);
-	}
-	var distance = window.innerWidth+window.innerHeight;
-	var finalpt = points[0];
-	for(var pt in points)
-	{
-		var td = 10000;
-		for(var i = 0; i < allpts.length; i++)
-		{
-			var dx = allpts[i].x - pt.x;
-			var dy = allpts[i].y - pt.y;
-			dx*=dx;
-			dy*=dy;
-			var d = Math.sqrt(dx+dy);
-			if(d < td)
-				td = d;
-		}
-		if(distance > td)
-		{
-			distance = td;
-			finalpt = pt;
-		}
-	}
-	currentLocs.push(finalpt);
-	return finalpt;
+		//points.push(pt);
+	// }
+	return pt;
+	// var distance = window.innerWidth+window.innerHeight;
+	// var finalpt = points[0];
+	// for(var pt in points)
+	// {
+	// 	var td = 10000;
+	// 	for(var i = 0; i < allpts.length; i++)
+	// 	{
+	// 		var dx = allpts[i].x - pt.x;
+	// 		var dy = allpts[i].y - pt.y;
+	// 		dx*=dx;
+	// 		dy*=dy;
+	// 		var d = Math.sqrt(dx+dy);
+	// 		if(d < td)
+	// 			td = d;
+	// 	}
+	// 	if(distance > td)
+	// 	{
+	// 		distance = td;
+	// 		finalpt = pt;
+	// 	}
+	// }
+	// currentLocs.push(finalpt);
+	// return finalpt;
 }
 
 var Project = React.createClass({
@@ -55,7 +56,7 @@ var Project = React.createClass({
 			this.timer = setInterval(this.tick,Math.floor(Math.random() * 65));
 			return{
 			dec:false,
-			opac:0,			
+			opac:0,
 			x:pt.x,
 			y:pt.y};
 	},
