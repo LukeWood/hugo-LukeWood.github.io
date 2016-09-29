@@ -24,7 +24,7 @@ function genNextPoint()
 		points.push(pt);
 	}
 	var distance = window.innerWidth+window.innerHeight;
-	var finalpt = points[0]
+	var finalpt = points[0];
 	for(var pt in points)
 	{
 		var td = 10000;
@@ -52,14 +52,12 @@ var Project = React.createClass({
 	getInitialState: function()
 	{
 			var pt = genNextPoint();
-			var color =255;// Math.floor(y/window.innerHeight * 255);
 			this.timer = setInterval(this.tick,Math.floor(Math.random() * 65));
 			return{
 			dec:false,
 			opac:0,			
 			x:pt.x,
-			y:pt.y,
-			color:"rgb("+color+","+color+","+color+")"};
+			y:pt.y};
 	},
     	onMouseEnterHandler: function(e){
 		this.setState({hover:true});
@@ -100,10 +98,8 @@ var Project = React.createClass({
 					currentLocs.splice(index,1);
 				}
 				var pt = genNextPoint();
-				var color = 255;//Math.floor(y/window.innerHeight * 255);
 				this.setState({x:pt.x,
 						y:pt.y,
-						color:"rgb("+color+","+color+","+color+")",
 						dec:false});
 			}
 		}
@@ -123,18 +119,24 @@ var Project = React.createClass({
 	{
 	var styles ={
 			opacity:this.state.opac,
+			padding:"10px",
 		    	fontFamily:" 'Source Code Pro', sans-serif",
 		    	fontWeight:"200",
 		    	fontSize:"32px",
-		    	color:this.state.color,
+			backgroundColor:"rgba(255,255,255,.75",
+			borderRadius: 16,
+		    	color:"#222",
 		    	textDecoration:"none",
 			position: 'absolute',
+			border:"solid #222 2px",
 			left:this.state.x.toString() + "px",
 		   	top:this.state.y.toString()+'px'};
 	if(this.state.hover)
 	{
 		styles.opacity = 1;
-		styles.color = "rgb(50,50,255)";
+		styles.color = "#bbb";
+		styles.border= "solid #bbb 2px";
+		styles.backgroundColor = "#222";
 	}
    	return (
 			<a style={styles} onMouseEnter={this.onMouseEnterHandler} className={'Project noselect'} href={this.props.href}>{this.props.text}</a>
