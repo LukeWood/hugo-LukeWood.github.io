@@ -18,7 +18,8 @@ var Title = React.createClass({displayName:"Title",
 					margin:"25px",
 					fontSize:200,
 					fontFamily:"'Orbitron', sans-serif",
-					fontWeight:200
+					fontWeight:200,
+					marginTop:"65px"
 		};
 		    return (
 			    <center><h1 className="noselect" style={style}>Luke Wood</h1></center>
