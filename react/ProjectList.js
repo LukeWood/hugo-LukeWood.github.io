@@ -19,7 +19,7 @@ function genNextPoint()
 	// var points = [];
 	// for(var i; i < 10; i++)
 	// {
-		var pt={x: Math.floor(Math.random() * window.innerWidth),
+		var pt={x: Math.floor(Math.random() * window.innerWidth)-50,
 		y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
 		//points.push(pt);
 	// }
