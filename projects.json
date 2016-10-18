@@ -1,18 +1,17 @@
 [
+{"text":"Area 51",
+"href:"http://lukewoodsmu.github.io/AREA-51",
+"key":0},
 {"text":"Earth Data Visualization",
 "href":"http://lukewoodsmu.github.io/EarthMeteors/",
 "key":1},
-
 {"text":"Neural Network Rapper",
 "href":"https://github.com/LukeWoodSMU/PyRap",
 "key":2},
-
 {"text":"Automated Surf Report Texts",
 "href":"https://github.com/LukeWoodSMU/DailySurfReport","key":3},
 {"text":"Command Line Facebook Messenger",
 "href":"https://github.com/LukeWoodSMU/CommandLine-Facebook-Chat","key":4},
 {"text":"Created This Website using Reactjs",
-"href":"https://github.com/lukewoodsmu/lukewoodsmu.github.io","key":5},
-{"text":"Graphics on Desktop With No Background Demo",
-"href":"https://github.com/lukewoodsmu/Doge","key":6}
+"href":"https://github.com/lukewoodsmu/lukewoodsmu.github.io","key":5}
 ]
