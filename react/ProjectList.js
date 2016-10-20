@@ -14,14 +14,14 @@ function genNextPoint()
 				}
 		});
 		var best_pt = {x: Math.floor(Math.random() * window.innerWidth)-50,
-		y: 350 + Math.floor(Math.random() *(window.innerHeight-400))};
+		y: 350 + Math.floor(Math.random() *(window.innerHeight-450))};
 
 		var best_dist = 100000;
 
 		for(var b = 0; b <  10; b++){
 
 			var pt={x: Math.floor(Math.random() * window.innerWidth)-50,
-			y: 350 + Math.floor(Math.random() *(window.innerHeight-400))};
+			y: 350 + Math.floor(Math.random() *(window.innerHeight-450))};
 
 			var min_dist = 100000;
 			for(var i = 0; i < currentLocs.length; i++)
@@ -40,7 +40,7 @@ function genNextPoint()
 		for(var i = 0; i <  5; i++){
 			for(var j = 0; j < 5; j++){
 				var pt={x: Math.floor(i/5 * window.innerWidth)-50,
-				y: 350 + Math.floor(j/5 *(window.innerHeight-400))};
+				y: 350 + Math.floor(j/5 *(window.innerHeight-450))};
 
 				var min_dist = 100000;
 				for(var c = 0; c < currentLocs.length; c++)
