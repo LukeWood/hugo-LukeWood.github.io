@@ -2,7 +2,7 @@ var currentLocs = [];
 
 function genNextPoint()
 {
-	// var windowpts = [{x:0,y:350},{x:window.innerWidth,y:350},{x:0,y:window.innerHeight},{x:window.innerWidth,y:window.innerHeight}];
+
 	// var allpts = [];
 	// for(var i = 0; i < windowpts.length; i++)
 	// {
