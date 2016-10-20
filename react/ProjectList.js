@@ -1,52 +1,56 @@
 var currentLocs = [];
 
+
 function genNextPoint()
 {
 
-	// var allpts = [];
-	// for(var i = 0; i < windowpts.length; i++)
-	// {
-	// 	allpts.push(windowpts[i]);
-	// }
-	// for(var i = 0; i < currentLocs.length; i++)
-	// {
-	// 	allpts.push(currentLocs[i]);
-	// }
-	// var dx = 5;
-	// var dy = 5;s
-	// var pt={x: Math.floor(Math.random() * window.innerWidth),
-	// 	y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
-	// var points = [];
-	// for(var i; i < 10; i++)
-	// {
-		var pt={x: Math.floor(Math.random() * window.innerWidth)-50,
-		y: 350 + Math.floor(Math.random() *(window.innerHeight-350))};
-		//points.push(pt);
-	// }
-	return pt;
-	// var distance = window.innerWidth+window.innerHeight;
-	// var finalpt = points[0];
-	// for(var pt in points)
-	// {
-	// 	var td = 10000;
-	// 	for(var i = 0; i < allpts.length; i++)
-	// 	{
-	// 		var dx = allpts[i].x - pt.x;
-	// 		var dy = allpts[i].y - pt.y;
-	// 		dx*=dx;
-	// 		dy*=dy;
-	// 		var d = Math.sqrt(dx+dy);
-	// 		if(d < td)
-	// 			td = d;
-	// 	}
-	// 	if(distance > td)
-	// 	{
-	// 		distance = td;
-	// 		finalpt = pt;
-	// 	}
-	// }
-	// currentLocs.push(finalpt);
-	// return finalpt;
+		var best_pt = {x: Math.floor(Math.random() * window.innerWidth)-50,
+		y: 350 + Math.floor(Math.random() *(window.innerHeight-400))};
+
+		var best_dist = 100000;
+
+		for(var b = 0; b <  10; b++){
+
+			var pt={x: Math.floor(Math.random() * window.innerWidth)-50,
+			y: 350 + Math.floor(Math.random() *(window.innerHeight-400))};
+
+			var min_dist = 100000;
+			for(var i = 0; i < currentLocs.length; i++)
+			{
+					var t_dist = Math.pow(pt.x - currentLocs[i].x,2) + Math.pow(pt.y - currentLocs[i].y,2);
+					if(t_dist < min_dist){
+							t_dist = min_dist;
+					}
+			}
+			if(min_dist < best_dist){
+				best_dist = min_dist;
+				best_pt = pt;
+			}
+		}
+
+		for(var i = 0; i <  4; i++){
+			for(var j = 0; j < 4; j++){
+				var pt={x: Math.floor(i/10 * window.innerWidth)-50,
+				y: 350 + Math.floor(j/10 *(window.innerHeight-400))};
+
+				var min_dist = 100000;
+				for(var c = 0; c < currentLocs.length; c++)
+				{
+						var t_dist = Math.pow(pt.x - currentLocs[c].x,2) + Math.pow(pt.y - currentLocs[c].y,2);
+						if(t_dist < min_dist){
+								t_dist = min_dist;
+						}
+				}
+				if(min_dist < best_dist){
+					best_dist = min_dist;
+					best_pt = pt;
+				}
+			}
+		}
+
+		currentLocs.push(best_pt);
+
+		return best_pt;
 }
 
 var Project = React.createClass({
@@ -86,14 +90,14 @@ var Project = React.createClass({
 			opac-=.0125;
 			if(opac<=0){
 				clearInterval(this.timer);
-				this.timer = setInterval(this.tick,Math.floor(Math.random() * 200));
+				this.timer = setInterval(this.tick,Math.floor(Math.random() * 125));
 				var index = -1;
-			       	for(var i = 0; i < currentLocs.length; i++)
+			  for(var i = 0; i < currentLocs.length; i++)
 				{
-					if(currentLocs[i].x == this.state.x && currentLocs[i].y == this.state.y)
-					{
-						index = i;
-					}
+						if(currentLocs[i].x == this.state.x && currentLocs[i].y == this.state.y)
+						{
+							index = i;
+						}
 				}
 				if(index != -1){
 					currentLocs.splice(index,1);
@@ -118,28 +122,28 @@ var Project = React.createClass({
 	},
 	render: function()
 	{
-	var styles ={
-			opacity:this.state.opac,
-			padding:"10px",
-		    	fontFamily:" 'Source Code Pro', sans-serif",
-		    	fontWeight:"200",
-		    	fontSize:"32px",
-			backgroundColor:"rgba(255,255,255,.75",
-			borderRadius: 16,
-		    	color:"#222",
-		    	textDecoration:"none",
-			position: 'absolute',
-			border:"solid #222 2px",
-			left:this.state.x.toString() + "px",
-		   	top:this.state.y.toString()+'px'};
-	if(this.state.hover)
-	{
-		styles.opacity = "1";
-                styles.zIndex = "1000";
-		styles.color = "#bbb";
-		styles.border= "solid #bbb 2px";
-		styles.backgroundColor = "#222";
-	}
+		var styles ={
+				opacity:this.state.opac,
+				padding:"10px",
+			    	fontFamily:" 'Source Code Pro', sans-serif",
+			    	fontWeight:"200",
+			    	fontSize:"32px",
+				backgroundColor:"rgba(255,255,255,.75",
+				borderRadius: 16,
+			    	color:"#222",
+			    	textDecoration:"none",
+				position: 'absolute',
+				border:"solid #222 2px",
+				left:this.state.x.toString() + "px",
+			   	top:this.state.y.toString()+'px'};
+		if(this.state.hover)
+		{
+			styles.opacity = "1";
+	                styles.zIndex = "1000";
+			styles.color = "#bbb";
+			styles.border= "solid #bbb 2px";
+			styles.backgroundColor = "#222";
+		}
    	return (
 			<a style={styles} onMouseEnter={this.onMouseEnterHandler} className={'Project noselect'} href={this.props.href}>{this.props.text}</a>
 	   );
