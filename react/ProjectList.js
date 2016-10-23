@@ -131,6 +131,7 @@ var Project = React.createClass({
 				borderRadius: 16,
 			    	color:"#222",
 			    	textDecoration:"none",
+				boxShadow:"-7px 7px 7px",
 				position: 'absolute',
 				border:"solid #222 2px",
 				left:this.state.x.toString() + "px",
