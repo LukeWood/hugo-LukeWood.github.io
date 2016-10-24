@@ -13,14 +13,14 @@ function genNextPoint()
 						currentLocs.splice(i,1);
 				}
 		});
-		var best_pt = {x: Math.floor(Math.random() * window.innerWidth)-50,
+		var best_pt = {x: Math.floor(Math.random() * (window.innerWidth-200)),
 		y: 350 + Math.floor(Math.random() *(window.innerHeight-450))};
 
 		var best_dist = 100000;
 
 		for(var b = 0; b <  10; b++){
 
-			var pt={x: Math.floor(Math.random() * window.innerWidth)-50,
+			var pt={x: Math.floor(Math.random() * (window.innerWidth-200)),
 			y: 350 + Math.floor(Math.random() *(window.innerHeight-450))};
 
 			var min_dist = 100000;
@@ -31,26 +31,26 @@ function genNextPoint()
 						  min_dist = min_dist;
 					}
 			}
-			if(min_dist < best_dist){
+			if(min_dist > best_dist){
 				best_dist = min_dist;
 				best_pt = pt;
 			}
 		}
 
-		for(var i = 0; i <  5; i++){
-			for(var j = 0; j < 5; j++){
-				var pt={x: Math.floor(i/5 * window.innerWidth)-50,
-				y: 350 + Math.floor(j/5 *(window.innerHeight-450))};
+		for(var i = 0; i <  10; i++){
+			for(var j = 0; j < 10; j++){
+				var pt={x: Math.floor(i/10 * (window.innerWidth-200)),
+				y: 350 + Math.floor(j/10 *(window.innerHeight-450))};
 
 				var min_dist = 100000;
 				for(var c = 0; c < currentLocs.length; c++)
 				{
 						var t_dist = Math.pow(pt.x - currentLocs[c].x,2) + Math.pow(pt.y - currentLocs[c].y,2);
 						if(t_dist < min_dist){
-								min_dist = min_dist;
+							min_dist = min_dist;
 						}
 				}
-				if(min_dist < best_dist){
+				if(min_dist > best_dist){
 					best_dist = min_dist;
 					best_pt = pt;
 				}
@@ -126,7 +126,8 @@ var Project = React.createClass({
 				padding:"10px",
 			    	fontFamily:" 'Source Code Pro', sans-serif",
 			    	fontWeight:"200",
-			    	fontSize:"32px",
+			    	fontSize:"22px",
+				width:"200px",
 				backgroundColor:"rgba(255,255,255,.75",
 				borderRadius: 16,
 			    	color:"#222",
@@ -136,6 +137,12 @@ var Project = React.createClass({
 				border:"solid #222 2px",
 				left:this.state.x.toString() + "px",
 			   	top:this.state.y.toString()+'px'};
+		var innerstyles = {
+			textDecoration:"none",
+			fontFamily:" 'Source Code Pro', sans-serif",
+			fontWeight:"200",
+			color:"#222"
+		};
 		if(this.state.hover)
 		{
 			styles.opacity = "1";
@@ -143,9 +150,10 @@ var Project = React.createClass({
 			styles.color = "#bbb";
 			styles.border= "solid #bbb 2px";
 			styles.backgroundColor = "#222";
+			innerstyles.color = "#bbb";
 		}
    	return (
-			<a style={styles} onMouseEnter={this.onMouseEnterHandler} className={'Project noselect'} href={this.props.href}>{this.props.text}</a>
+			<center style={styles} onMouseEnter={this.onMouseEnterHandler} className={'Project noselect'}><a href={this.props.href} style={innerstyles}>{this.props.text}</a></center>
 	   );
 	}
 });
