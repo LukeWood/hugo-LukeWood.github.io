@@ -141,7 +141,8 @@ var Project = React.createClass({
 			textDecoration:"none",
 			fontFamily:" 'Source Code Pro', sans-serif",
 			fontWeight:"200",
-			color:"#222"
+			color:"#222",
+			width:"200px"
 		};
 		if(this.state.hover)
 		{
@@ -153,7 +154,8 @@ var Project = React.createClass({
 			innerstyles.color = "#bbb";
 		}
    	return (
-			<center style={styles} onMouseEnter={this.onMouseEnterHandler} className={'Project noselect'}><a href={this.props.href} style={innerstyles}>{this.props.text}</a></center>
+			<a style={styles} onMouseEnter={this.onMouseEnterHandler} className={'Project noselect'} href={this.props.href}><center style={innerstyles}>{this.props.text}</center></a>
+
 	   );
 	}
 });
