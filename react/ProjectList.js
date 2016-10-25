@@ -124,7 +124,6 @@ var Project = React.createClass({
 		var styles ={
 				opacity:this.state.opac,
 				padding:"10px",
-			    	fontFamily:" 'Source Code Pro', sans-serif",
 			    	fontWeight:"200",
 			    	fontSize:"32px",
 				backgroundColor:"rgba(255,255,255,.75",
