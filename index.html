@@ -1,57 +1,64 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <link rel="">
-    <title>Luke Wood</title>
-	<script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
-	<script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
-	<script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
-	<script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
-	<script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
-	<script type="text/javascript">
-		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-			window.mobile = true;
-			console.log("Rendering mobile version");
-		}
-		else
-		{
-			window.mobile = false;
-			console.log("Desktop version will be rendered");
-		}
-	</script>
-    <link rel="stylesheet" href="primary.css"></link>
-	<link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:200,300' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
-	<link rel="stylesheet" href="styles/hamburger.css"></link>
+  <head>
+    <meta charset="utf-8">
+    <title>VR Resume</title>
+    <meta name="description" content="360&deg; Image Gallery - A-Frame">
+    <script src="lib/aframe.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+  <script src="https://rawgit.com/gasolin/aframe-href-component/master/dist/aframe-href-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+    <script src="components/update-raycaster.js"></script>
   </head>
   <body>
-  
-	<div id = "buttoncontainer"><p id="menutext" class="noselect">MENU</p>
-	<div class="menu" id="menuButton">
-	<span class="menu-global menu-top"></span>
-	<span class="menu-global menu-middle"></span>
-	<span class="menu-global menu-bottom"></span>
-	</div>
-	</div>
-	<div id="top"></div>
-	<div id="menu"><div style="height:100vh"><div id = "inner"></div></div></div>
-	<div id="cover"></div>
-    <div id="content"></div>
-    <div id="trademark"><center>Created using React.js &#169 Luke Wood 2016</center></div>
-	
-	<!-- Non-React javascript. -->
-	 <script src="vanillajs/hamburger.js"></script>
-	 	
-	<!-- Custom React Elements -->
-	<script type="text/babel" src="react/MenuList.js"></script>
-	<script type="text/babel" src="react/ProjectList.js"></script>
-	<!-- end -->
 
-	<!-- React index, render menu & projects -->	
-    <script type="text/babel" src="react/index.js"></script>
+    <a-scene>
+      <a-assets id = "assets">
+        <img id="background" crossorigin="anonymous" src="background.jpg">
+      </a-assets>
 
+        <a-entity position="-5 2 -4" text="text: Click on a box to see the project!">
+              <a-animation attribute="position"
+                       begin="3000"
+                       dur="10000"
+                       fill="forwards"
+                       to="-5 100 -4"
+                       repeat="0"></a-animation>
+        </a-entity>
+
+      <a-sky id="image-360" radius="10" src="#background"></a-sky>
+
+        <a-entity id ="project_layout" layout="type: circle; radius: 5" name="playout">
+          <a-animation attribute="rotation"
+                        dur="100000"
+                        easing="linear"
+                        fill="forwards"
+                        to="0 360 0"
+                        repeat="indefinite"></a-animation>
+        </a-entity>
+
+        <a-entity id ="company_layout" layout="type: circle; radius: 7" rotation="0 0 0 " position="0 0 0" name="playout">
+          <a-animation attribute="rotation"
+                        dur="100000"
+                        easing="linear"
+                        fill="forwards"
+                        to="0 -360 0"
+                        repeat="indefinite"></a-animation>
+        </a-entity>
+
+      <a-entity camera look-controls>
+        <a-cursor id="cursor" scale="2 2 2" color="springgreen"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 2 2 2; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__1="_event: mouseenter; color: red"
+          event-set__2="_event: mouseleave; color: springgreen"
+          raycaster="objects: .link"></a-cursor>
+      </a-entity>
+    </a-scene>
+
+    <script src="js/index.js"></script>
   </body>
 </html>
-
