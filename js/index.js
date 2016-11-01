@@ -8,12 +8,12 @@ $.getJSON("projects.json",function(data){
     var img = document.createElement("img");
     img.src = project.img;
     img.setAttribute("id",i+"")
-    assets.append(img);
+    assets.appendChild(img);
     var el = document.createElement("a-box");
     el.setAttribute("src",project.img);
     el.setAttribute("scale","1.3 1.3 1.3");
     el.addEventListener("click", function(){location.href = project.href;});
-    root.append(el);
+    root.appendChild(el);
   })();
   }
 
@@ -27,14 +27,14 @@ $.getJSON("companies.json",function(data){
       var img = document.createElement("img");
       img.src = project.img;
       img.setAttribute("id",i+"")
-      assets.append(img);
+      assets.appendChild(img);
       var el = document.createElement("a-box");
       el.setAttribute("src",project.img);
       el.setAttribute("scale",".8 .8 .8");
 
 
       el.addEventListener("click", function(){location.href = project.href;});
-      root_company.append(el);
+      root_company.appendChild(el);
   })();
   }
 
