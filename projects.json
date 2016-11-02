@@ -8,7 +8,7 @@
 "img":"img/earth.png",
 "key":1},
 {"text":"The Grateful Net",
-"href":"http://lukewoodsmu.github.io/theGratefulNet/",
+"href":"http://github.com/LukeWoodSMU/theGratefulNet/",
 "img":"img/gratefuldead.jpg",
 "key":2},
 {"text":"Automated Surf Report Texts",
@@ -23,5 +23,5 @@
 "href":"https://github.com/lukewoodsmu/lukewoodsmu.github.io","key":5},
 {"text":"Virtual Reality Resume",
   "img":"img/aframe.png",
-"href":"https://github.com/lukewoodsmu/VirtualRealityResume","key":6}
+"href":"https://github.com/lukewoodsmu/lukewoodsmu.github.io","key":6}
 ]
