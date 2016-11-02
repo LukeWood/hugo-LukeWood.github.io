@@ -30,7 +30,7 @@ $.getJSON("companies.json",function(data){
       assets.appendChild(img);
       var el = document.createElement("a-box");
       el.setAttribute("src",project.img);
-      el.setAttribute("scale",".8 .8 .8");
+      el.setAttribute("scale","1 1 1");
 
 
       el.addEventListener("click", function(){location.href = project.href;});

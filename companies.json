@@ -13,9 +13,13 @@
 "href":"http://www.northropgrumman.com/",
 "img":"img/ngc.jpg",
 "key":1},
+{"text":"Your Company Here",
+"href":"img/LukeWoodResume.pdf",
+"img":"img/yourlogohere.jpg",
+"key":2},
 
 {"text":"AT&T",
 "href":"https://www.att.com/",
-"img":"img/att.png",
+"img":"img/att.jpg",
 "key":0}
 ]
