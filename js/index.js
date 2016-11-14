@@ -35,6 +35,7 @@ $.getJSON("companies.json",function(data){
 
       el.addEventListener("click", function(){
         if(window.mobileAndTabletcheck()){
+          alert("MEOW");
           if(confirm("You are about to be redirected to "+project.href)){
               location.href = project.href;
           }
