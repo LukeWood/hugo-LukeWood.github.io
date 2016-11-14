@@ -33,7 +33,14 @@ $.getJSON("companies.json",function(data){
       el.setAttribute("scale","1 1 1");
 
 
-      el.addEventListener("click", function(){location.href = project.href;});
+      el.addEventListener("click", function(){
+        if(window.mobileAndTabletcheck()){
+          if(confirm("You are about to be redirected to "+project.href)){
+              location.href = project.href;
+          }
+        }
+        else{location.href = project.href;}
+        });
       root_company.appendChild(el);
   })();
   }
