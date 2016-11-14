@@ -34,13 +34,9 @@ $.getJSON("companies.json",function(data){
 
 
       el.addEventListener("click", function(){
-        if(window.mobileAndTabletcheck()){
-          alert("MEOW");
-          if(confirm("You are about to be redirected to "+project.href)){
+        if(confirm("You are about to be redirected to "+project.href+".")){
               location.href = project.href;
-          }
         }
-        else{location.href = project.href;}
         });
       root_company.appendChild(el);
   })();
