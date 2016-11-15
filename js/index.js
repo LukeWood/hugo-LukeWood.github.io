@@ -12,7 +12,13 @@ $.getJSON("projects.json",function(data){
     var el = document.createElement("a-box");
     el.setAttribute("src",project.img);
     el.setAttribute("scale","1.3 1.3 1.3");
-    el.addEventListener("click", function(){location.href = project.href;});
+    el.addEventListener("click", function(){
+      if(window.confirm("You are about to be redirected to "+project.href+".") != undefined){
+        location.href = project.href;
+      }else{
+        e.preventDefault();
+      }},true
+    );
     root.appendChild(el);
   })();
   }
@@ -34,12 +40,10 @@ $.getJSON("companies.json",function(data){
 
 
       el.addEventListener("click", function(e){
-        if(!window.confirm("You are about to be redirected to "+project.href+".")){
-          e.preventDefault();
+        if(window.confirm("You are about to be redirected to "+project.href+".") != undefined){
+          location.href = project.href;
         }else{
-
-                location.href = project.href;
-          
+          e.preventDefault();
         }
         });
       root_company.appendChild(el);
