@@ -13,11 +13,10 @@ $.getJSON("projects.json",function(data){
     el.setAttribute("src",project.img);
     el.setAttribute("scale","1.3 1.3 1.3");
     el.addEventListener("click", function(){
-      if(window.confirm("You are about to be redirected to "+project.href+".") != undefined){
-        location.href = project.href;
-      }else{
-        e.preventDefault();
-      }},true
+
+        selectiveRedirect(project.href);
+
+      },true
     );
     root.appendChild(el);
   })();
@@ -40,14 +39,21 @@ $.getJSON("companies.json",function(data){
 
 
       el.addEventListener("click", function(e){
-        if(window.confirm("You are about to be redirected to "+project.href+".") != undefined){
-          location.href = project.href;
-        }else{
-          e.preventDefault();
-        }
+          selectiveRedirect(project.href)
         });
       root_company.appendChild(el);
   })();
   }
 
 });
+
+function selectiveRedirect(href){
+    var open_time = new Date();
+    var result = window.confirm("You are about to be redirected to "+href+".")
+    var close_time = new Date();
+    if(result === true || close_time-open_time < 10){
+      location.href = href;
+    }else{
+      e.preventDefault();
+    }
+}
