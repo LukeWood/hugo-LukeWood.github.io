@@ -1,29 +1,41 @@
 
-var root = document.getElementById("project_layout");
 var assets = document.getElementById("assets");
+var root = document.getElementById("parent");
+
+function create_asset(url,i){
+  var img = document.createElement("img");
+  img.src = url;
+  img.setAttribute("id",i+"")
+  assets.appendChild(img);
+}
+
+function random_position(){
+    return ((Math.random() * 10) - 5) + " 1 "+ ((Math.random() * 10) - 5);
+}
+
 $.getJSON("projects.json",function(data){
-
+  console.log("ello");
   for(var i = 0; i < data.length; i++){
-    (function(){var project = data[i];
-    var img = document.createElement("img");
-    img.src = project.img;
-    img.setAttribute("id",i+"")
-    assets.appendChild(img);
-    var el = document.createElement("a-box");
-    el.setAttribute("src",project.img);
-    el.setAttribute("scale","1.3 1.3 1.3");
-    el.addEventListener("click", function(){
+    (function(){
+      var project = data[i];
+      create_asset(project.img,i);
 
-        selectiveRedirect(project.href);
+      var el = document.createElement("a-box");
+      el.setAttribute("src",project.img);
+      el.setAttribute("scale","1.3 1.3 1.3");
+      el.setAttribute("position",random_position());
+      el.addEventListener("click", function(){
+          selectiveRedirect(project.href);
+        },true
+      );
 
-      },true
-    );
-    root.appendChild(el);
+      root.appendChild(el);
+
   })();
   }
 
 });
-var root_company = document.getElementById("company_layout");
+/*
 $.getJSON("companies.json",function(data){
 
   for(var i = 0; i < data.length; i++){
@@ -41,12 +53,12 @@ $.getJSON("companies.json",function(data){
       el.addEventListener("click", function(e){
           selectiveRedirect(project.href)
         });
-      root_company.appendChild(el);
+        orbits[Math.floor(Math.random() * orbits.length)].appendChild(el);
   })();
   }
 
 });
-
+*/
 function selectiveRedirect(href){
     var open_time = new Date();
     var result = window.confirm("You are about to be redirected to "+href+".")
