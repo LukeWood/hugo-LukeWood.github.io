@@ -9,9 +9,7 @@ function create_asset(url,i){
   assets.appendChild(img);
 }
 
-function random_position(){
-    return ((Math.random() * 10) - 5) + " 1 "+ ((Math.random() * 10) - 5);
-}
+var positions = [];
 
 $.getJSON("projects.json",function(data){
   console.log("ello");
@@ -23,7 +21,7 @@ $.getJSON("projects.json",function(data){
       var el = document.createElement("a-box");
       el.setAttribute("src",project.img);
       el.setAttribute("scale","1.3 1.3 1.3");
-      el.setAttribute("position",random_position());
+      el.setAttribute("position",positions[i % positions.length]);
       el.addEventListener("click", function(){
           selectiveRedirect(project.href);
         },true
