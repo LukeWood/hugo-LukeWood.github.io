@@ -1,6 +1,6 @@
 
 var assets = document.getElementById("assets");
-var root = document.getElementById("parent");
+var root = document.getElementById("project_layout");
 
 function create_asset(url,i){
   var img = document.createElement("img");
@@ -9,7 +9,6 @@ function create_asset(url,i){
   assets.appendChild(img);
 }
 
-var positions = [];
 
 $.getJSON("projects.json",function(data){
   console.log("ello");
@@ -20,8 +19,7 @@ $.getJSON("projects.json",function(data){
 
       var el = document.createElement("a-box");
       el.setAttribute("src",project.img);
-      el.setAttribute("scale","1.3 1.3 1.3");
-      el.setAttribute("position",positions[i % positions.length]);
+      el.setAttribute("scale","4 4 4");
       el.addEventListener("click", function(){
           selectiveRedirect(project.href);
         },true
