@@ -34,5 +34,11 @@
     "href": "http://lukewoodsmu.github.io/EarthMeteors/",
     "img": "img/earth.png",
     "key": 1
+  },
+  {
+    "text":"Toast",
+    "href": "https://github.com/lukewoodsmu/Toast",
+    "img": "img/Toast.jpg",
+    "key":9
   }
 ]
