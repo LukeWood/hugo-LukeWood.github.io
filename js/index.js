@@ -11,7 +11,6 @@ function create_asset(url,i){
 
 
 $.getJSON("projects.json",function(data){
-  console.log("ello");
   for(var i = 0; i < data.length; i++){
     (function(){
       var project = data[i];
