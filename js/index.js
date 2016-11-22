@@ -12,18 +12,11 @@ function create_asset(url,i){
 
 var rotation = document.createElement("a-animation");
 rotation.setAttribute("attribute","rotation");
-rotation.setAttribute("dur","10000");
+rotation.setAttribute("dur","40000");
 rotation.setAttribute("easing","linear");
 rotation.setAttribute("fill","forwards");
 rotation.setAttribute("to","0 360 0");
 rotation.setAttribute("repeat","indefinite");
-
-`<a-animation attribute="rotation"
-                      dur="100000"
-                      easing="linear"
-                      fill="forwards"
-                      to="0 360 0"
-repeat="indefinite"></a-animation>`
 
 $.getJSON("projects.json",function(data){
   for(var i = 0; i < data.length; i++){
