@@ -71,7 +71,5 @@ function selectiveRedirect(href){
     var close_time = new Date();
     if(result === true || close_time-open_time < 10){
       location.href = href;
-    }else{
-      e.preventDefault();
     }
 }

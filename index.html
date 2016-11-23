@@ -22,6 +22,9 @@
    if(window.mobileAndTabletcheck()){
        alert("Since you are on mobile, click events are fired by hovering with the cursor.");
    }
+   window.onhashchange = function() {
+     window.location.reload(true);
+}
  </script>
 
   </head>
