@@ -22,9 +22,27 @@
    if(window.mobileAndTabletcheck()){
        alert("Since you are on mobile, click events are fired by hovering with the cursor.");
    }
-  window.onpopstate=function() {
-     window.location = "";
+   function updateHistory(curr) {
+       window.location.lasthash.push(window.location.hash);
+       window.location.hash = curr;
    }
+   window.onhashchange = function() {
+    if (window.innerDocClick) {
+        window.innerDocClick = false;
+    } else {
+        if (window.location.hash != '#undefined') {
+            goBack();
+        } else {
+            history.pushState("", document.title, window.location.pathname);
+            location.reload();
+        }
+    }
+}
+function goBack() {
+    window.location.hash = window.location.lasthash[window.location.lasthash.length-1];
+    //blah blah blah
+    window.location.lasthash.pop();
+}
  </script>
 
   </head>
