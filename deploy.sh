@@ -30,8 +30,7 @@ hugo
 msg "Pushing the updated \`public\` folder to the \`$SOURCE\` branch"
 git add public
 git commit -m "$MESSAGE"
-git push origin "$SOURCE" --force
+git push origin "$SOURCE"
 
 msg "Pushing the updated \`public\` folder to the \`master\` branch"
-git subtree push --prefix=public \
-    git@github.com:$USERNAME/$USERNAME.github.io.git master
+git push origin `git subtree split --prefix public hugo`:master --force

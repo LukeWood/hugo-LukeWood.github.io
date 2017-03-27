@@ -1,7 +1,8 @@
 +++
 date = "2017-03-26T21:21:14-05:00"
+weight=0
 title = "Machine Learning"
-draft = true
+draft = false
 
 +++
 <h3>Project List:</h3>
