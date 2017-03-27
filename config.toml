@@ -1,0 +1,13 @@
+baseurl = "https://lukewoodsmu.github.io/"
+title = "Dimension"
+theme = "dimension"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+disableRSS = true
+
+[params]
+  title = "Luke Wood"
+  description = '<!--[-->Software Engineer<!--]--><br />'
+  logo = "fa-diamond"
+  copyright = "Luke Wood"
