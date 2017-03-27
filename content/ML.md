@@ -1,6 +1,6 @@
 +++
 date = "2017-03-26T21:21:14-05:00"
-title = "ML"
+title = "Machine Learning"
 draft = true
 
 +++
