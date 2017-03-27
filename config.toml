@@ -9,6 +9,6 @@ disableRSS = true
 [params]
   title = "Luke Wood"
   description = '<!--[-->Software Engineer<!--]--><br />
-                <!--[--><br />Select Project Category<!--]-->'
+                <!--[-->Select Project Category<!--]-->'
   logo = "fa-diamond"
   copyright = "Luke Wood"
