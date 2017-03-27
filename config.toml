@@ -9,5 +9,5 @@ disableRSS = true
 [params]
   title = "Luke Wood"
   description = '<!--[-->Software Engineer<!--]--><br />'
-  logo = "fa-diamond"
+  logo = "fa-google-plus"
   copyright = "Luke Wood"
