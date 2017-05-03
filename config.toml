@@ -1,6 +1,6 @@
 baseurl = "https://lukewoodsmu.github.io/"
 title = "Luke Wood"
-theme = "dimension"
+theme = "base16"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 enableRobotsTXT = true
