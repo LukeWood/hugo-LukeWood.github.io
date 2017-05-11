@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="&lt;!--[--&gt;Software Engineer&lt;!--]--&gt;&lt;br /&gt;">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.19" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://lukewoodsmu.github.io/css/style.css" type="text/css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" type="text/css">
+<link rel="alternate" href="https://lukewoodsmu.github.io/index.xml" type="application/rss+xml" title="Luke Wood">
+<title>Glove Embeddings in Keras - Luke Wood</title>
+</head>
+<body>
+
+<header>
+  <div class="container clearfix">
+    <a class="path" href="https://lukewoodsmu.github.io/">[Luke Wood]</a>
+    <span class="caret"># _</span>
+    <div class="right">
+      
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+
+<main role="main" class="article">
+  
+<article class="single" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+
+    <span class="key">published on</span>
+    <span class="val"><time itemprop="datePublished" datetime="2017-05-11">May 11, 2017</time></span>
+
+
+
+  </div>
+  <h1 class="headline" itemprop="headline">Glove Embeddings in Keras</h1>
+  <section class="body" itemprop="articleBody">
+    <p><h1>Glove Embeddings in Keras</h1>
+While working on a spam text classification model, (article on this will be published next week) I decided to use a pre-trained GloVe embedding to avoid the huge cost of training my own embedding.  I was using Keras, my favorite Tensorflow wrapper, and it felt far more difficult than it should be to create an Embedding layer with pre-trained weights.  I felt that this task could be made much easier than it currently is and decided to create a python module to make creating Keras GloVe embedding layers simple.</p>
+
+<p><h2>Background</h2>
+GloVe stands for Global Vectors for Word Representation.  On the <a href="https://nlp.stanford.edu/projects/glove/">nlp.standford.edu</a> website, GloVe is described as:</br>
+<em>GloVe is an unsupervised learning algorithm for obtaining vector representations for words. Training is performed on aggregated global word-word co-occurrence statistics from a corpus, and the resulting representations showcase interesting linear substructures of the word vector space.</em>
+In essence, we are trying to obtain a Keras Embedding layer using the weights obtained from using the GloVe algorithm on a huge corpus of text.  Luckily, there are already weights published for embeddings of size 50, 100, 200, and 300 trained on a gigantic corpus of text.  We will use the GloVe embedding trained on Wikipedia 2014 and Gigaword 5.  The zip file containing the weights derived from training on this data is hosted on the nlp.standford.edu website as well.</p>
+
+<p><h2>Downloading and Caching the Weights</h2>
+The download to get the weights for the pre trained GloVe embedding takes a long time.  If we downloaded the entire weight file zip every time we started the module, we would dramatically the impact startup times for our users&rsquo; scripts.</p>
+
+<p>This snippet at the start of my package ensures that the GloVe weight files are only downloaded a single time.</p>
+
+<script src="https://gist.github.com/LukeWoodSMU/9a712501c7f6f4f64ad31815c331f2b0.js"></script>
+
+<p><h2>Loading the Weights and Creating the Embedding Matrix</h2>
+Next, we need to transfer the weight values from the file into a dictionary so that we can look up the values of the embedding associated with each word.  Professor Eric Larson from Southern Methodist University wrote a jupyter notebook for his Machine Learning course that showcased an easy way to do this.  I <em>heavily</em> based my code to load the embedding matrix on his.  Here is the code to do this:</p>
+
+<script src="https://gist.github.com/LukeWoodSMU/d9f76bf5d63713e60fef2c4de6651aa2.js"></script>
+
+<p>We grab the weights associated with each word and load them in to the weight matrix indexed by the integer associated with each word based.  If we do not have weights for a word or token we assume the weights to be zero for that token.</p>
+
+<p><h2>Integrating with Keras</h2>
+Now that we have the embedding matrix corresponding to our data&rsquo;s word index, we can start integrating with keras.  Luckily, this step was really simple, all I had to do is return a Keras embedding object with the weights overridden by our embedding matrix.  Here is the code that does this.</p>
+
+<script src="https://gist.github.com/LukeWoodSMU/caa8a18b58f8123237bf3ad8e8d7170d.js"></script>
+
+<p><h2>Publishing to pip and Finalization</h2>
+Now that we know how to create a Keras GloVe embedding layer, we can generalize this solution.  This was relatively trivial as the only change I had to make was in the name of the file containing the weights.  I created a function called GloveEmbedding that takes 3 parameters: embedding size, input length, and word index.  After I did this, I published my package on pip.  The package is currently published under kerasglove, give it a try the next time you are creating a Tensorflow recurrent neural network!</p>
+
+  </section>
+</article>
+
+</main>
+
+
+</div>
+
+<footer>
+  <div class="container">
+    <span class="copyright">&copy; 2017  Luke Wood - <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
+
