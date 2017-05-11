@@ -31,3 +31,4 @@ Now that we have the embedding matrix corresponding to our datas word index, we 
 <script src="https://gist.github.com/LukeWoodSMU/caa8a18b58f8123237bf3ad8e8d7170d.js"></script>
 
 <h2>Publishing to pip and Finalization</h2>
+Now that we know how to create a Keras GloVe embedding layer, we can generalize this solution.  After I did this, I published my package on pip.  The package is currently published under kerasglove, give it a try if you get a chance!
