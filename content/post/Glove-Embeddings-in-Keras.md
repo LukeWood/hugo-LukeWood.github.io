@@ -17,7 +17,7 @@ The download to get the weights for the pre trained GloVe embedding takes a long
 <script src="https://gist.github.com/LukeWoodSMU/9a712501c7f6f4f64ad31815c331f2b0.js"></script>
 
 <h2>Loading the Weights and Creating the Embedding Matrix</h2>
-I needed to transfer the weight values from the file into a dictionary so that we can look up the values of the embedding associated with each word.  Professor Eric Larson from Southern Methodist University wrote a jupyter notebook for his Machine Learning course that showcased an easy way to do this.  Here is a sample of this:
+I needed to transfer the weight values from the file into a dictionary so that we can look up the values of the embedding associated with each word.  Professor Eric Larson from Southern Methodist University wrote a jupyter notebook for his Machine Learning course that showcased an easy way to do this.  Here is a snipped derived from the sample:
 
 <script src="https://gist.github.com/LukeWoodSMU/d9f76bf5d63713e60fef2c4de6651aa2.js"></script>
 
