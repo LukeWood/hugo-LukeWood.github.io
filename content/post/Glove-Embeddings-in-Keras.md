@@ -21,6 +21,13 @@ This snippet at the start of my package ensures that the GloVe weight files are 
 <h2>Loading the Weights and Creating the Embedding Matrix</h2>
 Next, we need to transfer the weight values from the file into a dictionary so that we can look up the values of the embedding associated with each word.  Professor Eric Larson from Southern Methodist University wrote a jupyter notebook for his Machine Learning course that showcased an easy way to do this.  I _heavily_ based my code to load the embedding matrix on his.  Here is the code to do this:
 
-<script src="https://gist.github.com/LukeWoodSMU/51dbde3aec6f98a73e6e0deec58e0d8d.js"></script>
+<script src="https://gist.github.com/LukeWoodSMU/d9f76bf5d63713e60fef2c4de6651aa2.js"></script>
 
-Basically, we grab the weights associated with each word and load them in to the weight matrix indexed into the associated location of the 
+Basically, we grab the weights associated with each word and load them in to the weight matrix indexed by the integer associated with the word based on the word index.  If we do not have weights for a phrase, we assume the weights to be zero.
+
+<h2>Integrating with Keras</h2>
+Now that we have the embedding matrix corresponding to our datas word index, we can start integrating with keras.  Luckily, this step is really simple!  All I had to do is return a Keras embedding object with the weights overridden by our embedding matrix.  Here is the code that does this.
+
+<script src="https://gist.github.com/LukeWoodSMU/caa8a18b58f8123237bf3ad8e8d7170d.js"></script>
+
+<h2>Publishing to pip and Finalization</h2>
