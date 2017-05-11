@@ -7,10 +7,9 @@ title = "Glove Embeddings in Keras"
 I was using Keras, my favorite Tensorflow wrapper, and it felt far more difficult than it should be to create an Embedding layer with pre-trained weights.  I felt that this task could be made much easier than it currently is and made a python module specifically for creating GloVe embeddings in keras.
 
 <h2>Background</h2>
-GloVe stands for Global Vectors for Word Representation.  On the <a href="https://nlp.stanford.edu/projects/glove/">nlp.standford.edu</a> website, GloVe is described as:</br>
-*GloVe is an unsupervised learning algorithm for obtaining vector representations for words. Training is performed on aggregated global word-word co-occurrence statistics from a corpus, and the resulting representations showcase interesting linear substructures of the word vector space.*
+GloVe stands for Global Vectors for Word Representation.  GloVe is an unsupervised algorithm that can be run on large corpuses of text to derive weights used for text embeddings.
 
-Luckily, there are already weights published for embeddings of size 50, 100, 200, and 300 trained on a gigantic corpus of text.  We will use the GloVe embedding trained on Wikipedia 2014 and Gigaword 5.
+There are already weights published for embeddings of size 50, 100, 200, and 300 trained on a gigantic corpus of text.  We will use the GloVe embedding trained on Wikipedia 2014 and Gigaword 5.
 
 <h2>Downloading and Caching the Weights</h2>
 The download to get the weights for the pre trained GloVe embedding takes a long time.  This snippet at the start of my package ensures that the GloVe weight files are only downloaded a single time.
