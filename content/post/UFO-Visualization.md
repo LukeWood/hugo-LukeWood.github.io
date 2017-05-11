@@ -15,7 +15,7 @@ In this article, I will detail my development process for this visualization. He
 </p>
 <h2>Development</h2>
 <h3>Data Parsing</h3>
-To start off, I needed to clean up the data a bit.  Initially, the data was incredibly messy.  I needed to sort the spottings by year and standardize the data format.  After I had done this, I had the date spotted, and the location in a natural language format.  To solve this problem, I performed a bit of data cleaning and used geopy's Nominatim to find the latitude and longitude of the town sighted in.  The Geolocation finding is showcased below in the gist below.
+I needed to clean up the data a bit.  I had the date spotted and the location in a natural language format.  To solve this problem, I performed a bit of data cleaning and used geopy's Nominatim to find the latitude and longitude of the town sighted in.  The Geolocation finding is showcased below in the gist below.
 
 <h6> Town/City Name to Long/Lat </h6>
 
@@ -24,14 +24,12 @@ To start off, I needed to clean up the data a bit.  Initially, the data was incr
 After this was complete, I had the date of the sighting, latitude, and longitude.  I now had all of the data in a format that was easy to visualize.
 
 <h3>3D Data Visualization</h3>
-The first part of this data visualization was standard to all Three.js development: initialize your scene, add lighting, and add camera controls.  I will not be going into detail on how I did this as there are plenty of tutorials online.
+There were many different interacting components in the creation of this project which required a huge volume of javascript to get working.  You can look into some of the inner workings of the visualization in the <a href="https://github.com/LukeWoodSMU/AREA-51">github repo</a>.
 
-There were many different interacting components in the creation of this project which required a huge volume of javascript to get working.  You can look into some of the inner workings of the visualization in the <a href="https://github.com/LukeWoodSMU/AREA-51">github repo</a>.  In the interest of keeping this blog post short, I will only discuss the data visualization itself as opposed to the whole scene.
-
-When visualizing the data, I faced the challenge of deciding whether to show all sightings through the year up until the current date or just the sightings from a specific day.  I decided to marry the two to some extent by having the red dots signifying sightings fade out in terms of opacity slowly  This allowed users to easily pick out recent sightings as well as see the overall trend of the sightings.
+When visualizing the data, I faced the challenge of deciding whether to show all sightings through the year up until the current date or just the sightings from a specific day.  I decided to unite the two to some extent by having the red dots signifying sightings fade out in terms of opacity slowly  This allowed users to easily pick out recent sightings as well as see the overall trend of the sightings.
 
 <h2>The Trend</h2>
-When I first created the visualization, I had no idea what to expect.  I had no idea what the data would look like, but was very pleasantly surprised with the results.  There were two noticeably insights to take away from the visualization in terms of understanding the overall trends of the data.
+When I first created the visualization, I had no idea what to expect.  There were two noticeably insights to take away from the visualization in terms of understanding the overall trends of the data.
 
 1.  The New Mexico Band
 2.  High Time Density
