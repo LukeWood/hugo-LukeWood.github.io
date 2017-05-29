@@ -19,6 +19,26 @@ disableRSS = true
   link = "https://github.com/lukewoodsmu"
 
 [[params.social]]
+  medium = "Stackoverflow"
+  icon = "stack-overflow"
+  link = "https://stackoverflow.com/users/7159331/luke-wood"
+
+[[params.social]]
   medium = "Resume"
-  icon = "file"
+  icon = "file-text"
   link = "/Resume.pdf"
+
+[[params.Projects]]
+  name = "Spam Text Classification with a RNN and a MLP"
+  icon = "mobile"
+  link = "/SpamVsHam.html"
+
+[[params.Projects]]
+  name = "Convolutional Neural Net Classification"
+  icon = "image"
+  link = "/CNNvsMLP.html"
+
+[[params.Projects]]
+  name = "UFO Data Visualization"
+  icon = "globe"
+  link = "/AREA-51"

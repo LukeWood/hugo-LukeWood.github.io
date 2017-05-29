@@ -30,7 +30,7 @@
 							<p>Recent Projects</p>
 							<ul>
 								{{ range .Site.Params.Projects }}
-								<li><a href="{{ .link | safeURL }}" class="icon fa-{{ .icon }}"><span class="label">{{ .medium }}</span></a></li>
+								<li><a href="{{ .link | safeURL }}" class="icon fa-{{ .icon }}"><span class="label">{{ .name }}</span></a></li>
 								{{ end }}
 							</ul>
 						</nav>
