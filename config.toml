@@ -42,3 +42,18 @@ disableRSS = true
   name = "UFO Data Visualization"
   icon = "globe"
   link = "/AREA-51"
+
+[[params.OpenSource]]
+  name = "Keras Glove"
+  icon = "hand-stop-o"
+  link = "https://github.com/lukewoodsmu/kerasglove"
+
+[[params.OpenSource]]
+  name = "Toast"
+  icon = "download"
+  link = "https://github.com/lukewoodsmu/toast"
+
+[[params.OpenSource]]
+  name = "UFO Data Visualization"
+  icon = "globe"
+  link = "/AREA-51"
