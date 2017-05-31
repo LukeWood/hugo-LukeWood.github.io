@@ -19,9 +19,9 @@ disableRSS = true
   link = "https://github.com/lukewoodsmu"
 
 [[params.social]]
-  medium = "Stackoverflow"
-  icon = "stack-overflow"
-  link = "https://stackoverflow.com/users/7159331/luke-wood"
+  medium = "Email"
+  icon = "envelope-o"
+  link = "mailto::lukewoodcs@gmail.com"
 
 [[params.social]]
   medium = "Resume"

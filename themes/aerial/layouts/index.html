@@ -35,6 +35,14 @@
 							</ul>
 						</nav>
 						<nav>
+							<p>Open Source</p>
+							<ul>
+								{{ range .Site.Params.OpenSource }}
+								<li><a href="{{ .link | safeURL }}" class="icon fa-{{ .icon }}"><span class="label">{{ .name }}</span></a></li>
+								{{ end }}
+							</ul>
+						</nav>
+						<nav>
 							<p>Media</p>
 							<ul>
 								{{ range .Site.Params.social }}
