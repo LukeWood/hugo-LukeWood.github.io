@@ -6,12 +6,14 @@ defaultContentLanguage = "en"
 enableRobotsTXT = true
 disableRSS = true
 
+
 [params]
   name = "Luke Wood"
   about = 'Software Engineer'
   bg_scroll = ""
   logo = "fa-tree"
   copyright = "Luke Wood"
+  favicon = "favicon.ico"
 
 [[params.social]]
   medium = "Github"
