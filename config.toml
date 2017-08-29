@@ -12,7 +12,7 @@ disableRSS = true
   bg_scroll = ""
   logo = "fa-tree"
   copyright = "Luke Wood"
-  favicon = "favicon.ico"
+  favicon = "/favicon.ico"
 
 [[params.social]]
   medium = "Github"
