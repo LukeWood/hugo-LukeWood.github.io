@@ -1,4 +1,4 @@
-baseurl = "https://lukewood.github.io/"
+baseurl = "https://lukewoodsmu.github.io/"
 title = "Luke Wood"
 theme = "aerial"
 languageCode = "en-us"
@@ -17,7 +17,7 @@ disableRSS = true
 [[params.social]]
   medium = "Github"
   icon = "github"
-  link = "https://github.com/lukewood"
+  link = "https://github.com/lukewoodsmu"
 
 [[params.social]]
   medium = "Email"
@@ -47,14 +47,14 @@ disableRSS = true
 [[params.OpenSource]]
   name = "Keras Glove"
   icon = "hand-stop-o"
-  link = "https://github.com/lukewood/kerasglove"
+  link = "https://github.com/lukewoodsmu/kerasglove"
 
 [[params.OpenSource]]
   name = "Toast"
   icon = "download"
-  link = "https://github.com/lukewood/toast"
+  link = "https://github.com/lukewoodsmu/toast"
 
 [[params.OpenSource]]
-  name = "UFO Data Visualization"
-  icon = "globe"
-  link = "/AREA-51"
+  name = "Parallelized Map Reduce In Browser"
+  icon = "desktop"
+  link = "https://github.com/LukeWood/ParallelMapReduceInBrowser"
