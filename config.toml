@@ -1,60 +1,71 @@
-baseurl = "https://lukewoodsmu.github.io/"
-title = "Luke Wood"
-theme = "aerial"
+baseURL = "https://LukeWood.dev"
 languageCode = "en-us"
 defaultContentLanguage = "en"
-enableRobotsTXT = true
-disableRSS = true
+title = "Luke Wood"
+theme = "hermit"
+# enableGitInfo = true
+pygmentsCodefences  = true
+pygmentsUseClasses  = true
+# hasCJKLanguage = true  # If Chinese/Japanese/Korean is your main content language, enable this to make wordCount works right.
+rssLimit = 10  # Maximum number of items in the RSS feed.
+copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
+enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
+# googleAnalytics = "UA-123-45"
+# disqusShortname = "yourdiscussshortname"
+
+[author]
+  name = "Luke Wood"
+
+[blackfriday]
+  # hrefTargetBlank = true
+  # noreferrerLinks = true
+  # nofollowLinks = true
+
+[taxonomies]
+  tag = "tags"
+  # Categories are disabled by default.
 
 [params]
-  name = "Luke Wood"
-  about = 'Software Engineer'
-  bg_scroll = ""
-  logo = "fa-tree"
-  copyright = "Luke Wood"
-  favicon = "/favicon.ico"
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
 
-[[params.social]]
-  medium = "Github"
-  icon = "github"
-  link = "https://github.com/lukewoodsmu"
+  # Metadata mostly used in document's head
+  # description = ""
+  # images = [""]
+  themeColor = "#494f5c"
 
-[[params.social]]
-  medium = "Email"
-  icon = "envelope-o"
-  link = "mailto::lukewoodcs@gmail.com"
+  homeSubtitle = "Develop stronger software"
+  footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+  # bgImg = ""  # Homepage background-image URL
 
-[[params.social]]
-  medium = "Resume"
-  icon = "file-text"
-  link = "/Resume.pdf"
+  # Prefix of link to the git commit detail page. GitInfo must be enabled.
+  # gitUrl = "https://github.com/username/repository/commit/"
 
-[[params.Projects]]
-  name = "Spam Text Classification with a RNN and a MLP"
-  icon = "mobile"
-  link = "/SpamVsHam.html"
+  # Toggling this option needs to rebuild SCSS, requires Hugo extended version
+  justifyContent = false  # Set "text-align: justify" to `.content`.
 
-[[params.Projects]]
-  name = "Convolutional Neural Net Classification"
-  icon = "image"
-  link = "/CNNvsMLP.html"
+  # Add custom css
+  # customCSS = ["css/foo.css", "css/bar.css"]
 
-[[params.Projects]]
-  name = "UFO Data Visualization"
-  icon = "globe"
-  link = "/AREA-51"
+  # Social Icons
+  # Check https://github.com/Track3/hermit#social-icons for more info.
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/LukeWood"
 
-[[params.OpenSource]]
-  name = "Keras Glove"
-  icon = "hand-stop-o"
-  link = "https://github.com/lukewoodsmu/kerasglove"
+  [[params.social]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/luke-wood-886634102/"
 
-[[params.OpenSource]]
-  name = "Toast"
-  icon = "download"
-  link = "https://github.com/lukewoodsmu/toast"
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "posts/"
+    weight = 10
 
-[[params.OpenSource]]
-  name = "Parallelized Map Reduce In Browser"
-  icon = "desktop"
-  link = "https://github.com/LukeWood/ParallelMapReduceInBrowser"
+  [[menu.main]]
+    name = "About"
+    url = "about-me/"
+    weight = 20
