@@ -1,14 +1,12 @@
 ---
-title: "About Me"
-date: "2018-04-08"
+title: "Luke"
+date: "2019-04-08"
 images:
-  - https://picsum.photos/1024/768/?random
+  - /hawaii_1.jpg
 tags:
   - Image
 ---
+## Surfer | SWE | Skier
+This blog is dedicated to documenting both technical and personal topics in a useful way for others to use.
 
-I am:
-
-- Native to San Diego
-- Into skiing
-- Missing the ocean
+The target demographic is primarily young software engineers who may be facing similar challenges to me in their day to day life.

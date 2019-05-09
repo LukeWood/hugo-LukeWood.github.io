@@ -1,4 +1,4 @@
-baseURL = "https://LukeWood.dev"
+baseURL = "https://LukeWood.dev/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "Luke Wood"
@@ -36,7 +36,7 @@ disqusShortname = "lukewood-dev-1"
   # images = [""]
   themeColor = "#494f5c"
 
-  homeSubtitle = "Software | Outdoors | Life"
+  homeSubtitle = "Software | Outdoors | Other"
   footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
   # bgImg = ""  # Homepage background-image URL
 
@@ -64,7 +64,6 @@ disqusShortname = "lukewood-dev-1"
     name = "Posts"
     url = "posts/"
     weight = 10
-
   [[menu.main]]
     name = "About"
     url = "about-me/"
