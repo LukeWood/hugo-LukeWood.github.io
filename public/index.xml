@@ -7,28 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 09 May 2019 17:20:04 -0600</lastBuildDate>
+    <lastBuildDate>Thu, 09 May 2019 17:08:39 -0600</lastBuildDate>
     
 	<atom:link href="https://LukeWood.dev/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Bb84: a soft intro to Quantum Computing</title>
-      <link>https://LukeWood.dev/posts/bb84/</link>
-      <pubDate>Thu, 09 May 2019 17:20:04 -0600</pubDate>
-      
-      <guid>https://LukeWood.dev/posts/bb84/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Background: bulletz.io</title>
-      <link>https://LukeWood.dev/posts/bulletz.io/</link>
+      <title>Fault Tolerant Development by Example using OTP</title>
+      <link>https://LukeWood.dev/posts/otp_bulletz.io/</link>
       <pubDate>Thu, 09 May 2019 17:08:39 -0600</pubDate>
       
-      <guid>https://LukeWood.dev/posts/bulletz.io/</guid>
-      <description>bulletz.io is a browser game written entirely in Elixir using the phoenix framework.
-Developing a game in a functional programming language features a variety of unique challenges.</description>
+      <guid>https://LukeWood.dev/posts/otp_bulletz.io/</guid>
+      <description>Background Bulletz.io is a browser game I wrote entirely in Elixir using the phoenix framework. Bulletz.io is written to be highly fault tolerant and concurrent. This was important to me as I wanted to be able to run the game on a cheap server and leave it there long term without having to touch it.
+This post will detail how I leveraged OTP to make bulletz.io fault tolerant and highly parallel.</description>
     </item>
     
     <item>
@@ -38,8 +29,8 @@ Developing a game in a functional programming language features a variety of uni
       
       <guid>https://LukeWood.dev/about-me/</guid>
       <description>SURF | SKI | SWE This blog is dedicated to sharing knowledge on both technical and non-technical topics in a useful way for others.
-The target demographic is primarily software engineers who may be facing similar challenges to me in their software development.
-Each blog post has a picture of the place I was when I wrote it. This adds a little context to who I am as a person outside of my life as a developer.</description>
+The target demographic is primarily software engineers who may not have been exposed to some of my niche areas of knowledge.
+Each blog post has a picture of the place I was when I wrote it. I did this to add a little context to who I am as a person outside of my life as a developer.</description>
     </item>
     
   </channel>
