@@ -7,17 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 May 2019 17:20:04 -0600</lastBuildDate>
     
 	<atom:link href="https://LukeWood.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Image</title>
-      <link>https://LukeWood.dev/tags/image/</link>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
+      <title>Algorithms</title>
+      <link>https://LukeWood.dev/tags/algorithms/</link>
+      <pubDate>Thu, 09 May 2019 17:20:04 -0600</pubDate>
       
-      <guid>https://LukeWood.dev/tags/image/</guid>
+      <guid>https://LukeWood.dev/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bulletz</title>
+      <link>https://LukeWood.dev/tags/bulletz/</link>
+      <pubDate>Thu, 09 May 2019 17:08:39 -0600</pubDate>
+      
+      <guid>https://LukeWood.dev/tags/bulletz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elixir</title>
+      <link>https://LukeWood.dev/tags/elixir/</link>
+      <pubDate>Thu, 09 May 2019 17:08:39 -0600</pubDate>
+      
+      <guid>https://LukeWood.dev/tags/elixir/</guid>
       <description></description>
     </item>
     

@@ -33,10 +33,10 @@ disqusShortname = "lukewood-dev-1"
 
   # Metadata mostly used in document's head
   # description = ""
-  # images = [""]
+  images = ["/img/crescent.jpg", "/img/hawaii_1.png", "la_jolla.PNG"]
   themeColor = "#494f5c"
 
-  homeSubtitle = "Software | Outdoors | Other"
+  homeSubtitle = "SURF | SKI | SWE"
   footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
   # bgImg = ""  # Homepage background-image URL
 

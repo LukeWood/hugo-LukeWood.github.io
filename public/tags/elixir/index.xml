@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elixir on Luke Wood</title>
+    <link>https://LukeWood.dev/tags/elixir/</link>
+    <description>Recent content in Elixir on Luke Wood</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 09 May 2019 17:08:39 -0600</lastBuildDate>
+    
+	<atom:link href="https://LukeWood.dev/tags/elixir/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Background: bulletz.io</title>
+      <link>https://LukeWood.dev/posts/bulletz.io/</link>
+      <pubDate>Thu, 09 May 2019 17:08:39 -0600</pubDate>
+      
+      <guid>https://LukeWood.dev/posts/bulletz.io/</guid>
+      <description>bulletz.io is a browser game written entirely in Elixir using the phoenix framework.
+Developing a game in a functional programming language features a variety of unique challenges.</description>
+    </item>
+    
+  </channel>
+</rss>
