@@ -7,89 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 24 Dec 2018 12:29:41 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://LukeWood.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Demo</title>
-      <link>https://LukeWood.dev/tags/demo/</link>
-      <pubDate>Mon, 24 Dec 2018 12:29:41 +0800</pubDate>
-      
-      <guid>https://LukeWood.dev/tags/demo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Development</title>
-      <link>https://LukeWood.dev/tags/development/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://LukeWood.dev/tags/development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://LukeWood.dev/tags/go/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://LukeWood.dev/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://LukeWood.dev/tags/golang/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://LukeWood.dev/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>https://LukeWood.dev/tags/hugo/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://LukeWood.dev/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Image</title>
       <link>https://LukeWood.dev/tags/image/</link>
-      <pubDate>Mon, 24 Dec 2018 12:29:41 +0800</pubDate>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://LukeWood.dev/tags/image/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Templates</title>
-      <link>https://LukeWood.dev/tags/templates/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://LukeWood.dev/tags/templates/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Themes</title>
-      <link>https://LukeWood.dev/tags/themes/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://LukeWood.dev/tags/themes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Typography</title>
-      <link>https://LukeWood.dev/tags/typography/</link>
-      <pubDate>Sat, 29 Sep 2018 11:36:33 +0800</pubDate>
-      
-      <guid>https://LukeWood.dev/tags/typography/</guid>
       <description></description>
     </item>
     
