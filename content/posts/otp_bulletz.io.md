@@ -1,5 +1,5 @@
 ---
-title: "Fault Tolerant Development by Example using OTP"
+title: "OTP for Game Development"
 date: 2019-05-09T17:08:39-06:00
 images:
   - /img/crescent.jpg
