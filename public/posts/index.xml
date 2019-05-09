@@ -11,28 +11,33 @@
 		<atom:link href="https://LukeWood.dev/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>OTP for Game Development</title>
+			<title>Elixir/OTP for Game Development</title>
 			<link>https://LukeWood.dev/posts/otp_bulletz.io/</link>
 			<pubDate>Thu, 09 May 2019 17:08:39 -0600</pubDate>
 			
 			<guid>https://LukeWood.dev/posts/otp_bulletz.io/</guid>
-			<description>Background Bulletz.io is a browser game I wrote entirely in Elixir using the phoenix framework. Bulletz.io is written to be highly fault tolerant and concurrent. This was important to me as I wanted to be able to run the game on a cheap server and leave it there long term without having to touch it.
-This post will detail how I leveraged OTP to make bulletz.io fault tolerant and highly parallel.</description>
+			<description>Background The Open Telecom Platform (OTP) is a powerful set of libraries essential to the success of erlang in the building of massively scalable soft real-time systems with requirements on high availability. One of the greatest benefits of using Elixir to develop software is it&amp;rsquo;s seamless interop with erlang libraries (including those in OTP).
+bulletz.io is a browser game built with Elixir and the phoenix framework.
+This post will showcase the usage of OTP in bulletz.</description>
 			<content type="html"><![CDATA[
 
 <h2 id="background">Background</h2>
 
-<p><a href="https://bulletz.io">Bulletz.io</a> is a browser game I wrote entirely in
-<a href="https://github.com/elixir-lang/elixir">Elixir</a> using the
-<a href="https://phoenixframework.org/">phoenix framework</a>.  <a href="https://bulletz.io">Bulletz.io</a>
-is written to be highly fault tolerant and concurrent.  This was important to me
-as I wanted to be able to run the game on a cheap server and leave it there long
-term without having to touch it.</p>
+<p>The <a href="https://github.com/erlang/otp">Open Telecom Platform (OTP)</a> is a powerful set of libraries essential
+to the success of <a href="https://www.erlang.org/">erlang</a>  in the building of massively
+scalable soft real-time systems with requirements on high availability.  One of
+the greatest benefits of using <a href="https://elixir-lang.org/">Elixir</a> to develop
+software is it&rsquo;s seamless interop with erlang libraries (including those in OTP).</p>
 
-<p>This post will detail how I leveraged <a href="http://erlang.org/doc/system_architecture_intro/sys_arch_intro.html">OTP</a>
-to make <a href="https://bulletz.io">bulletz.io</a>
+<p><a href="https://bulletz.io">bulletz.io</a> is a browser game built with
+<a href="https://elixir-lang.org/">Elixir</a> and the
+<a href="https://phoenixframework.org/">phoenix framework</a>.</p>
+
+<p>This post will showcase the usage of OTP in bulletz.io as an example of how to
+design
 <a href="https://en.wikipedia.org/wiki/Fault_tolerance">fault tolerant</a> and
-<a href="https://culttt.com/2016/07/27/understanding-concurrency-parallelism-elixir/">highly parallel</a>.</p>
+<a href="https://culttt.com/2016/07/27/understanding-concurrency-parallelism-elixir/">highly parallel</a>
+applications.</p>
 
 <h2 id="introduction-to-otp">Introduction to OTP</h2>
 

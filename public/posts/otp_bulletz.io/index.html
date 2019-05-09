@@ -8,23 +8,25 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
 
-<meta itemprop="name" content="OTP for Game Development">
-<meta itemprop="description" content="Background Bulletz.io is a browser game I wrote entirely in Elixir using the phoenix framework. Bulletz.io is written to be highly fault tolerant and concurrent. This was important to me as I wanted to be able to run the game on a cheap server and leave it there long term without having to touch it.
-This post will detail how I leveraged OTP to make bulletz.io fault tolerant and highly parallel.">
+<meta itemprop="name" content="Elixir/OTP for Game Development">
+<meta itemprop="description" content="Background The Open Telecom Platform (OTP) is a powerful set of libraries essential to the success of erlang in the building of massively scalable soft real-time systems with requirements on high availability. One of the greatest benefits of using Elixir to develop software is it&rsquo;s seamless interop with erlang libraries (including those in OTP).
+bulletz.io is a browser game built with Elixir and the phoenix framework.
+This post will showcase the usage of OTP in bulletz.">
 
 
 <meta itemprop="datePublished" content="2019-05-09T17:08:39-06:00" />
 <meta itemprop="dateModified" content="2019-05-09T17:08:39-06:00" />
-<meta itemprop="wordCount" content="86">
+<meta itemprop="wordCount" content="104">
 
   <meta itemprop="image" content="https://LukeWood.dev/img/crescent.jpg">
 
 
 
 <meta itemprop="keywords" content="bulletz,elixir," />
-<meta property="og:title" content="OTP for Game Development" />
-<meta property="og:description" content="Background Bulletz.io is a browser game I wrote entirely in Elixir using the phoenix framework. Bulletz.io is written to be highly fault tolerant and concurrent. This was important to me as I wanted to be able to run the game on a cheap server and leave it there long term without having to touch it.
-This post will detail how I leveraged OTP to make bulletz.io fault tolerant and highly parallel." />
+<meta property="og:title" content="Elixir/OTP for Game Development" />
+<meta property="og:description" content="Background The Open Telecom Platform (OTP) is a powerful set of libraries essential to the success of erlang in the building of massively scalable soft real-time systems with requirements on high availability. One of the greatest benefits of using Elixir to develop software is it&rsquo;s seamless interop with erlang libraries (including those in OTP).
+bulletz.io is a browser game built with Elixir and the phoenix framework.
+This post will showcase the usage of OTP in bulletz." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://LukeWood.dev/posts/otp_bulletz.io/" />
 
@@ -34,9 +36,10 @@ This post will detail how I leveraged OTP to make bulletz.io fault tolerant and 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://LukeWood.dev/img/crescent.jpg"/>
 
-<meta name="twitter:title" content="OTP for Game Development"/>
-<meta name="twitter:description" content="Background Bulletz.io is a browser game I wrote entirely in Elixir using the phoenix framework. Bulletz.io is written to be highly fault tolerant and concurrent. This was important to me as I wanted to be able to run the game on a cheap server and leave it there long term without having to touch it.
-This post will detail how I leveraged OTP to make bulletz.io fault tolerant and highly parallel."/>
+<meta name="twitter:title" content="Elixir/OTP for Game Development"/>
+<meta name="twitter:description" content="Background The Open Telecom Platform (OTP) is a powerful set of libraries essential to the success of erlang in the building of massively scalable soft real-time systems with requirements on high availability. One of the greatest benefits of using Elixir to develop software is it&rsquo;s seamless interop with erlang libraries (including those in OTP).
+bulletz.io is a browser game built with Elixir and the phoenix framework.
+This post will showcase the usage of OTP in bulletz."/>
 
 	<link rel="apple-touch-icon" sizes="192x192" href="/favicon_192.png">
 	<link rel="icon" type="image/png" sizes="192x192" href="/favicon_192.png">
@@ -45,7 +48,7 @@ This post will detail how I leveraged OTP to make bulletz.io fault tolerant and 
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>OTP for Game Development</title>
+	<title>Elixir/OTP for Game Development</title>
 	<link rel="stylesheet" href="https://LukeWood.dev/css/style.min.31706917653d2b9e8410abd431f30ec4359a88a94fc87a63654779d87329edec.css" integrity="sha256-MXBpF2U9K56EEKvUMfMOxDWaiKlPyHpjZUd52HMp7ew=">
 	<style>.bg-img {background-image: url('https://LukeWood.dev/img/crescent.jpg');}</style>
 </head>
@@ -81,24 +84,28 @@ This post will detail how I leveraged OTP to make bulletz.io fault tolerant and 
 		<article class="thin">
 			<header class="post-header">
 				<div class="post-meta"><span>May 9, 2019</span></div>
-				<h1>OTP for Game Development</h1>
+				<h1>Elixir/OTP for Game Development</h1>
 			</header>
 			<div class="content">
 				
 
 <h2 id="background">Background<a href="#background" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
-<p><a href="https://bulletz.io">Bulletz.io</a> is a browser game I wrote entirely in
-<a href="https://github.com/elixir-lang/elixir">Elixir</a> using the
-<a href="https://phoenixframework.org/">phoenix framework</a>.  <a href="https://bulletz.io">Bulletz.io</a>
-is written to be highly fault tolerant and concurrent.  This was important to me
-as I wanted to be able to run the game on a cheap server and leave it there long
-term without having to touch it.</p>
+<p>The <a href="https://github.com/erlang/otp">Open Telecom Platform (OTP)</a> is a powerful set of libraries essential
+to the success of <a href="https://www.erlang.org/">erlang</a>  in the building of massively
+scalable soft real-time systems with requirements on high availability.  One of
+the greatest benefits of using <a href="https://elixir-lang.org/">Elixir</a> to develop
+software is it&rsquo;s seamless interop with erlang libraries (including those in OTP).</p>
 
-<p>This post will detail how I leveraged <a href="http://erlang.org/doc/system_architecture_intro/sys_arch_intro.html">OTP</a>
-to make <a href="https://bulletz.io">bulletz.io</a>
+<p><a href="https://bulletz.io">bulletz.io</a> is a browser game built with
+<a href="https://elixir-lang.org/">Elixir</a> and the
+<a href="https://phoenixframework.org/">phoenix framework</a>.</p>
+
+<p>This post will showcase the usage of OTP in bulletz.io as an example of how to
+design
 <a href="https://en.wikipedia.org/wiki/Fault_tolerance">fault tolerant</a> and
-<a href="https://culttt.com/2016/07/27/understanding-concurrency-parallelism-elixir/">highly parallel</a>.</p>
+<a href="https://culttt.com/2016/07/27/understanding-concurrency-parallelism-elixir/">highly parallel</a>
+applications.</p>
 
 <h2 id="introduction-to-otp">Introduction to OTP<a href="#introduction-to-otp" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
@@ -118,7 +125,7 @@ to make <a href="https://bulletz.io">bulletz.io</a>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://LukeWood.dev/tags/bulletz">bulletz</a></span><span class="tag"><a href="https://LukeWood.dev/tags/elixir">elixir</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>86 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>104 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-05-09 17:08 -0600</p>
 			</footer>
 		</article>
