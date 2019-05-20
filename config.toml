@@ -11,7 +11,6 @@ rssLimit = 10  # Maximum number of items in the RSS feed.
 copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
 googleAnalytics = "UA-139935010-1"
-disqusShortname = "lukewood-dev-1"
 
 [author]
   name = "Luke Wood"
@@ -47,7 +46,7 @@ disqusShortname = "lukewood-dev-1"
   justifyContent = false  # Set "text-align: justify" to `.content`.
 
   # Add custom css
-  # customCSS = ["css/foo.css", "css/bar.css"]
+  customCSS = ["css/figures.css", "css/gist.css", "css/headers.css"]
 
   # Social Icons
   # Check https://github.com/Track3/hermit#social-icons for more info.
