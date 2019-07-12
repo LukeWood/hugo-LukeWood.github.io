@@ -2,7 +2,7 @@
 title: "Luke"
 date: "2019-04-08"
 images:
-  - /img/hawaii_1.jpg
+  - /img/backgrounds/la_jolla.jpg
 ---
 ## SURF | SKI | SWE
 This blog is dedicated to sharing knowledge on both technical and non-technical

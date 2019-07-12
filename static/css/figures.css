@@ -1,3 +1,7 @@
 .bordered-figure img {
   border: solid #c6cddb 3px;
 }
+
+ .dark-gray-background img {
+   background-color: #606775;
+ }
