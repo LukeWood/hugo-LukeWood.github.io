@@ -11,7 +11,7 @@
 		<atom:link href="https://LukeWood.dev/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>From OOP -&gt; Events: Refactoring bulletz.io&#39;s Frontend Structure</title>
+			<title>Decouple Your Javascript Using Event Driven Programming Tiny-Pubsub</title>
 			<link>https://LukeWood.dev/posts/refactor_bulletz/</link>
 			<pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
 			
@@ -23,7 +23,7 @@ Originally the frontend was written using a generic OOP model. This led to a gre
 <p>I am the sole author of the web game <a href="https://bulletz.io">bulletz.io</a>.
 Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend.
 The backend is written using the functional programming language <a href="https://elixir-lang.org">Elixir</a> while the frontend is written in Vanilla Javascript.
-Both programming languages are <strong>vastly</strong> different.</p>
+Both programming languages are <strong><em>vastly</em></strong> different.</p>
 
 <p>Originally the frontend was written using a generic OOP model.
 This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.
@@ -37,13 +37,13 @@ I rewrote the frontend over the course of a single evening to use an event drive
 </figure>
 
 
-<p>Over time a &ldquo;mega class&rdquo; emerged which led my frontend client to have all sorts of anti patterns littered everywhere.
+<p>Over time a <a href="https://en.wikipedia.org/wiki/God_object">god object</a> emerged which led my frontend client to have all sorts of anti patterns littered everywhere.
 This article will describe how my mega class emerged and how I ended up solving that problem.</p>
 
 <h1 id="the-original-model">The Original Model</h1>
 
 <p>The original state management model for the bullets took an object oriented model.
-A central &ldquo;StateManager&rdquo; class managed the entirety of the game&rsquo;s state by delegating each entity it&rsquo;s own Sub-Manager.</p>
+A central <strong><em>StateManager</em></strong> class managed the entirety of the game&rsquo;s state by delegating each entity it&rsquo;s own Sub-Manager.</p>
 
 <p>These managers attempted to guess the current state of entities based on the last update on the entity that they received from the server.
 This allows the game to run using very low amounts of bandwidth while still showing the real time state of each entity.</p>
@@ -57,9 +57,9 @@ This allows the game to run using very low amounts of bandwidth while still show
 
 
 <p>This led to a ton of problems over time - primarily on the front of readability and maintainability.
-The state of the various entities became intertwined over time and it became difficult to hunt down bugs due to this.</p>
+The state of the various entities became inter-twined over time and it became difficult to hunt down bugs due to this.</p>
 
-<p>The largest anti-pattern the old model used was having a &ldquo;mega class&rdquo;, the top level State Manager.</p>
+<p>The largest anti-pattern the old model used was having a <a href="https://en.wikipedia.org/wiki/God_object">god object</a>, the top level State Manager.</p>
 
 <p>This state manager ended up being responsible for all sorts of things and was passed as a parameter to tons of UI functions.</p>
 
@@ -113,13 +113,13 @@ Almost every method, ui interaction, etc needed to store a copy of a state handl
 This mean&rsquo;t every time I registered an event listener I would need a state handler handily stored nearby.
 By the time I had a complete frontend the name <code>state_handler</code> showed up in well over <code>70%</code> of files.</p>
 
-<h1 id="solving-this-with-an-event-driven-model">Solving this with an Event Driven Model</h1>
+<h1 id="solving-this-with-tiny-pubsub">Solving This With Tiny Pubsub</h1>
 
-<h1 id="tiny-pubsub">Tiny Pubsub</h1>
-
-<p>Shameless plug for the self authored javascript library I wrote to solve this.
-It&rsquo;s really nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
+<p>Shameless plug for the self authored javascript library I wrote to solve this: <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.
+It&rsquo;s nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
 Instead of explicitly calling functions, functions instead respond to data emitted elsewhere.</p>
+
+<p>But what it does do is encourage a <a href="https://gameprogrammingpatterns.com/decoupling-patterns.html">decoupled codebase</a> through the event driven programming paradigm..</p>
 
 <p>Here is a self contained example:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">subscribe</span><span class="p">,</span> <span class="nx">publish</span><span class="p">,</span> <span class="nx">unsubscribe</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;tiny-pubsub&#39;</span>
@@ -140,7 +140,6 @@ Instead of explicitly calling functions, functions instead respond to data emitt
 <h1 id="refactoring-the-old-model">Refactoring The Old Model</h1>
 
 <p>The refactored model is significantly more distributed in terms of code organization.
-My #1 priority was to avoid having a mega class.
 In the new model each entity has a series of callbacks described in a single file that specify the entirety of that entities state management.
 These events are fired from other self contained modules that are solely responsible for firing these events.</p>
 
@@ -174,8 +173,9 @@ Some events are triggered by other events and mutate the data a bit for use by o
 <p>This creates really simple to follow self contained modules.
 Here is the example for bullet state management:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">subscribe</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;tiny-pubsub&#34;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">update_bullet</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./update_bullet&#39;</span>
 <span class="k">import</span> <span class="p">{</span><span class="nx">BULLET</span><span class="p">,</span> <span class="nx">POLL</span><span class="p">,</span> <span class="nx">REMOVE_BULLET</span><span class="p">,</span> <span class="nx">TICK</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../events&#39;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">update_bullet</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./update_bullet&#39;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">array_to_map_on_key</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../util/array_to_map_on_key&#39;</span>
 
 <span class="kd">let</span> <span class="nx">bullets</span> <span class="o">=</span> <span class="p">{};</span>
 
@@ -184,21 +184,14 @@ Here is the example for bullet state management:</p>
 <span class="p">})</span>
 
 <span class="nx">subscribe</span><span class="p">(</span><span class="nx">TICK</span><span class="p">,</span> <span class="p">(</span><span class="nx">current_time</span><span class="p">,</span> <span class="nx">world</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">id</span> <span class="k">in</span> <span class="nx">bullets</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">update_bullet</span><span class="p">(</span><span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="nx">current_time</span><span class="p">,</span> <span class="nx">world</span><span class="p">);</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">delete</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+  <span class="nx">bullets</span> <span class="o">=</span> <span class="nx">bullets</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">update_bullet</span><span class="p">(</span><span class="nx">bullet</span><span class="p">,</span> <span class="nx">current_time</span><span class="p">,</span> <span class="nx">world</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">bullet</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
 <span class="p">})</span>
 
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">POLL</span><span class="p">,</span> <span class="p">({</span> <span class="nx">bullets</span><span class="o">:</span> <span class="nx">bullets_poll</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">bullets</span> <span class="o">=</span> <span class="nx">bullets_poll</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">new_bullets</span><span class="p">,</span> <span class="nx">bullet</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">new_bullets</span><span class="p">[</span><span class="nx">bullet</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">bullet</span><span class="p">,</span> <span class="nx">new_bullets</span><span class="p">,</span> <span class="p">{});</span>
-<span class="p">})</span>
+<span class="nx">subscribe</span><span class="p">(</span><span class="nx">POLL</span><span class="p">,</span> <span class="p">({</span> <span class="nx">bullets</span><span class="o">:</span> <span class="nx">bullets_poll</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="nx">bullets</span> <span class="o">=</span><span class="nx">array_to_map_on_key</span><span class="p">(</span><span class="nx">bullets_poll</span><span class="p">,</span> <span class="s2">&#34;id&#34;</span><span class="p">))</span>
 
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">REMOVE_BULLET</span><span class="p">,</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">delete</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span>
-<span class="p">})</span>
+<span class="nx">subscribe</span><span class="p">(</span><span class="nx">REMOVE_BULLET</span><span class="p">,</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">delete</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">])</span>
 
 <span class="kd">function</span> <span class="nx">get_bullets</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">bullets</span><span class="p">).</span><span class="nx">map</span><span class="p">((</span><span class="nx">uuid</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">uuid</span><span class="p">])</span>
