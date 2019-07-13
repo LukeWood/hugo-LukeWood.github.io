@@ -127,7 +127,7 @@ For example, the file `tick.js` looks something like this...
 import {TICK} from '../events'
 import {game_time} from '../util/game_time'
 import {get_world} from '../entities/world'
-import {render} form '../graphics/render'
+import {render} from '../graphics/render'
 
 function game_loop() {
   publish(TICK, game_time(), get_world());
