@@ -92,12 +92,32 @@ Almost every method, ui interaction, etc needed to store a copy of a state handl
 This mean't every time I registered an event listener I would need a state handler handily stored nearby.
 By the time I had a complete frontend the name `state_handler` showed up in well over `70%` of files.
 
-# Introducing the Event Driven Model
+# Solving this with an Event Driven Model
 
 # Tiny Pubsub
 Shameless plug for the self authored javascript library I wrote to solve this.
+It's really nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
+Instead of explicitly calling functions, functions instead respond to data emitted elsewhere.
 
-# The New Model
+Here is a self contained example:
+```javascript
+import {subscribe, publish, unsubscribe} from 'tiny-pubsub'
+import {CHATROOM_JOIN} from './event_definitions'
+let logJoin = (name) => console.log(`${name} has joined the room!`);
+subscribe(CHATROOM_JOIN, logJoin)
+publish(CHATROOM_JOIN, "Luke")
+// > Luke has joined the room!
+unsubscribe(CHATROOM_JOIN, logJoin)
+publish(CHATROOM_JOIN, "Luke")
+// nothing will print
+
+// alternatively you can use strings as event identifiers
+subscribe("chatroom-join", logJoin)
+publish("chatroom-join", "Luke")
+// > Luke has joined the room!
+```
+
+# Refactoring The Old Model
 The refactored model is significantly more distributed in terms of code organization.
 My \#1 priority was to avoid having a mega class.
 In the new model each entity has a series of callbacks described in a single file that specify the entirety of that entities state management.
@@ -107,10 +127,11 @@ For example, the file `tick.js` looks something like this...
 ```javascript
 import {TICK} from '../events'
 import {game_time} from '../util/game_time'
+import {get_world} from '../entities/world'
 import {render} form '../graphics/render'
 
 function game_loop() {
-  publish(TICK, game_time());
+  publish(TICK, game_time(), get_world());
   render();
   requestAnimationFrame(game_loop)
 }
@@ -119,13 +140,65 @@ document.addEventListener("load", game_loop);
 Each file is responsible for only one type of event.
 Some events are triggered by other events and mutate the data a bit for use by other modules.
 
-For example, here is the new version of `score.js`
+For example, here is the new version of `score.js` looks like...
 ```javascript
-import {TICK} from '../events'
-import {}
+import {subscribe} from 'tiny-pubsub'
+import {PLAYER, POLL, PLAYER_DEATH} from '../events'
+import {get_players} from '../entities/players'
+const player_count = document.getElementById("score-div");
+const update_player_count =  ({players: players}) => player_count.innerText = `${get_players().length}/20`;
+
+subscribe(PLAYER, update_player_count);
+subscribe(PLAYER_DEATH, update_player_count);
+subscribe(POLL, update_player_count);
 ```
 
-<script src="https://gist.github.com/LukeWood/71644f39b6fe49a5d03e98ea56d90df1.js"></script>
+This creates really simple to follow self contained modules.
+Here is the example for bullet state management:
+```javascript
+import {subscribe} from "tiny-pubsub"
+import {update_bullet} from './update_bullet'
+import {BULLET, POLL, REMOVE_BULLET, TICK} from '../events'
 
-# Why I Believe My New Library is a Solution to the Problem At Hand
-Rewriting the frontend resulted in significantly simplified state management logic.
+let bullets = {};
+
+subscribe(BULLET, bullet => {
+  bullets[bullet.id] = bullet;
+})
+
+subscribe(TICK, (current_time, world) => {
+  for(let id in bullets) {
+    bullets[id] = update_bullet(bullets[id], current_time, world);
+    if(bullets[id] == null) {
+      delete bullets[id];
+    }
+  }
+})
+
+subscribe(POLL, ({ bullets: bullets_poll }) => {
+  bullets = bullets_poll.reduce((new_bullets, bullet) => new_bullets[bullet.id] = bullet, new_bullets, {});
+})
+
+subscribe(REMOVE_BULLET, (id) => {
+  delete bullets[id]
+})
+
+function get_bullets() {
+  return Object.keys(bullets).map((uuid) => bullets[uuid])
+}
+
+export {get_bullets}
+```
+
+Everything remains self contained.
+Overall the frontend code for bulletz.io is significantly simpler and easier to follow.
+Several UI bugs were fixed during the refactor due to the UI update logic becoming easier to follow.
+
+# Event Driven Programming Leads to More Strongly Decoupled Code
+Rewriting [bulletz.io](https://bulletz.io) to use an event driven model resulted in strongly decoupled logic.
+The UI updates as well as state updates are written as responses to data emitted elsewhere.
+I'd recommend giving it a shot if you are writing a web page any time soon without a framework!
+
+The library I wrote for the problem is called tiny-pubsub and the github link can be found [here](https://github.com/LukeWood/tiny-pubsub).
+
+Thanks for reading my first blog post!
