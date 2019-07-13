@@ -205,7 +205,7 @@ Here is the example for bullet state management:</p>
 Overall the frontend code for bulletz.io is significantly simpler and easier to follow.
 Several UI bugs were fixed during the refactor due to the UI update logic becoming easier to follow.</p>
 
-<h1 id="event-driven-programming-leads-to-decoupled-code">Event Driven Programming Leads to Decoupled Code</h1>
+<h1 id="overall-event-driven-programming">Overall: Event Driven Programming</h1>
 
 <p>Rewriting <a href="https://bulletz.io">bulletz.io</a> to use an event driven model resulted in strongly decoupled logic.
 The UI updates as well as state updates are written as responses to data emitted elsewhere.
