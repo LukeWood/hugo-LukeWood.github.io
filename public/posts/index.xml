@@ -108,6 +108,8 @@ Throughout the code base there are three occurrences of this function being call
 <p>This is not that big of a deal for this one specific case, but it resulted in the state handling code being littered with code updating UI.
 Other classes end up being responsible for triggering UI updates.</p>
 
+<h3 id="the-resulting-code-is-heavily-coupled-it-intertwines-ui-interactions-with-state-management">The resulting code is heavily coupled.  It intertwines UI interactions with state management.</h3>
+
 <p>The state_handler ended up being responsible for triggering UI updates, and was an argument to literally everything.
 Almost every method, ui interaction, etc needed to store a copy of a state handler.
 This mean&rsquo;t every time I registered an event listener I would need a state handler handily stored nearby.
@@ -177,25 +179,23 @@ Here is the example for bullet state management:</p>
 <span class="k">import</span> <span class="p">{</span><span class="nx">update_bullet</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./update_bullet&#39;</span>
 <span class="k">import</span> <span class="p">{</span><span class="nx">array_to_map_on_key</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../util/array_to_map_on_key&#39;</span>
 
-<span class="kd">let</span> <span class="nx">bullets</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="c1">// state
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">bullets</span> <span class="o">=</span> <span class="p">{};</span>
 
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">BULLET</span><span class="p">,</span> <span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">bullets</span><span class="p">[</span><span class="nx">bullet</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">bullet</span><span class="p">;</span>
-<span class="p">})</span>
-
+<span class="c1">// subscription
+</span><span class="c1"></span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">BULLET</span><span class="p">,</span> <span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">bullet</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">bullet</span><span class="p">)</span>
 <span class="nx">subscribe</span><span class="p">(</span><span class="nx">TICK</span><span class="p">,</span> <span class="p">(</span><span class="nx">current_time</span><span class="p">,</span> <span class="nx">world</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="nx">bullets</span> <span class="o">=</span> <span class="nx">bullets</span>
     <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">update_bullet</span><span class="p">(</span><span class="nx">bullet</span><span class="p">,</span> <span class="nx">current_time</span><span class="p">,</span> <span class="nx">world</span><span class="p">))</span>
     <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">bullet</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
 <span class="p">})</span>
-
 <span class="nx">subscribe</span><span class="p">(</span><span class="nx">POLL</span><span class="p">,</span> <span class="p">({</span> <span class="nx">bullets</span><span class="o">:</span> <span class="nx">bullets_poll</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="nx">bullets</span> <span class="o">=</span> <span class="nx">array_to_map_on_key</span><span class="p">(</span><span class="nx">bullets_poll</span><span class="p">,</span> <span class="s2">&#34;id&#34;</span><span class="p">)</span>
 <span class="p">})</span>
-
 <span class="nx">subscribe</span><span class="p">(</span><span class="nx">REMOVE_BULLET</span><span class="p">,</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">delete</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">])</span>
 
-<span class="kd">function</span> <span class="nx">get_bullets</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// exported functions
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">get_bullets</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">bullets</span><span class="p">).</span><span class="nx">map</span><span class="p">((</span><span class="nx">uuid</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">uuid</span><span class="p">])</span>
 <span class="p">}</span>
 
@@ -205,13 +205,13 @@ Here is the example for bullet state management:</p>
 Overall the frontend code for bulletz.io is significantly simpler and easier to follow.
 Several UI bugs were fixed during the refactor due to the UI update logic becoming easier to follow.</p>
 
-<h1 id="overall-event-driven-programming">Overall: Event Driven Programming</h1>
+<h1 id="result-of-using-event-driven-programming">Result of Using Event Driven Programming</h1>
 
 <p>Rewriting <a href="https://bulletz.io">bulletz.io</a> to use an event driven model resulted in strongly decoupled logic.
 The UI updates as well as state updates are written as responses to data emitted elsewhere.
 I&rsquo;d recommend giving it a shot if you are writing a web page any time soon without a framework!</p>
 
-<p>The library I wrote for the problem is called tiny-pubsub and the github link can be found <a href="https://github.com/LukeWood/tiny-pubsub">here</a>.</p>
+<p>The library I wrote for the problem is called tiny-pubsub and the Github link can be found <a href="https://github.com/LukeWood/tiny-pubsub">here</a>.</p>
 
 <p>Thanks for reading my first blog post!</p>
 ]]></content>
