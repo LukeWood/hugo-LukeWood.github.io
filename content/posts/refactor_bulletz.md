@@ -6,7 +6,7 @@ tags:
 - bulletz.io
 - frontend
 images:
-  - /img/backgrounds/crescent.jpg
+  - /img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg
 ---
 I am the sole author of the web game [bulletz.io](https://bulletz.io).
 Recently I refactored the frontend's codebase to more closely match that of the backend.
