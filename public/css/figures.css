@@ -5,3 +5,7 @@
  .dark-gray-background img {
    background-color: #606775;
  }
+
+ .bordered {
+   border: solid #c6cddb 3px;
+ }
