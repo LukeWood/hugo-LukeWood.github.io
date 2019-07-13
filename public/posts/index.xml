@@ -189,7 +189,9 @@ Here is the example for bullet state management:</p>
     <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">bullet</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
 <span class="p">})</span>
 
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">POLL</span><span class="p">,</span> <span class="p">({</span> <span class="nx">bullets</span><span class="o">:</span> <span class="nx">bullets_poll</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="nx">bullets</span> <span class="o">=</span><span class="nx">array_to_map_on_key</span><span class="p">(</span><span class="nx">bullets_poll</span><span class="p">,</span> <span class="s2">&#34;id&#34;</span><span class="p">))</span>
+<span class="nx">subscribe</span><span class="p">(</span><span class="nx">POLL</span><span class="p">,</span> <span class="p">({</span> <span class="nx">bullets</span><span class="o">:</span> <span class="nx">bullets_poll</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">bullets</span> <span class="o">=</span> <span class="nx">array_to_map_on_key</span><span class="p">(</span><span class="nx">bullets_poll</span><span class="p">,</span> <span class="s2">&#34;id&#34;</span><span class="p">)</span>
+<span class="p">})</span>
 
 <span class="nx">subscribe</span><span class="p">(</span><span class="nx">REMOVE_BULLET</span><span class="p">,</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">delete</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">])</span>
 
