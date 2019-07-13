@@ -24,7 +24,7 @@ This article will describe how my mega class emerged and how I ended up solving 
 
 # The Original Model
 The original state management model for the bullets took an object oriented model.
-A central "StateManager" class managed the entirety of the game's state by delegating each entity it's own Sub-Manager.
+A central ___StateManager___ class managed the entirety of the game's state by delegating each entity it's own Sub-Manager.
 
 These managers attempted to guess the current state of entities based on the last update on the entity that they received from the server.
 This allows the game to run using very low amounts of bandwidth while still showing the real time state of each entity.
@@ -187,7 +187,7 @@ Everything remains self contained.
 Overall the frontend code for bulletz.io is significantly simpler and easier to follow.
 Several UI bugs were fixed during the refactor due to the UI update logic becoming easier to follow.
 
-# Event Driven Programming Leads to More Strongly Decoupled Code
+# Event Driven Programming Leads to Decoupled Code
 Rewriting [bulletz.io](https://bulletz.io) to use an event driven model resulted in strongly decoupled logic.
 The UI updates as well as state updates are written as responses to data emitted elsewhere.
 I'd recommend giving it a shot if you are writing a web page any time soon without a framework!
