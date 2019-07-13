@@ -1,5 +1,5 @@
 ---
-title: "From OOP -> Events: Refactoring bulletz.io's Frontend Structure"
+title: "Decouple Your Javascript Using Event Driven Programming Tiny-Pubsub"
 date: 2019-07-11T20:13:20-07:00
 draft: false
 tags:
@@ -11,7 +11,7 @@ images:
 I am the sole author of the web game [bulletz.io](https://bulletz.io).
 Recently I refactored the frontend's codebase to more closely match that of the backend.
 The backend is written using the functional programming language [Elixir](https://elixir-lang.org) while the frontend is written in Vanilla Javascript.
-Both programming languages are __vastly__ different.
+Both programming languages are ___vastly___ different.
 
 Originally the frontend was written using a generic OOP model.
 This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.
@@ -19,7 +19,7 @@ I rewrote the frontend over the course of a single evening to use an event drive
 
 {{< figure class="bordered-figure" width="512px" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz.png" title="A screenshot of bulletz.io" >}}
 
-Over time a "mega class" emerged which led my frontend client to have all sorts of anti patterns littered everywhere.
+Over time a [god object](https://en.wikipedia.org/wiki/God_object) emerged which led my frontend client to have all sorts of anti patterns littered everywhere.
 This article will describe how my mega class emerged and how I ended up solving that problem.
 
 # The Original Model
@@ -32,9 +32,9 @@ This allows the game to run using very low amounts of bandwidth while still show
 {{< figure class="bordered-figure dark-gray-background" width="512px" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz_old_frontend.png" title="State Manager Delegation System" >}}
 
 This led to a ton of problems over time - primarily on the front of readability and maintainability.
-The state of the various entities became intertwined over time and it became difficult to hunt down bugs due to this.
+The state of the various entities became inter-twined over time and it became difficult to hunt down bugs due to this.
 
-The largest anti-pattern the old model used was having a "mega class", the top level State Manager.
+The largest anti-pattern the old model used was having a [god object](https://en.wikipedia.org/wiki/God_object), the top level State Manager.
 
 This state manager ended up being responsible for all sorts of things and was passed as a parameter to tons of UI functions.
 
@@ -92,12 +92,12 @@ Almost every method, ui interaction, etc needed to store a copy of a state handl
 This mean't every time I registered an event listener I would need a state handler handily stored nearby.
 By the time I had a complete frontend the name `state_handler` showed up in well over `70%` of files.
 
-# Solving this with an Event Driven Model
-
-# Tiny Pubsub
-Shameless plug for the self authored javascript library I wrote to solve this.
-It's really nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
+# Solving This With Tiny Pubsub
+Shameless plug for the self authored javascript library I wrote to solve this: [tiny-pubsub](https://github.com/LukeWood/tiny-pubsub).
+It's nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
 Instead of explicitly calling functions, functions instead respond to data emitted elsewhere.
+
+But what it does do is encourage a [decoupled codebase](https://gameprogrammingpatterns.com/decoupling-patterns.html) through the event driven programming paradigm..
 
 Here is a self contained example:
 ```javascript
@@ -119,7 +119,6 @@ publish("chatroom-join", "Luke")
 
 # Refactoring The Old Model
 The refactored model is significantly more distributed in terms of code organization.
-My \#1 priority was to avoid having a mega class.
 In the new model each entity has a series of callbacks described in a single file that specify the entirety of that entities state management.
 These events are fired from other self contained modules that are solely responsible for firing these events.
 
@@ -157,8 +156,9 @@ This creates really simple to follow self contained modules.
 Here is the example for bullet state management:
 ```javascript
 import {subscribe} from "tiny-pubsub"
-import {update_bullet} from './update_bullet'
 import {BULLET, POLL, REMOVE_BULLET, TICK} from '../events'
+import {update_bullet} from './update_bullet'
+import {array_to_map_on_key} from '../util/array_to_map_on_key'
 
 let bullets = {};
 
@@ -167,21 +167,14 @@ subscribe(BULLET, bullet => {
 })
 
 subscribe(TICK, (current_time, world) => {
-  for(let id in bullets) {
-    bullets[id] = update_bullet(bullets[id], current_time, world);
-    if(bullets[id] == null) {
-      delete bullets[id];
-    }
-  }
+  bullets = bullets
+    .map(bullet => update_bullet(bullet, current_time, world))
+    .filter(bullet => bullet != null);
 })
 
-subscribe(POLL, ({ bullets: bullets_poll }) => {
-  bullets = bullets_poll.reduce((new_bullets, bullet) => new_bullets[bullet.id] = bullet, new_bullets, {});
-})
+subscribe(POLL, ({ bullets: bullets_poll }) => bullets =array_to_map_on_key(bullets_poll, "id"))
 
-subscribe(REMOVE_BULLET, (id) => {
-  delete bullets[id]
-})
+subscribe(REMOVE_BULLET, (id) => delete bullets[id])
 
 function get_bullets() {
   return Object.keys(bullets).map((uuid) => bullets[uuid])
