@@ -172,7 +172,9 @@ subscribe(TICK, (current_time, world) => {
     .filter(bullet => bullet != null);
 })
 
-subscribe(POLL, ({ bullets: bullets_poll }) => bullets =array_to_map_on_key(bullets_poll, "id"))
+subscribe(POLL, ({ bullets: bullets_poll }) => {
+  bullets = array_to_map_on_key(bullets_poll, "id")
+})
 
 subscribe(REMOVE_BULLET, (id) => delete bullets[id])
 
