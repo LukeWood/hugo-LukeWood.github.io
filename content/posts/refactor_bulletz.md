@@ -87,6 +87,8 @@ class StateHandler {
 This is not that big of a deal for this one specific case, but it resulted in the state handling code being littered with code updating UI.
 Other classes end up being responsible for triggering UI updates.
 
+### The resulting code is heavily coupled.  It intertwines UI interactions with state management.
+
 The state_handler ended up being responsible for triggering UI updates, and was an argument to literally everything.
 Almost every method, ui interaction, etc needed to store a copy of a state handler.
 This mean't every time I registered an event listener I would need a state handler handily stored nearby.
@@ -160,40 +162,37 @@ import {BULLET, POLL, REMOVE_BULLET, TICK} from '../events'
 import {update_bullet} from './update_bullet'
 import {array_to_map_on_key} from '../util/array_to_map_on_key'
 
+// state
 let bullets = {};
 
-subscribe(BULLET, bullet => {
-  bullets[bullet.id] = bullet;
-})
-
+// subscription
+subscribe(BULLET, bullet => bullets[bullet.id] = bullet)
 subscribe(TICK, (current_time, world) => {
   bullets = bullets
     .map(bullet => update_bullet(bullet, current_time, world))
     .filter(bullet => bullet != null);
 })
-
 subscribe(POLL, ({ bullets: bullets_poll }) => {
   bullets = array_to_map_on_key(bullets_poll, "id")
 })
-
 subscribe(REMOVE_BULLET, (id) => delete bullets[id])
 
+// exported functions
 function get_bullets() {
   return Object.keys(bullets).map((uuid) => bullets[uuid])
 }
 
 export {get_bullets}
 ```
-
 Everything remains self contained.
 Overall the frontend code for bulletz.io is significantly simpler and easier to follow.
 Several UI bugs were fixed during the refactor due to the UI update logic becoming easier to follow.
 
-# Overall: Event Driven Programming
+# Result of Using Event Driven Programming
 Rewriting [bulletz.io](https://bulletz.io) to use an event driven model resulted in strongly decoupled logic.
 The UI updates as well as state updates are written as responses to data emitted elsewhere.
 I'd recommend giving it a shot if you are writing a web page any time soon without a framework!
 
-The library I wrote for the problem is called tiny-pubsub and the github link can be found [here](https://github.com/LukeWood/tiny-pubsub).
+The library I wrote for the problem is called tiny-pubsub and the Github link can be found [here](https://github.com/LukeWood/tiny-pubsub).
 
 Thanks for reading my first blog post!

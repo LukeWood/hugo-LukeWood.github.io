@@ -1,5 +1,7 @@
 {{ $.Scratch.Add "width" (.Get "width" | default "400px") }}
 {{ $.Scratch.Add "height" (.Get "height" | default "400px") }}
+{{ $.Scratch.Add "max-width" (.Get "max-width" | default "80vw") }}
+{{ $.Scratch.Add "max-height" (.Get "max-height" | default "80vw") }}
 {{ $.Scratch.Add "auto-slide" (.Get "auto-slide" | default "0") }}
 
 {{ $.Scratch.Add "arrow-left" (.Get "arrow-left" | default "fa-chevron-left") }}
@@ -21,6 +23,8 @@
     position: relative;
     width: {{ $.Scratch.Get "width" }};
     height: {{ $.Scratch.Get "height" }};
+    max-width: {{ $.Scratch.Get "max-width" }};
+    max-height: {{ $.Scratch.Get "max-height" }};
     overflow: hidden;
     top: 0px;
     left: 0px;
@@ -42,8 +46,8 @@
     float: left;
     margin: 0;
     padding: 0;
-    width: {{ $.Scratch.Get "width" }};
-    height: {{ $.Scratch.Get "height" }};
+    width:  100%;
+    height: 100%;
     background: #ccc;
     text-align: center;
     line-height: 100%;
@@ -97,7 +101,7 @@ sliderJQuery(function( $ ) {
     $.global = new Object();
     $.global.total = 0;
     $(document).ready(function () {
-        var slideWindowWidth = $('#slide-window').width();
+        var slideWindowWidth = $('#slide-window').outerWidth();
         var slideCount = $('#slides-list li').length;
         var totalSlidesWidth = slideCount * slideWindowWidth;
         $.global.item = 0;
@@ -132,7 +136,7 @@ sliderJQuery(function( $ ) {
         }
     }
     function moveCss(nextSlideId) {
-        var slideWindowWidth = $('#slide-window').width();
+        var slideWindowWidth = $('#slide-window').outerWidth();
         var margin = slideWindowWidth * nextSlideId;
         $('#slides-list').css('transform', 'translate3d(-' + margin + 'px,0px,0px)');
         $.global.item = nextSlideId;

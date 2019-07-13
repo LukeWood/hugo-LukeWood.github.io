@@ -16,4 +16,3 @@ Each blog post has a picture of the place I was when I wrote it.  I did this to
 add a little context to who I am as a person outside of my life as a developer.
 I take all of the pictures shown in this blog.
 <center>{{< gallery-slider dir="/img/me" >}}</center>
-<center><bold>Random Photos of me</bold></center>
