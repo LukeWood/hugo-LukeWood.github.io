@@ -147,7 +147,7 @@ These events are fired from other self contained modules that are solely respons
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">TICK</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../events&#39;</span>
 <span class="k">import</span> <span class="p">{</span><span class="nx">game_time</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../util/game_time&#39;</span>
 <span class="k">import</span> <span class="p">{</span><span class="nx">get_world</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../entities/world&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">render</span><span class="p">}</span> <span class="nx">form</span> <span class="s1">&#39;../graphics/render&#39;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">render</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../graphics/render&#39;</span>
 
 <span class="kd">function</span> <span class="nx">game_loop</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">publish</span><span class="p">(</span><span class="nx">TICK</span><span class="p">,</span> <span class="nx">game_time</span><span class="p">(),</span> <span class="nx">get_world</span><span class="p">());</span>
