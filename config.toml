@@ -32,7 +32,7 @@ googleAnalytics = "UA-139935010-1"
 
   # Metadata mostly used in document's head
   # description = ""
-  images = ["/img/crescent.jpg", "/img/hawaii_1.png", "la_jolla.PNG"]
+  images = ["img/backgrounds/IMG_8532-EFFECTS.jpg", "img/backgrounds/IMG_8771-EFFECTS.jpg", "img/backgrounds/hawaii_1.jpg"]
   themeColor = "#494f5c"
 
   homeSubtitle = "SURF | SKI | SWE"
