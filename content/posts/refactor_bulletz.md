@@ -189,7 +189,7 @@ Everything remains self contained.
 Overall the frontend code for bulletz.io is significantly simpler and easier to follow.
 Several UI bugs were fixed during the refactor due to the UI update logic becoming easier to follow.
 
-# Event Driven Programming Leads to Decoupled Code
+# Overall: Event Driven Programming
 Rewriting [bulletz.io](https://bulletz.io) to use an event driven model resulted in strongly decoupled logic.
 The UI updates as well as state updates are written as responses to data emitted elsewhere.
 I'd recommend giving it a shot if you are writing a web page any time soon without a framework!
