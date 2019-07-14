@@ -18,7 +18,8 @@
       <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
       
       <guid>https://LukeWood.dev/posts/refactor_bulletz/</guid>
-      <description>I am the sole author of the web game bulletz.io. Edit: this post kiss of deathed bulletz.io ($5/month digital ocean instance) - upgrading the instance a bit to mitigate this but sorry if it is down! Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.</description>
+      <description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
+Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description>
     </item>
     
   </channel>
