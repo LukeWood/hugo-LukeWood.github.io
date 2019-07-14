@@ -26,19 +26,20 @@ This article will describe how my mega class emerged and how I ended up solving 
 The original state management model for the bullets took an object oriented model.
 A central ___StateManager___ class managed the entirety of the game's state by delegating each entity it's own Sub-Manager.
 
-These managers attempted to guess the current state of entities based on the last update on the entity that they received from the server.
-This allows the game to run using very low amounts of bandwidth while still showing the real time state of each entity.
+These managers attempt to guess the current state of entities based on the last update the server pushed out through websockets.
+This allows the game to run using very low amounts of bandwidth while still displaying the real time state of each entity.
 
 {{< figure class="bordered-figure dark-gray-background" width="512px" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz_old_frontend.png" title="State Manager Delegation System" >}}
 
-This led to a ton of problems over time - primarily on the front of readability and maintainability.
-The state of the various entities became inter-twined over time and it became difficult to hunt down bugs due to this.
+This led to a ton of problems over time - primarily on the fronts of readability and maintainability.
+The state of the various entities became intertwined over time and it became difficult to hunt down state related bugs.
+
 
 The largest anti-pattern the old model used was having a [god object](https://en.wikipedia.org/wiki/God_object), the top level State Manager.
 
 This state manager ended up being responsible for all sorts of things and was passed as a parameter to tons of UI functions.
 
-Here is the file that handles displaying the number players:
+Here is the file that handled displaying the count of active players in the old system:
 `player_counter.js`
 ```javascript
 const player_count = document.getElementById("score-div");
@@ -49,8 +50,9 @@ function update_player_counter(state_handler) {
 export {update_player_counter}
 ```
 
-Then the function `update_player_counter` has to be called elsewhere every time a new player spawns or dies...
-Throughout the code base there are three occurrences of this function being called.
+The function `update_player_counter` had to be called elsewhere every time a new player spawned or died.
+Throughout the code base there were three incentations of this function.  Two in the `player registry`.
+
 `player_registry.js`
 ```javascript
 import {update_player_counter} from '../../ui/update_player_counter'
@@ -70,7 +72,8 @@ class PlayerRegistry {
   }
 }
 ```
-`state_handler.js`
+
+And one in the `state handler`.
 ```javascript
 import {update_player_counter} from '../../ui/update_player_counter'
 class StateHandler {
@@ -84,22 +87,24 @@ class StateHandler {
   ...
 }
 ```
-This is not that big of a deal for this one specific case, but it resulted in the state handling code being littered with code updating UI.
+
+As an isolated incident this was not terribly painful, but when the function calls across all UI interactions accumulated the resulting code was difficult to understand and maintain.
+The resulting code tightly coupled UI interactions and state management.
 Other classes end up being responsible for triggering UI updates.
 
-### The resulting code is heavily coupled.  It intertwines UI interactions with state management.
+#### The resulting code is heavily coupled.  It intertwines UI interactions with state management.
 
-The state_handler ended up being responsible for triggering UI updates, and was an argument to literally everything.
+The `state handler` ended up being responsible for triggering UI updates and was an argument to nearly everything.
 Almost every method, ui interaction, etc needed to store a copy of a state handler.
 This mean't every time I registered an event listener I would need a state handler handily stored nearby.
 By the time I had a complete frontend the name `state_handler` showed up in well over `70%` of files.
 
-# Solving This With Tiny Pubsub
-Shameless plug for the self authored javascript library I wrote to solve this: [tiny-pubsub](https://github.com/LukeWood/tiny-pubsub).
+# Decoupling the Code With Tiny Pubsub
+This is a shameless plug for the self authored javascript library I wrote to solve this: [tiny-pubsub](https://github.com/LukeWood/tiny-pubsub).
 It's nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
 Instead of explicitly calling functions, functions instead respond to data emitted elsewhere.
 
-But what it does do is encourage a [decoupled codebase](https://gameprogrammingpatterns.com/decoupling-patterns.html) through the event driven programming paradigm..
+But what it does do is encourage a [decoupled codebase](https://gameprogrammingpatterns.com/decoupling-patterns.html) through the event driven programming paradigm.
 
 Here is a self contained example:
 ```javascript
@@ -121,27 +126,27 @@ publish("chatroom-join", "Luke")
 
 # Refactoring The Old Model
 The refactored model is significantly more distributed in terms of code organization.
-In the new model each entity has a series of callbacks described in a single file that specify the entirety of that entities state management.
-These events are fired from other self contained modules that are solely responsible for firing these events.
+In the new model each entity is described by series of callbacks defined in a single file.
+The callbacks respond to published events and update the state of the entities.
+These events are published from other self contained modules that are solely responsible for firing these events.
 
 For example, the file `tick.js` looks something like this...
 ```javascript
 import {TICK} from '../events'
 import {game_time} from '../util/game_time'
-import {get_world} from '../entities/world'
-import {render} from '../graphics/render'
 
 function game_loop() {
-  publish(TICK, game_time(), get_world());
-  render();
+  publish(TICK, game_time());
   requestAnimationFrame(game_loop)
 }
+
 document.addEventListener("load", game_loop);
 ```
-Each file is responsible for only one type of event.
+Each event file is responsible for only one type of event.
 Some events are triggered by other events and mutate the data a bit for use by other modules.
 
-For example, here is the new version of `score.js` looks like...
+The UI interactions are also handled in self contained modules.
+Here is the new version of `score.js`...
 ```javascript
 import {subscribe} from 'tiny-pubsub'
 import {PLAYER, POLL, PLAYER_DEATH} from '../events'
@@ -154,7 +159,7 @@ subscribe(PLAYER_DEATH, update_player_count);
 subscribe(POLL, update_player_count);
 ```
 
-This creates really simple to follow self contained modules.
+The state management is implemented through small self contained modules.
 Here is the example for bullet state management:
 ```javascript
 import {subscribe} from "tiny-pubsub"
@@ -184,15 +189,16 @@ function get_bullets() {
 
 export {get_bullets}
 ```
-Everything remains self contained.
-Overall the frontend code for bulletz.io is significantly simpler and easier to follow.
-Several UI bugs were fixed during the refactor due to the UI update logic becoming easier to follow.
+
+Everything remains self contained and simple.
 
 # Result of Using Event Driven Programming
 Rewriting [bulletz.io](https://bulletz.io) to use an event driven model resulted in strongly decoupled logic.
-The UI updates as well as state updates are written as responses to data emitted elsewhere.
-I'd recommend giving it a shot if you are writing a web page any time soon without a framework!
+The frontend code for bulletz.io is significantly simpler and easier to follow.
+As a side effect the several UI bugs were fixed.
+The UI updates as well as state updates are written as self contained modules that respond to data emitted elsewhere.
 
+I'd recommend giving event driven programming a shot if you are writing a web page any time soon without a framework!
 The library I wrote for the problem is called tiny-pubsub and the Github link can be found [here](https://github.com/LukeWood/tiny-pubsub).
 
-Thanks for reading my first blog post!
+[Also be sure give bulletz.io a try!](https://bulletz.io)

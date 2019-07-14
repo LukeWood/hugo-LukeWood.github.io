@@ -13,7 +13,7 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
 googleAnalytics = "UA-139935010-1"
 
 [author]
-  name = "Luke Wood"
+  name = "LukeWood.dev"
 
 [blackfriday]
   # hrefTargetBlank = true
