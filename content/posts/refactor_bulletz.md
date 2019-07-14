@@ -92,7 +92,7 @@ As an isolated incident this was not terribly painful, but when the function cal
 The resulting code tightly coupled UI interactions and state management.
 Other classes end up being responsible for triggering UI updates.
 
-#### The resulting code is heavily coupled.  It intertwines UI interactions with state management.
+__The resulting code is heavily coupled.  It intertwines UI interactions with state management.__
 
 The `state handler` ended up being responsible for triggering UI updates and was an argument to nearly everything.
 Almost every method, ui interaction, etc needed to store a copy of a state handler.
