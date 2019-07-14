@@ -26,8 +26,9 @@ The backend is written using the functional programming language <a href="https:
 The programming languages are <strong><em>vastly</em></strong> different and are based on entirely <a href="https://cs.lmu.edu/~ray/notes/paradigms">different paradigms</a>.</p>
 
 <p>Originally the frontend was written using a generic <a href="https://www.webopedia.com/TERM/O/object_oriented_programming_OOP.html">Object Oriented model</a>.
-This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.
-I rewrote the frontend over the course of a single evening to use an event driven model and the results were fantastic.</p>
+This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</p>
+
+<p>I rewrote the frontend over the course of a single evening to use an event driven model and the results were fantastic.  The library used for the refactor was <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.</p>
 
 <figure class="bordered-figure">
     <img src="/img/posts/bulletz/bulletz.png"
