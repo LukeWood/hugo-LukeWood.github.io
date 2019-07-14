@@ -9,7 +9,6 @@ images:
   - /img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg
 ---
 I am the sole author of the web game [bulletz.io](https://bulletz.io).
-__Edit: this post kiss of deathed bulletz.io ($5/month digital ocean instance) - upgrading the instance a bit to mitigate this but sorry if it is down!__
 Recently I refactored the frontend's codebase to more closely match that of the backend.
 The backend is written using the functional programming language [Elixir](https://elixir-lang.org) while the frontend is written in Vanilla Javascript.
 The programming languages are ___vastly___ different and are based on entirely [different paradigms](https://cs.lmu.edu/~ray/notes/paradigms).  
