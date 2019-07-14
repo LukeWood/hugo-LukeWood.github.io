@@ -142,7 +142,7 @@ Instead of explicitly calling functions, functions instead respond to data emitt
 <span class="nx">publish</span><span class="p">(</span><span class="s2">&#34;chatroom-join&#34;</span><span class="p">,</span> <span class="s2">&#34;Luke&#34;</span><span class="p">)</span>
 <span class="c1">// &gt; Luke has joined the room!
 </span></code></pre></div>
-<h1 id="refactoring-the-old-model">Refactoring The Old Model</h1>
+<h1 id="the-refactored-model">The Refactored Model</h1>
 
 <p>The refactored model is significantly more distributed in terms of code organization.
 In the new model each entity is described by series of callbacks defined in a single file.
@@ -204,7 +204,16 @@ Here is the example for bullet state management:</p>
 
 <span class="k">export</span> <span class="p">{</span><span class="nx">get_bullets</span><span class="p">}</span>
 </code></pre></div>
-<p>Everything remains self contained and simple.</p>
+<p>Everything remains self contained and simple.
+Here is an organizational diagram displaying the event based frontend architecture.</p>
+
+<figure class="bordered-figure dark-gray-background">
+    <img src="/img/posts/bulletz/bulletz_new_frontend.png"
+         alt="screenshot of bulletz.io being played" width="512px"/> <figcaption>
+            <h4>The refactored bulletz frontend state management system</h4>
+        </figcaption>
+</figure>
+
 
 <h1 id="result-of-using-event-driven-programming">Result of Using Event Driven Programming</h1>
 
