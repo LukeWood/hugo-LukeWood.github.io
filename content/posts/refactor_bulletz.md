@@ -1,5 +1,5 @@
 ---
-title: "Decouple Your Javascript Using Event Driven Programming Tiny-Pubsub"
+title: "Decouple Your Javascript Using Event Driven Programming"
 date: 2019-07-11T20:13:20-07:00
 draft: false
 tags:
