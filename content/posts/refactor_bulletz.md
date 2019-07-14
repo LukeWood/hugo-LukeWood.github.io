@@ -11,16 +11,16 @@ images:
 I am the sole author of the web game [bulletz.io](https://bulletz.io).
 Recently I refactored the frontend's codebase to more closely match that of the backend.
 The backend is written using the functional programming language [Elixir](https://elixir-lang.org) while the frontend is written in Vanilla Javascript.
-Both programming languages are ___vastly___ different.
+The programming languages are ___vastly___ different and are based on entirely [different paradigms](https://cs.lmu.edu/~ray/notes/paradigms).  
 
-Originally the frontend was written using a generic OOP model.
+Originally the frontend was written using a generic [Object Oriented model](https://www.webopedia.com/TERM/O/object_oriented_programming_OOP.html).
 This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.
-I rewrote the frontend over the course of a single evening to use an event driven model to more closely match the backends logic.
+I rewrote the frontend over the course of a single evening to use an event driven model and the results were fantastic.
 
 {{< figure class="bordered-figure" width="512px" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz.png" title="A screenshot of bulletz.io" >}}
 
-Over time a [god object](https://en.wikipedia.org/wiki/God_object) emerged which led my frontend client to have all sorts of anti patterns littered everywhere.
-This article will describe how my mega class emerged and how I ended up solving that problem.
+Over time a [god object](https://en.wikipedia.org/wiki/God_object) emerged which led my frontend client to have anti patterns littered everywhere.
+This article will describe how my mega class emerged and how I ended up solving that problem by using [tiny-pubsub](https://github.com/LukeWood/tiny-pubsub).
 
 # The Original Model
 The original state management model for the bullets took an object oriented model.
