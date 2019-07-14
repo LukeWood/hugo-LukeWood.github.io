@@ -11,7 +11,7 @@
 		<atom:link href="https://LukeWood.dev/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>Decouple Your Javascript Using Event Driven Programming Tiny-Pubsub</title>
+			<title>Decouple Your Javascript Using Event Driven Programming</title>
 			<link>https://LukeWood.dev/posts/refactor_bulletz/</link>
 			<pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
 			
