@@ -45,8 +45,8 @@ This article will describe how my mega class emerged and how I ended up solving 
 <p>The original state management model for the bullets took an object oriented model.
 A central <strong><em>StateManager</em></strong> class managed the entirety of the game&rsquo;s state by delegating each entity it&rsquo;s own Sub-Manager.</p>
 
-<p>These managers attempted to guess the current state of entities based on the last update on the entity that they received from the server.
-This allows the game to run using very low amounts of bandwidth while still showing the real time state of each entity.</p>
+<p>These managers attempt to guess the current state of entities based on the last update the server pushed out through websockets.
+This allows the game to run using very low amounts of bandwidth while still displaying the real time state of each entity.</p>
 
 <figure class="bordered-figure dark-gray-background">
     <img src="/img/posts/bulletz/bulletz_old_frontend.png"
@@ -56,14 +56,14 @@ This allows the game to run using very low amounts of bandwidth while still show
 </figure>
 
 
-<p>This led to a ton of problems over time - primarily on the front of readability and maintainability.
-The state of the various entities became inter-twined over time and it became difficult to hunt down bugs due to this.</p>
+<p>This led to a ton of problems over time - primarily on the fronts of readability and maintainability.
+The state of the various entities became intertwined over time and it became difficult to hunt down state related bugs.</p>
 
 <p>The largest anti-pattern the old model used was having a <a href="https://en.wikipedia.org/wiki/God_object">god object</a>, the top level State Manager.</p>
 
 <p>This state manager ended up being responsible for all sorts of things and was passed as a parameter to tons of UI functions.</p>
 
-<p>Here is the file that handles displaying the number players:
+<p>Here is the file that handled displaying the count of active players in the old system:
 <code>player_counter.js</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">const</span> <span class="nx">player_count</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;score-div&#34;</span><span class="p">);</span>
 <span class="kd">function</span> <span class="nx">update_player_counter</span><span class="p">(</span><span class="nx">state_handler</span><span class="p">)</span> <span class="p">{</span>
@@ -72,9 +72,10 @@ The state of the various entities became inter-twined over time and it became di
 <span class="p">}</span>
 <span class="k">export</span> <span class="p">{</span><span class="nx">update_player_counter</span><span class="p">}</span>
 </code></pre></div>
-<p>Then the function <code>update_player_counter</code> has to be called elsewhere every time a new player spawns or dies&hellip;
-Throughout the code base there are three occurrences of this function being called.
-<code>player_registry.js</code></p>
+<p>The function <code>update_player_counter</code> had to be called elsewhere every time a new player spawned or died.
+Throughout the code base there were three incentations of this function.  Two in the <code>player registry</code>.</p>
+
+<p><code>player_registry.js</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">update_player_counter</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../ui/update_player_counter&#39;</span>
 <span class="k">class</span> <span class="nx">PlayerRegistry</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">state_handler</span><span class="p">)</span> <span class="p">{</span>
@@ -92,7 +93,7 @@ Throughout the code base there are three occurrences of this function being call
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><code>state_handler.js</code></p>
+<p>And one in the <code>state handler</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">update_player_counter</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../ui/update_player_counter&#39;</span>
 <span class="k">class</span> <span class="nx">StateHandler</span> <span class="p">{</span>
   <span class="p">...</span>
@@ -105,23 +106,24 @@ Throughout the code base there are three occurrences of this function being call
   <span class="p">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This is not that big of a deal for this one specific case, but it resulted in the state handling code being littered with code updating UI.
+<p>As an isolated incident this was not terribly painful, but when the function calls across all UI interactions accumulated the resulting code was difficult to understand and maintain.
+The resulting code tightly coupled UI interactions and state management.
 Other classes end up being responsible for triggering UI updates.</p>
 
-<h3 id="the-resulting-code-is-heavily-coupled-it-intertwines-ui-interactions-with-state-management">The resulting code is heavily coupled.  It intertwines UI interactions with state management.</h3>
+<h4 id="the-resulting-code-is-heavily-coupled-it-intertwines-ui-interactions-with-state-management">The resulting code is heavily coupled.  It intertwines UI interactions with state management.</h4>
 
-<p>The state_handler ended up being responsible for triggering UI updates, and was an argument to literally everything.
+<p>The <code>state handler</code> ended up being responsible for triggering UI updates and was an argument to nearly everything.
 Almost every method, ui interaction, etc needed to store a copy of a state handler.
 This mean&rsquo;t every time I registered an event listener I would need a state handler handily stored nearby.
 By the time I had a complete frontend the name <code>state_handler</code> showed up in well over <code>70%</code> of files.</p>
 
-<h1 id="solving-this-with-tiny-pubsub">Solving This With Tiny Pubsub</h1>
+<h1 id="decoupling-the-code-with-tiny-pubsub">Decoupling the Code With Tiny Pubsub</h1>
 
-<p>Shameless plug for the self authored javascript library I wrote to solve this: <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.
+<p>This is a shameless plug for the self authored javascript library I wrote to solve this: <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.
 It&rsquo;s nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
 Instead of explicitly calling functions, functions instead respond to data emitted elsewhere.</p>
 
-<p>But what it does do is encourage a <a href="https://gameprogrammingpatterns.com/decoupling-patterns.html">decoupled codebase</a> through the event driven programming paradigm..</p>
+<p>But what it does do is encourage a <a href="https://gameprogrammingpatterns.com/decoupling-patterns.html">decoupled codebase</a> through the event driven programming paradigm.</p>
 
 <p>Here is a self contained example:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">subscribe</span><span class="p">,</span> <span class="nx">publish</span><span class="p">,</span> <span class="nx">unsubscribe</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;tiny-pubsub&#39;</span>
@@ -142,26 +144,26 @@ Instead of explicitly calling functions, functions instead respond to data emitt
 <h1 id="refactoring-the-old-model">Refactoring The Old Model</h1>
 
 <p>The refactored model is significantly more distributed in terms of code organization.
-In the new model each entity has a series of callbacks described in a single file that specify the entirety of that entities state management.
-These events are fired from other self contained modules that are solely responsible for firing these events.</p>
+In the new model each entity is described by series of callbacks defined in a single file.
+The callbacks respond to published events and update the state of the entities.
+These events are published from other self contained modules that are solely responsible for firing these events.</p>
 
 <p>For example, the file <code>tick.js</code> looks something like this&hellip;</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">TICK</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../events&#39;</span>
 <span class="k">import</span> <span class="p">{</span><span class="nx">game_time</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../util/game_time&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">get_world</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../entities/world&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">render</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../graphics/render&#39;</span>
 
 <span class="kd">function</span> <span class="nx">game_loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">publish</span><span class="p">(</span><span class="nx">TICK</span><span class="p">,</span> <span class="nx">game_time</span><span class="p">(),</span> <span class="nx">get_world</span><span class="p">());</span>
-  <span class="nx">render</span><span class="p">();</span>
+  <span class="nx">publish</span><span class="p">(</span><span class="nx">TICK</span><span class="p">,</span> <span class="nx">game_time</span><span class="p">());</span>
   <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">game_loop</span><span class="p">)</span>
 <span class="p">}</span>
+
 <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;load&#34;</span><span class="p">,</span> <span class="nx">game_loop</span><span class="p">);</span>
 </code></pre></div>
-<p>Each file is responsible for only one type of event.
+<p>Each event file is responsible for only one type of event.
 Some events are triggered by other events and mutate the data a bit for use by other modules.</p>
 
-<p>For example, here is the new version of <code>score.js</code> looks like&hellip;</p>
+<p>The UI interactions are also handled in self contained modules.
+Here is the new version of <code>score.js</code>&hellip;</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">subscribe</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;tiny-pubsub&#39;</span>
 <span class="k">import</span> <span class="p">{</span><span class="nx">PLAYER</span><span class="p">,</span> <span class="nx">POLL</span><span class="p">,</span> <span class="nx">PLAYER_DEATH</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../events&#39;</span>
 <span class="k">import</span> <span class="p">{</span><span class="nx">get_players</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../entities/players&#39;</span>
@@ -172,7 +174,7 @@ Some events are triggered by other events and mutate the data a bit for use by o
 <span class="nx">subscribe</span><span class="p">(</span><span class="nx">PLAYER_DEATH</span><span class="p">,</span> <span class="nx">update_player_count</span><span class="p">);</span>
 <span class="nx">subscribe</span><span class="p">(</span><span class="nx">POLL</span><span class="p">,</span> <span class="nx">update_player_count</span><span class="p">);</span>
 </code></pre></div>
-<p>This creates really simple to follow self contained modules.
+<p>The state management is implemented through small self contained modules.
 Here is the example for bullet state management:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">subscribe</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;tiny-pubsub&#34;</span>
 <span class="k">import</span> <span class="p">{</span><span class="nx">BULLET</span><span class="p">,</span> <span class="nx">POLL</span><span class="p">,</span> <span class="nx">REMOVE_BULLET</span><span class="p">,</span> <span class="nx">TICK</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../events&#39;</span>
@@ -201,19 +203,19 @@ Here is the example for bullet state management:</p>
 
 <span class="k">export</span> <span class="p">{</span><span class="nx">get_bullets</span><span class="p">}</span>
 </code></pre></div>
-<p>Everything remains self contained.
-Overall the frontend code for bulletz.io is significantly simpler and easier to follow.
-Several UI bugs were fixed during the refactor due to the UI update logic becoming easier to follow.</p>
+<p>Everything remains self contained and simple.</p>
 
 <h1 id="result-of-using-event-driven-programming">Result of Using Event Driven Programming</h1>
 
 <p>Rewriting <a href="https://bulletz.io">bulletz.io</a> to use an event driven model resulted in strongly decoupled logic.
-The UI updates as well as state updates are written as responses to data emitted elsewhere.
-I&rsquo;d recommend giving it a shot if you are writing a web page any time soon without a framework!</p>
+The frontend code for bulletz.io is significantly simpler and easier to follow.
+As a side effect the several UI bugs were fixed.
+The UI updates as well as state updates are written as self contained modules that respond to data emitted elsewhere.</p>
 
-<p>The library I wrote for the problem is called tiny-pubsub and the Github link can be found <a href="https://github.com/LukeWood/tiny-pubsub">here</a>.</p>
+<p>I&rsquo;d recommend giving event driven programming a shot if you are writing a web page any time soon without a framework!
+The library I wrote for the problem is called tiny-pubsub and the Github link can be found <a href="https://github.com/LukeWood/tiny-pubsub">here</a>.</p>
 
-<p>Thanks for reading my first blog post!</p>
+<p><a href="https://bulletz.io">Also be sure give bulletz.io a try!</a></p>
 ]]></content>
 		</item>
 		
