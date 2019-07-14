@@ -3,8 +3,9 @@ title: "Decouple Your Javascript Using Event Driven Programming"
 date: 2019-07-11T20:13:20-07:00
 draft: false
 tags:
+- js
 - bulletz.io
-- frontend
+- "design patterns"
 images:
   - /img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg
 ---
