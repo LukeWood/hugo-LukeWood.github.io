@@ -125,7 +125,7 @@ publish("chatroom-join", "Luke")
 // > Luke has joined the room!
 ```
 
-# Refactoring The Old Model
+# The Refactored Model
 The refactored model is significantly more distributed in terms of code organization.
 In the new model each entity is described by series of callbacks defined in a single file.
 The callbacks respond to published events and update the state of the entities.
@@ -192,7 +192,9 @@ export {get_bullets}
 ```
 
 Everything remains self contained and simple.
+Here is an organizational diagram displaying the event based frontend architecture.
 
+{{< figure class="bordered-figure dark-gray-background" width="512px" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz_new_frontend.png" title="The refactored bulletz frontend state management system" >}}
 # Result of Using Event Driven Programming
 Rewriting [bulletz.io](https://bulletz.io) to use an event driven model resulted in strongly decoupled logic.
 The frontend code for bulletz.io is significantly simpler and easier to follow.
