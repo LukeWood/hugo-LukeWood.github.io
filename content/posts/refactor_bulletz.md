@@ -15,7 +15,8 @@ The programming languages are ___vastly___ different and are based on entirely [
 
 Originally the frontend was written using a generic [Object Oriented model](https://www.webopedia.com/TERM/O/object_oriented_programming_OOP.html).
 This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.
-I rewrote the frontend over the course of a single evening to use an event driven model and the results were fantastic.
+
+I rewrote the frontend over the course of a single evening to use an event driven model and the results were fantastic.  The library used for the refactor was [tiny-pubsub](https://github.com/LukeWood/tiny-pubsub).
 
 {{< figure class="bordered-figure" width="512px" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz.png" title="A screenshot of bulletz.io" >}}
 
