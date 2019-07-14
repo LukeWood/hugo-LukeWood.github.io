@@ -19,7 +19,13 @@
   </url>
   
   <url>
-    <loc>https://LukeWood.dev/tags/frontend/</loc>
+    <loc>https://LukeWood.dev/tags/design-patterns/</loc>
+    <lastmod>2019-07-11T20:13:20-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/tags/javascript/</loc>
     <lastmod>2019-07-11T20:13:20-07:00</lastmod>
     <priority>0</priority>
   </url>

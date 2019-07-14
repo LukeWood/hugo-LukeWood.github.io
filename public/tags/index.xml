@@ -22,11 +22,20 @@
     </item>
     
     <item>
-      <title>Frontend</title>
-      <link>https://LukeWood.dev/tags/frontend/</link>
+      <title>Design Patterns</title>
+      <link>https://LukeWood.dev/tags/design-patterns/</link>
       <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
       
-      <guid>https://LukeWood.dev/tags/frontend/</guid>
+      <guid>https://LukeWood.dev/tags/design-patterns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>https://LukeWood.dev/tags/javascript/</link>
+      <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/tags/javascript/</guid>
       <description></description>
     </item>
     
