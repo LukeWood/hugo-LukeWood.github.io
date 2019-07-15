@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elixir on Luke Wood</title>
+    <link>https://LukeWood.dev/tags/elixir/</link>
+    <description>Recent content in Elixir on Luke Wood</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 19 May 2019 18:18:12 -0700</lastBuildDate>
+    
+	<atom:link href="https://LukeWood.dev/tags/elixir/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OTP Supervisor Trees by Example: bulletz.io</title>
+      <link>https://LukeWood.dev/posts/bulletz_model/</link>
+      <pubDate>Sun, 19 May 2019 18:18:12 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/posts/bulletz_model/</guid>
+      <description>Pre-reqs Before reading this post you should be familiar with:
+ GenServers Supervision Trees  Goals in this Article This article discusses the supervision tree&amp;rsquo;s for bulletz.io. I hope to highlight the why in my decision making process of the supervisor tree&amp;rsquo;s architecture.
+Intro Bulletz.io is a real time web based shooter game that I wrote using the phoenix framework. The infrastructure in the game heavily relies on OTP to make it parallel and fault tolerant.</description>
+    </item>
+    
+  </channel>
+</rss>

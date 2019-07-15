@@ -1,7 +1,7 @@
 ---
 title: "OTP Supervisor Trees by Example: bulletz.io"
 date: 2019-05-19T18:18:12-07:00
-draft: true
+draft: false
 toc: false
 images:
   - /img/backgrounds/crescent.jpg

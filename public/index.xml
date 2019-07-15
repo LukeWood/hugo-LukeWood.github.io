@@ -23,6 +23,17 @@ Originally the frontend was written using a generic Object Oriented model. This 
     </item>
     
     <item>
+      <title>OTP Supervisor Trees by Example: bulletz.io</title>
+      <link>https://LukeWood.dev/posts/bulletz_model/</link>
+      <pubDate>Sun, 19 May 2019 18:18:12 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/posts/bulletz_model/</guid>
+      <description>Pre-reqs Before reading this post you should be familiar with:
+ GenServers Supervision Trees  Goals in this Article This article discusses the supervision tree&amp;rsquo;s for bulletz.io. I hope to highlight the why in my decision making process of the supervisor tree&amp;rsquo;s architecture.
+Intro Bulletz.io is a real time web based shooter game that I wrote using the phoenix framework. The infrastructure in the game heavily relies on OTP to make it parallel and fault tolerant.</description>
+    </item>
+    
+    <item>
       <title>Luke</title>
       <link>https://LukeWood.dev/about-me/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
