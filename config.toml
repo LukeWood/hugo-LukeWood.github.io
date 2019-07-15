@@ -30,6 +30,8 @@ googleAnalytics = "UA-139935010-1"
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04 -0700"
 
+  commento = true
+
   # Metadata mostly used in document's head
   description = "LukeWood.dev is my personal tech blog."
   images = ["img/backgrounds/IMG_8532-EFFECTS.jpg", "img/backgrounds/IMG_8771-EFFECTS.jpg", "img/backgrounds/hawaii_1.jpg"]
@@ -46,7 +48,7 @@ googleAnalytics = "UA-139935010-1"
   justifyContent = false  # Set "text-align: justify" to `.content`.
 
   # Add custom css
-  customCSS = ["css/figures.css", "css/gist.css", "css/headers.css"]
+  customCSS = ["css/figures.css", "css/gist.css", "css/headers.css", "css/commento.css"]
 
   # Social Icons
   # Check https://github.com/Track3/hermit#social-icons for more info.

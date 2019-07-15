@@ -206,3 +206,5 @@ I'd recommend giving event driven programming a shot if you are writing a web pa
 The library I wrote for the problem is called tiny-pubsub and the Github link can be found [here](https://github.com/LukeWood/tiny-pubsub).
 
 [Also be sure give bulletz.io a try!](https://bulletz.io)
+
+---
