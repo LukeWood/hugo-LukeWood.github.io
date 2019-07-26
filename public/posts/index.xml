@@ -231,5 +231,15 @@ The library I wrote for the problem is called tiny-pubsub and the Github link ca
 ]]></content>
 		</item>
 		
+		<item>
+			<title></title>
+			<link>https://LukeWood.dev/posts/profiling_elixir_code/</link>
+			<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+			
+			<guid>https://LukeWood.dev/posts/profiling_elixir_code/</guid>
+			<description></description>
+			<content type="html"><![CDATA[]]></content>
+		</item>
+		
 	</channel>
 </rss>
