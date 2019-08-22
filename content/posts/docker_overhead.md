@@ -7,3 +7,17 @@ images:
 tags:
   - untagged
 ---
+
+# Decoupling the Phoenix Server from Sockets
+
+## Hugo Client
+
+## Firebase For Server Listing
+
+## Rewriting the Client to Support Dynamic Config
+
+## Shipping My Own Deployment System
+
+## Performance of Docker
+
+## Next Steps

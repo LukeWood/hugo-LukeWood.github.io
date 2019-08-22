@@ -23,7 +23,7 @@ Let's look at the following service worker and see if we can spot the problem.
 ```
 
 Service Worker hell is when the Service Worker caches the entire web page and all other resources.
-This results in
+This results in developers being effectively "locked out" from pushing code.
 
 # The Fix
 You need to uninstall all of the existing service workers the next time users visit.

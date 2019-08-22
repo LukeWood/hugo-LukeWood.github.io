@@ -1,5 +1,5 @@
 ---
-title: "From OOP -> Events: Refactoring bulletz.io's Frontend Structure"
+title: "Lighthouse Report as a Minimum Bar"
 date: 2019-07-11T20:13:20-07:00
 draft: true
 tags:
