@@ -33,14 +33,5 @@ The target demographic is primarily software engineers who may not have been exp
 Each blog post has a picture of the place I was when I wrote it. I did this to add a little context to who I am as a person outside of my life as a developer.</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>https://LukeWood.dev/posts/profiling_elixir_code/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://LukeWood.dev/posts/profiling_elixir_code/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
