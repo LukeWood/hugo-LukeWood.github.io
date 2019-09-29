@@ -3,7 +3,6 @@ languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "LukeWood.dev"
 theme = "hermit"
-author = "Luke Wood"
 
 # enableGitInfo = true
 pygmentsCodefences  = true
@@ -15,7 +14,7 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
 googleAnalytics = "UA-139935010-1"
 
 [author]
-  name = "LukeWood.dev"
+  name = "Luke Wood"
 
 [blackfriday]
   # hrefTargetBlank = true
@@ -35,7 +34,7 @@ googleAnalytics = "UA-139935010-1"
   # Metadata mostly used in document's head
   description = "LukeWood.dev is my personal tech blog."
 	title = "LukeWood.dev"
-  images = ["http://localhost:1313/img/backgrounds/IMG_8771-EFFECTS.jpg"]
+  images = ["/img/backgrounds/IMG_8771-EFFECTS.jpg"]
   themeColor = "#494f5c"
 
   homeSubtitle = "SURF | SKI | SWE"
