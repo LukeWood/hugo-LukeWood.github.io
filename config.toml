@@ -32,7 +32,8 @@ googleAnalytics = "UA-139935010-1"
 
   # Metadata mostly used in document's head
   description = "LukeWood.dev is my personal tech blog."
-  images = ["img/backgrounds/IMG_8532-EFFECTS.jpg", "img/backgrounds/IMG_8771-EFFECTS.jpg", "img/backgrounds/hawaii_1.jpg"]
+	title = "LukeWood.dev"
+  images = ["http://localhost:1313/img/backgrounds/IMG_8771-EFFECTS.jpg"]
   themeColor = "#494f5c"
 
   homeSubtitle = "SURF | SKI | SWE"
@@ -76,6 +77,9 @@ googleAnalytics = "UA-139935010-1"
   [[params.social]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/luke-wood-886634102/"
+
+[opengraph]
+
 
 [menu]
   [[menu.main]]
