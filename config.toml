@@ -1,8 +1,10 @@
 baseURL = "https://LukeWood.dev/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
-title = "Luke Wood"
+title = "LukeWood.dev"
 theme = "hermit"
+author = "Luke Wood"
+
 # enableGitInfo = true
 pygmentsCodefences  = true
 pygmentsUseClasses  = true
