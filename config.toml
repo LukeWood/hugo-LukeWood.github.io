@@ -2,6 +2,7 @@ baseURL = "https://LukeWood.dev/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "LukeWood.dev"
+<<<<<<< HEAD
 theme = "hermit"
 
 # enableGitInfo = true
@@ -15,6 +16,14 @@ googleAnalytics = "UA-139935010-1"
 
 [author]
   name = "Luke Wood"
+=======
+theme = "lukewood"
+author = "Luke Wood"
+copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
+enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
+googleAnalytics = "UA-139935010-1"
+images = ["/img/backgrounds/IMG_8771-EFFECTS.jpg"]
+>>>>>>> custom theme
 
 [blackfriday]
   # hrefTargetBlank = true
@@ -34,7 +43,11 @@ googleAnalytics = "UA-139935010-1"
   # Metadata mostly used in document's head
   description = "LukeWood.dev is my personal tech blog."
 	title = "LukeWood.dev"
+<<<<<<< HEAD
   images = ["/img/backgrounds/IMG_8771-EFFECTS.jpg"]
+=======
+  images = ["img/backgrounds/IMG_8771-EFFECTS.jpg"]
+>>>>>>> custom theme
   themeColor = "#494f5c"
 
   homeSubtitle = "SURF | SKI | SWE"
@@ -78,9 +91,6 @@ googleAnalytics = "UA-139935010-1"
   [[params.social]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/luke-wood-886634102/"
-
-[opengraph]
-
 
 [menu]
   [[menu.main]]
