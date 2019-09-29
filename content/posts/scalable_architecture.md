@@ -41,8 +41,15 @@ TODO image of game server
 This is a step in the right direction but is not yet horizontally Scalable
 
 # Adding a Dynamic Server Lister
-## options
+## Golang App Engine App
 ## Firebase
+I interned at Firebase a few years back but never really have used Firebase in any of my own projects.
+The more I thought about it the more of a good idea this was.
+I ended up just using the Firestore javascript sdk and resolve a /server list as an rxjs observable and bam, problem solves.
+
+# Creating a standalone client
+## Alternatives
+## Hugo
 
 # Deployment System
 
