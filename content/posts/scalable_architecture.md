@@ -8,21 +8,33 @@ tags:
   - untagged
 ---
 
-In a few months I am hoping to do a soft launch of my real-time web based multiplayer 2d shooter: (bulletz.io)[https://bulletz.io]
-For quite awhile bulletz.io has been limited heavily by the scalability issues.
-This is due to the highly computationally expensive nature of game servers.
-Bulletz.io does not use a message relay server, but instead computes game state on the server side.
-All of the computation in the game occurs server side and the clients serve as messengers to the player by reflecting the state.
-Bulletz is implemented in this way to prevent cheaters from sending arbitrary messages.
+In a few months I am having a soft launch of my real-time web based multiplayer 2d shooter: (bulletz.io)[https://bulletz.io]
+In the old architecture there was no way to horizontally scale the game.
+If the game became popular quickly there would have been no way to scale up.
 
 {{< figure class="bordered-figure dark-gray-background" width="512px" alt="old architecture of bulletz" src="/img/posts/productionization/bulletz_old_structure.png" title="Old Architecture of Bulletz" >}}
 
-Until this rearchitecture bulletz was implemented as a single standalone server.  
+Until this rearchitecture bulletz was implemented as a single standalone server.
 This server served static assets, ran game logic, and managed websocket connections.
-This was an easy method to getting the MVP up and running but led to highly coupled server setup.
+The bottleneck in this setup was compute power to compute game states.
 
-Conceivably this setup could simply be thrown behind a horizontal load balancer using a custom scaling metric and survive a surge in players.
-I did not go this route because this is a hobby project and I did not want to spend an insane amount of money on running my hobby project.
+# Why I Didn't Use Kubernetes
+
+Due to my experience with kubernetes I considered using a [horizontal load balancer](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) with a (custom scaling metric)[https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-custom-metrics].
+This would have made scaling easy.
+The [horizontal load balancer](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) could spin up new servers based on number of active players.
+
+I did not go this route because after some performance testing I realized that in such a CPU heavy case this would be extremely expensive.
+
+# TODO table of usage
+
+hi |   |  |  | hi
+-----|---|--|--|
+h  | a |  |  |
+
+Instead I decided to run using bare metal servers.
+
+This was also an opportunity to pave the ground for new features and decouple the existing system.
 
 It was finally time to design a production ready system.
 The requirements for the system were as follows:
@@ -30,6 +42,7 @@ The requirements for the system were as follows:
 - horizontally scalable on the game server front
 - allow different configurations per server (for diverse game experience)
 - build for the future
+**Note: I could have still used Kubernetes to solve some of the problems but instead opted for a custom solution**
 
 # Designing the new Architecture
 The first action item I took on in redesigning the system was examining the difficulty in decoupling the game server from the web server.
@@ -58,7 +71,7 @@ I ended up just using the Firestore javascript sdk and resolve a /server list as
 Here is the overall new
 {{< figure class="bordered-figure dark-gray-background" width="512px" alt="new bulletz architecture" src="/img/posts/productionization/new_structure.png" title="New Bulletz Architecture" >}}
 
-Migrating to this new architecture required four separate parts.  
+Migrating to this new architecture required four separate parts.
 
 # Future Posts
 
