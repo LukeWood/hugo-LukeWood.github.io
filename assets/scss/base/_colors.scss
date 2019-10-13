@@ -1,0 +1,23 @@
+:root {
+  --background_color: #121212;
+  
+  --primary_color: #b694f6;
+  --primary_variant: #3700B3;
+  --secondary_color: #03dac4;
+  --secondary_variant: #14cba8;
+
+  --text_color: #FFFFFF;
+}
+
+.primary-color {
+  color: var(--primary_color);
+}
+.secondary-color {
+  color: var(--secondary_color);
+}
+.secondary-border {
+  border: solid var(--secondary_color) 4px;
+}
+.secondary-variant {
+  color: var(--secondary_variant);
+}

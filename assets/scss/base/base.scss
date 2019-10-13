@@ -1,0 +1,21 @@
+@import "colors";
+
+body {
+  background-color: var(--background_color);
+}
+
+text {
+  color: white;
+}
+
+h1 {
+  color: var(--primary_color);
+}
+
+h2 {
+  color: var(--secondary_color);
+}
+
+p {
+  color: var(--text_color);
+}

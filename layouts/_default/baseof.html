@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {{block "base-header" .}}
+
+    <meta charset="utf-8">
+    <title>{{ .Site.Title }}</title>
+    {{ partial "stylesheet.html" "base" }}
+
+    {{ end }}
+    
+    {{ block "extra-header" . }}
+
+    {{ end }}
+  </head>
+  <body>
+    {{ block "main" . }}
+    {{ end }}
+  </body>
+</html>
