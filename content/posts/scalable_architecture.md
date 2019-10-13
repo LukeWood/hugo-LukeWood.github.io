@@ -8,9 +8,10 @@ tags:
   - untagged
 ---
 
-In a few months I am having a soft launch of my real-time web based multiplayer 2d shooter: (bulletz.io)[https://bulletz.io]
-In the old architecture there was no way to horizontally scale the game.
+In a few months I am having a soft launch for [bulletz.io](https://bulletz.io).
+In the old architecture there was no way to horizontally scale the game up.
 If the game became popular quickly there would have been no way to scale up.
+Before launching I needed address the potential issue of scalability.
 
 {{< figure class="bordered-figure dark-gray-background" width="512px" alt="old architecture of bulletz" src="/img/posts/productionization/bulletz_old_structure.png" title="Old Architecture of Bulletz" >}}
 
@@ -18,33 +19,13 @@ Until this rearchitecture bulletz was implemented as a single standalone server.
 This server served static assets, ran game logic, and managed websocket connections.
 The bottleneck in this setup was compute power to compute game states.
 
-# Why I Didn't Use Kubernetes
-
-Due to my experience with kubernetes I considered using a [horizontal load balancer](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) with a (custom scaling metric)[https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-custom-metrics].
-This would have made scaling easy.
-The [horizontal load balancer](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) could spin up new servers based on number of active players.
-
-I did not go this route because after some performance testing I realized that in such a CPU heavy case this would be extremely expensive.
-
-# TODO table of usage
-
-hi |   |  |  | hi
------|---|--|--|
-h  | a |  |  |
-
-Instead I decided to run using bare metal servers.
-
-This was also an opportunity to pave the ground for new features and decouple the existing system.
-
-It was finally time to design a production ready system.
-The requirements for the system were as follows:
+## Requirements
+Before designing the new system let's define a set of requirements.
 - low extraneous resource usage
 - horizontally scalable on the game server front
-- allow different configurations per server (for diverse game experience)
-- build for the future
-**Note: I could have still used Kubernetes to solve some of the problems but instead opted for a custom solution**
+- decouple code when possible to be more future proof 
 
-# Designing the new Architecture
+## Designing the new Architecture
 The first action item I took on in redesigning the system was examining the difficulty in decoupling the game server from the web server.
 Previously a single phoenix server managed both the web socket connections and the serving of static assets.
 
@@ -65,6 +46,21 @@ I ended up just using the Firestore javascript sdk and resolve a /server list as
 ## Hugo
 
 # Deployment System
+## Considering Kubernetes
+Due to good previous experiences with kubernetes I considered using a [horizontal load balancer](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) with a (custom scaling metric)[https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-custom-metrics].
+The [horizontal load balancer](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) could spin up new servers based on the number of active players.
+
+Unfortunately after some performance testing I found that [dockerizing](https://www.docker.com/) the servers had more overhead than I expected.
+
+\       | Bare 1 GB 1 CPU | Docker 1 GB 1 CPU | Docker 2 GB 1 CPU |
+--------|-----------------|-------------------|-------------------|
+Players | 40              | 15                | 25                |
+$/Month | $5              | $5                | $15               |
+<center>Results from performance testing</center>
+
+[bulletz.io](https://bulletz.io) runs on the erlang VM making docker redundant.
+The performance decrease was not worth the high increase in costs.
+Due to this I stuck with running [BEAM](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) on bare linux servers.
 
 # Summary
 
