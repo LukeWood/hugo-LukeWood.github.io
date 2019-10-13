@@ -1,23 +1,28 @@
 ---
-title: "Productionization"
+title: "Dockerized Elixir Overhead Testing"
 date: 2019-07-17T20:04:15-07:00
 draft: true
 toc: false
 images:
 tags:
-  - untagged
+  - Docker
+  - Performance
 ---
 
-# Decoupling the Phoenix Server from Sockets
+A few months back I toyed with the idea of using Docker to simplify the deployment process for servers in [bulletz.io](https://bulletz.io).
+Unfortunately this led to some serious performance issues.
 
-## Hugo Client
+This made me wonder:  how much slower are dockerized applications compared to their bare metal counter parts. 
 
-## Firebase For Server Listing
+# Plan
+Develop a CPU heavy.
 
-## Rewriting the Client to Support Dynamic Config
+# Implementation
+```elixir
+Enum.map(1..1000000, &(&1*&1) |>
+	Enum.reduce(fn 
+```
 
-## Shipping My Own Deployment System
 
-## Performance of Docker
 
-## Next Steps
+# Results
