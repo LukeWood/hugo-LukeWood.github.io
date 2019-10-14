@@ -1,11 +1,8 @@
-@import "colors";
+@import "../common/colors";
+@import "../common/font";
 
 body {
   background-color: var(--background_color);
-}
-
-text {
-  color: white;
 }
 
 h1 {
@@ -18,4 +15,8 @@ h2 {
 
 p {
   color: var(--text_color);
+}
+
+.home-container {
+  display: flex;
 }
