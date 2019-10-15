@@ -1,6 +1,24 @@
+{{ define "extra-header" }}
+  {{ partial "stylesheet.html" "index" }}
+{{ end }}
 {{ define "main" }}
+<div class="bg-img"></div>
+
 <div class="home-container">
-  <h1>Luke Wood</h1>
-  <h2>H2</h2>
+  <div class="row top-row">
+    <div class="option">Blog</div>
+    <div class="option">Snippets</div>
+  </div>
+
+  <div class="row">
+    <div></div>
+    <h1 class="title">Luke Wood</h1>
+    <div></div>
+  </div>
+
+  <div class="row bottom-row">
+    <div class="option">Projects</div>
+    <div class="option">Photos</div>
+  </div>
 </div>
 {{ end }}

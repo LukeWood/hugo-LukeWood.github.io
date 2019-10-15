@@ -2,13 +2,9 @@
 <html>
   <head>
     {{block "base-header" .}}
-
-    <meta charset="utf-8">
-    <title>{{ .Site.Title }}</title>
-    {{ partial "stylesheet.html" "base" }}
-
+    {{ partial "head.html" .}}
     {{ end }}
-    
+
     {{ block "extra-header" . }}
 
     {{ end }}

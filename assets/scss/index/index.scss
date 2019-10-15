@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
+:root {
+  --background_color: #121212;
+
+  --primary_color: #FFC400;
+
+  --text_color: #FFFFFF;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--background_color);
+}
+
+h1 {
+  color: white;
+  font-size: 10vw;
+}
+
+.option {
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: white;
+  font-size: 5vw;
+}
+
+p {
+  color: var(--text_color);
+}
+
+.home-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.row {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.top-row {
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+.bottom-row {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.bg-img {
+  z-index: -1;
+  opacity: 0.7;
+  pointer-events: none;
+  touch-action: none;
+  background-image: url("/img/index/seals.jpg");
+
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
