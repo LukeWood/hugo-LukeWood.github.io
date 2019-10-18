@@ -2,24 +2,23 @@
   {{ partial "stylesheet.html" "index" }}
 {{ end }}
 {{ define "main" }}
-<div class="bg-img"></div>
 <main class="vertical-center">
   <div class="home-container">
     <section class="row">
       <h1 class="site-title">Luke Wood</h1>
     </section>
     <section class="row">
+      {{- with .Site.Params.social }}
+        <div class="socials">
+          {{ partialCached "social-icons.html" . }}
+        </div>
+      {{- end }}
+    </section>
+    <section class="row home-link-container">
       <a class="home-link" href="/posts">Blog</a>
       <a class="home-link" href="/snippets">Snippets</a>
       <a class="home-link" href="/projects">Projects</a>
       <a class="home-link" href="/photos">Photos</a>
-    </section>
-    <section class="row">
-      {{- with .Site.Params.social }}
-  			<div class="socials">
-  				{{ partialCached "social-icons.html" . }}
-  			</div>
-			{{- end }}
     </section>
   </div>
 </main>

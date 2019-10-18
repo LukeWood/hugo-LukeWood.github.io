@@ -31,7 +31,7 @@ p {
   justify-content: space-around;
 }
 
-$h1-size: 6rem;
+$h1-size: 5rem;
 h1.site-title {
   color: white;
   font-size: $h1-size;
@@ -46,5 +46,11 @@ a.home-link {
   margin: .5rem;
   &:hover {
     color: var(--primary_color_dark);
+  }
+}
+
+.home-link-container {
+  @media screen and (max-width: 600px) and (orientation: portrait) {
+    flex-direction: column;
   }
 }

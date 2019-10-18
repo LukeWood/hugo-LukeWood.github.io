@@ -11,6 +11,9 @@
     {{ end }}
   </head>
   <body>
+    {{ block "bg-img" . }}
+    <div class="bg-img"></div>
+    {{ end }}
     {{ block "main" . }}
     {{ end }}
   </body>
