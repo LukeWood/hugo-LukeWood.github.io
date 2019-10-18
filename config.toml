@@ -2,7 +2,8 @@ baseURL = "https://LukeWood.dev/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "LukeWood.dev"
-copyright = "Copyright Luke Wood 2019" # This message is only used by the RSS template.
+copyright = "Copyright Luke Wood 2019"
+
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
 googleAnalytics = "UA-139935010-1"
 
@@ -10,8 +11,18 @@ googleAnalytics = "UA-139935010-1"
   # hrefTargetBlank = true
   # noreferrerLinks = true
   # nofollowLinks = true
+[authors]
+  name = "Luke Wood"
 
 [params]
+
+  images = [
+    "https://LukeWood.dev/img/index/ballpark.jpg"
+  ]
+  locale = "en_US"
+  themeColor = "#82b1ff"
+  description = "LukeWood.dev is my personal website.  It serves as a tech blog, photo gallery, code showcase, and project portfolio."
+
   [[params.social]]
     name = "github"
     url = "https://github.com/LukeWood"

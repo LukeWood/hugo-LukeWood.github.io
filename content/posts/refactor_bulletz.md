@@ -8,11 +8,12 @@ tags:
 - bulletz.io
 - design patterns
 title: Decouple Your Javascript Using Event Driven Programming
+type: post
 ---
 I am the sole author of the web game [bulletz.io](https://bulletz.io).
 Recently I refactored the frontend's codebase to more closely match that of the backend.
 The backend is written using the functional programming language [Elixir](https://elixir-lang.org) while the frontend is written in Vanilla Javascript.
-The programming languages are ___vastly___ different and are based on entirely [different paradigms](https://cs.lmu.edu/~ray/notes/paradigms).  
+The programming languages are ___vastly___ different and are based on entirely [different paradigms](https://cs.lmu.edu/~ray/notes/paradigms).
 
 Originally the frontend was written using a generic [Object Oriented model](https://www.webopedia.com/TERM/O/object_oriented_programming_OOP.html).
 This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.

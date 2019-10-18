@@ -6,6 +6,7 @@ tags:
 - untagged
 title: Architecting a Scalable Multiplayer Web Game
 toc: false
+type: post
 ---
 
 In a few months I am having a soft launch for [bulletz.io](https://bulletz.io).
@@ -23,7 +24,7 @@ The bottleneck in this setup was compute power to compute game states.
 Before designing the new system let's define a set of requirements.
 - low extraneous resource usage
 - horizontally scalable on the game server front
-- decouple code when possible to be more future proof 
+- decouple code when possible to be more future proof
 
 ## Designing the new Architecture
 The first action item I took on in redesigning the system was examining the difficulty in decoupling the game server from the web server.

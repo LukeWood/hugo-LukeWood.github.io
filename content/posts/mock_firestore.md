@@ -6,4 +6,5 @@ tags:
 - untagged
 title: Mocking
 toc: false
+type: post
 ---

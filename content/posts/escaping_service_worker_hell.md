@@ -7,6 +7,7 @@ tags:
 - pwa
 title: Escaping Service Worker Hell
 toc: false
+type: post
 ---
 
 Service workers allow web developers to run custom logic around web requests.
@@ -27,7 +28,7 @@ This results in developers being effectively "locked out" from pushing code.
 
 # The Fix
 You need to uninstall all of the existing service workers the next time users visit.
-So how do you do this when the entire page is cached?  
+So how do you do this when the entire page is cached?
 
 Chrome 54 implemented a change forcing service workers to use a max-age of 0 in all caching.
 You'll need to take advantage of this attribute to unregister the service worker.

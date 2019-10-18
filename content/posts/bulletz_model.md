@@ -8,6 +8,7 @@ tags:
 - supervisor trees
 title: 'OTP Supervisor Trees by Example: bulletz.io'
 toc: false
+type: post
 ---
 
 ## Pre-reqs

@@ -1,3 +1,14 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- template "_internal/google_analytics_async.html" . }}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+{{- with .Site.Params.themeColor }}
+<meta name="theme-color" content="{{.}}">
+<meta name="msapplication-TileColor" content="{{.}}">
+<meta name="description" content={{$.Site.Params.Description | safeHTMLAttr}}>
+{{- end }}
 <title>{{ .Site.Title }}</title>
+{{- template "_internal/opengraph.html" . }}
+{{- template "_internal/schema.html" . }}
+{{- template "_internal/twitter_cards.html" . }}

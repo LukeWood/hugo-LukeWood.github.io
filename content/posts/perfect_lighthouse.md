@@ -5,4 +5,6 @@ tags:
 - bulletz.io
 - frontend
 title: Lighthouse Report as a Minimum Bar
+type: post
+
 ---
