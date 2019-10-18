@@ -1,0 +1,27 @@
+@import '../common/respond-to';
+
+.bg-img {
+  opacity: .05;
+}
+
+.list-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.list-content {
+  color: var(--text_color);
+  width: 70%;
+  padding: 1rem;
+  min-height: 100%;
+}
+
+h1 {
+  color: var(--primary_color);
+}
+
+ol li a {
+  color: var(--secondary_color);
+}

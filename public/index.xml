@@ -6,7 +6,7 @@
     <description>Recent content on LukeWood.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <copyright>Copyright Luke Wood 2019</copyright>
     <lastBuildDate>Thu, 11 Jul 2019 20:13:20 -0700</lastBuildDate>
     
 	<atom:link href="https://LukeWood.dev/index.xml" rel="self" type="application/rss+xml" />
@@ -20,17 +20,6 @@
       <guid>https://LukeWood.dev/posts/refactor_bulletz/</guid>
       <description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
 Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description>
-    </item>
-    
-    <item>
-      <title>Luke</title>
-      <link>https://LukeWood.dev/about-me/</link>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://LukeWood.dev/about-me/</guid>
-      <description>SURF | SKI | SWE This blog is dedicated to sharing knowledge on both technical and non-technical topics in a useful way for others.
-The target demographic is primarily software engineers who may not have been exposed to some of my niche areas of knowledge.
-Each blog post has a picture of the place I was when I wrote it. I did this to add a little context to who I am as a person outside of my life as a developer.</description>
     </item>
     
   </channel>

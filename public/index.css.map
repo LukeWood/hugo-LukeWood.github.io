@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"file": "index.css",
+	"sourceRoot": "/Users/yeti/workspace/lukewood.github.io",
+	"sources": [
+		"stdin"
+	],
+	"sourcesContent": [
+		"@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');\n\n:root {\n  --background_color: #121212;\n\n  --primary_color: #FFC400;\n\n  --text_color: #FFFFFF;\n}\n\nbody {\n  padding: 0;\n  margin: 0;\n  background-color: var(--background_color);\n}\n\nh1 {\n  color: white;\n  font-size: 10vw;\n}\n\np {\n  color: var(--text_color);\n}\n\n.bg-img {\n  z-index: -1;\n  opacity: 0.7;\n  pointer-events: none;\n  touch-action: none;\n  background-image: url(\"/img/index/ballpark.jpg\");\n\n  width: 100%;\n  height: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n\n.home-container {\n  flex-direction: column;\n  display: flex;\n  align-items: center;\n}\n\n.option {\n  margin: 1rem;\n}\n\n.row {\n\n}\n"
+	],
+	"names": [],
+	"mappings": "AAAA,OAAO,CAAC,4EAAI,CAEZ,AAAA,KAAK,AAAC,CACJ,kBAAkB,CAAA,QAAC,CAEnB,eAAe,CAAA,QAAC,CAEhB,YAAY,CAAA,QAAC,CACd,AAED,AAAA,IAAI,AAAC,CACH,OAAO,CAAE,CAAC,CACV,MAAM,CAAE,CAAC,CACT,gBAAgB,CAAE,uBAAuB,CAC1C,AAED,AAAA,EAAE,AAAC,CACD,KAAK,CAAE,KAAK,CACZ,SAAS,CAAE,IAAI,CAChB,AAED,AAAA,CAAC,AAAC,CACA,KAAK,CAAE,iBAAiB,CACzB,AAED,AAAA,OAAO,AAAC,CACN,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,GAAG,CACZ,cAAc,CAAE,IAAI,CACpB,YAAY,CAAE,IAAI,CAClB,gBAAgB,CAAE,8BAA8B,CAEhD,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,KAAK,CACf,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,CAAC,CACN,mBAAmB,CAAE,MAAM,CAC3B,iBAAiB,CAAE,SAAS,CAC5B,eAAe,CAAE,KAAK,CACvB,AAED,AAAA,eAAe,AAAC,CACd,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,CACpB,AAED,AAAA,OAAO,AAAC,CACN,MAAM,CAAE,IAAI,CACb"
+}

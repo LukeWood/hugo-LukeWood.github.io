@@ -5,8 +5,9 @@
     {{ partial "head.html" .}}
     {{ end }}
 
-    {{ block "extra-header" . }}
+    {{ partial "stylesheet.html" "base" }}
 
+    {{ block "extra-header" . }}
     {{ end }}
   </head>
   <body>

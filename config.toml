@@ -19,3 +19,9 @@ googleAnalytics = "UA-139935010-1"
   [[params.social]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/luke-wood-886634102/"
+
+[taxonomies]
+  post = "posts"
+  snippet = "snippets"
+  project = "projects"
+  photo = "photos"

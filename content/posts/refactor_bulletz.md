@@ -1,13 +1,13 @@
 ---
-title: "Decouple Your Javascript Using Event Driven Programming"
-date: 2019-07-11T20:13:20-07:00
+date: "2019-07-11T20:13:20-07:00"
 draft: false
+images:
+- /img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg
 tags:
 - javascript
 - bulletz.io
-- "design patterns"
-images:
-  - /img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg
+- design patterns
+title: Decouple Your Javascript Using Event Driven Programming
 ---
 I am the sole author of the web game [bulletz.io](https://bulletz.io).
 Recently I refactored the frontend's codebase to more closely match that of the backend.

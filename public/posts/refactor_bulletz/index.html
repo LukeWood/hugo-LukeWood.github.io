@@ -1,95 +1,11 @@
 <!DOCTYPE html>
-<html lang="en-us">
-
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-	<meta name="description" content=LukeWood.dev&#32;is&#32;my&#32;personal&#32;tech&#32;blog.>
-
-<meta itemprop="name" content="Decouple Your Javascript Using Event Driven Programming">
-<meta itemprop="description" content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.">
-
-
-<meta itemprop="datePublished" content="2019-07-11T20:13:20-07:00" />
-<meta itemprop="dateModified" content="2019-07-11T20:13:20-07:00" />
-<meta itemprop="wordCount" content="1097">
-
-  <meta itemprop="image" content="https://LukeWood.dev/img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg">
-
-
-
-<meta itemprop="keywords" content="javascript,bulletz.io,design patterns," />
-<meta property="og:title" content="Decouple Your Javascript Using Event Driven Programming" />
-<meta property="og:description" content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://LukeWood.dev/posts/refactor_bulletz/" />
-
-<meta property="og:image" content="https://LukeWood.dev/img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg" />
-<meta property="article:published_time" content="2019-07-11T20:13:20-07:00"/>
-<meta property="article:modified_time" content="2019-07-11T20:13:20-07:00"/><meta property="og:site_name" content="LukeWood.dev" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://LukeWood.dev/img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg"/>
-
-<meta name="twitter:title" content="Decouple Your Javascript Using Event Driven Programming"/>
-<meta name="twitter:description" content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code."/>
-
-	<link rel="apple-touch-icon" sizes="192x192" href="/favicon_192.png">
-	<link rel="icon" type="image/png" sizes="192x192" href="/favicon_192.png">
-	<link rel="icon" type="image/png" sizes="512x512" href="/favicon_512.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>Decouple Your Javascript Using Event Driven Programming</title>
-	<link rel="stylesheet" href="https://LukeWood.dev/css/style.min.5b01239f4983f82c6b5ac38c58e1049402a6e8b829fa2e866cc7a7c76dd748a4.css" integrity="sha256-WwEjn0mD+CxrWsOMWOEElAKm6Lgp+i6GbMenx23XSKQ=" async>
-	<style>.bg-img {background-image: url('https://LukeWood.dev/img/backgrounds/57984265849__D0CEC5FF-04FF-414A-ABAB-8F0FA6245AC0-EFFECTS.jpg');}</style>
-	<link rel="stylesheet" href="https://LukeWood.dev/css/figures.css">
-	<link rel="stylesheet" href="https://LukeWood.dev/css/gist.css">
-	<link rel="stylesheet" href="https://LukeWood.dev/css/headers.css">
-	<link rel="stylesheet" href="https://LukeWood.dev/css/commento.css">
+  <title>Decouple Your Javascript Using Event Driven Programming</title>
 </head>
-
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://LukeWood.dev/">LukeWood.dev</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					<a href="https://LukeWood.dev/posts/">Posts</a>
-					<a href="https://LukeWood.dev/about-me/">About</a>
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/LukeWood" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://www.linkedin.com/in/luke-wood-886634102/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://LukeWood.dev/posts/">Posts</a></li>
-			<li><a href="https://LukeWood.dev/about-me/">About</a></li>
-		</ul>
-	</div>
-
-
-	<div class="bg-img"></div>
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Jul 11, 2019</span></div>
-				<h1>Decouple Your Javascript Using Event Driven Programming</h1>
-			</header>
-			<div class="content">
-				
+<body>
+  <h1>Decouple Your Javascript Using Event Driven Programming</h1>
+  
 
 <p>I am the sole author of the web game <a href="https://bulletz.io">bulletz.io</a>.
 Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend.
@@ -112,7 +28,7 @@ This led to a great deal of technical debt, complicated UI interactions, and ove
 <p>Over time a <a href="https://en.wikipedia.org/wiki/God_object">god object</a> emerged which led my frontend client to have anti patterns littered everywhere.
 This article will describe how my mega class emerged and how I ended up solving that problem by using <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.</p>
 
-<h1 id="the-original-model">The Original Model<a href="#the-original-model" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h1 id="the-original-model">The Original Model</h1>
 
 <p>The original state management model for the bullets took an object oriented model.
 A central <strong><em>StateManager</em></strong> class managed the entirety of the game&rsquo;s state by delegating each entity it&rsquo;s own Sub-Manager.</p>
@@ -137,47 +53,53 @@ The state of the various entities became intertwined over time and it became dif
 
 <p>Here is the file that handled displaying the count of active players in the old system:
 <code>player_counter.js</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">const</span> <span class="nx">player_count</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;score-div&#34;</span><span class="p">);</span>
-<span class="kd">function</span> <span class="nx">update_player_counter</span><span class="p">(</span><span class="nx">state_handler</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">const</span> <span class="nx">score</span> <span class="o">=</span> <span class="nx">state_handler</span><span class="p">.</span><span class="nx">player_registry</span><span class="p">.</span><span class="nx">get_players</span><span class="p">().</span><span class="nx">length</span><span class="p">;</span>
-  <span class="nx">player_count</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">players</span><span class="si">}</span><span class="sb">/20`</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">export</span> <span class="p">{</span><span class="nx">update_player_counter</span><span class="p">}</span>
-</code></pre></div>
+
+<pre><code class="language-javascript">const player_count = document.getElementById(&quot;score-div&quot;);
+function update_player_counter(state_handler) {
+  const score = state_handler.player_registry.get_players().length;
+  player_count.innerText = `${players}/20`;
+}
+export {update_player_counter}
+</code></pre>
+
 <p>The function <code>update_player_counter</code> had to be called elsewhere every time a new player spawned or died.
 Throughout the code base there were three incentations of this function.  Two in the <code>player registry</code>.</p>
 
 <p><code>player_registry.js</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">update_player_counter</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../ui/update_player_counter&#39;</span>
-<span class="k">class</span> <span class="nx">PlayerRegistry</span> <span class="p">{</span>
-  <span class="nx">constructor</span><span class="p">(</span><span class="nx">state_handler</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">state_handler</span> <span class="o">=</span> <span class="nx">state_handler</span>
-  <span class="p">}</span>
-  <span class="p">...</span>
-  <span class="nx">add_player</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="p">{</span>
-    <span class="p">...</span>
-    <span class="nx">update_player_counter</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state_handler</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="p">...</span>
-  <span class="nx">remove_player</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="p">{</span>
-    <span class="p">...</span>
-    <span class="nx">update_player_counter</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state_handler</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+
+<pre><code class="language-javascript">import {update_player_counter} from '../../ui/update_player_counter'
+class PlayerRegistry {
+  constructor(state_handler) {
+    this.state_handler = state_handler
+  }
+  ...
+  add_player(player) {
+    ...
+    update_player_counter(this.state_handler)
+  }
+  ...
+  remove_player(player) {
+    ...
+    update_player_counter(this.state_handler)
+  }
+}
+</code></pre>
+
 <p>And one in the <code>state handler</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">update_player_counter</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../ui/update_player_counter&#39;</span>
-<span class="k">class</span> <span class="nx">StateHandler</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="nx">listen_for_polls</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">update_socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;poll&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">game_state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-      <span class="p">...</span>
-      <span class="nx">update_player_counter</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-    <span class="p">})</span>
-  <span class="p">}</span>
-  <span class="p">...</span>
-<span class="p">}</span>
-</code></pre></div>
+
+<pre><code class="language-javascript">import {update_player_counter} from '../../ui/update_player_counter'
+class StateHandler {
+  ...
+  listen_for_polls() {
+    update_socket.on(&quot;poll&quot;, (game_state) =&gt; {
+      ...
+      update_player_counter(this);
+    })
+  }
+  ...
+}
+</code></pre>
+
 <p>As an isolated incident this was not terribly painful, but when the function calls across all UI interactions accumulated the resulting code was difficult to understand and maintain.
 The resulting code tightly coupled UI interactions and state management.
 Other classes end up being responsible for triggering UI updates.</p>
@@ -189,7 +111,7 @@ Almost every method, ui interaction, etc needed to store a copy of a state handl
 This mean&rsquo;t every time I registered an event listener I would need a state handler handily stored nearby.
 By the time I had a complete frontend the name <code>state_handler</code> showed up in well over <code>70%</code> of files.</p>
 
-<h1 id="decoupling-the-code-with-tiny-pubsub">Decoupling the Code With Tiny Pubsub<a href="#decoupling-the-code-with-tiny-pubsub" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h1 id="decoupling-the-code-with-tiny-pubsub">Decoupling the Code With Tiny Pubsub</h1>
 
 <p>This is a shameless plug for the self authored javascript library I wrote to solve this: <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.
 It&rsquo;s nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
@@ -198,22 +120,24 @@ Instead of explicitly calling functions, functions instead respond to data emitt
 <p>But what it does do is encourage a <a href="https://gameprogrammingpatterns.com/decoupling-patterns.html">decoupled codebase</a> through the event driven programming paradigm.</p>
 
 <p>Here is a self contained example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">subscribe</span><span class="p">,</span> <span class="nx">publish</span><span class="p">,</span> <span class="nx">unsubscribe</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;tiny-pubsub&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">CHATROOM_JOIN</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./event_definitions&#39;</span>
-<span class="kd">let</span> <span class="nx">logJoin</span> <span class="o">=</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> has joined the room!`</span><span class="p">);</span>
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">CHATROOM_JOIN</span><span class="p">,</span> <span class="nx">logJoin</span><span class="p">)</span>
-<span class="nx">publish</span><span class="p">(</span><span class="nx">CHATROOM_JOIN</span><span class="p">,</span> <span class="s2">&#34;Luke&#34;</span><span class="p">)</span>
-<span class="c1">// &gt; Luke has joined the room!
-</span><span class="c1"></span><span class="nx">unsubscribe</span><span class="p">(</span><span class="nx">CHATROOM_JOIN</span><span class="p">,</span> <span class="nx">logJoin</span><span class="p">)</span>
-<span class="nx">publish</span><span class="p">(</span><span class="nx">CHATROOM_JOIN</span><span class="p">,</span> <span class="s2">&#34;Luke&#34;</span><span class="p">)</span>
-<span class="c1">// nothing will print
-</span><span class="c1"></span>
-<span class="c1">// alternatively you can use strings as event identifiers
-</span><span class="c1"></span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">&#34;chatroom-join&#34;</span><span class="p">,</span> <span class="nx">logJoin</span><span class="p">)</span>
-<span class="nx">publish</span><span class="p">(</span><span class="s2">&#34;chatroom-join&#34;</span><span class="p">,</span> <span class="s2">&#34;Luke&#34;</span><span class="p">)</span>
-<span class="c1">// &gt; Luke has joined the room!
-</span></code></pre></div>
-<h1 id="the-refactored-model">The Refactored Model<a href="#the-refactored-model" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<pre><code class="language-javascript">import {subscribe, publish, unsubscribe} from 'tiny-pubsub'
+import {CHATROOM_JOIN} from './event_definitions'
+let logJoin = (name) =&gt; console.log(`${name} has joined the room!`);
+subscribe(CHATROOM_JOIN, logJoin)
+publish(CHATROOM_JOIN, &quot;Luke&quot;)
+// &gt; Luke has joined the room!
+unsubscribe(CHATROOM_JOIN, logJoin)
+publish(CHATROOM_JOIN, &quot;Luke&quot;)
+// nothing will print
+
+// alternatively you can use strings as event identifiers
+subscribe(&quot;chatroom-join&quot;, logJoin)
+publish(&quot;chatroom-join&quot;, &quot;Luke&quot;)
+// &gt; Luke has joined the room!
+</code></pre>
+
+<h1 id="the-refactored-model">The Refactored Model</h1>
 
 <p>The refactored model is significantly more distributed in terms of code organization.
 In the new model each entity is described by series of callbacks defined in a single file.
@@ -221,60 +145,66 @@ The callbacks respond to published events and update the state of the entities.
 These events are published from other self contained modules that are solely responsible for firing these events.</p>
 
 <p>For example, the file <code>tick.js</code> looks something like this&hellip;</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">TICK</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../events&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">game_time</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../util/game_time&#39;</span>
 
-<span class="kd">function</span> <span class="nx">game_loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">publish</span><span class="p">(</span><span class="nx">TICK</span><span class="p">,</span> <span class="nx">game_time</span><span class="p">());</span>
-  <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">game_loop</span><span class="p">)</span>
-<span class="p">}</span>
+<pre><code class="language-javascript">import {TICK} from '../events'
+import {game_time} from '../util/game_time'
 
-<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;load&#34;</span><span class="p">,</span> <span class="nx">game_loop</span><span class="p">);</span>
-</code></pre></div>
+function game_loop() {
+  publish(TICK, game_time());
+  requestAnimationFrame(game_loop)
+}
+
+document.addEventListener(&quot;load&quot;, game_loop);
+</code></pre>
+
 <p>Each event file is responsible for only one type of event.
 Some events are triggered by other events and mutate the data a bit for use by other modules.</p>
 
 <p>The UI interactions are also handled in self contained modules.
 Here is the new version of <code>score.js</code>&hellip;</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">subscribe</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;tiny-pubsub&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">PLAYER</span><span class="p">,</span> <span class="nx">POLL</span><span class="p">,</span> <span class="nx">PLAYER_DEATH</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../events&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">get_players</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../entities/players&#39;</span>
-<span class="k">const</span> <span class="nx">player_count</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;score-div&#34;</span><span class="p">);</span>
-<span class="k">const</span> <span class="nx">update_player_count</span> <span class="o">=</span>  <span class="p">({</span><span class="nx">players</span><span class="o">:</span> <span class="nx">players</span><span class="p">})</span> <span class="p">=&gt;</span> <span class="nx">player_count</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">get_players</span><span class="p">().</span><span class="nx">length</span><span class="si">}</span><span class="sb">/20`</span><span class="p">;</span>
 
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">PLAYER</span><span class="p">,</span> <span class="nx">update_player_count</span><span class="p">);</span>
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">PLAYER_DEATH</span><span class="p">,</span> <span class="nx">update_player_count</span><span class="p">);</span>
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">POLL</span><span class="p">,</span> <span class="nx">update_player_count</span><span class="p">);</span>
-</code></pre></div>
+<pre><code class="language-javascript">import {subscribe} from 'tiny-pubsub'
+import {PLAYER, POLL, PLAYER_DEATH} from '../events'
+import {get_players} from '../entities/players'
+const player_count = document.getElementById(&quot;score-div&quot;);
+const update_player_count =  ({players: players}) =&gt; player_count.innerText = `${get_players().length}/20`;
+
+subscribe(PLAYER, update_player_count);
+subscribe(PLAYER_DEATH, update_player_count);
+subscribe(POLL, update_player_count);
+</code></pre>
+
 <p>The state management is implemented through small self contained modules.
 Here is the example for bullet state management:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">subscribe</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;tiny-pubsub&#34;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">BULLET</span><span class="p">,</span> <span class="nx">POLL</span><span class="p">,</span> <span class="nx">REMOVE_BULLET</span><span class="p">,</span> <span class="nx">TICK</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../events&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">update_bullet</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./update_bullet&#39;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">array_to_map_on_key</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../util/array_to_map_on_key&#39;</span>
 
-<span class="c1">// state
-</span><span class="c1"></span><span class="kd">let</span> <span class="nx">bullets</span> <span class="o">=</span> <span class="p">{};</span>
+<pre><code class="language-javascript">import {subscribe} from &quot;tiny-pubsub&quot;
+import {BULLET, POLL, REMOVE_BULLET, TICK} from '../events'
+import {update_bullet} from './update_bullet'
+import {array_to_map_on_key} from '../util/array_to_map_on_key'
 
-<span class="c1">// subscription
-</span><span class="c1"></span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">BULLET</span><span class="p">,</span> <span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">bullet</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">bullet</span><span class="p">)</span>
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">TICK</span><span class="p">,</span> <span class="p">(</span><span class="nx">current_time</span><span class="p">,</span> <span class="nx">world</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">bullets</span> <span class="o">=</span> <span class="nx">bullets</span>
-    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">update_bullet</span><span class="p">(</span><span class="nx">bullet</span><span class="p">,</span> <span class="nx">current_time</span><span class="p">,</span> <span class="nx">world</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">bullet</span> <span class="p">=&gt;</span> <span class="nx">bullet</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
-<span class="p">})</span>
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">POLL</span><span class="p">,</span> <span class="p">({</span> <span class="nx">bullets</span><span class="o">:</span> <span class="nx">bullets_poll</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">bullets</span> <span class="o">=</span> <span class="nx">array_to_map_on_key</span><span class="p">(</span><span class="nx">bullets_poll</span><span class="p">,</span> <span class="s2">&#34;id&#34;</span><span class="p">)</span>
-<span class="p">})</span>
-<span class="nx">subscribe</span><span class="p">(</span><span class="nx">REMOVE_BULLET</span><span class="p">,</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">delete</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">id</span><span class="p">])</span>
+// state
+let bullets = {};
 
-<span class="c1">// exported functions
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">get_bullets</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">bullets</span><span class="p">).</span><span class="nx">map</span><span class="p">((</span><span class="nx">uuid</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">bullets</span><span class="p">[</span><span class="nx">uuid</span><span class="p">])</span>
-<span class="p">}</span>
+// subscription
+subscribe(BULLET, bullet =&gt; bullets[bullet.id] = bullet)
+subscribe(TICK, (current_time, world) =&gt; {
+  bullets = bullets
+    .map(bullet =&gt; update_bullet(bullet, current_time, world))
+    .filter(bullet =&gt; bullet != null);
+})
+subscribe(POLL, ({ bullets: bullets_poll }) =&gt; {
+  bullets = array_to_map_on_key(bullets_poll, &quot;id&quot;)
+})
+subscribe(REMOVE_BULLET, (id) =&gt; delete bullets[id])
 
-<span class="k">export</span> <span class="p">{</span><span class="nx">get_bullets</span><span class="p">}</span>
-</code></pre></div>
+// exported functions
+function get_bullets() {
+  return Object.keys(bullets).map((uuid) =&gt; bullets[uuid])
+}
+
+export {get_bullets}
+</code></pre>
+
 <p>Everything remains self contained and simple.
 Here is an organizational diagram displaying the event based frontend architecture.</p>
 
@@ -286,7 +216,7 @@ Here is an organizational diagram displaying the event based frontend architectu
 </figure>
 
 
-<h1 id="result-of-using-event-driven-programming">Result of Using Event Driven Programming<a href="#result-of-using-event-driven-programming" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h1 id="result-of-using-event-driven-programming">Result of Using Event Driven Programming</h1>
 
 <p>Rewriting <a href="https://bulletz.io">bulletz.io</a> to use an event driven model resulted in strongly decoupled logic.
 The frontend code for bulletz.io is significantly simpler and easier to follow.
@@ -300,67 +230,5 @@ The library I wrote for the problem is called tiny-pubsub and the Github link ca
 
 <hr />
 
-			</div>
-
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://LukeWood.dev/tags/javascript">javascript</a></span><span class="tag"><a href="https://LukeWood.dev/tags/bulletz.io">bulletz.io</a></span><span class="tag"><a href="https://LukeWood.dev/tags/design-patterns">design patterns</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1097 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-07-11 20:13 -0700</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-		</div>
-		<div id="mailchimp" class="thin" style="margin-bottom: 1rem;">
-			
-    <!-- Begin Mailchimp Signup Form -->
-  <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-  <style type="text/css">
-  	#mc_embed_signup{clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
-  	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-  	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-  </style>
-  <div id="mc_embed_signup">
-  <form action="https://gmail.us3.list-manage.com/subscribe/post?u=690be7ba6bb2da04ebb3cb084&amp;id=30d3ffcf46" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      <div id="mc_embed_signup_scroll">
-  	<label for="mce-EMAIL">Dont miss any of my posts!</label>
-  	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_690be7ba6bb2da04ebb3cb084_30d3ffcf46" tabindex="-1" value=""></div>
-      <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background-color: #1971c2"></div>
-      </div>
-  </form>
-  </div>
-
-
-		</div>
-		<div id="comments" class="thin">
-</div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://LukeWood.dev/">Luke Wood</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://LukeWood.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
-
-
-	<script src="https://LukeWood.dev/js/main.min.4326b5aeaadac0f970a5d2577df306aabb732e03c8f89a086f3dbad94258845f.js" integrity="sha256-Qya1rqrawPlwpdJXffMGqrtzLgPI+JoIbz262UJYhF8="></script>
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-139935010-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
 </body>
-
 </html>

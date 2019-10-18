@@ -1,9 +1,16 @@
+{{ define "extra-header" }}
+  {{ partial "stylesheet.html" "list" }}
+{{ end }}
 {{ define "main" }}
-  <h1>Posts</h1>
-  {{ range .Pages }}
-    <article>
-      <h2>{{ .Title }}</h2>
-      {{ .Content }}
+  <div class="bg-img"></div>
+  <div class="list-container">
+    <article class="list-content">
+      <h1> {{ .Title }}</h1>
+      <ol>
+      {{ range .Pages }}
+        <li><a href={{ .Permalink }}>{{ .Title }}</a></li>
+      {{ end }}
+      </ol>
     </article>
-  {{ end }}
+  </div>
 {{ end }}

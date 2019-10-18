@@ -1,13 +1,13 @@
 ---
-title: "OTP Supervisor Trees by Example: bulletz.io"
-date: 2019-05-19T18:18:12-07:00
+date: "2019-05-19T18:18:12-07:00"
 draft: true
-toc: false
 images:
-  - /img/backgrounds/crescent.jpg
+- /img/backgrounds/crescent.jpg
 tags:
-  - elixir
-  - supervisor trees
+- elixir
+- supervisor trees
+title: 'OTP Supervisor Trees by Example: bulletz.io'
+toc: false
 ---
 
 ## Pre-reqs

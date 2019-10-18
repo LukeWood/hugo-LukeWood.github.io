@@ -1,11 +1,11 @@
 ---
-title: "Architecting a Scalable Multiplayer Web Game"
-date: 2019-07-17T20:04:15-07:00
+date: "2019-07-17T20:04:15-07:00"
 draft: true
-toc: false
-images:
+images: null
 tags:
-  - untagged
+- untagged
+title: Architecting a Scalable Multiplayer Web Game
+toc: false
 ---
 
 In a few months I am having a soft launch for [bulletz.io](https://bulletz.io).

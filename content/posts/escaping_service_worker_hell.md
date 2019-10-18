@@ -1,12 +1,12 @@
 ---
-title: "Escaping Service Worker Hell"
-date: 2019-07-14T12:32:08-07:00
+date: "2019-07-14T12:32:08-07:00"
 draft: true
-toc: false
-images:
+images: null
 tags:
-  - javascript
-  - pwa
+- javascript
+- pwa
+title: Escaping Service Worker Hell
+toc: false
 ---
 
 Service workers allow web developers to run custom logic around web requests.
