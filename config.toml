@@ -15,7 +15,6 @@ googleAnalytics = "UA-139935010-1"
   name = "Luke Wood"
 
 [params]
-
   images = [
     "https://LukeWood.dev/img/index/ballpark.jpg"
   ]

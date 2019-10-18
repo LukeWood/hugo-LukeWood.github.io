@@ -14,6 +14,13 @@
       <a class="home-link" href="/projects">Projects</a>
       <a class="home-link" href="/photos">Photos</a>
     </section>
+    <section class="row">
+      {{- with .Site.Params.social }}
+  			<div class="socials">
+  				{{ partialCached "social-icons.html" . }}
+  			</div>
+			{{- end }}
+    </section>
   </div>
 </main>
 {{ end }}

@@ -1,0 +1,10 @@
+.socials {
+  margin-top: .5rem;
+}
+a.social {
+  margin: .5rem;
+  color: var(--text_color);
+  &:hover {
+    color: var(--text_color_dark);
+  }
+}

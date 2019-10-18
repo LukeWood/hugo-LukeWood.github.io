@@ -18,6 +18,10 @@ $max-content-width: 48rem;
   border-right: solid 2px  var(--text_color);
   padding: 1rem;
 
+  * {
+    max-width: 100%;
+  }
+
   @media screen and (max-width: $max-content-width) {
     border: none;
   }

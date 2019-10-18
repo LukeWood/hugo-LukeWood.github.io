@@ -1,13 +1,9 @@
+@import "_social";
+
 body {
   padding: 0;
   margin: 0;
   background-color: var(--background_color);
-}
-
-h1 {
-  font-size: 10vw;
-  margin: 0;
-  padding: 0;
 }
 
 p {
@@ -27,11 +23,25 @@ p {
   min-height: 100vh;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+}
+
+$h1-size: 6rem;
 h1.site-title {
   color: white;
+  font-size: $h1-size;
+  line-height: $h1-size;
+  margin: .5rem;
+  padding: 0;
 }
 
 a.home-link {
+  font-size: 1.2rem;
   color: var(--primary_color);
   margin: .5rem;
   &:hover {
