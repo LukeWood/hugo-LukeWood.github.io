@@ -1,20 +1,26 @@
 :root {
   --background_color: #121212;
   --primary_color: #82b1ff;
-  --primary_color_light: #ffbcaf;
-  --primary_color_dark: #c85a54;
-  --secondary_color: #ffe57f;
-  --secondary_color_light: #ffffb0;
-  --secondary_color_dark: #cab350;
+  --primary_color_light: #b6e3ff;
+  --primary_color_dark: #4d82cb;
+  --secondary_color: #ff9e80;
+  --secondary_color_light: #ffd0b0;
+  --secondary_color_dark: #c96f53;
   --text_color: #FFFFFF;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Cairo:400,700&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
   background-color: var(--background_color);
+  font-family: 'Cairo', sans-serif;
+  color: white;
 }
 
 .bg-img {

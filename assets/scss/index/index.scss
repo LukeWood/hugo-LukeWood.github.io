@@ -20,13 +20,21 @@ p {
   align-items: center;
 }
 
-.option {
-  margin: 1rem;
-}
-
 .vertical-center {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   min-height: 100vh;
+}
+
+h1.site-title {
+  color: white;
+}
+
+a.home-link {
+  color: var(--primary_color);
+  margin: .5rem;
+  &:hover {
+    color: var(--primary_color_dark);
+  }
 }
