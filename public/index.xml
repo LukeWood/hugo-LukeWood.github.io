@@ -14,23 +14,24 @@
     
     <item>
       <title>Decouple Your Javascript Using Event Driven Programming</title>
-      <link>https://LukeWood.dev/posts/frontend_bulletz_refactor/</link>
+      <link>https://LukeWood.dev/posts/serious/frontend_bulletz_refactor/</link>
       <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
       
-      <guid>https://LukeWood.dev/posts/frontend_bulletz_refactor/</guid>
+      <guid>https://LukeWood.dev/posts/serious/frontend_bulletz_refactor/</guid>
       <description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
 Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description>
     </item>
     
     <item>
-      <title>About Me</title>
+      <title>About</title>
       <link>https://LukeWood.dev/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://LukeWood.dev/about/</guid>
-      <description>I This blog is dedicated to sharing knowledge on both technical and non-technical topics in a useful way for others.
-The target demographic is primarily software engineers who may not have been exposed to some of my niche areas of knowledge.
-Each blog post has a picture of the place I was when I wrote it. I did this to add a little context to who I am as a person outside of my life as a developer.</description>
+      <description>🏖️ San Diego Native 🏖️
+🎿 Ski all winter 🎿
+🏄‍♂️ Surf 3-5x/Week 🏄‍♂️
+ </description>
     </item>
     
     <item>
