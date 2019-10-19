@@ -79,3 +79,22 @@ a {
     color: var(--secondary_color_dark);
   }
 }
+<<<<<<< HEAD
+=======
+
+nav.menu {
+  flex-grow: 0;
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-around;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, .09);
+  border-bottom: solid 2px var(--text_color);
+  a {
+    text-decoration: none;
+  }
+}
+>>>>>>> 30825573fbeacf76189989d0a78182d920c3de79
