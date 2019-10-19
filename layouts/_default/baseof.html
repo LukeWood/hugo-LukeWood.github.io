@@ -14,14 +14,12 @@
     {{ block "bg-img" . }}
     <div class="bg-img"></div>
     {{ end }}
-    <div class="baseof-container">
-      {{ block "menu" . }}
-        {{ partial "menu.html" .}}
+    {{ block "menu" . }}
+      {{ partial "menu.html" .}}
+    {{ end }}
+    <div class="main-container">
+      {{ block "main" . }}
       {{ end }}
-      <div class="main-container">
-        {{ block "main" . }}
-        {{ end }}
-      </div>
     </div>
   </body>
 </html>
