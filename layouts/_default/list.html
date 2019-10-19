@@ -1,0 +1,17 @@
+{{ define "extra-header" }}
+  {{ partial "stylesheet.html" "list" }}
+{{ end }}
+{{ define "main" }}
+<main class="list-content">
+    <ul class="post-list">
+      {{- range .Pages }}
+      <a class="list-link" href="{{.Permalink}}">
+      <li class="post-item">
+          <span class="post-title">{{.Title}}</span>
+          <span class="post-day">{{ .Date.Format .Site.Params.dateform }}</span>
+      </li>
+      </a>
+      {{- end }}
+    </ul>
+</main>
+{{ end }}

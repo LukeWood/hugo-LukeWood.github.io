@@ -1,0 +1,30 @@
+@import "figures";
+@import "code";
+
+$max-content-width: 48rem;
+
+.container {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.content {
+  width: 100%;
+  min-height: 100vh;
+  max-width: $max-content-width;
+  background-color: rgba(255, 255, 255, .07);
+  border-left: solid 2px  var(--text_color);
+  border-right: solid 2px  var(--text_color);
+  padding: 1rem;
+
+  * {
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: $max-content-width) {
+    border: none;
+  }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{block "base-header" .}}
+    {{ partial "head.html" .}}
+    {{ end }}
+
+    {{ partial "stylesheet.html" "base" }}
+
+    {{ block "extra-header" . }}
+    {{ end }}
+  </head>
+  <body>
+    {{ block "bg-img" . }}
+    <div class="bg-img"></div>
+    {{ end }}
+    <div class="baseof-container">
+      {{ block "menu" . }}
+        {{ partial "menu.html" .}}
+      {{ end }}
+      <div class="main-container">
+        {{ block "main" . }}
+        {{ end }}
+      </div>
+    </div>
+  </body>
+</html>

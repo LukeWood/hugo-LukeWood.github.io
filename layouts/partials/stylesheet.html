@@ -1,0 +1,8 @@
+{{ $path := printf "scss/%s/%s.scss" . . }}
+{{ $sass         := resources.Get $path}}
+{{ $sassIncludes := (slice "node_modules/") }}
+{{ $cssTarget    := printf "%s.css" . }}
+{{ $cssOpts      := (dict "targetPath" $cssTarget "enableSourceMap" true "includePaths" $sassIncludes "outputStyle" "compressed") }}
+
+{{ $css := $sass | toCSS $cssOpts | resources.PostCSS | fingerprint }}
+<link rel="stylesheet" type="text/css" href="{{ $css.Permalink | absURL }}" integrity="{{ $css.Data.Integrity }}">
