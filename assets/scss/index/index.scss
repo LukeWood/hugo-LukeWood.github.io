@@ -43,9 +43,14 @@ h1.site-title {
 a.home-link {
   font-size: 1.2rem;
   color: var(--primary_color);
+  text-decoration: none;
   margin: .5rem;
   &:hover {
     color: var(--primary_color_dark);
+  }
+
+  @media screen and (max-width: 600px) and (orientation: portrait) {
+    margin: 0;
   }
 }
 

@@ -15,10 +15,7 @@
       {{- end }}
     </section>
     <section class="row home-link-container">
-      <a class="home-link" href="/posts">Blog</a>
-      <a class="home-link" href="/snippets">Snippets</a>
-      <a class="home-link" href="/projects">Projects</a>
-      <a class="home-link" href="/photos">Photos</a>
+      {{ partialCached "common/menu.html" . }}
     </section>
   </div>
 </main>

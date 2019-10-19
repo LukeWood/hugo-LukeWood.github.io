@@ -35,3 +35,17 @@ googleAnalytics = "UA-139935010-1"
   snippet = "snippets"
   project = "projects"
   photo = "photos"
+
+[menu]
+  [[menu.main]]
+    name = "blog"
+    url = "/posts"
+  [[menu.main]]
+    name = "snippets"
+    url = "/snippets"
+  [[menu.main]]
+    name = "projects"
+    url = "/projects"
+  [[menu.main]]
+    name = "photos"
+    url = "/photos"
