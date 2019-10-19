@@ -15,6 +15,10 @@ googleAnalytics = "UA-139935010-1"
   name = "Luke Wood"
 
 [params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
   images = [
     "https://LukeWood.dev/img/index/ballpark.jpg"
   ]
@@ -30,6 +34,10 @@ googleAnalytics = "UA-139935010-1"
     name = "linkedin"
     url = "https://www.linkedin.com/in/luke-wood-886634102/"
 
+  [[params.social]]
+    name = "email"
+    url = "mailto:me@lukewood.dev"
+
 [taxonomies]
   post = "posts"
   snippet = "snippets"
@@ -41,11 +49,14 @@ googleAnalytics = "UA-139935010-1"
     name = "Blog"
     url = "/posts"
   [[menu.main]]
-    name = "Snippets"
-    url = "/snippets"
-  [[menu.main]]
-    name = "Projects"
-    url = "/projects"
-  [[menu.main]]
-    name = "Photos"
-    url = "/photos"
+    name = "About"
+    url = "/about"
+  #[[menu.main]]
+  #  name = "Snippets"
+  #  url = "/snippets"
+  #[[menu.main]]
+  #  name = "Projects"
+  #  url = "/projects"
+  #[[menu.main]]
+  #  name = "Photos"
+  #  url = "/photos"

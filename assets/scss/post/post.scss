@@ -5,6 +5,7 @@ $max-content-width: 48rem;
 
 .container {
   width: 100%;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -12,6 +13,7 @@ $max-content-width: 48rem;
 
 .content {
   width: 100%;
+  min-height: 100vh;
   max-width: $max-content-width;
   background-color: rgba(255, 255, 255, .07);
   border-left: solid 2px  var(--text_color);

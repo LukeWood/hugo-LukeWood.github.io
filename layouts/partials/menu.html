@@ -1,6 +1,6 @@
-<footer class="menu">
-<a class="home-link" href="/">Home</a>
-{{ range .Site.Menus.main }}
-  <a class="home-link" href={{ .URL }}>{{.Name}}</a>
-{{ end }}
-</footer>
+<nav class="menu">
+  <a class="top-level-home-link" href="/">Home</a>
+  {{ range .Site.Menus.main }}
+    <a class="home-link" href={{ .URL }}>{{.Name}}</a>
+  {{ end }}
+</nav>

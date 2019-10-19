@@ -1,0 +1,12 @@
+{{ define "extra-header" }}
+  {{ partial "stylesheet.html" "post" }}
+{{ end }}
+{{ define "main" }}
+  <main class="container">
+    <article class="content">
+    <h1>{{ .Title }}</h1>
+      {{ .Content }}
+      {{ partial "mailchimp.html" .}}
+    </article>
+  </main>
+{{ end }}
