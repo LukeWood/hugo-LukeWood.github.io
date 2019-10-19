@@ -18,6 +18,10 @@
   box-sizing: border-box;
 }
 
+html {
+  z-index: -1;
+  background-color: var(--background_color);
+}
 html, body {
   padding: 0;
   margin: 0;
@@ -47,9 +51,10 @@ body {
 }
 
 .bg-img {
+  z-index: 0;
   pointer-events: none;
   touch-action: none;
-  opacity: .05;
+  opacity: .035;
   background-image: url("/img/index/ballpark.jpg");
   width: 100%;
   height: 100%;
@@ -77,21 +82,5 @@ a {
   font-family: 'Cairo', sans-serif;
   &:hover {
     color: var(--secondary_color_dark);
-  }
-}
-
-nav.menu {
-  flex-grow: 0;
-  display: flex;
-  padding: 1rem;
-  align-items: center;
-  justify-content: space-around;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, .09);
-  border-bottom: solid 2px var(--text_color);
-  a {
-    text-decoration: none;
   }
 }

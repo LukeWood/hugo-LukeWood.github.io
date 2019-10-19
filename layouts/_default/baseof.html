@@ -11,6 +11,9 @@
     {{ end }}
   </head>
   <body>
+    {{ block "bg-img" . }}
+    <div class="bg-img"></div>
+    {{ end }}
     <div class="baseof-container">
       {{ block "menu" . }}
         {{ partial "menu.html" .}}
@@ -20,8 +23,5 @@
         {{ end }}
       </div>
     </div>
-    {{ block "bg-img" . }}
-    <div class="bg-img"></div>
-    {{ end }}
   </body>
 </html>

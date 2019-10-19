@@ -1,4 +1,5 @@
 @import "_social";
+@import "_menu";
 
 body {
   padding: 0;
@@ -24,6 +25,7 @@ p {
 }
 
 .row {
+  padding: .75rem;
   display: flex;
   flex-wrap: wrap;
   text-align: center;
@@ -31,31 +33,11 @@ p {
   justify-content: space-around;
 }
 
-$h1-size: 5rem;
+$h1-size: 4rem;
 h1.site-title {
   color: white;
   font-size: $h1-size;
   line-height: $h1-size;
-  margin: .5rem;
+  margin: 0;
   padding: 0;
-}
-
-a.home-link {
-  font-size: 1.2rem;
-  color: var(--primary_color);
-  text-decoration: none;
-  margin: .5rem;
-  &:hover {
-    color: var(--primary_color_dark);
-  }
-
-  @media screen and (max-width: 600px) and (orientation: portrait) {
-    margin: 0;
-  }
-}
-
-.home-link-container {
-  @media screen and (max-width: 600px) and (orientation: portrait) {
-    flex-direction: column;
-  }
 }

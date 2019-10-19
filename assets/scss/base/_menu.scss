@@ -1,19 +1,38 @@
-.top-level-home-link {
 
+.top-level-home-link {
+  color: var(--primary_color);
+  font-weight: 700;
+  &:hover {
+    color: var(--primary_color_dark);
+  }
 }
 
 nav.menu {
   flex-grow: 0;
   display: flex;
   padding: 1rem;
-  align-items: center;
-  justify-content: space-around;
+  align-items: stretch;
+  vertical-align: middle;
+  justify-content: space-between;
   bottom: 0;
   left: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, .09);
   border-bottom: solid 2px var(--text_color);
+
   a {
+    font-size: 1.2rem;
+    line-height: 100%;
+    vertical-align: bottom;
     text-decoration: none;
+  }
+
+  * {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  button {
+    padding: 0;
   }
 }
