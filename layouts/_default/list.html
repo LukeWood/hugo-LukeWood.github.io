@@ -4,14 +4,14 @@
 {{ define "main" }}
 <main class="list-content">
     <ul class="post-list">
-      {{- range .Pages }}
+      {{ range .Data.Pages }}
       <a class="list-link" href="{{.Permalink}}">
       <li class="post-item">
           <span class="post-title">{{.Title}}</span>
           <span class="post-day">{{ .Date.Format .Site.Params.dateform }}</span>
       </li>
       </a>
-      {{- end }}
+      {{ end }}
     </ul>
 </main>
 {{ end }}

@@ -40,9 +40,6 @@ googleAnalytics = "UA-139935010-1"
 
 [taxonomies]
   post = "posts"
-  snippet = "snippets"
-  project = "projects"
-  photo = "photos"
 
 [menu]
   [[menu.main]]
@@ -51,7 +48,7 @@ googleAnalytics = "UA-139935010-1"
     weight = 0
   [[menu.main]]
     name = "Blog"
-    url = "/posts"
+    url = "/post"
     weight = 1
   #[[menu.main]]
   #  name = "Snippets"

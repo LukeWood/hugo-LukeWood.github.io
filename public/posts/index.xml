@@ -12,18 +12,4 @@
     
     
   </channel>
-</rss>="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Decouple Your Javascript Using Event Driven Programming</title>
-      <link>https://LukeWood.dev/posts/frontend_bulletz_refactor/</link>
-      <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
-      
-      <guid>https://LukeWood.dev/posts/frontend_bulletz_refactor/</guid>
-      <description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description>
-    </item>
-    
-  </channel>
 </rss>
