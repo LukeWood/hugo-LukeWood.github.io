@@ -15,6 +15,10 @@ googleAnalytics = "UA-139935010-1"
   name = "Luke Wood"
 
 [params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
   images = [
     "https://LukeWood.dev/img/index/ballpark.jpg"
   ]
@@ -29,6 +33,10 @@ googleAnalytics = "UA-139935010-1"
   [[params.social]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/luke-wood-886634102/"
+
+  [[params.social]]
+    name = "email"
+    url = "mailto:me@lukewood.dev"
 
 [taxonomies]
   post = "posts"

@@ -2,14 +2,21 @@
   {{ partial "stylesheet.html" "list" }}
 {{ end }}
 {{ define "main" }}
-  <div class="list-container">
-    <article class="list-content">
-      <h1> {{ .Title }}</h1>
-      <ol>
-      {{ range .Pages }}
-        <li><a href={{ .Permalink }}>{{ .Title }}</a></li>
-      {{ end }}
-      </ol>
-    </article>
+{{- range .Data.Pages.GroupByDate "2006" }}
+<main class="list-content">
+  <div class="post-year" id="{{ .Key }}">
+    <h1>{{ .Key }}</h1>
+    <ul class="posts-list">
+      {{- range .Pages }}
+      <a class="list-link" href="{{.Permalink}}">
+      <li class="post-item">
+          <span class="post-title">{{.Title}}</span>
+          <span class="post-day">{{ .Date.Format .Site.Params.dateformShort }}</span>
+      </li>
+      </a>
+      {{- end }}
+    </ul>
   </div>
+</main>
+{{- end }}
 {{ end }}

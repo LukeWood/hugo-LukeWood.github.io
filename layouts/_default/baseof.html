@@ -15,13 +15,13 @@
     <div class="bg-img"></div>
     {{ end }}
     <div class="baseof-container">
+      {{ block "menu" . }}
+        {{ partial "menu.html" .}}
+      {{ end }}
       <div class="main-container">
         {{ block "main" . }}
         {{ end }}
       </div>
-      {{ block "menu" . }}
-        {{ partial "menu.html" .}}
-      {{ end }}
     </div>
   </body>
 </html>
