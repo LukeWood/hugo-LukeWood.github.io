@@ -16,12 +16,29 @@
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   padding: 0;
   margin: 0;
   background-color: var(--background_color);
   font-family: 'Cairo', sans-serif;
   color: white;
+}
+
+.baseof-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.main-container {
+  overflow: scroll;
+  flex: 1;
 }
 
 .bg-img {
@@ -56,5 +73,21 @@ a {
   font-family: 'Cairo', sans-serif;
   &:hover {
     color: var(--secondary_color_dark);
+  }
+}
+
+footer.menu {
+  flex-grow: 0;
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-around;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, .09);
+
+  a {
+    text-decoration: none;
   }
 }

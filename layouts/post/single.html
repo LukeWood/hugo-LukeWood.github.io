@@ -2,11 +2,11 @@
   {{ partial "stylesheet.html" "post" }}
 {{ end }}
 {{ define "main" }}
-  <div class="container">
+  <main class="container">
     <article class="content">
     <h1>{{ .Title }}</h1>
       {{ .Content }}
       {{ partial "mailchimp.html" .}}
     </article>
-  </div>
+  </main>
 {{ end }}

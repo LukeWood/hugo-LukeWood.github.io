@@ -13,7 +13,7 @@ $max-content-width: 48rem;
 .content {
   width: 100%;
   max-width: $max-content-width;
-  background-color: var(--background_color);
+  background-color: rgba(255, 255, 255, .07);
   border-left: solid 2px  var(--text_color);
   border-right: solid 2px  var(--text_color);
   padding: 1rem;

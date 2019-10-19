@@ -15,8 +15,12 @@
       {{- end }}
     </section>
     <section class="row home-link-container">
-      {{ partialCached "common/menu.html" . }}
+      {{ range .Site.Menus.main }}
+        <a class="home-link" href={{ .URL }}>{{.Name}}</a>
+      {{ end }}
     </section>
   </div>
 </main>
 {{ end }}
+
+{{ define "menu" }}<!-- required empty comment -->{{ end }}

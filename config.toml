@@ -38,14 +38,14 @@ googleAnalytics = "UA-139935010-1"
 
 [menu]
   [[menu.main]]
-    name = "blog"
+    name = "Blog"
     url = "/posts"
   [[menu.main]]
-    name = "snippets"
+    name = "Snippets"
     url = "/snippets"
   [[menu.main]]
-    name = "projects"
+    name = "Projects"
     url = "/projects"
   [[menu.main]]
-    name = "photos"
+    name = "Photos"
     url = "/photos"
