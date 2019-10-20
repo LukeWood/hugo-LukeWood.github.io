@@ -26,7 +26,7 @@ git subtree pull --prefix=public \
 rm -rf public
 
 msg "Building the website"
-hugo
+hugo --minify
 
 msg "Pushing the updated \`public\` folder to the \`$SOURCE\` branch"
 git add public
