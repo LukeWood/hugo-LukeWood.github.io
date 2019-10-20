@@ -1,7 +1,7 @@
 ---
 title: iOS Safari is the new webkit
 date: "2019-10-19T20:13:20-07:00"
-draft: false
+draft: true
 type: post
 ---
 
