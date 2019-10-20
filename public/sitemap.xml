@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://LukeWood.dev/post/frontend_bulletz_refactor/</loc>
-    <lastmod>2019-07-11T20:13:20-07:00</lastmod>
+    <loc>https://LukeWood.dev/post/meh/ios_safari_the_new_ie/</loc>
+    <lastmod>2019-10-19T20:13:20-07:00</lastmod>
   </url>
   
   <url>
     <loc>https://LukeWood.dev/</loc>
-    <lastmod>2019-07-11T20:13:20-07:00</lastmod>
+    <lastmod>2019-10-19T20:13:20-07:00</lastmod>
   </url>
   
   <url>
     <loc>https://LukeWood.dev/post/</loc>
+    <lastmod>2019-10-19T20:13:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/frontend_bulletz_refactor/</loc>
     <lastmod>2019-07-11T20:13:20-07:00</lastmod>
   </url>
   
