@@ -6,8 +6,8 @@
 		"stdin"
 	],
 	"sourcesContent": [
-		"#mc_embed_signup{\n  width:100%;\n  #mc-embedded-subscribe {\n    font-weight: 700;\n    background-color: var(--primary_color_dark);\n    color: white;\n    &:hover {\n      background-color: var(--primary_color);\n    }\n  }\n}\n"
+		"#mc_embed_signup{\n  width:100%;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  #mc-embedded-subscribe {\n    font-weight: 700;\n    background-color: var(--primary_color_dark);\n    color: white;\n    &:hover {\n      background-color: var(--primary_color);\n    }\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n  }\n}\n"
 	],
 	"names": [],
-	"mappings": "AAAA,AAAA,gBAAgB,AAAA,CACd,KAAK,CAAC,IAAI,CASX,AAVD,AAEE,gBAFc,CAEd,sBAAsB,AAAC,CACrB,WAAW,CAAE,GAAG,CAChB,gBAAgB,CAAE,yBAAyB,CAC3C,KAAK,CAAE,KAAK,CAIb,AATH,AAMI,gBANY,CAEd,sBAAsB,AAInB,MAAM,AAAC,CACN,gBAAgB,CAAE,oBAAoB,CACvC"
+	"mappings": "AAAA,AAAA,gBAAgB,AAAA,CACd,KAAK,CAAC,IAAI,CACV,kBAAkB,CAAE,IAAI,CACxB,eAAe,CAAE,IAAI,CACrB,UAAU,CAAE,IAAI,CAYjB,AAhBD,AAKE,gBALc,CAKd,sBAAsB,AAAC,CACrB,WAAW,CAAE,GAAG,CAChB,gBAAgB,CAAE,yBAAyB,CAC3C,KAAK,CAAE,KAAK,CAIZ,kBAAkB,CAAE,IAAI,CACxB,eAAe,CAAE,IAAI,CACrB,UAAU,CAAE,IAAI,CACjB,AAfH,AASI,gBATY,CAKd,sBAAsB,AAInB,MAAM,AAAC,CACN,gBAAgB,CAAE,oBAAoB,CACvC"
 }
