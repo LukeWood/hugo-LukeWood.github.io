@@ -25,7 +25,8 @@ $max-content-width: 48rem;
   }
 
   code {
-    font-size: .8rem;
+    font-size: .8rem !important;
+    -webkit-text-size-adjust: none;
   }
 
   @media screen and (max-width: $max-content-width) {
