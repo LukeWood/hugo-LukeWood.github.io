@@ -1,0 +1,21 @@
+{{ define "extra-header" }}
+  {{ partial "stylesheet.html" "projects" }}
+{{ end }}
+{{ define "main" }}
+<main class="list-content">
+  {{ range .Data.Pages }}
+  <a class="project-link" {{if isset .Params "link"}}target="_blank"{{end}} href="{{default .Permalink .Params.Link}}">
+    <div class="mdc-card">
+      {{ if isset .Params "thumbnail" }}
+        <img class="thumbnail" src={{.Params.Thumbnail}} alt={{.Params.Title}}/>
+      {{end}}
+
+      <h2 class="project-title">{{.Title}}</h2>
+
+      <p class="project-description">{{.Params.Description | markdownify}}</p>
+    </div>
+  </a>
+  {{ end }}
+
+</main>
+{{ end }}

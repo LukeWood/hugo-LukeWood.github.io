@@ -40,6 +40,7 @@ googleAnalytics = "UA-139935010-1"
 
 [taxonomies]
   post = "posts"
+  project = "projects"
 
 [menu]
   [[menu.main]]
@@ -47,9 +48,14 @@ googleAnalytics = "UA-139935010-1"
     url = "/about"
     weight = 0
   [[menu.main]]
+    name = "Projects"
+    url = "/project"
+    weight = 2
+  [[menu.main]]
     name = "Blog"
     url = "/post"
     weight = 1
+
   #[[menu.main]]
   #  name = "Snippets"
   #  url = "/snippets"

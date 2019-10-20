@@ -10,16 +10,14 @@
     {{ block "extra-header" . }}
     {{ end }}
   </head>
-  <body class="preload">
+  <body>
     {{ block "bg-img" . }}
     <div class="bg-img"></div>
     {{ end }}
     {{ block "menu" . }}
       {{ partial "menu.html" .}}
     {{ end }}
-    <div class="main-container">
-      {{ block "main" . }}
-      {{ end }}
-    </div>
+    {{ block "main" . }}
+    {{ end }}
   </body>
 </html>

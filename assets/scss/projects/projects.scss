@@ -1,0 +1,51 @@
+@import "@material/card/mdc-card";
+a.project-link {
+  color: var(--text_color);
+  text-decoration: none;
+  width: auto;
+  height: auto;
+}
+
+.list-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.mdc-card {
+  flex: 1 1 auto;
+  background-color: rgba(255, 255, 255, .15);
+  padding: 1rem;
+  overflow: hidden;
+  margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  @media only screen and (min-width:
+  413px) {
+    max-width:49%;
+  }
+  @media only screen and (min-width:
+  1000px) {
+    max-width:32.7%;
+  }
+}
+
+.project-title {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+img.thumbnail {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+p.project-description {
+  padding: 0;
+  margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
