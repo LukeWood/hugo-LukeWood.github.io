@@ -42,6 +42,8 @@ a.list-link {
   text-align: left;
   text-decoration: none;
 
+  transition: border var(--transition_duration), color var(--transition_duration);
+
   &:hover {
     color: var(--text_color_dark);
     border-bottom: dashed 1px var(--text_color_dark);
@@ -68,13 +70,6 @@ ul {
   margin: 0;
   padding: 0;
 }
-h1 {
-  color: var(--primary_color);
-  @media screen and (max-width: 48rem) {
-    display: none;
-  }
-}
-
 
 ol li a {
   color: var(--secondary_color);

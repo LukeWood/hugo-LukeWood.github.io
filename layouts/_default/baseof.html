@@ -10,7 +10,7 @@
     {{ block "extra-header" . }}
     {{ end }}
   </head>
-  <body>
+  <body class="preload">
     {{ block "bg-img" . }}
     <div class="bg-img"></div>
     {{ end }}
@@ -19,5 +19,6 @@
     {{ end }}
     {{ block "main" . }}
     {{ end }}
+    <script>window.addEventListener('load', () => document.body.classList.remove("preload"))</script>
   </body>
 </html>

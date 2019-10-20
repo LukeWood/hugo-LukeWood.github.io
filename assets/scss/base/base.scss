@@ -1,4 +1,3 @@
-$background_color: #121212;
 
 :root {
   --background_color: #121212;
@@ -10,6 +9,13 @@ $background_color: #121212;
   --secondary_color_dark: #cacc5d;
   --text_color: #FFFFFF;
   --text_color_dark: #BBBBBB;
+  --transition_duration: .3s;
+}
+
+body.preload {
+  * {
+    transition: none !important;
+  }
 }
 
 @import "menu";
@@ -22,7 +28,6 @@ $background_color: #121212;
 }
 
 html {
-  overflow-x: hidden;
   z-index: -2;
   background-color: var(--background_color);
 }
@@ -35,7 +40,6 @@ body {
   padding: 0;
   margin: 0;
   overflow-y: scroll;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -71,6 +75,7 @@ p {
 a {
   color: var(--secondary_color);
   font-family: 'Cairo', sans-serif;
+  transition: color var(--transition_duration);
   &:hover {
     color: var(--secondary_color_dark);
   }
