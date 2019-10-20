@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"file": "mailchimp.css",
+	"sourceRoot": "/Users/yeti/workspace/lukewood.github.io",
+	"sources": [
+		"stdin"
+	],
+	"sourcesContent": [
+		"#mc_embed_signup{\n  width:100%;\n  #mc-embedded-subscribe {\n    font-weight: 700;\n    background-color: var(--primary_color_dark);\n    color: white;\n    &:hover {\n      background-color: var(--primary_color);\n    }\n  }\n}\n"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,gBAAgB,AAAA,CACd,KAAK,CAAC,IAAI,CASX,AAVD,AAEE,gBAFc,CAEd,sBAAsB,AAAC,CACrB,WAAW,CAAE,GAAG,CAChB,gBAAgB,CAAE,yBAAyB,CAC3C,KAAK,CAAE,KAAK,CAIb,AATH,AAMI,gBANY,CAEd,sBAAsB,AAInB,MAAM,AAAC,CACN,gBAAgB,CAAE,oBAAoB,CACvC"
+}
