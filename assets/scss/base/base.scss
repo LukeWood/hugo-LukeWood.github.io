@@ -5,9 +5,9 @@
   --primary_color: #82b1ff;
   --primary_color_light: #b6e3ff;
   --primary_color_dark: #4d82cb;
-  --secondary_color: #ff9e80;
-  --secondary_color_light: #ffd0b0;
-  --secondary_color_dark: #c96f53;
+  --secondary_color: #ffff8d;
+  --secondary_color_light: #ffffbf;
+  --secondary_color_dark: #cacc5d;
   --text_color: #FFFFFF;
   --text_color_dark: #BBBBBB;
 }
@@ -45,7 +45,7 @@ body {
   z-index: -1;
   pointer-events: none;
   touch-action: none;
-  opacity: .035;
+  opacity: .025;
   background-image: url("/img/index/ballpark.jpg");
   width: 100%;
   height: 100%;
