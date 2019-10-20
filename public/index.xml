@@ -7,21 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright Luke Wood 2019</copyright>
-    <lastBuildDate>Sat, 19 Oct 2019 20:13:20 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jul 2019 20:13:20 -0700</lastBuildDate>
     
 	<atom:link href="https://LukeWood.dev/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>iOS Safari is the new webkit</title>
-      <link>https://LukeWood.dev/post/meh/ios_safari_the_new_ie/</link>
-      <pubDate>Sat, 19 Oct 2019 20:13:20 -0700</pubDate>
-      
-      <guid>https://LukeWood.dev/post/meh/ios_safari_the_new_ie/</guid>
-      <description> Browser bar??? Seriously
- webkit button style&amp;hellip;. dude really
-  </description>
-    </item>
     
     <item>
       <title>Decouple Your Javascript Using Event Driven Programming</title>
