@@ -24,6 +24,10 @@ $max-content-width: 48rem;
     max-width: 100%;
   }
 
+  code {
+    font-size: .8rem;
+  }
+
   @media screen and (max-width: $max-content-width) {
     border: none;
   }
