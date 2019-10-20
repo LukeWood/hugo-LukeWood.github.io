@@ -1,6 +1,8 @@
 @import "_social";
 @import "_menu";
 
+html, body, .main-container {margin: 0; height: 100%; overflow: hidden}
+
 p {
   color: var(--text_color);
 }
