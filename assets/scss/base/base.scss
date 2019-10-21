@@ -19,6 +19,7 @@ body.preload {
 }
 
 @import "menu";
+@import "material_icons";
 
 @import url('https://fonts.googleapis.com/css?family=Cairo:400,700&display=swap');
 
@@ -49,7 +50,7 @@ body {
   z-index: -1;
   pointer-events: none;
   touch-action: none;
-  opacity: .05;
+  opacity: .035;
   background-image: url("/img/index/ballpark.jpg");
   width: 100%;
   height: 100%;
@@ -78,5 +79,16 @@ a {
   transition: color var(--transition_duration);
   &:hover {
     color: var(--secondary_color_dark);
+  }
+}
+
+a.no-decoration {
+  text-decoration: none;
+}
+
+a.text-color {
+  color: var(--text_color);
+  &:hover {
+    color: var(--text_color_dark);
   }
 }

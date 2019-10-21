@@ -5,16 +5,20 @@
 <div class="projects-grid-wrapper">
   <main class="projects-grid">
     {{ range .Data.Pages }}
-      <div class="mdc-card" onclick="window.location={{.Params.Link}}">
+      <div class="mdc-card">
         {{ if isset .Params "thumbnail" }}
           <center><img class="thumbnail" src={{.Params.Thumbnail}} alt={{.Params.Title}}/></center>
-        {{else}}
-          <h2 class="project-title">{{.Title}}</h2>
         {{end}}
-        <p class="project-description">{{.Params.Description | markdownify}}</p>
+        <h3 class="project-title">{{.Title}}</h3>
+        <div class="project-description">{{.Params.Description | markdownify}}</div>
+        <div style="flex-grow: 1;"></div>
         <div class="actions-container">
+          <div class="text-actions">
+          </div>
+          <div class="icon-actions">
           {{if isset .Params "twitter"}}{{.Params.Twitter}}{{end}}
-          {{if isset .Params "link"}}<a class="visit" target="_blank" href="{{.Params.Link}}">visit</a>{{end}}
+          {{if isset .Params "link"}}<a class="visit text-color no-decoration material-icon" target="_blank" href="{{.Params.Link}}">launch</a>{{end}}
+          </div>
         </div>
       </div>
     {{ end }}

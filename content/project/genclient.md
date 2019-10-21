@@ -2,6 +2,6 @@
 title: GenClient
 type: project
 draft: false
-description: GenClient is an Elixir metaprogramming library that generates boilerplate GenServer code.  [Available on Github.](https://github.com/LukeWood/GenClient).
+description: Elixir metaprogramming library that generates boilerplate [GenServer](https://hexdocs.pm/elixir/GenServer.html) code.
 link: "https://github.com/LukeWood/GenClient"
 ---
