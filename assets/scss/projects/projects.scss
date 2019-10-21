@@ -1,5 +1,24 @@
 @import "@material/card/mdc-card";
 
+
+.projects-grid-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  overflow: hidden;
+  align-content: center;
+  justify-content: space-between;
+  grid-gap: .5rem;
+  padding: 2rem;
+  max-width: 48rem;
+}
+
 h3{
   opacity: .8;
 }
@@ -20,7 +39,7 @@ div.mdc-card {
   &:hover {
     background-color: rgba(255, 255, 255, .1);
   }
-  
+
   .actions-container {
     width: 100%;
     display: flex;
@@ -35,24 +54,6 @@ div.mdc-card {
       }
     }
   }
-}
-
-.projects-grid-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  overflow: hidden;
-  align-content: center;
-  justify-content: space-between;
-  grid-gap: .5rem;
-  padding: .5rem;
-  max-width: 48rem;
 }
 
 .project-title {
