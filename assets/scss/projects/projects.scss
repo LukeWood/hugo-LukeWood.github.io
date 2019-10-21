@@ -2,39 +2,32 @@
 a.project-link {
   color: var(--text_color);
   text-decoration: none;
+  overflow: hidden;
   width: auto;
   height: auto;
 }
 
-.list-content {
-  display: flex;
-  flex-wrap: wrap;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-rows: repeat(auto-fill, 300px);
+  overflow: hidden;
+  align-content: space-between;
+  justify-content: space-between;
+  grid-gap: 1rem;
   padding: 5px;
 }
 
 .mdc-card {
-  flex: 1 1 auto;
   background-color: rgba(255, 255, 255, .15);
   overflow: hidden;
-  margin: 5px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: .5rem;
   cursor: pointer;
-  padding-bottom: .5rem;
   transition: all var(--transition_duration);
   &:hover {
     background-color: rgba(255, 255, 255, .25);
 
     box-shadow: 0px 0px .5rem rgba(255, 255, 255, .3);
-  }
-
-  @media only screen and (min-width:
-  413px) {
-    max-width:49%;
-  }
-  @media only screen and (min-width:
-  1000px) {
-    max-width:32.7%;
   }
 }
 
@@ -50,7 +43,7 @@ img.thumbnail {
   max-width: 100%;
   max-height: 100%;
   width: auto;
-  height: auto;
+  height: 300px;
 }
 
 p.project-description {

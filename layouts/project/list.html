@@ -2,12 +2,12 @@
   {{ partial "stylesheet.html" "projects" }}
 {{ end }}
 {{ define "main" }}
-<main class="list-content">
+<main class="projects-grid">
   {{ range .Data.Pages }}
   <a class="project-link" {{if isset .Params "link"}}target="_blank"{{end}} href="{{default .Permalink .Params.Link}}">
     <div class="mdc-card">
       {{ if isset .Params "thumbnail" }}
-        <img class="thumbnail" src={{.Params.Thumbnail}} alt={{.Params.Title}}/>
+        <center><img class="thumbnail" src={{.Params.Thumbnail}} alt={{.Params.Title}}/></center>
       {{end}}
 
       <h2 class="project-title">{{.Title}}</h2>
