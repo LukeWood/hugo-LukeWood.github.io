@@ -1,3 +1,5 @@
+@import "_font";
+
 $background-color: #121212;
 
 :root {
@@ -21,8 +23,6 @@ body.preload {
 
 @import "menu";
 @import "material_icons";
-
-@import url('https://fonts.googleapis.com/css?family=Cairo:400,700&display=swap');
 
 * {
   box-sizing: border-box;
