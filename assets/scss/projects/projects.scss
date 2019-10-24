@@ -48,8 +48,11 @@ div.mdc-card {
     .text-actions {
     }
     .icon-actions {
+      display: flex;
+      .star-container {
+        margin-top: auto;
+      }
       a {
-        margin: .1rem;
         opacity: .6;
       }
     }
