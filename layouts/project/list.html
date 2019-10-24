@@ -16,10 +16,10 @@
         {{ end }}
         <div class="actions-container">
           <div class="text-actions">
+              {{if isset .Params "stars"}}{{.Params.Stars | safeHTML}}{{end}}
           </div>
           <div class="icon-actions">
           {{if isset .Params "twitter"}}{{.Params.Twitter}}{{end}}
-          {{if isset .Params "stars"}}<div class="star-container">{{.Params.Stars | safeHTML}}</div>{{end}}
           {{if isset .Params "link"}}<a class="visit text-color no-decoration material-icon" target="_blank" href="{{.Params.Link}}">launch</a>{{end}}
           </div>
         </div>

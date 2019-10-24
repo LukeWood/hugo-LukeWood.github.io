@@ -46,11 +46,13 @@ div.mdc-card {
     align-items: flex-end;
     justify-content: space-between;
     .text-actions {
+      padding-left: .5rem;
     }
     .icon-actions {
       display: flex;
       .star-container {
         margin-top: auto;
+        margin-right: .3rem;
       }
       a {
         opacity: .6;
