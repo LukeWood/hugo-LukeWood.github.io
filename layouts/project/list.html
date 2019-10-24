@@ -4,19 +4,22 @@
 {{ define "main" }}
 <div class="projects-grid-wrapper">
   <main class="projects-grid">
-    {{ range .Data.Pages }}
+    {{ range sort .Data.Pages ".Params.order" (where .Data.Pages "Section" "project") }}
       <div class="mdc-card">
         {{ if isset .Params "thumbnail" }}
           <center><img class="thumbnail" src={{.Params.Thumbnail}} alt={{.Params.Title}}/></center>
         {{end}}
         <h3 class="project-title">{{.Title}}</h3>
         <div class="project-description">{{.Params.Description | markdownify}}</div>
-        <div style="flex-grow: 1;"></div>
+        {{ if isset .Params "thumbnail" }}
+          <div style="flex-grow: 1"></div>
+        {{ end }}
         <div class="actions-container">
           <div class="text-actions">
           </div>
           <div class="icon-actions">
           {{if isset .Params "twitter"}}{{.Params.Twitter}}{{end}}
+          {{if isset .Params "stars"}}{{.Params.Stars | safeHTML}}{{end}}
           {{if isset .Params "link"}}<a class="visit text-color no-decoration material-icon" target="_blank" href="{{.Params.Link}}">launch</a>{{end}}
           </div>
         </div>
@@ -25,4 +28,6 @@
 
   </main>
 </div>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 {{ end }}
