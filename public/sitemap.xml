@@ -1,1 +1,100 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>https://LukeWood.dev/post/frontend_bulletz_refactor/</loc><lastmod>2019-07-11T20:13:20-07:00</lastmod></url><url><loc>https://LukeWood.dev/</loc><lastmod>2019-07-11T20:13:20-07:00</lastmod></url><url><loc>https://LukeWood.dev/post/</loc><lastmod>2019-07-11T20:13:20-07:00</lastmod></url><url><loc>https://LukeWood.dev/project/8000net/</loc></url><url><loc>https://LukeWood.dev/about/</loc></url><url><loc>https://LukeWood.dev/project/area-51/</loc></url><url><loc>https://LukeWood.dev/project/bulletz.io/</loc></url><url><loc>https://LukeWood.dev/project/genclient/</loc></url><url><loc>https://LukeWood.dev/project/spam-vs-ham/</loc></url><url><loc>https://LukeWood.dev/posts/</loc></url><url><loc>https://LukeWood.dev/project/</loc></url><url><loc>https://LukeWood.dev/projects/</loc></url><url><loc>https://LukeWood.dev/project/tiny-pubsub/</loc></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://LukeWood.dev/post/meh/ios_safari_the_new_ie/</loc>
+    <lastmod>2019-10-19T20:13:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/</loc>
+    <lastmod>2019-10-19T20:13:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/</loc>
+    <lastmod>2019-10-19T20:13:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/serious/meh/scalable_architecture/</loc>
+    <lastmod>2019-07-17T20:04:15-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/serious/meh/docker_overhead/</loc>
+    <lastmod>2019-07-17T20:04:15-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/serious/mock_firestore/</loc>
+    <lastmod>2019-07-17T20:04:15-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/serious/meh/escaping_service_worker_hell/</loc>
+    <lastmod>2019-07-14T12:32:08-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/frontend_bulletz_refactor/</loc>
+    <lastmod>2019-07-11T20:13:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/serious/perfect_lighthouse/</loc>
+    <lastmod>2019-07-11T20:13:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/postition_sticky/</loc>
+    <lastmod>2019-07-11T20:13:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/post/serious/meh/bulletz_model/</loc>
+    <lastmod>2019-05-19T18:18:12-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/project/8000net/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/project/area-51/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/project/bulletz.io/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/project/genclient/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/project/spam-vs-ham/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/posts/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/projects/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/project/</loc>
+  </url>
+  
+  <url>
+    <loc>https://LukeWood.dev/project/tiny-pubsub/</loc>
+  </url>
+  
+</urlset>

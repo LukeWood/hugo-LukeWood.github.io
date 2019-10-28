@@ -1,2 +1,108 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on LukeWood.dev</title><link>https://LukeWood.dev/post/</link><description>Recent content in Posts on LukeWood.dev</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Copyright Luke Wood 2019</copyright><lastBuildDate>Thu, 11 Jul 2019 20:13:20 -0700</lastBuildDate><atom:link href="https://LukeWood.dev/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Decouple Your Javascript Using Event Driven Programming</title><link>https://LukeWood.dev/post/frontend_bulletz_refactor/</link><pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate><guid>https://LukeWood.dev/post/frontend_bulletz_refactor/</guid><description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on LukeWood.dev</title>
+    <link>https://LukeWood.dev/post/</link>
+    <description>Recent content in Posts on LukeWood.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright Luke Wood 2019</copyright>
+    <lastBuildDate>Sat, 19 Oct 2019 20:13:20 -0700</lastBuildDate>
+    
+	<atom:link href="https://LukeWood.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>iOS Safari is the new webkit</title>
+      <link>https://LukeWood.dev/post/meh/ios_safari_the_new_ie/</link>
+      <pubDate>Sat, 19 Oct 2019 20:13:20 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/meh/ios_safari_the_new_ie/</guid>
+      <description> Browser bar??? Seriously
+ webkit button style&amp;hellip;. dude really
+  </description>
+    </item>
+    
+    <item>
+      <title>Architecting a Scalable Multiplayer Web Game</title>
+      <link>https://LukeWood.dev/post/serious/meh/scalable_architecture/</link>
+      <pubDate>Wed, 17 Jul 2019 20:04:15 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/serious/meh/scalable_architecture/</guid>
+      <description>In a few months I am having a soft launch for bulletz.io. In the old architecture there was no way to horizontally scale the game up. If the game became popular quickly there would have been no way to scale up. Before launching I needed address the potential issue of scalability.
+ Old Architecture of Bulletz   Until this rearchitecture bulletz was implemented as a single standalone server. This server served static assets, ran game logic, and managed websocket connections.</description>
+    </item>
+    
+    <item>
+      <title>Dockerized Elixir Overhead Testing</title>
+      <link>https://LukeWood.dev/post/serious/meh/docker_overhead/</link>
+      <pubDate>Wed, 17 Jul 2019 20:04:15 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/serious/meh/docker_overhead/</guid>
+      <description> A few months back I toyed with the idea of using Docker to simplify the deployment process for servers in bulletz.io. Unfortunately this led to some serious performance issues.
+This made me wonder: how much slower are dockerized applications compared to their bare metal counter parts.
+Plan Develop a CPU heavy.
+Implementation Enum.map(1..1000000, &amp;amp;(&amp;amp;1*&amp;amp;1) |&amp;gt; Enum.reduce(fn  Results </description>
+    </item>
+    
+    <item>
+      <title>Mocking</title>
+      <link>https://LukeWood.dev/post/serious/mock_firestore/</link>
+      <pubDate>Wed, 17 Jul 2019 20:04:15 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/serious/mock_firestore/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Escaping Service Worker Hell</title>
+      <link>https://LukeWood.dev/post/serious/meh/escaping_service_worker_hell/</link>
+      <pubDate>Sun, 14 Jul 2019 12:32:08 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/serious/meh/escaping_service_worker_hell/</guid>
+      <description>Service workers allow web developers to run custom logic around web requests. Caching, offline mode, and resource mutation are all use cases of the service worker.
+The most common use of a service worker is the caching of resources. This is implemented using the caches api that is available in both the browser and service worker context.
+What is service worker hell? Service worker hell is when you get yourself into a state where all resources are cached indefinitely and the web developer cannot update the webpage.</description>
+    </item>
+    
+    <item>
+      <title>Decouple Your Javascript Using Event Driven Programming</title>
+      <link>https://LukeWood.dev/post/frontend_bulletz_refactor/</link>
+      <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/frontend_bulletz_refactor/</guid>
+      <description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
+Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description>
+    </item>
+    
+    <item>
+      <title>Lighthouse Report as a Minimum Bar</title>
+      <link>https://LukeWood.dev/post/serious/perfect_lighthouse/</link>
+      <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/serious/perfect_lighthouse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Position: Sticky</title>
+      <link>https://LukeWood.dev/post/postition_sticky/</link>
+      <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/postition_sticky/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OTP Supervisor Trees by Example: bulletz.io</title>
+      <link>https://LukeWood.dev/post/serious/meh/bulletz_model/</link>
+      <pubDate>Sun, 19 May 2019 18:18:12 -0700</pubDate>
+      
+      <guid>https://LukeWood.dev/post/serious/meh/bulletz_model/</guid>
+      <description>Pre-reqs Before reading this post you should be familiar with:
+ GenServers Supervision Trees  Goals in this Article This article discusses the supervision tree&amp;rsquo;s for bulletz.io. I hope to highlight the why in my decision making process of the supervisor tree&amp;rsquo;s architecture.
+Intro Bulletz.io is a real time web based shooter game that I wrote using the phoenix framework. The infrastructure in the game heavily relies on OTP to make it parallel and fault tolerant.</description>
+    </item>
+    
+  </channel>
+</rss>

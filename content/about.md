@@ -4,8 +4,8 @@ type: about
 ---
 🏖️ San Diego Native 🏖️
 
-🎿 Ski all winter 🎿
+🎿 Ski All Winter 🎿
 
 🏄‍♂️ Surf 3-5x/Week 🏄‍♂️
 
-{{< figure class="bordered-figure dark-gray-background" alt="screenshot of bulletz.io being played" src="/img/images/me/cruisin.JPG" >}}
+{{< progressive-image class="bordered-figure dark-gray-background" alt="screenshot of bulletz.io being played" src="/img/me/cruisin.JPG" >}}

@@ -15,7 +15,7 @@ This led to a great deal of technical debt, complicated UI interactions, and ove
 
 I rewrote the frontend over the course of a single evening to use an event driven model and the results were fantastic.  The library used for the refactor was [tiny-pubsub](https://github.com/LukeWood/tiny-pubsub).
 
-{{< figure class="bordered-figure" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz.png" title="A screenshot of bulletz.io" >}}
+{{< progressive-image class="bordered-figure" src="img/posts/bulletz/bulletz.png" alt="screenshot of bulletz.io being played" title="A screenshot of bulletz.io" >}}
 
 Over time a [god object](https://en.wikipedia.org/wiki/God_object) emerged which led my frontend client to have anti patterns littered everywhere.
 This article will describe how my mega class emerged and how I ended up solving that problem by using [tiny-pubsub](https://github.com/LukeWood/tiny-pubsub).
@@ -27,7 +27,7 @@ A central ___StateManager___ class managed the entirety of the game's state by d
 These managers attempt to guess the current state of entities based on the last update the server pushed out through websockets.
 This allows the game to run using very low amounts of bandwidth while still displaying the real time state of each entity.
 
-{{< figure class="bordered-figure dark-gray-background" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz_old_frontend.png" title="State Manager Delegation System" >}}
+{{< progressive-image class="bordered-figure dark-gray-background" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz_old_frontend.png" title="State Manager Delegation System" >}}
 
 This led to a ton of problems over time - primarily on the fronts of readability and maintainability.
 The state of the various entities became intertwined over time and it became difficult to hunt down state related bugs.
@@ -197,7 +197,7 @@ export {get_bullets}
 Everything remains self contained and simple.
 Here is an organizational diagram displaying the event based frontend architecture.
 
-{{< figure class="bordered-figure dark-gray-background" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz_new_frontend.png" title="The refactored bulletz frontend state management system" >}}
+{{< progressive-image class="bordered-figure dark-gray-background" alt="screenshot of bulletz.io being played" src="/img/posts/bulletz/bulletz_new_frontend.png" title="The refactored bulletz frontend state management system" >}}
 # Result of Using Event Driven Programming
 Rewriting [bulletz.io](https://bulletz.io) to use an event driven model resulted in strongly decoupled logic.
 The frontend code for bulletz.io is significantly simpler and easier to follow.

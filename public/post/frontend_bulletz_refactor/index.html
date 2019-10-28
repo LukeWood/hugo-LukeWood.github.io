@@ -1,222 +1,507 @@
-<!doctype html><html lang=en><head><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-139935010-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=theme-color content=#82b1ff><meta name=msapplication-TileColor content=#82b1ff><meta name=description content=LukeWood.dev&#32;is&#32;my&#32;personal&#32;website.&#32;&#32;It&#32;serves&#32;as&#32;a&#32;tech&#32;blog,&#32;photo&#32;gallery,&#32;code&#32;showcase,&#32;and&#32;project&#32;portfolio.><title>LukeWood.dev</title><meta property=og:title content="Decouple Your Javascript Using Event Driven Programming"><meta property=og:description content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code."><meta property=og:type content=article><meta property=og:url content=https://LukeWood.dev/post/frontend_bulletz_refactor/><meta property=og:image content=https://LukeWood.dev/img/index/ballpark.jpg><meta property=article:published_time content=2019-07-11T20:13:20-07:00><meta property=article:modified_time content=2019-07-11T20:13:20-07:00><meta itemprop=name content="Decouple Your Javascript Using Event Driven Programming"><meta itemprop=description content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code."><meta itemprop=datePublished content=2019-07-11T20:13:20-07:00><meta itemprop=dateModified content=2019-07-11T20:13:20-07:00><meta itemprop=wordCount content=1194><meta itemprop=keywords content><meta name=twitter:card content=summary_large_image><meta name=twitter:image content=https://LukeWood.dev/img/index/ballpark.jpg><meta name=twitter:title content="Decouple Your Javascript Using Event Driven Programming"><meta name=twitter:description content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code."><link rel=apple-touch-icon sizes=57x57 href=/icons/apple-icon-57x57.png><link rel=apple-touch-icon sizes=60x60 href=/icons/apple-icon-60x60.png><link rel=apple-touch-icon sizes=72x72 href=/icons/apple-icon-72x72.png><link rel=apple-touch-icon sizes=76x76 href=/icons/apple-icon-76x76.png><link rel=apple-touch-icon sizes=114x114 href=/icons/apple-icon-114x114.png><link rel=apple-touch-icon sizes=120x120 href=/icons/apple-icon-120x120.png><link rel=apple-touch-icon sizes=144x144 href=/icons/apple-icon-144x144.png><link rel=apple-touch-icon sizes=152x152 href=/icons/apple-icon-152x152.png><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-icon-180x180.png><link rel=icon type=image/png sizes=192x192 href=/icons/android-icon-192x192.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=96x96 href=/icons/favicon-96x96.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=manifest href=/manifest.json><meta name=msapplication-TileColor content=#121212><meta name=msapplication-TileImage content=/icons/ms-icon-144x144.png><meta name=theme-color content=#121212><link rel=stylesheet type=text/css href=https://LukeWood.dev/base.f037b9737bd576344d1ac556c691c972bc38dd3f6697e24d7208d1f7c715049d.css integrity="sha256-8De5c3vVdjRNGsVWxpHJcrw43T9ml&#43;JNcgjR98cVBJ0="><link rel=stylesheet type=text/css href=https://LukeWood.dev/post.446b1b37a93e4c4159465c031ff91f670b8fce16282849a4c7aa21ef7f24f483.css integrity="sha256-RGsbN6k&#43;TEFZRlwDH/kfZwuPzhYoKEmkx6oh738k9IM="></head><body class=preload><nav class=menu><a class="main-emphasis text-color weight-700" href=/>LukeWood.dev</a></nav><main class=container><article class=content><h1>Decouple Your Javascript Using Event Driven Programming</h1><p>I am the sole author of the web game <a href=https://bulletz.io>bulletz.io</a>.
-Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend.
-The backend is written using the functional programming language <a href=https://elixir-lang.org>Elixir</a> while the frontend is written in Vanilla Javascript.
-The programming languages are <strong><em>vastly</em></strong> different and are based on entirely <a href=https://cs.lmu.edu/~ray/notes/paradigms>different paradigms</a>.</p><p>Originally the frontend was written using a generic <a href=https://www.webopedia.com/TERM/O/object_oriented_programming_OOP.html>Object Oriented model</a>.
-This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</p><p>I rewrote the frontend over the course of a single evening to use an event driven model and the results were fantastic. The library used for the refactor was <a href=https://github.com/LukeWood/tiny-pubsub>tiny-pubsub</a>.</p><figure class=bordered-figure><img src=/img/posts/bulletz/bulletz.png alt="screenshot of bulletz.io being played"><figcaption><h4>A screenshot of bulletz.io</h4></figcaption></figure><p>Over time a <a href=https://en.wikipedia.org/wiki/God_object>god object</a> emerged which led my frontend client to have anti patterns littered everywhere.
-This article will describe how my mega class emerged and how I ended up solving that problem by using <a href=https://github.com/LukeWood/tiny-pubsub>tiny-pubsub</a>.</p><h1 id=the-original-model>The Original Model</h1><p>The original state management model for the bullets took an object oriented model.
-A central <strong><em>StateManager</em></strong> class managed the entirety of the game&rsquo;s state by delegating each entity it&rsquo;s own Sub-Manager.</p><p>These managers attempt to guess the current state of entities based on the last update the server pushed out through websockets.
-This allows the game to run using very low amounts of bandwidth while still displaying the real time state of each entity.</p><figure class="bordered-figure dark-gray-background"><img src=/img/posts/bulletz/bulletz_old_frontend.png alt="screenshot of bulletz.io being played"><figcaption><h4>State Manager Delegation System</h4></figcaption></figure><p>This led to a ton of problems over time - primarily on the fronts of readability and maintainability.
-The state of the various entities became intertwined over time and it became difficult to hunt down state related bugs.</p><p>The largest anti-pattern the old model used was having a <a href=https://en.wikipedia.org/wiki/God_object>god object</a>, the top level State Manager.</p><p>This state manager ended up being responsible for all sorts of things and was passed as a parameter to tons of UI functions.</p><p>Here is the file that handled displaying the count of active players in the old system:</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// player_counter.js
-</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>player_count</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;score-div&#34;</span>);
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>update_player_counter</span>(<span style=color:#a6e22e>state_handler</span>) {
-  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>score</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>state_handler</span>.<span style=color:#a6e22e>player_registry</span>.<span style=color:#a6e22e>get_players</span>().<span style=color:#a6e22e>length</span>;
-  <span style=color:#a6e22e>player_count</span>.<span style=color:#a6e22e>innerText</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>players</span><span style=color:#e6db74>}</span><span style=color:#e6db74>/20`</span>;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-139935010-1', 'auto');
+	
+	ga('send', 'pageview');
 }
-<span style=color:#66d9ef>export</span> {<span style=color:#a6e22e>update_player_counter</span>}
-</code></pre></td></tr></table></div></div><p>The function <code>update_player_counter</code> had to be called elsewhere every time a new player spawned or died.
-Throughout the code base there were three incentations of this function. Two in <code>player_registry.js</code>.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style=display:block;width:100%;background-color:#3c3d38><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span></span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style=display:block;width:100%;background-color:#3c3d38><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span></span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// player_registry.js
-</span><span style=color:#75715e></span>
-<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>update_player_counter</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;../../ui/update_player_counter&#39;</span>
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PlayerRegistry</span> {
-  <span style=color:#a6e22e>constructor</span>(<span style=color:#a6e22e>state_handler</span>) {
-    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>state_handler</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>state_handler</span>
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="theme-color" content="#82b1ff">
+<meta name="msapplication-TileColor" content="#82b1ff">
+<meta name="description" content=LukeWood.dev&#32;is&#32;my&#32;personal&#32;website.&#32;&#32;It&#32;serves&#32;as&#32;a&#32;tech&#32;blog,&#32;photo&#32;gallery,&#32;code&#32;showcase,&#32;and&#32;project&#32;portfolio.>
+<title>LukeWood.dev</title><meta property="og:title" content="Decouple Your Javascript Using Event Driven Programming" />
+<meta property="og:description" content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
+Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/frontend_bulletz_refactor/" />
+
+<meta property="og:image" content="https://LukeWood.dev/img/index/ballpark.jpg" />
+<meta property="article:published_time" content="2019-07-11T20:13:20-07:00" />
+<meta property="article:modified_time" content="2019-07-11T20:13:20-07:00" />
+<meta itemprop="name" content="Decouple Your Javascript Using Event Driven Programming">
+<meta itemprop="description" content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
+Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.">
+
+
+<meta itemprop="datePublished" content="2019-07-11T20:13:20-07:00" />
+<meta itemprop="dateModified" content="2019-07-11T20:13:20-07:00" />
+<meta itemprop="wordCount" content="1194">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://LukeWood.dev/img/index/ballpark.jpg"/>
+
+<meta name="twitter:title" content="Decouple Your Javascript Using Event Driven Programming"/>
+<meta name="twitter:description" content="I am the sole author of the web game bulletz.io. Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
+Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code."/>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#121212">
+<meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+<meta name="theme-color" content="#121212">
+
+    
+
+    
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/base.f037b9737bd576344d1ac556c691c972bc38dd3f6697e24d7208d1f7c715049d.css">
+
+
+    
+  
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/post.446b1b37a93e4c4159465c031ff91f670b8fce16282849a4c7aa21ef7f24f483.css">
+
+
+  </head>
+  <body class="preload">
+    
+      <nav class="menu">
+  <a class="main-emphasis text-color weight-700" href="/">LukeWood.dev</a>
+
+</nav>
+
+    
+    
+  <main class="container">
+    <article class="content">
+    <h1>Decouple Your Javascript Using Event Driven Programming</h1>
+      
+
+<p>I am the sole author of the web game <a href="https://bulletz.io">bulletz.io</a>.
+Recently I refactored the frontend&rsquo;s codebase to more closely match that of the backend.
+The backend is written using the functional programming language <a href="https://elixir-lang.org">Elixir</a> while the frontend is written in Vanilla Javascript.
+The programming languages are <strong><em>vastly</em></strong> different and are based on entirely <a href="https://cs.lmu.edu/~ray/notes/paradigms">different paradigms</a>.</p>
+
+<p>Originally the frontend was written using a generic <a href="https://www.webopedia.com/TERM/O/object_oriented_programming_OOP.html">Object Oriented model</a>.
+This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</p>
+
+<p>I rewrote the frontend over the course of a single evening to use an event driven model and the results were fantastic.  The library used for the refactor was <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.
+
+
+
+
+
+
+
+
+
+<figure class="progressive_figure bordered-figure" data-imgset="/img/posts/bulletz/bulletz_hu6d477cec086f2302e9505c893621d31a_357145_640x0_resize_box_2.png 320w,
+  /img/posts/bulletz/bulletz_hu6d477cec086f2302e9505c893621d31a_357145_1024x0_resize_box_2.png 600w,
+  /img/posts/bulletz/bulletz_hu6d477cec086f2302e9505c893621d31a_357145_1600x0_resize_box_2.png 2x"
+  data-src="/img/posts/bulletz/bulletz_hu6d477cec086f2302e9505c893621d31a_357145_1600x0_resize_box_2.png" >
+  <div class="placeholder">
+    <img class="img-small" src="/img/posts/bulletz/bulletz_hu6d477cec086f2302e9505c893621d31a_357145_48x0_resize_q20_box_2.png" alt="" />
+  </div>
+  <figcaption>A screenshot of bulletz.io</figcaption>
+</figure>
+
+</p>
+
+<p>Over time a <a href="https://en.wikipedia.org/wiki/God_object">god object</a> emerged which led my frontend client to have anti patterns littered everywhere.
+This article will describe how my mega class emerged and how I ended up solving that problem by using <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.</p>
+
+<h1 id="the-original-model">The Original Model</h1>
+
+<p>The original state management model for the bullets took an object oriented model.
+A central <strong><em>StateManager</em></strong> class managed the entirety of the game&rsquo;s state by delegating each entity it&rsquo;s own Sub-Manager.</p>
+
+<p>These managers attempt to guess the current state of entities based on the last update the server pushed out through websockets.
+This allows the game to run using very low amounts of bandwidth while still displaying the real time state of each entity.</p>
+
+<figure class="bordered-figure dark-gray-background">
+    <img src="/img/posts/bulletz/bulletz_old_frontend.png"
+         alt="screenshot of bulletz.io being played"/> <figcaption>
+            <h4>State Manager Delegation System</h4>
+        </figcaption>
+</figure>
+
+
+<p>This led to a ton of problems over time - primarily on the fronts of readability and maintainability.
+The state of the various entities became intertwined over time and it became difficult to hunt down state related bugs.</p>
+
+<p>The largest anti-pattern the old model used was having a <a href="https://en.wikipedia.org/wiki/God_object">god object</a>, the top level State Manager.</p>
+
+<p>This state manager ended up being responsible for all sorts of things and was passed as a parameter to tons of UI functions.</p>
+
+<p>Here is the file that handled displaying the count of active players in the old system:</p>
+
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// player_counter.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">player_count</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;score-div&#34;</span>);
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update_player_counter</span>(<span style="color:#a6e22e">state_handler</span>) {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">score</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">state_handler</span>.<span style="color:#a6e22e">player_registry</span>.<span style="color:#a6e22e">get_players</span>().<span style="color:#a6e22e">length</span>;
+  <span style="color:#a6e22e">player_count</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">players</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/20`</span>;
+}
+<span style="color:#66d9ef">export</span> {<span style="color:#a6e22e">update_player_counter</span>}
+</code></pre></td></tr></table>
+</div>
+</div>
+
+<p>The function <code>update_player_counter</code> had to be called elsewhere every time a new player spawned or died.
+Throughout the code base there were three incentations of this function.  Two in <code>player_registry.js</code>.</p>
+
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// player_registry.js
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">update_player_counter</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../../ui/update_player_counter&#39;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PlayerRegistry</span> {
+  <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">state_handler</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state_handler</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">state_handler</span>
   }
   ...
-  <span style=color:#a6e22e>add_player</span>(<span style=color:#a6e22e>player</span>) {
+  <span style="color:#a6e22e">add_player</span>(<span style="color:#a6e22e">player</span>) {
     ...
-<span style=display:block;width:100%;background-color:#3c3d38>    <span style=color:#a6e22e>update_player_counter</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>state_handler</span>)
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">update_player_counter</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state_handler</span>)
 </span>  }
   ...
-  <span style=color:#a6e22e>remove_player</span>(<span style=color:#a6e22e>player</span>) {
+  <span style="color:#a6e22e">remove_player</span>(<span style="color:#a6e22e">player</span>) {
     ...
-<span style=display:block;width:100%;background-color:#3c3d38>    <span style=color:#a6e22e>update_player_counter</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>state_handler</span>)
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">update_player_counter</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state_handler</span>)
 </span>  }
 }
-</code></pre></td></tr></table></div></div><p>and another in the state handler</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style=display:block;width:100%;background-color:#3c3d38><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span></span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// state_handler.js
-</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>update_player_counter</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;../../ui/update_player_counter&#39;</span>
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>StateHandler</span> {
+</code></pre></td></tr></table>
+</div>
+</div>
+
+<p>and another in the state handler</p>
+
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// state_handler.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">update_player_counter</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../../ui/update_player_counter&#39;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StateHandler</span> {
   ...
-  <span style=color:#a6e22e>listen_for_polls</span>() {
-    <span style=color:#a6e22e>update_socket</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;poll&#34;</span>, (<span style=color:#a6e22e>game_state</span>) =&gt; {
+  <span style="color:#a6e22e">listen_for_polls</span>() {
+    <span style="color:#a6e22e">update_socket</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;poll&#34;</span>, (<span style="color:#a6e22e">game_state</span>) =&gt; {
       ...
-<span style=display:block;width:100%;background-color:#3c3d38>      <span style=color:#a6e22e>update_player_counter</span>(<span style=color:#66d9ef>this</span>);
+<span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#a6e22e">update_player_counter</span>(<span style="color:#66d9ef">this</span>);
 </span>    })
   }
   ...
 }
-</code></pre></td></tr></table></div></div><p>As an isolated incident this was not terribly painful, but when the function calls across all UI interactions accumulated the resulting code was difficult to understand and maintain.
+</code></pre></td></tr></table>
+</div>
+</div>
+
+<p>As an isolated incident this was not terribly painful, but when the function calls across all UI interactions accumulated the resulting code was difficult to understand and maintain.
 The resulting code tightly coupled UI interactions and state management.
-Other classes end up being responsible for triggering UI updates.</p><p><strong>The resulting code is heavily coupled. It intertwines UI interactions with state management.</strong></p><p>The <code>state handler</code> ended up being responsible for triggering UI updates and was an argument to nearly everything.
+Other classes end up being responsible for triggering UI updates.</p>
+
+<p><strong>The resulting code is heavily coupled.  It intertwines UI interactions with state management.</strong></p>
+
+<p>The <code>state handler</code> ended up being responsible for triggering UI updates and was an argument to nearly everything.
 Almost every method, ui interaction, etc needed to store a copy of a state handler.
 This mean&rsquo;t every time I registered an event listener I would need a state handler handily stored nearby.
-By the time I had a complete frontend the name <code>state_handler</code> showed up in well over <code>70%</code> of files.</p><h1 id=decoupling-the-code-with-tiny-pubsub>Decoupling the Code With Tiny Pubsub</h1><p>This is a shameless plug for the self authored javascript library I wrote to solve this: <a href=https://github.com/LukeWood/tiny-pubsub>tiny-pubsub</a>.
+By the time I had a complete frontend the name <code>state_handler</code> showed up in well over <code>70%</code> of files.</p>
+
+<h1 id="decoupling-the-code-with-tiny-pubsub">Decoupling the Code With Tiny Pubsub</h1>
+
+<p>This is a shameless plug for the self authored javascript library I wrote to solve this: <a href="https://github.com/LukeWood/tiny-pubsub">tiny-pubsub</a>.
 It&rsquo;s nothing special - it just maintains a relationship between events and functions that should be called in response to said events.
-Instead of explicitly calling functions, functions instead respond to data emitted elsewhere.</p><p>But what it does do is encourage a <a href=https://gameprogrammingpatterns.com/decoupling-patterns.html>decoupled codebase</a> through the event driven programming paradigm.</p><p>Here is a self contained example:<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>subscribe</span>, <span style=color:#a6e22e>publish</span>, <span style=color:#a6e22e>unsubscribe</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;tiny-pubsub&#39;</span>
-<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>CHATROOM_JOIN</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./event_definitions&#39;</span>
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>logJoin</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>name</span>) =&gt; <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>name</span><span style=color:#e6db74>}</span><span style=color:#e6db74> has joined the room!`</span>);
-<span style=color:#a6e22e>subscribe</span>(<span style=color:#a6e22e>CHATROOM_JOIN</span>, <span style=color:#a6e22e>logJoin</span>)
-<span style=color:#a6e22e>publish</span>(<span style=color:#a6e22e>CHATROOM_JOIN</span>, <span style=color:#e6db74>&#34;Luke&#34;</span>)
-<span style=color:#75715e>// &gt; Luke has joined the room!
-</span><span style=color:#75715e></span><span style=color:#a6e22e>unsubscribe</span>(<span style=color:#a6e22e>CHATROOM_JOIN</span>, <span style=color:#a6e22e>logJoin</span>)
-<span style=color:#a6e22e>publish</span>(<span style=color:#a6e22e>CHATROOM_JOIN</span>, <span style=color:#e6db74>&#34;Luke&#34;</span>)
-<span style=color:#75715e>// nothing will print
-</span><span style=color:#75715e></span>
-<span style=color:#75715e>// alternatively you can use strings as event identifiers
-</span><span style=color:#75715e></span><span style=color:#a6e22e>subscribe</span>(<span style=color:#e6db74>&#34;chatroom-join&#34;</span>, <span style=color:#a6e22e>logJoin</span>)
-<span style=color:#a6e22e>publish</span>(<span style=color:#e6db74>&#34;chatroom-join&#34;</span>, <span style=color:#e6db74>&#34;Luke&#34;</span>)
-<span style=color:#75715e>// &gt; Luke has joined the room!
-</span></code></pre></td></tr></table></div></div></p><h1 id=the-refactored-model>The Refactored Model</h1><p>The refactored model is significantly more distributed in terms of code organization.
+Instead of explicitly calling functions, functions instead respond to data emitted elsewhere.</p>
+
+<p>But what it does do is encourage a <a href="https://gameprogrammingpatterns.com/decoupling-patterns.html">decoupled codebase</a> through the event driven programming paradigm.</p>
+
+<p>Here is a self contained example:
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">subscribe</span>, <span style="color:#a6e22e">publish</span>, <span style="color:#a6e22e">unsubscribe</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;tiny-pubsub&#39;</span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">CHATROOM_JOIN</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./event_definitions&#39;</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">logJoin</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">name</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> has joined the room!`</span>);
+<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">CHATROOM_JOIN</span>, <span style="color:#a6e22e">logJoin</span>)
+<span style="color:#a6e22e">publish</span>(<span style="color:#a6e22e">CHATROOM_JOIN</span>, <span style="color:#e6db74">&#34;Luke&#34;</span>)
+<span style="color:#75715e">// &gt; Luke has joined the room!
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">unsubscribe</span>(<span style="color:#a6e22e">CHATROOM_JOIN</span>, <span style="color:#a6e22e">logJoin</span>)
+<span style="color:#a6e22e">publish</span>(<span style="color:#a6e22e">CHATROOM_JOIN</span>, <span style="color:#e6db74">&#34;Luke&#34;</span>)
+<span style="color:#75715e">// nothing will print
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// alternatively you can use strings as event identifiers
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">subscribe</span>(<span style="color:#e6db74">&#34;chatroom-join&#34;</span>, <span style="color:#a6e22e">logJoin</span>)
+<span style="color:#a6e22e">publish</span>(<span style="color:#e6db74">&#34;chatroom-join&#34;</span>, <span style="color:#e6db74">&#34;Luke&#34;</span>)
+<span style="color:#75715e">// &gt; Luke has joined the room!
+</span></code></pre></td></tr></table>
+</div>
+</div></p>
+
+<h1 id="the-refactored-model">The Refactored Model</h1>
+
+<p>The refactored model is significantly more distributed in terms of code organization.
 In the new model each entity is described by series of callbacks defined in a single file.
 The callbacks respond to published events and update the state of the entities.
-These events are published from other self contained modules that are solely responsible for firing these events.</p><p>For example, the file <code>tick.js</code> looks something like this&hellip;<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>TICK</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;../events&#39;</span>
-<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>game_time</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;../util/game_time&#39;</span>
+These events are published from other self contained modules that are solely responsible for firing these events.</p>
 
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>game_loop</span>() {
-  <span style=color:#a6e22e>publish</span>(<span style=color:#a6e22e>TICK</span>, <span style=color:#a6e22e>game_time</span>());
-  <span style=color:#a6e22e>requestAnimationFrame</span>(<span style=color:#a6e22e>game_loop</span>)
+<p>For example, the file <code>tick.js</code> looks something like this&hellip;
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">TICK</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../events&#39;</span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">game_time</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../util/game_time&#39;</span>
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">game_loop</span>() {
+  <span style="color:#a6e22e">publish</span>(<span style="color:#a6e22e">TICK</span>, <span style="color:#a6e22e">game_time</span>());
+  <span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#a6e22e">game_loop</span>)
 }
 
-document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;load&#34;</span>, <span style=color:#a6e22e>game_loop</span>);
-</code></pre></td></tr></table></div></div></p><p>Each event file is responsible for only one type of event.
-Some events are triggered by other events and mutate the data a bit for use by other modules.</p><p>The UI interactions are also handled in self contained modules.
-Here is the new version of <code>score.js</code>&hellip;<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>subscribe</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;tiny-pubsub&#39;</span>
-<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>PLAYER</span>, <span style=color:#a6e22e>POLL</span>, <span style=color:#a6e22e>PLAYER_DEATH</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;../events&#39;</span>
-<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>get_players</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;../entities/players&#39;</span>
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>player_count</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;score-div&#34;</span>);
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>update_player_count</span> <span style=color:#f92672>=</span>  ({<span style=color:#a6e22e>players</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>players</span>}) =&gt; <span style=color:#a6e22e>player_count</span>.<span style=color:#a6e22e>innerText</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>get_players</span>().<span style=color:#a6e22e>length</span><span style=color:#e6db74>}</span><span style=color:#e6db74>/20`</span>;
+document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;load&#34;</span>, <span style="color:#a6e22e">game_loop</span>);
+</code></pre></td></tr></table>
+</div>
+</div></p>
 
-<span style=color:#a6e22e>subscribe</span>(<span style=color:#a6e22e>PLAYER</span>, <span style=color:#a6e22e>update_player_count</span>);
-<span style=color:#a6e22e>subscribe</span>(<span style=color:#a6e22e>PLAYER_DEATH</span>, <span style=color:#a6e22e>update_player_count</span>);
-<span style=color:#a6e22e>subscribe</span>(<span style=color:#a6e22e>POLL</span>, <span style=color:#a6e22e>update_player_count</span>);
-</code></pre></td></tr></table></div></div></p><p>The state management is implemented through small self contained modules.
-Here is the example for bullet state management:</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>subscribe</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;tiny-pubsub&#34;</span>
-<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>BULLET</span>, <span style=color:#a6e22e>POLL</span>, <span style=color:#a6e22e>REMOVE_BULLET</span>, <span style=color:#a6e22e>TICK</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;../events&#39;</span>
-<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>update_bullet</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./update_bullet&#39;</span>
-<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>array_to_map_on_key</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;../util/array_to_map_on_key&#39;</span>
+<p>Each event file is responsible for only one type of event.
+Some events are triggered by other events and mutate the data a bit for use by other modules.</p>
 
-<span style=color:#75715e>// state
-</span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>bullets</span> <span style=color:#f92672>=</span> {};
+<p>The UI interactions are also handled in self contained modules.
+Here is the new version of <code>score.js</code>&hellip;
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">subscribe</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;tiny-pubsub&#39;</span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">PLAYER</span>, <span style="color:#a6e22e">POLL</span>, <span style="color:#a6e22e">PLAYER_DEATH</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../events&#39;</span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">get_players</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../entities/players&#39;</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">player_count</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;score-div&#34;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">update_player_count</span> <span style="color:#f92672">=</span>  ({<span style="color:#a6e22e">players</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">players</span>}) =&gt; <span style="color:#a6e22e">player_count</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">get_players</span>().<span style="color:#a6e22e">length</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/20`</span>;
 
-<span style=color:#75715e>// subscription
-</span><span style=color:#75715e></span><span style=color:#a6e22e>subscribe</span>(<span style=color:#a6e22e>BULLET</span>, <span style=color:#a6e22e>bullet</span> =&gt; <span style=color:#a6e22e>bullets</span>[<span style=color:#a6e22e>bullet</span>.<span style=color:#a6e22e>id</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>bullet</span>)
-<span style=color:#a6e22e>subscribe</span>(<span style=color:#a6e22e>TICK</span>, (<span style=color:#a6e22e>current_time</span>, <span style=color:#a6e22e>world</span>) =&gt; {
-  <span style=color:#a6e22e>bullets</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>bullets</span>
-    .<span style=color:#a6e22e>map</span>(<span style=color:#a6e22e>bullet</span> =&gt; <span style=color:#a6e22e>update_bullet</span>(<span style=color:#a6e22e>bullet</span>, <span style=color:#a6e22e>current_time</span>, <span style=color:#a6e22e>world</span>))
-    .<span style=color:#a6e22e>filter</span>(<span style=color:#a6e22e>bullet</span> =&gt; <span style=color:#a6e22e>bullet</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span>);
+<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">PLAYER</span>, <span style="color:#a6e22e">update_player_count</span>);
+<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">PLAYER_DEATH</span>, <span style="color:#a6e22e">update_player_count</span>);
+<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">POLL</span>, <span style="color:#a6e22e">update_player_count</span>);
+</code></pre></td></tr></table>
+</div>
+</div></p>
+
+<p>The state management is implemented through small self contained modules.
+Here is the example for bullet state management:</p>
+
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">subscribe</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;tiny-pubsub&#34;</span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">BULLET</span>, <span style="color:#a6e22e">POLL</span>, <span style="color:#a6e22e">REMOVE_BULLET</span>, <span style="color:#a6e22e">TICK</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../events&#39;</span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">update_bullet</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./update_bullet&#39;</span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">array_to_map_on_key</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../util/array_to_map_on_key&#39;</span>
+
+<span style="color:#75715e">// state
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bullets</span> <span style="color:#f92672">=</span> {};
+
+<span style="color:#75715e">// subscription
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">BULLET</span>, <span style="color:#a6e22e">bullet</span> =&gt; <span style="color:#a6e22e">bullets</span>[<span style="color:#a6e22e">bullet</span>.<span style="color:#a6e22e">id</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">bullet</span>)
+<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">TICK</span>, (<span style="color:#a6e22e">current_time</span>, <span style="color:#a6e22e">world</span>) =&gt; {
+  <span style="color:#a6e22e">bullets</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bullets</span>
+    .<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">bullet</span> =&gt; <span style="color:#a6e22e">update_bullet</span>(<span style="color:#a6e22e">bullet</span>, <span style="color:#a6e22e">current_time</span>, <span style="color:#a6e22e">world</span>))
+    .<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">bullet</span> =&gt; <span style="color:#a6e22e">bullet</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>);
 })
-<span style=color:#a6e22e>subscribe</span>(<span style=color:#a6e22e>POLL</span>, ({ <span style=color:#a6e22e>bullets</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>bullets_poll</span> }) =&gt; {
-  <span style=color:#a6e22e>bullets</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>array_to_map_on_key</span>(<span style=color:#a6e22e>bullets_poll</span>, <span style=color:#e6db74>&#34;id&#34;</span>)
+<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">POLL</span>, ({ <span style="color:#a6e22e">bullets</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">bullets_poll</span> }) =&gt; {
+  <span style="color:#a6e22e">bullets</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_to_map_on_key</span>(<span style="color:#a6e22e">bullets_poll</span>, <span style="color:#e6db74">&#34;id&#34;</span>)
 })
-<span style=color:#a6e22e>subscribe</span>(<span style=color:#a6e22e>REMOVE_BULLET</span>, (<span style=color:#a6e22e>id</span>) =&gt; <span style=color:#66d9ef>delete</span> <span style=color:#a6e22e>bullets</span>[<span style=color:#a6e22e>id</span>])
+<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">REMOVE_BULLET</span>, (<span style="color:#a6e22e">id</span>) =&gt; <span style="color:#66d9ef">delete</span> <span style="color:#a6e22e">bullets</span>[<span style="color:#a6e22e">id</span>])
 
-<span style=color:#75715e>// exported functions
-</span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>get_bullets</span>() {
-  <span style=color:#66d9ef>return</span> Object.<span style=color:#a6e22e>keys</span>(<span style=color:#a6e22e>bullets</span>).<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>uuid</span>) =&gt; <span style=color:#a6e22e>bullets</span>[<span style=color:#a6e22e>uuid</span>])
+<span style="color:#75715e">// exported functions
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">get_bullets</span>() {
+  <span style="color:#66d9ef">return</span> Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">bullets</span>).<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">uuid</span>) =&gt; <span style="color:#a6e22e">bullets</span>[<span style="color:#a6e22e">uuid</span>])
 }
 
-<span style=color:#66d9ef>export</span> {<span style=color:#a6e22e>get_bullets</span>}
-</code></pre></td></tr></table></div></div><p>Everything remains self contained and simple.
-Here is an organizational diagram displaying the event based frontend architecture.</p><figure class="bordered-figure dark-gray-background"><img src=/img/posts/bulletz/bulletz_new_frontend.png alt="screenshot of bulletz.io being played"><figcaption><h4>The refactored bulletz frontend state management system</h4></figcaption></figure><h1 id=result-of-using-event-driven-programming>Result of Using Event Driven Programming</h1><p>Rewriting <a href=https://bulletz.io>bulletz.io</a> to use an event driven model resulted in strongly decoupled logic.
+<span style="color:#66d9ef">export</span> {<span style="color:#a6e22e">get_bullets</span>}
+</code></pre></td></tr></table>
+</div>
+</div>
+
+<p>Everything remains self contained and simple.
+Here is an organizational diagram displaying the event based frontend architecture.</p>
+
+<figure class="bordered-figure dark-gray-background">
+    <img src="/img/posts/bulletz/bulletz_new_frontend.png"
+         alt="screenshot of bulletz.io being played"/> <figcaption>
+            <h4>The refactored bulletz frontend state management system</h4>
+        </figcaption>
+</figure>
+
+
+<h1 id="result-of-using-event-driven-programming">Result of Using Event Driven Programming</h1>
+
+<p>Rewriting <a href="https://bulletz.io">bulletz.io</a> to use an event driven model resulted in strongly decoupled logic.
 The frontend code for bulletz.io is significantly simpler and easier to follow.
 As a side effect the several UI bugs were fixed.
-The UI updates as well as state updates are written as self contained modules that respond to data emitted elsewhere.</p><p>I&rsquo;d recommend giving event driven programming a shot if you are writing a web page any time soon without a framework!
-The library I wrote for the problem is called tiny-pubsub and the Github link can be found <a href=https://github.com/LukeWood/tiny-pubsub>here</a>.</p><p><a href=https://bulletz.io>Also be sure give bulletz.io a try!</a></p><hr><link href=//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css rel=stylesheet type=text/css><link rel=stylesheet type=text/css href=https://LukeWood.dev/mailchimp.3945831d536b72abe4365e6d304fe344136fe60e3f8afdcdd85f82ea637aa871.css integrity="sha256-OUWDHVNrcqvkNl5tME/jRBNv5g4/iv3N2F&#43;C6mN6qHE="><div id=mc_embed_signup><form action="https://gmail.us3.list-manage.com/subscribe/post?u=690be7ba6bb2da04ebb3cb084&amp;id=30d3ffcf46" method=post id=mc-embedded-subscribe-form name=mc-embedded-subscribe-form class=validate target=_blank novalidate><div id=mc_embed_signup_scroll><label for=mce-EMAIL>Dont miss any of my posts!</label><div style=position:absolute;left:-5000px aria-hidden=true><input type=text name=b_690be7ba6bb2da04ebb3cb084_30d3ffcf46 tabindex=-1></div><div class=clear><input type=email name=EMAIL class=email id=mce-EMAIL placeholder="email address" required>
-<input type=submit value=Subscribe name=subscribe id=mc-embedded-subscribe class=button></div></div></form></div></article></main><script>window.addEventListener('load',()=>document.body.classList.remove("preload"))</script></body></html>
+The UI updates as well as state updates are written as self contained modules that respond to data emitted elsewhere.</p>
+
+<p>I&rsquo;d recommend giving event driven programming a shot if you are writing a web page any time soon without a framework!
+The library I wrote for the problem is called tiny-pubsub and the Github link can be found <a href="https://github.com/LukeWood/tiny-pubsub">here</a>.</p>
+
+<p><a href="https://bulletz.io">Also be sure give bulletz.io a try!</a></p>
+
+<hr />
+
+      
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/mailchimp.3945831d536b72abe4365e6d304fe344136fe60e3f8afdcdd85f82ea637aa871.css">
+
+<div id="mc_embed_signup">
+<form action="https://gmail.us3.list-manage.com/subscribe/post?u=690be7ba6bb2da04ebb3cb084&amp;id=30d3ffcf46" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Dont miss any of my posts!</label>
+    
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_690be7ba6bb2da04ebb3cb084_30d3ffcf46" tabindex="-1" value=""></div>
+    <div class="clear">
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+    </article>
+  </main>
+
+    <script>window.addEventListener('load', () => document.body.classList.remove("preload"))</script>
+  </body>
+</html>
