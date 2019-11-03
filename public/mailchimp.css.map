@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"file": "mailchimp.css",
+	"sourceRoot": "/Users/yeti/workspace/lukewood.github.io",
+	"sources": [
+		"stdin"
+	],
+	"sourcesContent": [
+		"#mc_embed_signup{\n  width:100%;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n\n  display: flex;\n  flex-direction: column;\n  text-align: center;\n\n  label {\n    display: block;\n  }\n\n  input.email {\n    font-size: 1rem;\n    border-radius: 3px;\n  }\n  div.clear {\n    padding: 0;\n  }\n\n  #mc-embedded-subscribe {\n      min-height: 1.5rem;\n      font-weight: 700;\n      background-color: var(--primary_color_dark);\n      color: white;\n      border-radius: 3px;\n      border: none;\n      &:hover {\n        background-color: var(--primary_color);\n      }\n      -webkit-appearance: none;\n      -moz-appearance: none;\n      appearance: none;\n    }\n}\n"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,gBAAgB,AAAA,CACd,KAAK,CAAC,IAAI,CACV,kBAAkB,CAAE,IAAI,CACxB,eAAe,CAAE,IAAI,CACrB,UAAU,CAAE,IAAI,CAEhB,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,UAAU,CAAE,MAAM,CA4BnB,AApCD,AAUE,gBAVc,CAUd,KAAK,AAAC,CACJ,OAAO,CAAE,KAAK,CACf,AAZH,AAcE,gBAdc,CAcd,KAAK,AAAA,MAAM,AAAC,CACV,SAAS,CAAE,IAAI,CACf,aAAa,CAAE,GAAG,CACnB,AAjBH,AAkBE,gBAlBc,CAkBd,GAAG,AAAA,MAAM,AAAC,CACR,OAAO,CAAE,CAAC,CACX,AApBH,AAsBE,gBAtBc,CAsBd,sBAAsB,AAAC,CACnB,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,GAAG,CAChB,gBAAgB,CAAE,yBAAyB,CAC3C,KAAK,CAAE,KAAK,CACZ,aAAa,CAAE,GAAG,CAClB,MAAM,CAAE,IAAI,CAIZ,kBAAkB,CAAE,IAAI,CACxB,eAAe,CAAE,IAAI,CACrB,UAAU,CAAE,IAAI,CACjB,AAnCL,AA6BM,gBA7BU,CAsBd,sBAAsB,AAOjB,MAAM,AAAC,CACN,gBAAgB,CAAE,oBAAoB,CACvC"
+}
