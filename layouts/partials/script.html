@@ -1,2 +1,0 @@
-{{ $script := resources.Get . | minify | fingerprint}}
-<script defer async src={{$script.Permalink}}></script>
