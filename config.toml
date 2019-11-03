@@ -5,21 +5,15 @@ title = "LukeWood.dev"
 copyright = "Copyright Luke Wood 2019"
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
 googleAnalytics = "UA-139935010-1"
+theme = "birch"
 
 [authors]
   name = "Luke Wood"
 
 [params]
-  dateform        = "Jan 2, 2006"
-  dateformShort   = "Jan 2"
-  dateformNum     = "2006-01-02"
-  dateformNumTime = "2006-01-02 15:04 -0700"
-  images = [
-    "https://LukeWood.dev/img/index/ballpark.jpg"
-  ]
   locale = "en_US"
   themeColor = "#82b1ff"
-  description = "LukeWood.dev is my personal website.  It serves as a tech blog, photo gallery, code showcase, and project portfolio."
+  description = "LukeWood.dev is my personal website.  It serves as a tech blog, code showcase, and project portfolio."
 
   [[params.social]]
     name = "github"
@@ -33,10 +27,6 @@ googleAnalytics = "UA-139935010-1"
     name = "email"
     url = "mailto:me@lukewood.dev"
 
-[taxonomies]
-  post = "posts"
-  project = "projects"
-
 [menu]
   [[menu.main]]
     name = "About"
@@ -44,11 +34,11 @@ googleAnalytics = "UA-139935010-1"
     weight = 0
   [[menu.main]]
     name = "Projects"
-    url = "/project"
+    url = "/projects"
     weight = 2
   [[menu.main]]
     name = "Blog"
-    url = "/post"
+    url = "/posts"
     weight = 1
 
   #[[menu.main]]
