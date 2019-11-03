@@ -3,6 +3,7 @@ title: Machine Learning Based Spam Text Detection
 type: project
 draft: false
 link: "https://nbviewer.jupyter.org/github/LukeWood/SpamVsHamRNN/blob/master/Lab9.ipynb"
+github: "https://github.com/LukeWood/SpamVsHamRnn"
 order: 2
 ---
 Spam text message detector with **99.6% accuracy**  and **.9986 precision** on validation dataset.

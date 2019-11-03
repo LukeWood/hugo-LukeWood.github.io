@@ -2,7 +2,7 @@
 title: GenClient
 type: project
 draft: false
-link: "https://github.com/LukeWood/GenClient"
+github: "https://github.com/LukeWood/GenClient"
 stars: <a class="github-button" href="https://github.com/lukewood/genclient" data-icon="octicon-star" data-show-count="true" aria-label="Star lukewood/genclient on GitHub">Star</a>
 order: 4
 ---

@@ -33,7 +33,8 @@
           </div>
           <div class="icon-actions">
           {{if isset .Params "twitter"}}{{.Params.Twitter}}{{end}}
-          {{if isset .Params "link"}}<a class="visit text-color no-decoration material-icon" target="_blank" href="{{.Params.Link}}">launch</a>{{end}}
+          {{if isset .Params "github"}}<a class="visit text-color no-decoration material-icon" href="{{.Params.Github}}">{{ partial "svg.html" (dict "name" "github")}}</a>{{end}}
+          {{if isset .Params "link"}}<a class="visit text-color no-decoration material-icon" href="{{.Params.Link}}">launch</a>{{end}}
           </div>
         </div>
       </div>

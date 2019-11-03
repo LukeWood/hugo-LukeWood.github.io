@@ -3,14 +3,9 @@ languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "LukeWood.dev"
 copyright = "Copyright Luke Wood 2019"
-
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
 googleAnalytics = "UA-139935010-1"
 
-[blackfriday]
-  # hrefTargetBlank = true
-  # noreferrerLinks = true
-  # nofollowLinks = true
 [authors]
   name = "Luke Wood"
 
