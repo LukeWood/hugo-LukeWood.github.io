@@ -1,7 +1,7 @@
 baseURL = "/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
-title = "LukeWood.dev"
+title = "Luke Wood"
 copyright = "Copyright Luke Wood 2019"
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
 googleAnalytics = "UA-139935010-1"
@@ -14,6 +14,7 @@ theme = "birch"
   locale = "en_US"
   themeColor = "#82b1ff"
   description = "LukeWood.dev is my personal website.  It serves as a tech blog, code showcase, and project portfolio."
+  mailchimp="https://gmail.us3.list-manage.com/subscribe/post?u=690be7ba6bb2da04ebb3cb084&amp;id=30d3ffcf46"
 
   [[params.social]]
     name = "github"
