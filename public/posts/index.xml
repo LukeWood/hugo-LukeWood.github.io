@@ -1,2 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Luke Wood</title><link>/posts/</link><description>Recent content in Posts on Luke Wood</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Copyright Luke Wood 2019</copyright><lastBuildDate>Thu, 11 Jul 2019 20:13:20 -0700</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Decouple Your Javascript Using Event Driven Programming</title><link>/posts/frontend_bulletz_refactor/</link><pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate><guid>/posts/frontend_bulletz_refactor/</guid><description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
-Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Luke Wood</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on Luke Wood</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright Luke Wood 2019</copyright>
+    <lastBuildDate>Thu, 11 Jul 2019 20:13:20 -0700</lastBuildDate>
+    
+	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Decouple Your Javascript Using Event Driven Programming</title>
+      <link>/posts/frontend_bulletz_refactor/</link>
+      <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
+      
+      <guid>/posts/frontend_bulletz_refactor/</guid>
+      <description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&amp;rsquo;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
+Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description>
+    </item>
+    
+  </channel>
+</rss>
