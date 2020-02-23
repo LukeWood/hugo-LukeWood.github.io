@@ -6,7 +6,8 @@ copyright = "Copyright Luke Wood 2019"
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
 googleAnalytics = "UA-139935010-1"
 theme = "birch"
-
+[markup.goldmark.renderer]
+unsafe= true
 [authors]
   name = "Luke Wood"
 
