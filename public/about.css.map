@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"file": "about.css",
+	"sourceRoot": "/Users/yeti/workspace/lukewood.github.io",
+	"sources": [
+		"stdin"
+	],
+	"sourcesContent": [
+		"p {\n  font-size: 1.4rem;\n}\n\narticle.content {\n  text-align: center;\n}\n"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,CAAC,AAAC,CACA,SAAS,CAAE,MAAM,CAClB,AAED,AAAA,OAAO,AAAA,QAAQ,AAAC,CACd,UAAU,CAAE,MAAM,CACnB"
+}

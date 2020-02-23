@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Luke Wood</title>
+    <link>/</link>
+    <description>Recent content on Luke Wood</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright Luke Wood 2019</copyright>
+    <lastBuildDate>Sun, 23 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Typescript Saved My Game&#39;s Performance</title>
+      <link>/posts/typescript_saved_my_game/</link>
+      <pubDate>Sun, 23 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/typescript_saved_my_game/</guid>
+      <description>Background For quite awhile bulletz.io was written in vanilla javascript. The only libraries I used were RxJs and Phoenix Websockets. Performance was top notch for quite awhile due to the lack of framework, highly customized rendering code, and a specialized engine. I regularly got complements on the performance and smoothness of rendering
+October 2019 Several comments came in via email, forums, and text message from friends commenting on the poor rendering performance of my game bulletz.</description>
+    </item>
+    
+    <item>
+      <title>Decouple Your Javascript Using Event Driven Programming</title>
+      <link>/posts/frontend_bulletz_refactor/</link>
+      <pubDate>Thu, 11 Jul 2019 20:13:20 -0700</pubDate>
+      
+      <guid>/posts/frontend_bulletz_refactor/</guid>
+      <description>I am the sole author of the web game bulletz.io. Recently I refactored the frontend&#39;s codebase to more closely match that of the backend. The backend is written using the functional programming language Elixir while the frontend is written in Vanilla Javascript. The programming languages are vastly different and are based on entirely different paradigms.
+Originally the frontend was written using a generic Object Oriented model. This led to a great deal of technical debt, complicated UI interactions, and overall confusing code.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/manifest.json</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/manifest.json</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/offline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/offline/</guid>
+      <description>You&#39;re Offline Sorry </description>
+    </item>
+    
+    <item>
+      <title>8000net</title>
+      <link>/projects/8000net/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/8000net/</guid>
+      <description>Developed the lecture material for an 8000 level machine learning course with 5 masters students and Dr. Eric Larson. All repositories hosted on git. Thumbnail generated via [neural net based style transfer](https://nbviewer.jupyter.org/github/8000net/LectureNotesMaster/blob/master/03 LectureStyleTransfer.ipynb)</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>🏖️ San Diego Native 🏖️
+🎿 Ski All Winter 🎿
+🏄‍♂️ Surf 3-5x/Week 🏄‍♂️
+   </description>
+    </item>
+    
+    <item>
+      <title>AREA-51</title>
+      <link>/projects/area-51/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/area-51/</guid>
+      <description>a 3D plot showing the location of each reported UFO sighting across the US in 1995-1996.</description>
+    </item>
+    
+    <item>
+      <title>bulletz.io</title>
+      <link>/projects/bulletz.io/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/bulletz.io/</guid>
+      <description>a real time multiplayer 2D shooter. Consists of an RxJs frontend and an elixir backend.</description>
+    </item>
+    
+    <item>
+      <title>GenClient</title>
+      <link>/projects/genclient/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/genclient/</guid>
+      <description>Elixir metaprogramming library that generates boilerplate GenServer code.</description>
+    </item>
+    
+    <item>
+      <title>Machine Learning Based Spam Text Detection</title>
+      <link>/projects/spam-vs-ham/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/spam-vs-ham/</guid>
+      <description>Spam text message detector with 99.6% accuracy and .9986 precision on validation dataset. Implemented by feeding GloVe embeddings into an LSTM or GRU recurrent neural network (RNN). Full details in the jupyter notebook.</description>
+    </item>
+    
+    <item>
+      <title>Slug Hacks</title>
+      <link>/projects/slug-hacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/slug-hacks/</guid>
+      <description>Ran a Firebase workshop at CruzHacks.
+Demo app linked.</description>
+    </item>
+    
+    <item>
+      <title>tiny-pubsub</title>
+      <link>/projects/tiny-pubsub/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/tiny-pubsub/</guid>
+      <description>a feature light event driven programming library. The unminified binary is only 857 bytes.</description>
+    </item>
+    
+  </channel>
+</rss>
