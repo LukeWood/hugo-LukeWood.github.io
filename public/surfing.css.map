@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"file": "surfing.css",
+	"sourceRoot": "/Users/yeti/workspace/lukewood.github.io",
+	"sources": [
+		"stdin"
+	],
+	"sourcesContent": [
+		"\n.container {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  width: 100%;\n  min-height: 100%;\n}\n\n.content {\n  display: flex;\n  justify-content: space-around;\n  padding: 1rem;\n  width: 100%;\n\n  * {\n    max-width: 100%;\n  }\n}\n\n.controls {\n  max-width: 560px;\n  padding: 1rem;\n  display: flex;\n  justify-content: space-around;\n}\n"
+	],
+	"names": [],
+	"mappings": "AACA,AAAA,UAAU,AAAC,CACT,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,eAAe,CAAE,YAAY,CAC7B,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,IAAI,CACjB,AAED,AAAA,QAAQ,AAAC,CACP,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,YAAY,CAC7B,OAAO,CAAE,IAAI,CACb,KAAK,CAAE,IAAI,CAKZ,AATD,AAME,QANM,CAMN,CAAC,AAAC,CACA,SAAS,CAAE,IAAI,CAChB,AAGH,AAAA,SAAS,AAAC,CACR,SAAS,CAAE,KAAK,CAChB,OAAO,CAAE,IAAI,CACb,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,YAAY,CAC9B"
+}
