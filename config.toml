@@ -37,11 +37,15 @@ unsafe= true
     url = "/about"
     weight = 0
   [[menu.main]]
-    name = "Projects"
-    url = "/projects"
+    name = "Surfing"
+    url = "/surfing"
     weight = 2
   [[menu.main]]
-    name = "Blog"
+    name = "Projects"
+    url = "/projects"
+    weight = 3
+  [[menu.main]]
+    name = "Developer Blog"
     url = "/posts"
     weight = 1
 
