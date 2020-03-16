@@ -8,16 +8,22 @@ type: post
 For quite awhile [bulletz.io](https://bulletz.io) was written in vanilla javascript.
 The only libraries I used were RxJs and Phoenix Websockets.
 Performance was top notch for quite awhile due to the lack of framework, highly customized rendering code, and a specialized engine.
-I regularly got complements on the performance and smoothness of rendering
+I regularly got complements on the performance and smoothness of rendering.
+
+{{< progressive-image class="bordered-figure" src="img/posts/bulletz/bulletz.png" alt="screenshot of bulletz.io being played" title="A screenshot of bulletz.io" >}}
 
 ## October 2019
 Several comments came in via email, forums, and text message from friends commenting on the poor rendering performance of my game [bulletz.io](https://bulletz.io).
 The only changes I had made (from my perspective) were trivial and had nothing to do with rendering.
 I'd pretty much completely halted development at this point.
 
+
 ## What happened?
-My laptop broke last October.  Due to this I got a spankin new Macbook.
+My laptop broke last October.
+Due to this I got a spankin new Macbook.
 I re-installed all of my dependencies.  Due to some bad development practices on my part (hobby project give me a break) I bumped the version of RxJs.
+
+{{< progressive-image class="bordered-figure" src="img/posts/typescript/macbook-pro.jpg" alt="My spankin new 2020 Macbook Pro" title="My spankin new 2020 Macbook Pro" >}}
 
 Why was this problematic?
 well...
