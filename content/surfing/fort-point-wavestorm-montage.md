@@ -1,6 +1,6 @@
 ---
-title: Fort Point Wavestorm montage
+title: Fort Point Wavestorm Montage
 type: surfing
 date: "2020-01-03"
 ---
-{{< youtube src="qme1944a7g8" >}}
+{{< youtube src="cowbfewp6pg" >}}
