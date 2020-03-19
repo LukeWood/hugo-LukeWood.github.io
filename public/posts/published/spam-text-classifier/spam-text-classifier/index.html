@@ -1,0 +1,674 @@
+<!doctype html><html data-theme=dark lang=en><head><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-139935010-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=description content="LukeWood.dev is my personal website.  It serves as a tech blog, code showcase, and project portfolio."><title>Luke Wood</title><meta property="og:title" content="Spam Text Classification with RNNs"><meta property="og:description" content="By Justin Ledford, Luke Wood, Traian Pop  Business Understanding Data Background SMS messages play a huge role in a person&rsquo;s life, and the confidentiality and integrity of said messages are of the highest priority to mobile carriers around the world. Due to this fact, many unlawful individuals and groups try and take advantange of the average consumer by flooding their inbox with spam, and while the majority of people successfully avoid it, there are people out there affected negatively by falling for false messages."><meta property="og:type" content="article"><meta property="og:url" content="/posts/published/spam-text-classifier/spam-text-classifier/"><meta property="article:published_time" content="2017-05-18T00:00:00+00:00"><meta property="article:modified_time" content="2017-05-18T00:00:00+00:00"><meta itemprop=name content="Spam Text Classification with RNNs"><meta itemprop=description content="By Justin Ledford, Luke Wood, Traian Pop  Business Understanding Data Background SMS messages play a huge role in a person&rsquo;s life, and the confidentiality and integrity of said messages are of the highest priority to mobile carriers around the world. Due to this fact, many unlawful individuals and groups try and take advantange of the average consumer by flooding their inbox with spam, and while the majority of people successfully avoid it, there are people out there affected negatively by falling for false messages."><meta itemprop=datePublished content="2017-05-18T00:00:00+00:00"><meta itemprop=dateModified content="2017-05-18T00:00:00+00:00"><meta itemprop=wordCount content="4468"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Spam Text Classification with RNNs"><meta name=twitter:description content="By Justin Ledford, Luke Wood, Traian Pop  Business Understanding Data Background SMS messages play a huge role in a person&rsquo;s life, and the confidentiality and integrity of said messages are of the highest priority to mobile carriers around the world. Due to this fact, many unlawful individuals and groups try and take advantange of the average consumer by flooding their inbox with spam, and while the majority of people successfully avoid it, there are people out there affected negatively by falling for false messages."><link rel=apple-touch-icon sizes=32x32 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_32x32_resize_box_2.png><link rel=icon type=image/png sizes=32x32 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_32x32_resize_box_2.png><link rel=apple-touch-icon sizes=96x96 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_96x96_resize_box_2.png><link rel=icon type=image/png sizes=96x96 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_96x96_resize_box_2.png><link rel=apple-touch-icon sizes=57x57 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_57x57_resize_box_2.png><link rel=icon type=image/png sizes=57x57 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_57x57_resize_box_2.png><link rel=apple-touch-icon sizes=60x60 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_60x60_resize_box_2.png><link rel=icon type=image/png sizes=60x60 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_60x60_resize_box_2.png><link rel=apple-touch-icon sizes=72x72 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_72x72_resize_box_2.png><link rel=icon type=image/png sizes=72x72 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_72x72_resize_box_2.png><link rel=apple-touch-icon sizes=76x76 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_76x76_resize_box_2.png><link rel=icon type=image/png sizes=76x76 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_76x76_resize_box_2.png><link rel=apple-touch-icon sizes=114x114 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_114x114_resize_box_2.png><link rel=icon type=image/png sizes=114x114 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_114x114_resize_box_2.png><link rel=apple-touch-icon sizes=120x120 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_120x120_resize_box_2.png><link rel=icon type=image/png sizes=120x120 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_120x120_resize_box_2.png><link rel=apple-touch-icon sizes=128x128 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_128x128_resize_box_2.png><link rel=icon type=image/png sizes=128x128 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_128x128_resize_box_2.png><link rel=apple-touch-icon sizes=144x144 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_144x144_resize_box_2.png><link rel=icon type=image/png sizes=144x144 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_144x144_resize_box_2.png><link rel=apple-touch-icon sizes=152x152 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_152x152_resize_box_2.png><link rel=icon type=image/png sizes=152x152 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_152x152_resize_box_2.png><link rel=apple-touch-icon sizes=180x180 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_180x180_resize_box_2.png><link rel=icon type=image/png sizes=180x180 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_180x180_resize_box_2.png><link rel=apple-touch-icon sizes=192x192 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_192x192_resize_box_2.png><link rel=icon type=image/png sizes=192x192 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_192x192_resize_box_2.png><link rel=apple-touch-icon sizes=512x512 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_512x512_resize_box_2.png><link rel=icon type=image/png sizes=512x512 href=/icons/whale_hu4b96c97647f96e31a06c1982535090f9_26376_512x512_resize_box_2.png><meta name=theme-color content="#121212"><meta name=msapplication-TileColor content="#121212"><link rel=manifest href=/manifest.json><script async defer>if('serviceWorker'in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register("\/sw.js").then(function(registration){console.log('ServiceWorker registration successful with scope: ',registration.scope);}).catch(function(err){console.log('ServiceWorker registration failed: ',err);});});}</script><link rel=stylesheet type=text/css href=/base.b02ba4b977b64e5b06fe75eef9578fc578a3d7412add940686ed339239df88de.css><link rel=stylesheet type=text/css href=/post.843046519f04323d1d75a29c201189885baea131a5f5b5df1789efba1c67a0c1.css><script defer async src=/js/darkmode.min.7d7341c61e13b0b7660636875a1d5ecb3f169ae545fc46104e82ec5302464530.js></script></head><body class=preload><nav class=menu><a class="main-emphasis weight-700" href=/>LukeWood.dev</a>
+<a id=night-toggle class="night-menu material-icon">wb_sunny</a>
+<script defer async src=/js/menu.min.7c54a13473e137bac23f569d72158e4b11f220c39f5ede70ed53872204eb24b2.js></script></nav><main class=container><article class=content><h1>Spam Text Classification with RNNs</h1><h3 id=by-justin-ledford-luke-wood-traian-pop>By Justin Ledford, Luke Wood, Traian Pop</h3><hr><h2 id=business-understanding>Business Understanding</h2><h3 id=data-background>Data Background</h3><p>SMS messages play a huge role in a person&rsquo;s life, and the confidentiality and integrity of said messages are of the highest priority to mobile carriers around the world. Due to this fact, many unlawful individuals and groups try and take advantange of the average consumer by flooding their inbox with spam, and while the majority of people successfully avoid it, there are people out there affected negatively by falling for false messages.</p><p>The data we selected is a compilation of 5574 SMS messages acquired from a variety of different sources, broken down in the following way: 452 of the messages came from the Grumbletext Web Site, 3375 of the messages were taken from the NUS SMS Corpus (database with legitimate message from the University of Singapore), 450 messages collected from Caroline Tag&rsquo;s PhD Thesis, and the last 1324 messages were from the SMS Spam Corpus v.0.1 Big.</p><p>Overall there were 4827 &ldquo;ham&rdquo; messages and 747 &ldquo;spam&rdquo; messages, and about 92,000 words.</p><h3 id=purpose>Purpose</h3><p>This data was collected initially for studies on deciphering the differences between a spam or ham (legitimate) messages. Uses for this research can involve advanced spam filtering technology or improved data sets for machine learning programs. However, a slight problem with this data set, as with most localized language-based data sets, is that due to the relatively small area of sampling, there are a lot of regional data points (such as slang, acronyms, etc) that can be considering &ldquo;useless&rdquo; data if a much more generalized data set is wanted. For our specific project however, we are keeping all this data in order for us to analyze it and get a better understanding of our data.</p><hr><h2 id=preparation>Preparation</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> pandas <span style=color:#f92672>as</span> pd
+<span style=color:#f92672>import</span> numpy <span style=color:#f92672>as</span> np
+<span style=color:#f92672>import</span> requests
+<span style=color:#f92672>import</span> re
+<span style=color:#f92672>from</span> sklearn.feature_extraction.text <span style=color:#f92672>import</span> CountVectorizer, TfidfVectorizer
+<span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#f92672>as</span> plt
+<span style=color:#f92672>import</span> warnings
+warnings<span style=color:#f92672>.</span>filterwarnings(<span style=color:#e6db74>&#34;ignore&#34;</span>)
+<span style=color:#f92672>%</span>matplotlib inline
+
+descriptors_url <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;https://raw.githubusercontent.com/LukeWoodSMU/TextAnalysis/master/data/SMSSpamCollection&#39;</span>
+descriptors <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(descriptors_url)<span style=color:#f92672>.</span>text
+texts <span style=color:#f92672>=</span> []
+
+
+<span style=color:#66d9ef>for</span> line <span style=color:#f92672>in</span> descriptors<span style=color:#f92672>.</span>splitlines():
+    texts<span style=color:#f92672>.</span>append(line<span style=color:#f92672>.</span>rstrip()<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\t</span><span style=color:#e6db74>&#34;</span>))
+</code></pre></div><p>After the first look at the data we noticed a lot of phone numbers. Since almost every number was unique we concluded that the numbers were irrelevant to consider as words. We considered grouping all number tokens into one token and analyze the presence of words, but we decided to first start by just removing the numbers.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># Remove numbers</span>
+texts <span style=color:#f92672>=</span> list(zip([a <span style=color:#66d9ef>for</span> a,b <span style=color:#f92672>in</span> texts], [re<span style=color:#f92672>.</span>sub(<span style=color:#e6db74>&#39;((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d&#39;</span>, <span style=color:#e6db74>&#39;PHONE_NUMBER&#39;</span>, b) <span style=color:#66d9ef>for</span> a,b <span style=color:#f92672>in</span> texts]))
+</code></pre></div><p>Citation: regex from google search top results/stack overflow</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> numpy <span style=color:#f92672>as</span> np
+<span style=color:#f92672>from</span> keras.preprocessing <span style=color:#f92672>import</span> sequence
+</code></pre></div><pre><code>Using TensorFlow backend.
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>X <span style=color:#f92672>=</span> [x[<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> texts]
+y <span style=color:#f92672>=</span> [x[<span style=color:#ae81ff>0</span>] <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> texts]
+X <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array(X)
+<span style=color:#66d9ef>print</span>(type(X))
+</code></pre></div><pre><code>&lt;class 'numpy.ndarray'&gt;
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> keras
+y <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span> <span style=color:#66d9ef>if</span> y_ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;spam&#34;</span> <span style=color:#66d9ef>else</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>for</span> y_ <span style=color:#f92672>in</span> y]
+y_ohe <span style=color:#f92672>=</span> keras<span style=color:#f92672>.</span>utils<span style=color:#f92672>.</span>to_categorical(y)
+y_ohe
+</code></pre></div><pre><code>array([[ 0.,  1.],
+       [ 0.,  1.],
+       [ 1.,  0.],
+       ...,
+       [ 0.,  1.],
+       [ 0.,  1.],
+       [ 0.,  1.]])
+</code></pre><p>We assign spam as a value of 0 and ham as a value of one so that we can use precision score to measure false positive scores.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> keras
+<span style=color:#f92672>from</span> keras.preprocessing.text <span style=color:#f92672>import</span> Tokenizer
+<span style=color:#f92672>from</span> keras.preprocessing.sequence <span style=color:#f92672>import</span> pad_sequences
+
+NUM_TOP_WORDS <span style=color:#f92672>=</span> None
+
+tokenizer <span style=color:#f92672>=</span> Tokenizer(num_words<span style=color:#f92672>=</span>NUM_TOP_WORDS)
+tokenizer<span style=color:#f92672>.</span>fit_on_texts(X)
+word_index <span style=color:#f92672>=</span> tokenizer<span style=color:#f92672>.</span>word_index
+
+sequences <span style=color:#f92672>=</span> tokenizer<span style=color:#f92672>.</span>texts_to_sequences(X)
+sequences <span style=color:#f92672>=</span> pad_sequences(sequences)
+
+MAX_TEXT_LEN <span style=color:#f92672>=</span> len(sequences[<span style=color:#ae81ff>0</span>]) <span style=color:#75715e># maximum and minimum number of words</span>
+</code></pre></div><p>We tokenize and measure the max length of the text using keras&rsquo; tokenizer.</p><h3 id=cross-validation-method>Cross Validation Method</h3><p>We now have an embedding matrix for our word index.</p><p>Finally, we split our data into training data and testing data. We stratify the data on y_ohe to ensure that we get a fair representation of the spam and ham messages. We believe this to be appropriate because each model needs to see a fair number of both spam messages and ham messages to ensure it does not overtrain on either.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> sklearn.model_selection <span style=color:#f92672>import</span> train_test_split
+<span style=color:#75715e># Split it into train / test subsets</span>
+X_train, X_test, y_train_ohe, y_test_ohe <span style=color:#f92672>=</span> train_test_split(sequences, y_ohe, test_size<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>,
+                                                            stratify<span style=color:#f92672>=</span>y_ohe,
+                                                            random_state<span style=color:#f92672>=</span><span style=color:#ae81ff>42</span>)
+NUM_CLASSES <span style=color:#f92672>=</span> len(y_train_ohe[<span style=color:#ae81ff>0</span>])
+NUM_CLASSES
+</code></pre></div><pre><code>2
+</code></pre><h3 id=evaluation-metrics>Evaluation Metrics</h3><p>We decided that due to our business understanding being that we can potentially create a spam filter, our largest cost should be false positives. It would be incredibly frustrating to have a real text filtered out so we should evaluate our models in accordance with this. To evaluate this, we must implement precision score which has been removed from keras. Luckily, the old code is available in a one of keras&rsquo; old versions.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># Old version of keras had precision score, copied the code to re-implement it.</span>
+<span style=color:#f92672>import</span> keras.backend <span style=color:#f92672>as</span> K
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>precision</span>(y_true, y_pred):
+    true_positives <span style=color:#f92672>=</span> K<span style=color:#f92672>.</span>sum(K<span style=color:#f92672>.</span>round(K<span style=color:#f92672>.</span>clip(y_true <span style=color:#f92672>*</span> y_pred, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)))
+    predicted_positives <span style=color:#f92672>=</span> K<span style=color:#f92672>.</span>sum(K<span style=color:#f92672>.</span>round(K<span style=color:#f92672>.</span>clip(y_pred, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)))
+    precision <span style=color:#f92672>=</span> true_positives <span style=color:#f92672>/</span> (predicted_positives <span style=color:#f92672>+</span> K<span style=color:#f92672>.</span>epsilon())
+    <span style=color:#66d9ef>return</span> precision
+</code></pre></div><p>Citation: old keras version</p><h2 id=modeling>Modeling</h2><p>To avoid the need for training our own embedding layer which is incredibly computationally expensive, we load up a pretrained glove embedding.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>EMBED_SIZE <span style=color:#f92672>=</span> <span style=color:#ae81ff>100</span>
+<span style=color:#75715e># the embed size should match the file you load glove from</span>
+embeddings_index <span style=color:#f92672>=</span> {}
+f <span style=color:#f92672>=</span> open(<span style=color:#e6db74>&#39;GLOVE/glove.6B/glove.6B.100d.txt&#39;</span>)
+<span style=color:#75715e># save key/array pairs of the embeddings</span>
+<span style=color:#75715e>#  the key of the dictionary is the word, the array is the embedding</span>
+<span style=color:#66d9ef>for</span> line <span style=color:#f92672>in</span> f:
+    values <span style=color:#f92672>=</span> line<span style=color:#f92672>.</span>split()
+    word <span style=color:#f92672>=</span> values[<span style=color:#ae81ff>0</span>]
+    coefs <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>asarray(values[<span style=color:#ae81ff>1</span>:], dtype<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;float32&#39;</span>)
+    embeddings_index[word] <span style=color:#f92672>=</span> coefs
+f<span style=color:#f92672>.</span>close()
+
+<span style=color:#66d9ef>print</span>(<span style=color:#e6db74>&#39;Found </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> word vectors.&#39;</span> <span style=color:#f92672>%</span> len(embeddings_index))
+
+<span style=color:#75715e># now fill in the matrix, using the ordering from the</span>
+<span style=color:#75715e>#  keras word tokenizer from before</span>
+embedding_matrix <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros((len(word_index) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, EMBED_SIZE))
+<span style=color:#66d9ef>for</span> word, i <span style=color:#f92672>in</span> word_index<span style=color:#f92672>.</span>items():
+    embedding_vector <span style=color:#f92672>=</span> embeddings_index<span style=color:#f92672>.</span>get(word)
+    <span style=color:#66d9ef>if</span> embedding_vector <span style=color:#f92672>is</span> <span style=color:#f92672>not</span> None:
+        <span style=color:#75715e># words not found in embedding index will be all-zeros.</span>
+        embedding_matrix[i] <span style=color:#f92672>=</span> embedding_vector
+
+<span style=color:#66d9ef>print</span>(embedding_matrix<span style=color:#f92672>.</span>shape)
+</code></pre></div><pre><code>Found 400000 word vectors.
+(9008, 100)
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> keras.layers <span style=color:#f92672>import</span> Embedding
+
+embedding_layer <span style=color:#f92672>=</span> Embedding(len(word_index) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>,
+                            EMBED_SIZE,
+                            weights<span style=color:#f92672>=</span>[embedding_matrix],
+                            input_length<span style=color:#f92672>=</span>MAX_TEXT_LEN,
+                            trainable<span style=color:#f92672>=</span>False)
+metrics<span style=color:#f92672>=</span>[precision,<span style=color:#e6db74>&#34;accuracy&#34;</span>]
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> keras.models <span style=color:#f92672>import</span> Sequential
+<span style=color:#f92672>from</span> keras.layers <span style=color:#f92672>import</span> Dense
+<span style=color:#f92672>from</span> keras.layers <span style=color:#f92672>import</span> LSTM
+
+rnn <span style=color:#f92672>=</span> Sequential()
+rnn<span style=color:#f92672>.</span>add(embedding_layer)
+rnn<span style=color:#f92672>.</span>add(LSTM(<span style=color:#ae81ff>100</span>,dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>, recurrent_dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>))
+rnn<span style=color:#f92672>.</span>add(Dense(NUM_CLASSES, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sigmoid&#39;</span>))
+rnn<span style=color:#f92672>.</span>compile(loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,
+              optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rmsprop&#39;</span>,
+              metrics<span style=color:#f92672>=</span>metrics)
+<span style=color:#66d9ef>print</span>(rnn<span style=color:#f92672>.</span>summary())
+</code></pre></div><pre><code>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 189, 100)          900800    
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 100)               80400     
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 202       
+=================================================================
+Total params: 981,402
+Trainable params: 80,602
+Non-trainable params: 900,800
+_________________________________________________________________
+None
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>rnn<span style=color:#f92672>.</span>fit(X_train, y_train_ohe, validation_data<span style=color:#f92672>=</span>(X_test, y_test_ohe), epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>)
+</code></pre></div><pre><code>Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 19s - loss: 0.1908 - precision: 0.9525 - acc: 0.9325 - val_loss: 0.1071 - val_precision: 0.9852 - val_acc: 0.9578
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0982 - precision: 0.9902 - acc: 0.9684 - val_loss: 0.1500 - val_precision: 0.9794 - val_acc: 0.9471
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0742 - precision: 0.9926 - acc: 0.9751 - val_loss: 0.0779 - val_precision: 0.9885 - val_acc: 0.9731
+
+
+
+
+
+&lt;keras.callbacks.History at 0x7f90995116d8&gt;
+</code></pre><h3 id=comparing-different-model-types>Comparing Different Model Types</h3><p>To begin, we will evaluate a network using an LSTM cell, a GRU cell, and a SimpleRNN cell. We will use a standard hyperparameter set to evaluate the results and decide which two architectures we want to explore in depth based on the results.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> keras.layers <span style=color:#f92672>import</span> LSTM, GRU, SimpleRNN
+
+rnns <span style=color:#f92672>=</span> []
+
+<span style=color:#66d9ef>for</span> func <span style=color:#f92672>in</span> [SimpleRNN, LSTM, GRU]:
+    rnn <span style=color:#f92672>=</span> Sequential()
+    rnn<span style=color:#f92672>.</span>add(embedding_layer)
+    rnn<span style=color:#f92672>.</span>add(func(<span style=color:#ae81ff>100</span>,dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>, recurrent_dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>))
+    rnn<span style=color:#f92672>.</span>add(Dense(NUM_CLASSES, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sigmoid&#39;</span>))
+
+    rnn<span style=color:#f92672>.</span>compile(loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,
+                  optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rmsprop&#39;</span>,
+                  metrics<span style=color:#f92672>=</span>metrics)
+    rnns<span style=color:#f92672>.</span>append(rnn)
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>for</span> rnn, name <span style=color:#f92672>in</span> zip(rnns,[<span style=color:#e6db74>&#39;simple&#39;</span>,<span style=color:#e6db74>&#39;lstm&#39;</span>,<span style=color:#e6db74>&#39;gru&#39;</span>]):
+    <span style=color:#66d9ef>print</span>(<span style=color:#e6db74>&#39;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>Testing Cell Type: &#39;</span>,name,<span style=color:#e6db74>&#39;========&#39;</span>)
+    rnn<span style=color:#f92672>.</span>fit(X_train, y_train_ohe, epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>, validation_data<span style=color:#f92672>=</span>(X_test, y_test_ohe))
+</code></pre></div><pre><code>Testing Cell Type:  simple ========
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 7s - loss: 0.2723 - precision: 0.8913 - acc: 0.8924 - val_loss: 0.1902 - val_precision: 0.9341 - val_acc: 0.9318
+Epoch 2/3
+4459/4459 [==============================] - 7s - loss: 0.1705 - precision: 0.9464 - acc: 0.9394 - val_loss: 0.1373 - val_precision: 0.9591 - val_acc: 0.9525
+Epoch 3/3
+4459/4459 [==============================] - 7s - loss: 0.1444 - precision: 0.9565 - acc: 0.9457 - val_loss: 0.1132 - val_precision: 0.9702 - val_acc: 0.9641
+
+Testing Cell Type:  lstm ========
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 19s - loss: 0.1813 - precision: 0.9784 - acc: 0.9365 - val_loss: 0.1089 - val_precision: 0.9966 - val_acc: 0.9561
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0931 - precision: 0.9958 - acc: 0.9682 - val_loss: 0.0859 - val_precision: 0.9957 - val_acc: 0.9713
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0740 - precision: 0.9958 - acc: 0.9749 - val_loss: 0.0805 - val_precision: 0.9946 - val_acc: 0.9686
+
+Testing Cell Type:  gru ========
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 19s - loss: 0.2118 - precision: 0.9403 - acc: 0.9141 - val_loss: 0.0982 - val_precision: 0.9931 - val_acc: 0.9695
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0956 - precision: 0.9921 - acc: 0.9699 - val_loss: 0.0729 - val_precision: 0.9939 - val_acc: 0.9749
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0720 - precision: 0.9947 - acc: 0.9771 - val_loss: 0.0668 - val_precision: 0.9950 - val_acc: 0.9758
+</code></pre><p>As we can see, the GRU model performs the best by a large margin. If we continue to train the GRU model it seems that we will get some really great results. We will try also try to find the best hyperparameters for the GRU model.</p><p>After we find the best GRU results we will use an LSTM and then measure the results of the LSTM.</p><h3 id=gridsearch-on-gru-model>Gridsearch on GRU Model</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>dropouts<span style=color:#f92672>=</span>[<span style=color:#f92672>.</span><span style=color:#ae81ff>1</span>,<span style=color:#f92672>.</span><span style=color:#ae81ff>2</span>,<span style=color:#f92672>.</span><span style=color:#ae81ff>3</span>]
+recurrent_dropouts<span style=color:#f92672>=</span>[<span style=color:#f92672>.</span><span style=color:#ae81ff>1</span>,<span style=color:#f92672>.</span><span style=color:#ae81ff>2</span>,<span style=color:#f92672>.</span><span style=color:#ae81ff>3</span>]
+
+<span style=color:#66d9ef>for</span> dropout <span style=color:#f92672>in</span> dropouts:
+    <span style=color:#66d9ef>for</span> recurrent_dropout <span style=color:#f92672>in</span> recurrent_dropouts:
+        rnn <span style=color:#f92672>=</span> Sequential()
+        rnn<span style=color:#f92672>.</span>add(embedding_layer)
+        rnn<span style=color:#f92672>.</span>add(func(<span style=color:#ae81ff>100</span>,dropout<span style=color:#f92672>=</span>dropout, recurrent_dropout<span style=color:#f92672>=</span>recurrent_dropout))
+        rnn<span style=color:#f92672>.</span>add(Dense(NUM_CLASSES, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sigmoid&#39;</span>))
+
+        rnn<span style=color:#f92672>.</span>compile(loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,
+                      optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rmsprop&#39;</span>,
+                      metrics<span style=color:#f92672>=</span>metrics)
+        <span style=color:#66d9ef>print</span>(<span style=color:#e6db74>&#34;Hyper Paramater Set:</span><span style=color:#ae81ff>\n\t</span><span style=color:#e6db74>dropout=</span><span style=color:#e6db74>%.1f</span><span style=color:#ae81ff>\n\t</span><span style=color:#e6db74>recurrent_dropout=</span><span style=color:#e6db74>%.1f</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> (dropout,recurrent_dropout))
+        rnn<span style=color:#f92672>.</span>fit(X_train,y_train_ohe,epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>, validation_data<span style=color:#f92672>=</span>(X_test,y_test_ohe))
+</code></pre></div><pre><code>Hyper Paramater Set:
+    dropout=0.1
+    recurrent_dropout=0.1
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 19s - loss: 0.2019 - precision: 0.9571 - acc: 0.9186 - val_loss: 0.0949 - val_precision: 0.9967 - val_acc: 0.9668
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0783 - precision: 0.9955 - acc: 0.9715 - val_loss: 0.0870 - val_precision: 0.9937 - val_acc: 0.9677
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0579 - precision: 0.9955 - acc: 0.9818 - val_loss: 0.0671 - val_precision: 0.9938 - val_acc: 0.9758
+Hyper Paramater Set:
+    dropout=0.1
+    recurrent_dropout=0.2
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 20s - loss: 0.1992 - precision: 0.9645 - acc: 0.9258 - val_loss: 0.1475 - val_precision: 0.9853 - val_acc: 0.9507
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0890 - precision: 0.9959 - acc: 0.9711 - val_loss: 0.0786 - val_precision: 0.9957 - val_acc: 0.9713
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0635 - precision: 0.9965 - acc: 0.9798 - val_loss: 0.0646 - val_precision: 0.9958 - val_acc: 0.9776
+Hyper Paramater Set:
+    dropout=0.1
+    recurrent_dropout=0.3
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 20s - loss: 0.2042 - precision: 0.9616 - acc: 0.9285 - val_loss: 0.0963 - val_precision: 0.9939 - val_acc: 0.9650
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0931 - precision: 0.9927 - acc: 0.9695 - val_loss: 0.0827 - val_precision: 0.9969 - val_acc: 0.9722
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0645 - precision: 0.9951 - acc: 0.9787 - val_loss: 0.0673 - val_precision: 0.9950 - val_acc: 0.9785
+Hyper Paramater Set:
+    dropout=0.2
+    recurrent_dropout=0.1
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 19s - loss: 0.1992 - precision: 0.9469 - acc: 0.9273 - val_loss: 0.0970 - val_precision: 0.9943 - val_acc: 0.9695
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0866 - precision: 0.9919 - acc: 0.9715 - val_loss: 0.0823 - val_precision: 0.9931 - val_acc: 0.9704
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0606 - precision: 0.9946 - acc: 0.9814 - val_loss: 0.0660 - val_precision: 0.9933 - val_acc: 0.9776
+Hyper Paramater Set:
+    dropout=0.2
+    recurrent_dropout=0.2
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 20s - loss: 0.2040 - precision: 0.9423 - acc: 0.9206 - val_loss: 0.1004 - val_precision: 0.9920 - val_acc: 0.9632
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0927 - precision: 0.9902 - acc: 0.9704 - val_loss: 0.0780 - val_precision: 0.9950 - val_acc: 0.9740
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0675 - precision: 0.9935 - acc: 0.9782 - val_loss: 0.0660 - val_precision: 0.9932 - val_acc: 0.9794
+Hyper Paramater Set:
+    dropout=0.2
+    recurrent_dropout=0.3
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 20s - loss: 0.2293 - precision: 0.9248 - acc: 0.9065 - val_loss: 0.1219 - val_precision: 0.9816 - val_acc: 0.9561
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.1008 - precision: 0.9860 - acc: 0.9661 - val_loss: 0.0805 - val_precision: 0.9859 - val_acc: 0.9740
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0813 - precision: 0.9886 - acc: 0.9744 - val_loss: 0.0698 - val_precision: 0.9885 - val_acc: 0.9767
+Hyper Paramater Set:
+    dropout=0.3
+    recurrent_dropout=0.1
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 20s - loss: 0.2037 - precision: 0.9509 - acc: 0.9222 - val_loss: 0.1467 - val_precision: 0.9826 - val_acc: 0.9471
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0921 - precision: 0.9910 - acc: 0.9697 - val_loss: 0.0935 - val_precision: 0.9918 - val_acc: 0.9668
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0771 - precision: 0.9942 - acc: 0.9758 - val_loss: 0.0611 - val_precision: 0.9959 - val_acc: 0.9803
+Hyper Paramater Set:
+    dropout=0.3
+    recurrent_dropout=0.2
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 20s - loss: 0.2233 - precision: 0.9236 - acc: 0.9114 - val_loss: 0.1063 - val_precision: 0.9796 - val_acc: 0.9641
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.1017 - precision: 0.9836 - acc: 0.9648 - val_loss: 0.0777 - val_precision: 0.9834 - val_acc: 0.9722
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0765 - precision: 0.9870 - acc: 0.9733 - val_loss: 0.0643 - val_precision: 0.9906 - val_acc: 0.9785
+Hyper Paramater Set:
+    dropout=0.3
+    recurrent_dropout=0.3
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 20s - loss: 0.2367 - precision: 0.9417 - acc: 0.8998 - val_loss: 0.1063 - val_precision: 0.9955 - val_acc: 0.9632
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.1165 - precision: 0.9897 - acc: 0.9628 - val_loss: 0.0787 - val_precision: 0.9969 - val_acc: 0.9722
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0857 - precision: 0.9927 - acc: 0.9717 - val_loss: 0.0883 - val_precision: 0.9950 - val_acc: 0.9677
+</code></pre><h6 id=we-get-some-pretty-ridiculously-high-accuracy-with-both-of-our-hyperparameters-set-to-1>We get some pretty ridiculously high accuracy with both of our hyperparameters set to .1</h6><p>As we can see, with dropout and recurrent dropout at .1 we get some really great results; with accuracy getting as high as 98.6%. This is ridiculously high. The model gets .997 precision and .98 accuracy on the validation set with these hyperparameters.</p><p>We actually get a similar precision score in a few sets of hyperparameters, but we get a higher accuracy with the .1 and .1 set so this is our most effective model.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>best_model <span style=color:#f92672>=</span> Sequential()
+best_model<span style=color:#f92672>.</span>add(embedding_layer)
+best_model<span style=color:#f92672>.</span>add(GRU(<span style=color:#ae81ff>100</span>,dropout<span style=color:#f92672>=.</span><span style=color:#ae81ff>1</span>, recurrent_dropout<span style=color:#f92672>=.</span><span style=color:#ae81ff>1</span>))
+best_model<span style=color:#f92672>.</span>add(Dense(NUM_CLASSES, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sigmoid&#39;</span>))
+best_model<span style=color:#f92672>.</span>compile(loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,
+                      optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rmsprop&#39;</span>,
+                      metrics<span style=color:#f92672>=</span>metrics)
+</code></pre></div><h3 id=running-our-best-model-with-more-epochs>Running Our Best Model With More Epochs</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>best_model<span style=color:#f92672>.</span>fit(X_train,y_train_ohe,epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>, validation_data<span style=color:#f92672>=</span>(X_test,y_test_ohe))
+</code></pre></div><pre><code>Train on 4459 samples, validate on 1115 samples
+Epoch 1/10
+4459/4459 [==============================] - 20s - loss: 0.2039 - precision: 0.9513 - acc: 0.9197 - val_loss: 0.0924 - val_precision: 0.9918 - val_acc: 0.9677
+Epoch 2/10
+4459/4459 [==============================] - 19s - loss: 0.0836 - precision: 0.9930 - acc: 0.9724 - val_loss: 0.0715 - val_precision: 0.9932 - val_acc: 0.9740
+Epoch 3/10
+4459/4459 [==============================] - 19s - loss: 0.0611 - precision: 0.9945 - acc: 0.9800 - val_loss: 0.1282 - val_precision: 0.9846 - val_acc: 0.9552
+Epoch 4/10
+4459/4459 [==============================] - 19s - loss: 0.0507 - precision: 0.9942 - acc: 0.9854 - val_loss: 0.0607 - val_precision: 0.9932 - val_acc: 0.9803
+Epoch 5/10
+4459/4459 [==============================] - 19s - loss: 0.0440 - precision: 0.9959 - acc: 0.9865 - val_loss: 0.0525 - val_precision: 0.9933 - val_acc: 0.9857
+Epoch 6/10
+4459/4459 [==============================] - 19s - loss: 0.0294 - precision: 0.9970 - acc: 0.9924 - val_loss: 0.0623 - val_precision: 0.9917 - val_acc: 0.9839
+Epoch 7/10
+4459/4459 [==============================] - 19s - loss: 0.0280 - precision: 0.9974 - acc: 0.9922 - val_loss: 0.0431 - val_precision: 0.9942 - val_acc: 0.9865
+Epoch 8/10
+4459/4459 [==============================] - 19s - loss: 0.0214 - precision: 0.9986 - acc: 0.9933 - val_loss: 0.0513 - val_precision: 0.9962 - val_acc: 0.9848
+Epoch 9/10
+4459/4459 [==============================] - 19s - loss: 0.0189 - precision: 0.9979 - acc: 0.9957 - val_loss: 0.0443 - val_precision: 0.9935 - val_acc: 0.9883
+Epoch 10/10
+4459/4459 [==============================] - 19s - loss: 0.0132 - precision: 0.9986 - acc: 0.9964 - val_loss: 0.0467 - val_precision: 0.9963 - val_acc: 0.9883
+
+
+
+
+
+&lt;keras.callbacks.History at 0x7f905242fb38&gt;
+</code></pre><h6 id=we-end-up-getting-above-995-accuracy-and-a-precision-score-of-9986-on-the-validation-set--we-could-absolutely-use-this-to-publish-a-spam-filter--this-is-a-very-good-score-on-this-dataset>We end up getting above 99.5% accuracy and a precision score of .9986 on the validation set! We could absolutely use this to publish a spam filter. This is a very good score on this dataset.</h6><h3 id=grid-search-using-lstm>Grid Search Using LSTM</h3><p>Now that we know we can get results as high as 99.5% accuracy and 99.8% precision with the GRU network we will try to see how high we can get our LSTM&rsquo;s score.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>dropouts<span style=color:#f92672>=</span>[<span style=color:#f92672>.</span><span style=color:#ae81ff>1</span>,<span style=color:#f92672>.</span><span style=color:#ae81ff>2</span>,<span style=color:#f92672>.</span><span style=color:#ae81ff>3</span>]
+recurrent_dropouts<span style=color:#f92672>=</span>[<span style=color:#f92672>.</span><span style=color:#ae81ff>1</span>,<span style=color:#f92672>.</span><span style=color:#ae81ff>2</span>,<span style=color:#f92672>.</span><span style=color:#ae81ff>3</span>]
+
+<span style=color:#66d9ef>for</span> dropout <span style=color:#f92672>in</span> dropouts:
+    <span style=color:#66d9ef>for</span> recurrent_dropout <span style=color:#f92672>in</span> recurrent_dropouts:
+        rnn <span style=color:#f92672>=</span> Sequential()
+        rnn<span style=color:#f92672>.</span>add(embedding_layer)
+        rnn<span style=color:#f92672>.</span>add(LSTM(<span style=color:#ae81ff>100</span>,dropout<span style=color:#f92672>=</span>dropout, recurrent_dropout<span style=color:#f92672>=</span>recurrent_dropout))
+        rnn<span style=color:#f92672>.</span>add(Dense(NUM_CLASSES, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sigmoid&#39;</span>))
+
+        rnn<span style=color:#f92672>.</span>compile(loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,
+                      optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rmsprop&#39;</span>,
+                      metrics<span style=color:#f92672>=</span>metrics)
+        <span style=color:#66d9ef>print</span>(<span style=color:#e6db74>&#34;Hyper Paramater Set:</span><span style=color:#ae81ff>\n\t</span><span style=color:#e6db74>dropout=</span><span style=color:#e6db74>%.1f</span><span style=color:#ae81ff>\n\t</span><span style=color:#e6db74>recurrent_dropout=</span><span style=color:#e6db74>%.1f</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> (dropout,recurrent_dropout))
+        rnn<span style=color:#f92672>.</span>fit(X_train,y_train_ohe,epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>, validation_data<span style=color:#f92672>=</span>(X_test,y_test_ohe))
+</code></pre></div><pre><code>Hyper Paramater Set:
+    dropout=0.1
+    recurrent_dropout=0.1
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 20s - loss: 0.1763 - precision: 0.9702 - acc: 0.9354 - val_loss: 0.1679 - val_precision: 0.9856 - val_acc: 0.9417
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0878 - precision: 0.9947 - acc: 0.9726 - val_loss: 0.0861 - val_precision: 0.9949 - val_acc: 0.9713
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0679 - precision: 0.9976 - acc: 0.9778 - val_loss: 0.0822 - val_precision: 0.9921 - val_acc: 0.9749
+Hyper Paramater Set:
+    dropout=0.1
+    recurrent_dropout=0.2
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.1810 - precision: 0.9694 - acc: 0.9363 - val_loss: 0.1288 - val_precision: 0.9869 - val_acc: 0.9534
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0921 - precision: 0.9930 - acc: 0.9693 - val_loss: 0.0974 - val_precision: 0.9931 - val_acc: 0.9659
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0737 - precision: 0.9945 - acc: 0.9765 - val_loss: 0.0780 - val_precision: 0.9912 - val_acc: 0.9713
+Hyper Paramater Set:
+    dropout=0.1
+    recurrent_dropout=0.3
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.1841 - precision: 0.9628 - acc: 0.9325 - val_loss: 0.1113 - val_precision: 0.9862 - val_acc: 0.9614
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0970 - precision: 0.9905 - acc: 0.9711 - val_loss: 0.0891 - val_precision: 0.9929 - val_acc: 0.9695
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0752 - precision: 0.9939 - acc: 0.9760 - val_loss: 0.0708 - val_precision: 0.9932 - val_acc: 0.9740
+Hyper Paramater Set:
+    dropout=0.2
+    recurrent_dropout=0.1
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.1779 - precision: 0.9579 - acc: 0.9365 - val_loss: 0.1004 - val_precision: 0.9857 - val_acc: 0.9650
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0956 - precision: 0.9876 - acc: 0.9702 - val_loss: 0.0923 - val_precision: 0.9865 - val_acc: 0.9695
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0719 - precision: 0.9908 - acc: 0.9785 - val_loss: 0.1162 - val_precision: 0.9747 - val_acc: 0.9525
+Hyper Paramater Set:
+    dropout=0.2
+    recurrent_dropout=0.2
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.1794 - precision: 0.9593 - acc: 0.9318 - val_loss: 0.1534 - val_precision: 0.9805 - val_acc: 0.9462
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0928 - precision: 0.9902 - acc: 0.9684 - val_loss: 0.1130 - val_precision: 0.9835 - val_acc: 0.9596
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0789 - precision: 0.9897 - acc: 0.9744 - val_loss: 0.0789 - val_precision: 0.9893 - val_acc: 0.9740
+Hyper Paramater Set:
+    dropout=0.2
+    recurrent_dropout=0.3
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.1878 - precision: 0.9565 - acc: 0.9352 - val_loss: 0.1434 - val_precision: 0.9823 - val_acc: 0.9516
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0992 - precision: 0.9890 - acc: 0.9657 - val_loss: 0.1280 - val_precision: 0.9792 - val_acc: 0.9525
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0827 - precision: 0.9919 - acc: 0.9702 - val_loss: 0.0790 - val_precision: 0.9873 - val_acc: 0.9722
+Hyper Paramater Set:
+    dropout=0.3
+    recurrent_dropout=0.1
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.1891 - precision: 0.9688 - acc: 0.9325 - val_loss: 0.1157 - val_precision: 0.9906 - val_acc: 0.9587
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0940 - precision: 0.9949 - acc: 0.9713 - val_loss: 0.0992 - val_precision: 0.9921 - val_acc: 0.9650
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0796 - precision: 0.9932 - acc: 0.9724 - val_loss: 0.0767 - val_precision: 0.9921 - val_acc: 0.9740
+Hyper Paramater Set:
+    dropout=0.3
+    recurrent_dropout=0.2
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.1928 - precision: 0.9556 - acc: 0.9289 - val_loss: 0.1007 - val_precision: 0.9891 - val_acc: 0.9623
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.1024 - precision: 0.9899 - acc: 0.9666 - val_loss: 0.0880 - val_precision: 0.9901 - val_acc: 0.9668
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0882 - precision: 0.9905 - acc: 0.9693 - val_loss: 0.0866 - val_precision: 0.9937 - val_acc: 0.9704
+Hyper Paramater Set:
+    dropout=0.3
+    recurrent_dropout=0.3
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.1986 - precision: 0.9723 - acc: 0.9318 - val_loss: 0.1089 - val_precision: 0.9974 - val_acc: 0.9614
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.1016 - precision: 0.9962 - acc: 0.9673 - val_loss: 0.1256 - val_precision: 0.9879 - val_acc: 0.9578
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0874 - precision: 0.9949 - acc: 0.9706 - val_loss: 0.0956 - val_precision: 0.9929 - val_acc: 0.9668
+</code></pre><h6 id=as-we-can-see-our-best-lstm-hyper-parameter-set-is-with-a-dropout-of-1-and-a-recurrent-dropout-of-2--we-will-create-this-network-and-train-it-with-more-epochs>As we can see, our best LSTM hyper parameter set is with a dropout of .1 and a recurrent dropout of .2. We will create this network and train it with more epochs.</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>best_lstm <span style=color:#f92672>=</span> Sequential()
+best_lstm<span style=color:#f92672>.</span>add(embedding_layer)
+best_lstm<span style=color:#f92672>.</span>add(LSTM(<span style=color:#ae81ff>100</span>,dropout<span style=color:#f92672>=.</span><span style=color:#ae81ff>1</span>, recurrent_dropout<span style=color:#f92672>=.</span><span style=color:#ae81ff>2</span>))
+best_lstm<span style=color:#f92672>.</span>add(Dense(NUM_CLASSES, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sigmoid&#39;</span>))
+best_lstm<span style=color:#f92672>.</span>compile(loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,
+                      optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rmsprop&#39;</span>,
+                      metrics<span style=color:#f92672>=</span>metrics)
+</code></pre></div><h3 id=comparison-of-models>Comparison of models</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>%%</span>time
+
+<span style=color:#f92672>from</span> sklearn.model_selection <span style=color:#f92672>import</span> StratifiedShuffleSplit
+<span style=color:#f92672>from</span> sklearn.metrics <span style=color:#f92672>import</span> confusion_matrix, precision_score
+
+sss <span style=color:#f92672>=</span> StratifiedShuffleSplit(n_splits<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>)
+
+gru_scores <span style=color:#f92672>=</span> []
+gru_cms <span style=color:#f92672>=</span> []
+lstm_scores <span style=color:#f92672>=</span> []
+lstm_cms <span style=color:#f92672>=</span> []
+
+split_num <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+<span style=color:#66d9ef>for</span> train_index, test_index <span style=color:#f92672>in</span> sss<span style=color:#f92672>.</span>split(sequences, y_ohe):
+    <span style=color:#66d9ef>print</span>(<span style=color:#e6db74>&#39;Split #{}&#39;</span><span style=color:#f92672>.</span>format(split_num))
+    split_num <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+    X_train, X_test <span style=color:#f92672>=</span> sequences[train_index], sequences[test_index]
+    y_train_ohe, y_test_ohe <span style=color:#f92672>=</span> y_ohe[train_index], y_ohe[test_index]
+
+    <span style=color:#75715e># one hot decode for scoring</span>
+    y_test <span style=color:#f92672>=</span> [list(x)<span style=color:#f92672>.</span>index(<span style=color:#ae81ff>1.0</span>) <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> list(y_test_ohe)]
+
+    best_model<span style=color:#f92672>.</span>fit(X_train,y_train_ohe,epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>,
+                   batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>,validation_data<span style=color:#f92672>=</span>(X_train,y_train_ohe),verbose<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)
+    y_hat <span style=color:#f92672>=</span> best_model<span style=color:#f92672>.</span>predict(X_test)
+
+    <span style=color:#75715e># one hot decode for scoring</span>
+    y_hat <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array([[<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>if</span> np<span style=color:#f92672>.</span>argmax(x) <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> [<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>] <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> y_hat])<span style=color:#f92672>.</span>astype(float)
+    y_hat <span style=color:#f92672>=</span> [list(x)<span style=color:#f92672>.</span>index(<span style=color:#ae81ff>1.0</span>) <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> list(y_hat)]
+
+    gru_scores<span style=color:#f92672>.</span>append(precision_score(y_test, y_hat))
+    gru_cms<span style=color:#f92672>.</span>append(confusion_matrix(y_test, y_hat))
+
+    <span style=color:#66d9ef>print</span>(gru_scores[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+    <span style=color:#66d9ef>print</span>(gru_cms[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+
+    best_lstm<span style=color:#f92672>.</span>fit(X_train,y_train_ohe,epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>,
+                   batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>,validation_data<span style=color:#f92672>=</span>(X_train,y_train_ohe),verbose<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)
+    y_hat <span style=color:#f92672>=</span> best_lstm<span style=color:#f92672>.</span>predict(X_test)
+
+    <span style=color:#75715e># one hot decode for scoring</span>
+    y_hat <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array([[<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>if</span> np<span style=color:#f92672>.</span>argmax(x) <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> [<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>] <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> y_hat])<span style=color:#f92672>.</span>astype(float)
+    y_hat <span style=color:#f92672>=</span> [list(x)<span style=color:#f92672>.</span>index(<span style=color:#ae81ff>1.0</span>) <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> list(y_hat)]
+
+    lstm_scores<span style=color:#f92672>.</span>append(precision_score(y_test, y_hat))
+    lstm_cms<span style=color:#f92672>.</span>append(confusion_matrix(y_test, y_hat))
+
+    <span style=color:#66d9ef>print</span>(lstm_scores[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+    <span style=color:#66d9ef>print</span>(lstm_cms[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</code></pre></div><pre><code>Split #1
+0.996007984032
+[[ 55   2]
+ [  2 499]]
+0.996
+[[ 55   2]
+ [  3 498]]
+Split #2
+0.987421383648
+[[ 81   6]
+ [  0 471]]
+0.991011235955
+[[ 83   4]
+ [ 30 441]]
+Split #3
+0.991786447639
+[[ 71   4]
+ [  0 483]]
+0.989733059548
+[[ 70   5]
+ [  1 482]]
+CPU times: user 42min 51s, sys: 10min 58s, total: 53min 50s
+Wall time: 20min 33s
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># Plot bar graphs</span>
+bar_width <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.20</span>
+index <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>arange(<span style=color:#ae81ff>3</span>)
+opacity<span style=color:#f92672>=</span><span style=color:#ae81ff>0.4</span>
+
+plt<span style=color:#f92672>.</span>bar(index, gru_scores, bar_width, align<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;center&#39;</span>,
+        color<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;b&#39;</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;GRU&#39;</span>, alpha<span style=color:#f92672>=</span>opacity)
+plt<span style=color:#f92672>.</span>bar(index <span style=color:#f92672>+</span> bar_width, lstm_scores, bar_width,
+        align<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;center&#39;</span>, color<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;r&#39;</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;LSTM&#39;</span>, alpha<span style=color:#f92672>=</span>opacity)
+plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;GRU vs LSTM (precision score)&#39;</span>)
+
+plt<span style=color:#f92672>.</span>legend()
+plt<span style=color:#f92672>.</span>tight_layout()
+plt<span style=color:#f92672>.</span>show()
+</code></pre></div><center><figure class="progressive_figure bordered-figure" style=width:50% data-imgset="/img/posts/spam-text-classifier/output_46_0_hu975208abd511266f71131a852ecb4733_6816_640x0_resize_box_2.png 320w,
+    /img/posts/spam-text-classifier/output_46_0_hu975208abd511266f71131a852ecb4733_6816_1024x0_resize_box_2.png 600w,
+    /img/posts/spam-text-classifier/output_46_0_hu975208abd511266f71131a852ecb4733_6816_1600x0_resize_box_2.png 2x" data-src=/img/posts/spam-text-classifier/output_46_0_hu975208abd511266f71131a852ecb4733_6816_1600x0_resize_box_2.png><div class=placeholder><img class=img-small src=/img/posts/spam-text-classifier/output_46_0_hu975208abd511266f71131a852ecb4733_6816_48x0_resize_q20_box_2.png alt></div><figcaption></figcaption></figure></center><p>Both models perform extremely well, however the GRU model performed just a bit better.</p><p>By looking at heatmaps of the confusion matrices we can get a more granular look into how our models classify each class.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># Plot heatmap</span>
+<span style=color:#f92672>import</span> seaborn <span style=color:#f92672>as</span> sns
+labels <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#39;Spam&#39;</span>, <span style=color:#e6db74>&#39;Ham&#39;</span>]
+gru_cm_avg <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros((<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>2</span>))
+<span style=color:#66d9ef>for</span> cm <span style=color:#f92672>in</span> gru_cms:
+    <span style=color:#75715e># turn cm into percentages</span>
+    totals <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>repeat(np<span style=color:#f92672>.</span>sum(cm, axis<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>), <span style=color:#ae81ff>2</span>, axis<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)<span style=color:#f92672>.</span>reshape(<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>2</span>)
+    cm_ <span style=color:#f92672>=</span> cm <span style=color:#f92672>/</span> totals <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>
+    gru_cm_avg <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>sum([gru_cm_avg, cm_], axis<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)
+
+sns<span style=color:#f92672>.</span>heatmap(gru_cm_avg, annot<span style=color:#f92672>=</span>True, xticklabels<span style=color:#f92672>=</span>labels, yticklabels<span style=color:#f92672>=</span>labels)
+plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;Heatmap of GRU&#39;</span>)
+</code></pre></div><pre><code>&lt;matplotlib.text.Text at 0x12aed9c88&gt;
+</code></pre><center><figure class="progressive_figure bordered-figure" style=width:50% data-imgset="/img/posts/spam-text-classifier/output_48_1_hu598183ad0655892c428cac6cc71f2279_8466_640x0_resize_box_2.png 320w,
+    /img/posts/spam-text-classifier/output_48_1_hu598183ad0655892c428cac6cc71f2279_8466_1024x0_resize_box_2.png 600w,
+    /img/posts/spam-text-classifier/output_48_1_hu598183ad0655892c428cac6cc71f2279_8466_1600x0_resize_box_2.png 2x" data-src=/img/posts/spam-text-classifier/output_48_1_hu598183ad0655892c428cac6cc71f2279_8466_1600x0_resize_box_2.png><div class=placeholder><img class=img-small src=/img/posts/spam-text-classifier/output_48_1_hu598183ad0655892c428cac6cc71f2279_8466_48x0_resize_q20_box_2.png alt></div><figcaption></figcaption></figure></center><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># Plot heatmap</span>
+lstm_cm_avg <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros((<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>2</span>))
+<span style=color:#66d9ef>for</span> cm <span style=color:#f92672>in</span> lstm_cms:
+    <span style=color:#75715e># turn cm into percentages</span>
+    totals <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>repeat(np<span style=color:#f92672>.</span>sum(cm, axis<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>), <span style=color:#ae81ff>2</span>, axis<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)<span style=color:#f92672>.</span>reshape(<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>2</span>)
+    cm_ <span style=color:#f92672>=</span> cm <span style=color:#f92672>/</span> totals <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>
+    lstm_cm_avg <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>sum([lstm_cm_avg, cm_], axis<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)
+
+sns<span style=color:#f92672>.</span>heatmap(lstm_cm_avg, annot<span style=color:#f92672>=</span>True, xticklabels<span style=color:#f92672>=</span>labels, yticklabels<span style=color:#f92672>=</span>labels)
+plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;Heatmap of lstm&#39;</span>)
+</code></pre></div><pre><code>&lt;matplotlib.text.Text at 0x1284a5240&gt;
+</code></pre><center><figure class="progressive_figure bordered-figure" style=width:50% data-imgset="/img/posts/spam-text-classifier/output_49_1_hufd22602c903edd84e857d4bcd4019aba_8592_640x0_resize_box_2.png 320w,
+    /img/posts/spam-text-classifier/output_49_1_hufd22602c903edd84e857d4bcd4019aba_8592_1024x0_resize_box_2.png 600w,
+    /img/posts/spam-text-classifier/output_49_1_hufd22602c903edd84e857d4bcd4019aba_8592_1600x0_resize_box_2.png 2x" data-src=/img/posts/spam-text-classifier/output_49_1_hufd22602c903edd84e857d4bcd4019aba_8592_1600x0_resize_box_2.png><div class=placeholder><img class=img-small src=/img/posts/spam-text-classifier/output_49_1_hufd22602c903edd84e857d4bcd4019aba_8592_48x0_resize_q20_box_2.png alt></div><figcaption></figcaption></figure></center><p>From the heatmaps we can see that ham gets classified perfectly using both models, however our GRU model scores much better than the LSTM when classifying spam instances.</p><h2 id=nltk-tokenize-vs-keras-tokenizer>NLTK tokenize vs keras tokenizer</h2><p>We thought it could be interesting to compare the generalized NLTK tokenizer to the keras tokenizer. We decided to compare them using basic LSTM networks.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> nltk.tokenize <span style=color:#f92672>import</span> word_tokenize
+X_nltk <span style=color:#f92672>=</span> [word_tokenize(x) <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> X]
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>encoder <span style=color:#f92672>=</span> {}
+counter <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>encode_sentence</span>(seq):
+    <span style=color:#66d9ef>global</span> encoder, counter
+    fseq <span style=color:#f92672>=</span> []
+    <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> seq:
+        <span style=color:#66d9ef>if</span> x <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> encoder:
+            encoder[x] <span style=color:#f92672>=</span> counter
+            counter<span style=color:#f92672>+=</span><span style=color:#ae81ff>1</span>
+        fseq<span style=color:#f92672>.</span>append(encoder[x])
+    <span style=color:#66d9ef>return</span> fseq
+
+X_nltk <span style=color:#f92672>=</span> [encode_sentence(x) <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> X]
+X_nltk <span style=color:#f92672>=</span> pad_sequences(X_nltk, maxlen<span style=color:#f92672>=</span>None)
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>embedding_layer <span style=color:#f92672>=</span> Embedding(len(word_index) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>,
+                            EMBED_SIZE,
+                            weights<span style=color:#f92672>=</span>[embedding_matrix],
+                            input_length<span style=color:#f92672>=</span>len(X_nltk[<span style=color:#ae81ff>0</span>]),
+                            trainable<span style=color:#f92672>=</span>False)
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>rnn <span style=color:#f92672>=</span> Sequential()
+rnn<span style=color:#f92672>.</span>add(embedding_layer)
+rnn<span style=color:#f92672>.</span>add(LSTM(<span style=color:#ae81ff>100</span>,dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>, recurrent_dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>))
+rnn<span style=color:#f92672>.</span>add(Dense(NUM_CLASSES, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sigmoid&#39;</span>))
+rnn<span style=color:#f92672>.</span>compile(loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,
+              optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rmsprop&#39;</span>,
+              metrics<span style=color:#f92672>=</span>metrics)
+<span style=color:#66d9ef>print</span>(rnn<span style=color:#f92672>.</span>summary())
+</code></pre></div><pre><code>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_2 (Embedding)      (None, 910, 100)          900800    
+_________________________________________________________________
+lstm_13 (LSTM)               (None, 100)               80400     
+_________________________________________________________________
+dense_25 (Dense)             (None, 2)                 202       
+=================================================================
+Total params: 981,402
+Trainable params: 80,602
+Non-trainable params: 900,800
+_________________________________________________________________
+None
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>X_train, X_test, y_train_ohe, y_test_ohe <span style=color:#f92672>=</span> train_test_split(X_nltk, y_ohe, test_size<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>,
+                                                            stratify<span style=color:#f92672>=</span>y_ohe,
+                                                            random_state<span style=color:#f92672>=</span><span style=color:#ae81ff>42</span>)
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>rnn<span style=color:#f92672>.</span>fit(X_train, y_train_ohe, validation_data<span style=color:#f92672>=</span>(X_test, y_test_ohe), epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>)
+</code></pre></div><pre><code>Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 95s - loss: 0.3282 - precision: 0.8947 - acc: 0.8767 - val_loss: 0.1758 - val_precision: 0.9685 - val_acc: 0.9408
+Epoch 2/3
+4459/4459 [==============================] - 93s - loss: 0.2239 - precision: 0.9454 - acc: 0.9206 - val_loss: 0.2723 - val_precision: 0.9344 - val_acc: 0.9076
+Epoch 3/3
+4459/4459 [==============================] - 93s - loss: 0.1768 - precision: 0.9608 - acc: 0.9477 - val_loss: 0.2153 - val_precision: 0.9479 - val_acc: 0.9471
+
+
+
+
+
+&lt;keras.callbacks.History at 0x7f901dcd12b0&gt;
+</code></pre><h1 id=kerasglove-published-to-pypi>KerasGlove Published to PyPi</h1><p>I really liked being able to easily use glove embeddings with keras so I published a package to PyPi for it. It&rsquo;s available under kerasglove and removes the need for a lot of the code in the notebook. Here is a sample usage of it:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> kerasglove <span style=color:#f92672>import</span> GloveEmbedding
+EMBED_SIZE<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>
+metrics <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#39;accuracy&#39;</span>,precision]
+
+embed_layer <span style=color:#f92672>=</span> GloveEmbedding(
+                            EMBED_SIZE,
+                            MAX_TEXT_LEN,
+                            word_index)
+embed_layer
+</code></pre></div><pre><code>&lt;keras.layers.embeddings.Embedding at 0x7f901dce3e10&gt;
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> keras.models <span style=color:#f92672>import</span> Sequential
+<span style=color:#f92672>from</span> keras.layers <span style=color:#f92672>import</span> Dense
+<span style=color:#f92672>from</span> keras.layers <span style=color:#f92672>import</span> LSTM
+<span style=color:#f92672>from</span> kerasglove <span style=color:#f92672>import</span> GloveEmbedding
+
+rnn <span style=color:#f92672>=</span> Sequential()
+rnn<span style=color:#f92672>.</span>add(GloveEmbedding(EMBED_SIZE,
+                            MAX_TEXT_LEN,
+                            word_index))
+rnn<span style=color:#f92672>.</span>add(GRU(<span style=color:#ae81ff>100</span>,dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>, recurrent_dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>))
+rnn<span style=color:#f92672>.</span>add(Dense(NUM_CLASSES, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sigmoid&#39;</span>))
+rnn<span style=color:#f92672>.</span>compile(loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,
+              optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rmsprop&#39;</span>,
+              metrics<span style=color:#f92672>=</span>metrics)
+<span style=color:#66d9ef>print</span>(rnn<span style=color:#f92672>.</span>summary())
+</code></pre></div><pre><code>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_4 (Embedding)      (None, 189, 100)          900800    
+_________________________________________________________________
+gru_12 (GRU)                 (None, 100)               60300     
+_________________________________________________________________
+dense_26 (Dense)             (None, 2)                 202       
+=================================================================
+Total params: 961,302
+Trainable params: 60,502
+Non-trainable params: 900,800
+_________________________________________________________________
+None
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>X_train, X_test, y_train_ohe, y_test_ohe <span style=color:#f92672>=</span> train_test_split(sequences, y_ohe, test_size<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>,
+                                                            stratify<span style=color:#f92672>=</span>y_ohe,
+                                                            random_state<span style=color:#f92672>=</span><span style=color:#ae81ff>42</span>)
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>rnn<span style=color:#f92672>.</span>fit(X_train, y_train_ohe, validation_data<span style=color:#f92672>=</span>(X_test, y_test_ohe), epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>)
+</code></pre></div><pre><code>Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 21s - loss: 0.3050 - acc: 0.8872 - precision: 0.8751 - val_loss: 0.2898 - val_acc: 0.8897 - val_precision: 0.9084
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.2419 - acc: 0.8962 - precision: 0.8936 - val_loss: 0.2526 - val_acc: 0.8933 - val_precision: 0.8888
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.2360 - acc: 0.9002 - precision: 0.8948 - val_loss: 0.2538 - val_acc: 0.9013 - val_precision: 0.9122
+
+
+
+
+
+&lt;keras.callbacks.History at 0x7f900acebe80&gt;
+</code></pre><p>As we can see, this is far easier to construct a network with a pre trained GloVe emebedding than doing it manually.</p><p>The full source is here:
+<a href=https://github.com/LukeWoodSMU/KerasGlove>https://github.com/LukeWoodSMU/KerasGlove</a></p><link href=//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css rel=stylesheet type=text/css><link rel=stylesheet type=text/css href=/mailchimp.e93d894061a381ef524fd458eb0f5d70ef4e2d161bcaa23a6cc913c8572a49eb.css><div id=mc_embed_signup><form action="https://gmail.us3.list-manage.com/subscribe/post?u=690be7ba6bb2da04ebb3cb084&amp;amp;id=30d3ffcf46" method=post id=mc-embedded-subscribe-form name=mc-embedded-subscribe-form class=validate target=_blank novalidate><div id=mc_embed_signup_scroll><label for=mce-EMAIL>Subscribe to my mailing list!</label><div style=position:absolute;left:-5000px aria-hidden=true><input type=text name=b_690be7ba6bb2da04ebb3cb084_30d3ffcf46 tabindex=-1></div><div class=clear><input type=email name=EMAIL class=email id=mce-EMAIL placeholder="email address" required>
+<input type=submit value=Subscribe name=subscribe id=mc-embedded-subscribe class=button></div></div></form></div></article></main><script defer async src=/js/preload.min.63d20478881c7ac6a2bd1867d8d7ea40d73de863b0a9e88784c255e981ad55ea.js></script><script defer async src=/js/lozad.min.19125d78bc7e94940f6397b22cf080e177150edcc60909d6751878413be66cdf.js></script></body></html>
