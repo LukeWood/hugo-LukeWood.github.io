@@ -1,0 +1,28 @@
+{{ define "internal-extra-header" }}
+  {{ partial "core/stylesheet.html" "index" }}
+{{ end }}
+
+{{ define "main" }}
+<div class="bg-img"></div>
+<main class="vertical-center">
+  <div class="home-container">
+    <section class="row">
+      <h1 class="site-title">{{.Site.Title}}</h1>
+    </section>
+    <section class="row">
+      {{- with .Site.Params.social }}
+        <div class="socials">
+          {{ partialCached "content/social-icons.html" . }}
+        </div>
+      {{- end }}
+    </section>
+    <section class="row home-link-container">
+      {{ range .Site.Menus.main }}
+        <a class="home-link" href={{ .URL }}>{{.Name}}</a>
+      {{ end }}
+    </section>
+  </div>
+</main>
+{{ end }}
+
+{{ define "menu" }}<!-- required empty comment -->{{ end }}

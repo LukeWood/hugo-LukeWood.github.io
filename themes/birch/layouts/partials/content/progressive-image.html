@@ -1,0 +1,17 @@
+{{ $image := (resources.Get (.Src)) }}
+
+{{ $placeholder := $image.Resize "48x q20" }}
+
+{{ with resources.Get .Src }}
+<figure class="progressive_figure {{.Class}}" data-imgset="{{ (.Resize "640x").RelPermalink }} 320w,
+  {{ (.Resize "1024x").RelPermalink }} 600w,
+  {{ (.Resize "1600x").RelPermalink }} 2x"
+  data-src="{{ (.Resize "1600x").RelPermalink}}" >
+  <div class="placeholder">
+    <img class="img-small" src="{{ $placeholder.RelPermalink }}" alt="{{.AltText}}" />
+  </div>
+  <figcaption>{{ .Title }}</figcaption>
+</figure>
+{{ else }}
+could not find image
+{{ end }}

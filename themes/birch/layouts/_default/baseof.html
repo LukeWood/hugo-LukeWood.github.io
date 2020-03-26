@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="en">
+  <head>
+    {{block "base-header" .}}
+      {{ partial "core/head.html" .}}
+    {{ end }}
+
+    {{ partial "core/stylesheet.html" "base" }}
+
+    {{ block "internal-extra-header" . }}
+    {{ end }}
+    {{ block "extra-header" . }}
+    {{ end }}
+
+    {{ partialCached "core/script" "js/darkmode.js"}}
+  </head>
+  <body class="preload">
+    {{ block "menu" . }}
+      {{ partialCached "menu.html" .}}
+    {{ end }}
+    {{ block "main" . }}
+    {{ end }}
+
+    {{ partial "core/script" "js/preload.js"}}
+    {{ partial "core/script.html" "js/lozad.js" }}
+  </body>
+</html>

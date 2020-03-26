@@ -1,0 +1,38 @@
+@import "_social";
+@import "_menu";
+
+html, body, .main-container {margin: 0; height: 100%; overflow: hidden}
+
+p {
+  color: var(--text_color);
+}
+
+.home-container {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.vertical-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 100vh;
+}
+
+.row {
+  padding: .75rem;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+}
+
+$h1-size: 4rem;
+h1.site-title {
+  color: var(--text_color);
+  font-size: $h1-size;
+  margin: 0;
+  padding: 0;
+}

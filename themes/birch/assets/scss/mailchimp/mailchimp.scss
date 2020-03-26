@@ -1,0 +1,38 @@
+#mc_embed_signup{
+  width:100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  label {
+    color: var(--text_color);
+    display: block;
+  }
+
+  input.email {
+    font-size: 1rem;
+    border-radius: 3px;
+  }
+  div.clear {
+    padding: 0;
+  }
+
+  #mc-embedded-subscribe {
+      min-height: 1.5rem;
+      font-weight: 700;
+      background-color: var(--primary_color_dark);
+      color: white;
+      border-radius: 3px;
+      border: none;
+      &:hover {
+        background-color: var(--primary_color);
+      }
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+}

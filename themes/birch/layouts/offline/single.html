@@ -1,0 +1,14 @@
+{{ define "internal-extra-header" }}
+  {{ partial "core/stylesheet.html" "index" }}
+{{ end }}
+
+{{ define "main" }}
+<div class="bg-img"></div>
+<main class="vertical-center">
+  <div class="home-container">
+      {{ .Content }}
+  </div>
+</main>
+{{ end }}
+
+{{ define "menu" }}<!-- required empty comment -->{{ end }}

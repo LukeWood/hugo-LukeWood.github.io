@@ -1,0 +1,48 @@
+{{ define "internal-extra-header" }}
+  {{ partial "core/stylesheet.html" "projects" }}
+{{ end }}
+{{ define "main" }}
+<div class="bg-img"></div>
+<div class="projects-grid-wrapper">
+  <main class="projects-grid">
+    {{ range .Data.Pages }}
+      <div class="mdc-card">
+        {{ if isset .Params "thumbnail" }}
+        {{$title := .Title}}
+        {{ with resources.Get .Params.Thumbnail}}
+          {{ $placeholder := .Resize "48x q20" }}
+          <center>
+          <figure class="progressive_figure thumbnail" data-imgset="{{ (.Resize "640x").RelPermalink }} 320w,
+            {{ (.Resize "1024x").RelPermalink }} 600w,
+            {{ (.Resize "1600x").RelPermalink }} 2x"
+            data-src="{{ (.Resize "1600x").RelPermalink}}" >
+            <div class="placeholder">
+              <img class="img-small" src="{{ $placeholder.RelPermalink }}" alt="{{$title}}" />
+            </div>
+          </figure>
+          </center>
+        {{else}}
+          Could not find image
+        {{ end }}
+        {{ end }}
+        <h3 class="project-title">{{.Title}}</h3>
+        <div class="project-description">{{.Content | markdownify}}</div>
+          <div style="flex-grow: 1"></div>
+        <div class="actions-container">
+          <div class="text-actions">
+              {{if isset .Params "stars"}}{{.Params.Stars | safeHTML}}{{end}}
+          </div>
+          <div class="icon-actions">
+          {{if isset .Params "twitter"}}{{.Params.Twitter}}{{end}}
+          {{if isset .Params "github"}}<a class="visit text-color no-decoration material-icon" href="{{.Params.Github}}">{{ partial "core/svg.html" (dict "name" "github")}}</a>{{end}}
+          {{if isset .Params "link"}}<a class="visit text-color no-decoration material-icon" href="{{.Params.Link}}">launch</a>{{end}}
+          </div>
+        </div>
+      </div>
+    {{ end }}
+
+  </main>
+</div>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+{{ end }}

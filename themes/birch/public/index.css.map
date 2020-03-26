@@ -1,0 +1,17 @@
+{
+	"version": 3,
+	"file": "index.css",
+	"sourceRoot": "/Users/yeti/workspace/wood",
+	"sources": [
+		"assets/scss/index/index.scss",
+		"assets/scss/index/_social.scss",
+		"assets/scss/index/_menu.scss"
+	],
+	"sourcesContent": [
+		"@import \"_social\";\n@import \"_menu\";\n\nhtml, body, .main-container {margin: 0; height: 100%; overflow: hidden}\n\np {\n  color: var(--text_color);\n}\n\n.home-container {\n  flex-direction: column;\n  display: flex;\n  align-items: center;\n}\n\n.vertical-center {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  min-height: 100vh;\n}\n\n.row {\n  padding: .75rem;\n  display: flex;\n  flex-wrap: wrap;\n  text-align: center;\n  align-items: center;\n  justify-content: space-around;\n}\n\n$h1-size: 4rem;\nh1.site-title {\n  color: white;\n  font-size: $h1-size;\n  line-height: $h1-size;\n  margin: 0;\n  padding: 0;\n}\n",
+		".socials {\n  margin: 0;\n}\na.social {\n  margin: 1rem;\n  color: var(--text_color);\n  &:hover {\n    color: var(--text_color_dark);\n  }\n}\n",
+		".row.home-link-container {\n  // Social icons mess up spacing.\n  padding-top: 0;\n  margin: 0;\n}\n\na.home-link {\n  font-size: 1.2rem;\n  color: var(--primary_color);\n  text-decoration: none;\n  margin-left: .5rem;\n  margin-right: .5rem;\n  &:hover {\n    color: var(--primary_color_dark);\n  }\n\n  @media screen and (max-width: 600px) and (orientation: portrait) {\n    margin: 0;\n  }\n}\n\n.home-link-container {\n  @media screen and (max-width: 600px) and (orientation: portrait) {\n    flex-direction: column;\n  }\n}\n"
+	],
+	"names": [],
+	"mappings": "ACAA,AAAA,QAAQ,AAAC,CACP,MAAM,CAAE,CAAC,CACV,AACD,AAAA,CAAC,AAAA,OAAO,AAAC,CACP,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,iBAAiB,CAIzB,AAND,AAGE,CAHD,AAAA,OAAO,AAGL,MAAM,AAAC,CACN,KAAK,CAAE,sBAAsB,CAC9B,ACRH,AAAA,IAAI,AAAA,oBAAoB,AAAC,CAEvB,WAAW,CAAE,CAAC,CACd,MAAM,CAAE,CAAC,CACV,AAED,AAAA,CAAC,AAAA,UAAU,AAAC,CACV,SAAS,CAAE,MAAM,CACjB,KAAK,CAAE,oBAAoB,CAC3B,eAAe,CAAE,IAAI,CACrB,WAAW,CAAE,KAAK,CAClB,YAAY,CAAE,KAAK,CAQpB,AAbD,AAME,CAND,AAAA,UAAU,AAMR,MAAM,AAAC,CACN,KAAK,CAAE,yBAAyB,CACjC,AAED,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK,OAAO,WAAW,EAAE,QAAQ,EAVjE,AAAA,CAAC,AAAA,UAAU,AAAC,CAWR,MAAM,CAAE,CAAC,CAEZ,CAGC,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK,OAAO,WAAW,EAAE,QAAQ,EADjE,AAAA,oBAAoB,AAAC,CAEjB,cAAc,CAAE,MAAM,CAEzB,CFtBD,AAAA,IAAI,CAAE,IAAI,CAAE,eAAe,AAAC,CAAC,MAAM,CAAE,CAAC,CAAE,MAAM,CAAE,IAAI,CAAE,QAAQ,CAAE,MAAM,CAAE,AAExE,AAAA,CAAC,AAAC,CACA,KAAK,CAAE,iBAAiB,CACzB,AAED,AAAA,eAAe,AAAC,CACd,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,CACpB,AAED,AAAA,gBAAgB,AAAC,CACf,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,eAAe,CAAE,YAAY,CAC7B,UAAU,CAAE,KAAK,CAClB,AAED,AAAA,IAAI,AAAC,CACH,OAAO,CAAE,MAAM,CACf,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,IAAI,CACf,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,YAAY,CAC9B,AAGD,AAAA,EAAE,AAAA,WAAW,AAAC,CACZ,KAAK,CAAE,KAAK,CACZ,SAAS,CAHD,IAAI,CAIZ,WAAW,CAJH,IAAI,CAKZ,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CACX"
+}

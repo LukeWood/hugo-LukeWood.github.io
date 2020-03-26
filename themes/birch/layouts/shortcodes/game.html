@@ -1,0 +1,9 @@
+{{ $src := .Get "src"}}
+{{ $instructions := .Get "instructions"}}
+
+<iframe style="width:100%; height:500px" src="{{$src}}">
+</iframe>
+{{ with $instructions }}
+  {{$instructions}}
+{{ end}}
+<center><a href="{{$src}}">Open in Fullscreen</a></center>

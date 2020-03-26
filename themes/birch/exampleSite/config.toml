@@ -1,0 +1,30 @@
+baseURL = "/"
+title = "Birch"
+author = "Luke Wood"
+theme = "birch"
+copyright = "© 2019, Luke Wood."
+languageCode = "en"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+enableEmoji = true
+[params]
+  mailchimp = "Copy paste the submit url from your mailchimp id"
+  favicon = "/favicon128.png"
+  pwa_name = "example site"
+
+[menu]
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects"
+    weight = 2
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about"
+    weight = 0
+
+# Optional menu: [[menu.header]]
+# Same format

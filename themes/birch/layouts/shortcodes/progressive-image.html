@@ -1,0 +1,24 @@
+{{ $title := .Get "title"}}
+{{ $altText := .Get "altText"}}
+{{ $class := .Get "class"}}
+{{ $style := .Get "style"}}
+
+{{ $image := (resources.Get (.Get "src")) }}
+
+{{ $placeholder := $image.Resize "48x q20" }}
+
+{{ with resources.Get (.Get "src") }}
+<center>
+  <figure class="progressive_figure {{$class}}" style="{{$style}}" data-imgset="{{ (.Resize "640x").RelPermalink }} 320w,
+    {{ (.Resize "1024x").RelPermalink }} 600w,
+    {{ (.Resize "1600x").RelPermalink }} 2x"
+    data-src="{{ (.Resize "1600x").RelPermalink}}" >
+    <div class="placeholder">
+      <img class="img-small" src="{{ $placeholder.RelPermalink }}" alt="{{$altText}}" />
+    </div>
+    <figcaption>{{ $title }}</figcaption>
+  </figure>
+</center>
+{{ else }}
+could not find image
+{{ end }}

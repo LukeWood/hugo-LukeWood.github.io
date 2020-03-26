@@ -1,0 +1,8 @@
+<nav class="menu">
+  <a class="main-emphasis weight-700" href="/">LukeWood.dev</a>
+  {{ range .Site.Menus.header }}
+    <a class="menu-item" href={{ .URL }}>{{ .Name }}</a>
+  {{ end }}
+  <a id="night-toggle" class="night-menu material-icon">wb_sunny</a>
+  {{ partial "core/script.html" "js/menu.js" }}
+</nav>

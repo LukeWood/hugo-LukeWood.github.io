@@ -1,0 +1,18 @@
+<meta name="theme-color" content="#121212">
+<meta name="msapplication-TileColor" content="#121212">
+<link rel="manifest" href="/manifest.json">
+{{$sw := (resources.Get "sw.js")}}
+<script async defer>
+// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register("{{$sw.Permalink}}").then(function(registration) {
+    // Registration was successful
+    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+}).catch(function(err) {
+    // registration failed :(
+    	console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+</script>

@@ -1,0 +1,30 @@
+{{ define "extra-header" }}
+  {{ partial "core/stylesheet.html" "surfing" }}
+{{ end }}
+{{ define "main" }}
+  <main class="container">
+    <div>
+    <center><h1>{{.Title}}</h1></center>
+
+    <center>
+      <div class="controls">
+      {{ with .NextInSection }}
+        <a class="primary-color" href="{{ .Permalink }}">⬅️ Newer</a>
+      {{ else }}
+        <div></div>
+      {{ end }}
+      {{ with .PrevInSection }}
+        <a class="primary-color" href="{{ .Permalink }}">Older ➡️</a>
+      {{ else }}
+        <div></div>
+      {{ end }}
+      </div>
+    </center>
+
+    <article class="content">
+      {{ .Content }}
+    </article>
+    </div>
+  </main>
+
+{{ end}}

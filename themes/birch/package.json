@@ -1,0 +1,24 @@
+{
+  "name": "wood",
+  "version": "1.0.0",
+  "description": "hugo theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukeWood/Wood.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LukeWood/Wood/issues"
+  },
+  "homepage": "https://github.com/LukeWood/Wood#readme",
+  "dependencies": {
+    "@material/card": "^4.0.0",
+    "postcss-cli": "^6.1.3",
+    "postcss-scss": "^2.0.0"
+  }
+}

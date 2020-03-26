@@ -1,0 +1,14 @@
+{{ define "internal-extra-header" }}
+  {{ partial "core/stylesheet.html" "post" }}
+{{ end }}
+{{ define "main" }}
+  <main class="container">
+    <article class="content">
+    <h1>{{ .Title }}</h1>
+      {{ .Content }}
+      {{ if .Site.Params.Mailchimp }}
+      {{ partial "content/mailchimp.html" .}}
+      {{ end }}
+    </article>
+  </main>
+{{ end }}

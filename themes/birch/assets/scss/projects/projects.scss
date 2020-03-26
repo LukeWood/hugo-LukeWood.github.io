@@ -1,0 +1,91 @@
+@import "@material/card/mdc-card";
+
+
+.projects-grid-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  overflow: hidden;
+  align-content: center;
+  justify-content: space-between;
+  grid-gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 48rem;
+}
+
+h3{
+  opacity: .8;
+}
+
+div.mdc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: var(--text_color);
+  text-decoration: none;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  background-color: var(--card_color);
+  overflow: hidden;
+  transition: all var(--transition_duration);
+  &:hover {
+    background-color: var(--card_color_hover);
+  }
+
+  .actions-container {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    .text-actions {
+      padding-left: .5rem;
+    }
+    .icon-actions {
+      display: flex;
+      .star-container {
+        margin-top: auto;
+        margin-right: .3rem;
+      }
+    }
+  }
+}
+
+.project-title {
+  margin: 0;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  padding: 0;
+  line-height: normal;
+}
+
+figure.thumbnail {
+  margin: 0;
+  padding: 0;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: auto;
+  }
+}
+
+div.project-description {
+  display: inline-block;
+  opacity: .60;
+  font-size: .8rem;
+  text-align: justify;
+  margin: 0;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

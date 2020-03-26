@@ -1,0 +1,18 @@
+{{- template "_internal/google_analytics_async.html" . }}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+{{- with $.Site.Params.Description }}
+<meta name="description" content={{. | safeHTMLAttr}}>
+{{- end }}
+
+<title>{{ .Site.Title }}</title>
+
+{{- template "_internal/opengraph.html" . }}
+{{- template "_internal/schema.html" . }}
+{{- template "_internal/twitter_cards.html" . }}
+
+{{ partialCached "core/icons.html" . }}
+{{ partialCached "core/pwa.html" . }}
