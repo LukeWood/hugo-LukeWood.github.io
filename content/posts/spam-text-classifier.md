@@ -57,34 +57,15 @@ Citation: regex from google search top results/stack overflow
 
 ```python
 import numpy as np
-from keras.preprocessing import sequence
-```
-
-    Using TensorFlow backend.
-
-
-
-```python
+import keras
 X = [x[1] for x in texts]
 y = [x[0] for x in texts]
 X = np.array(X)
-print(type(X))
-```
-
-    <class 'numpy.ndarray'>
-
-
-
-```python
-import keras
 y = [0 if y_ == "spam" else 1 for y_ in y]
 y_ohe = keras.utils.to_categorical(y)
-y_ohe
+print(y_ohe)
 ```
-
-
-
-
+<pre class="output">
     array([[ 0.,  1.],
            [ 0.,  1.],
            [ 1.,  0.],
@@ -92,7 +73,7 @@ y_ohe
            [ 0.,  1.],
            [ 0.,  1.],
            [ 0.,  1.]])
-
+</pre>
 
 
 We assign spam as a value of 0 and ham as a value of one so that we can use precision score to measure false positive scores.
@@ -133,12 +114,9 @@ X_train, X_test, y_train_ohe, y_test_ohe = train_test_split(sequences, y_ohe, te
 NUM_CLASSES = len(y_train_ohe[0])
 NUM_CLASSES
 ```
-
-
-
-
-    2
-
+<pre class="output">
+2
+</pre>
 
 
 ### Evaluation Metrics
@@ -176,7 +154,9 @@ for line in f:
 f.close()
 
 print('Found %s word vectors.' % len(embeddings_index))
-
+```
+<pre class="output">Found 400000 word vectors.</pre>
+```python
 # now fill in the matrix, using the ordering from the
 #  keras word tokenizer from before
 embedding_matrix = np.zeros((len(word_index) + 1, EMBED_SIZE))
@@ -188,11 +168,7 @@ for word, i in word_index.items():
 
 print(embedding_matrix.shape)
 ```
-
-    Found 400000 word vectors.
-    (9008, 100)
-
-
+<pre class="output">(9008, 100)</pre>
 
 ```python
 from keras.layers import Embedding
@@ -220,43 +196,36 @@ rnn.compile(loss='categorical_crossentropy',
               metrics=metrics)
 print(rnn.summary())
 ```
-
-    _________________________________________________________________
-    Layer (type)                 Output Shape              Param #   
-    =================================================================
-    embedding_1 (Embedding)      (None, 189, 100)          900800    
-    _________________________________________________________________
-    lstm_1 (LSTM)                (None, 100)               80400     
-    _________________________________________________________________
-    dense_1 (Dense)              (None, 2)                 202       
-    =================================================================
-    Total params: 981,402
-    Trainable params: 80,602
-    Non-trainable params: 900,800
-    _________________________________________________________________
-    None
-
+<pre class="output">
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 189, 100)          900800    
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 100)               80400     
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 202       
+=================================================================
+Total params: 981,402
+Trainable params: 80,602
+Non-trainable params: 900,800
+_________________________________________________________________
+None
+</pre>
 
 
 ```python
 rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, batch_size=64)
 ```
-
-    Train on 4459 samples, validate on 1115 samples
-    Epoch 1/3
-    4459/4459 [==============================] - 19s - loss: 0.1908 - precision: 0.9525 - acc: 0.9325 - val_loss: 0.1071 - val_precision: 0.9852 - val_acc: 0.9578
-    Epoch 2/3
-    4459/4459 [==============================] - 19s - loss: 0.0982 - precision: 0.9902 - acc: 0.9684 - val_loss: 0.1500 - val_precision: 0.9794 - val_acc: 0.9471
-    Epoch 3/3
-    4459/4459 [==============================] - 19s - loss: 0.0742 - precision: 0.9926 - acc: 0.9751 - val_loss: 0.0779 - val_precision: 0.9885 - val_acc: 0.9731
-
-
-
-
-
-    <keras.callbacks.History at 0x7f90995116d8>
-
-
+<pre class="output">
+Train on 4459 samples, validate on 1115 samples
+Epoch 1/3
+4459/4459 [==============================] - 19s - loss: 0.1908 - precision: 0.9525 - acc: 0.9325 - val_loss: 0.1071 - val_precision: 0.9852 - val_acc: 0.9578
+Epoch 2/3
+4459/4459 [==============================] - 19s - loss: 0.0982 - precision: 0.9902 - acc: 0.9684 - val_loss: 0.1500 - val_precision: 0.9794 - val_acc: 0.9471
+Epoch 3/3
+4459/4459 [==============================] - 19s - loss: 0.0742 - precision: 0.9926 - acc: 0.9751 - val_loss: 0.0779 - val_precision: 0.9885 - val_acc: 0.9731
+</pre>
 
 ### Comparing Different Model Types
 
@@ -287,7 +256,7 @@ for rnn, name in zip(rnns,['simple','lstm','gru']):
     rnn.fit(X_train, y_train_ohe, epochs=3, batch_size=64, validation_data=(X_test, y_test_ohe))
 ```
 
-
+<pre class="output">
     Testing Cell Type:  simple ========
     Train on 4459 samples, validate on 1115 samples
     Epoch 1/3
@@ -314,7 +283,7 @@ for rnn, name in zip(rnns,['simple','lstm','gru']):
     4459/4459 [==============================] - 19s - loss: 0.0956 - precision: 0.9921 - acc: 0.9699 - val_loss: 0.0729 - val_precision: 0.9939 - val_acc: 0.9749
     Epoch 3/3
     4459/4459 [==============================] - 19s - loss: 0.0720 - precision: 0.9947 - acc: 0.9771 - val_loss: 0.0668 - val_precision: 0.9950 - val_acc: 0.9758
-
+</pre>
 
 As we can see, the GRU model performs the best by a large margin.  If we continue to train the GRU model it seems that we will get some really great results.  We will try also try to find the best hyperparameters for the GRU model.
 
@@ -341,6 +310,7 @@ for dropout in dropouts:
         rnn.fit(X_train,y_train_ohe,epochs=3, batch_size=64, validation_data=(X_test,y_test_ohe))
 ```
 
+<pre class="output">
     Hyper Paramater Set:
     	dropout=0.1
     	recurrent_dropout=0.1
@@ -431,6 +401,7 @@ for dropout in dropouts:
     4459/4459 [==============================] - 19s - loss: 0.1165 - precision: 0.9897 - acc: 0.9628 - val_loss: 0.0787 - val_precision: 0.9969 - val_acc: 0.9722
     Epoch 3/3
     4459/4459 [==============================] - 19s - loss: 0.0857 - precision: 0.9927 - acc: 0.9717 - val_loss: 0.0883 - val_precision: 0.9950 - val_acc: 0.9677
+</pre>
 
 
 ###### We get some pretty ridiculously high accuracy with both of our hyperparameters set to .1
@@ -457,6 +428,7 @@ best_model.compile(loss='categorical_crossentropy',
 best_model.fit(X_train,y_train_ohe,epochs=10, batch_size=64, validation_data=(X_test,y_test_ohe))
 ```
 
+<pre class="output">
     Train on 4459 samples, validate on 1115 samples
     Epoch 1/10
     4459/4459 [==============================] - 20s - loss: 0.2039 - precision: 0.9513 - acc: 0.9197 - val_loss: 0.0924 - val_precision: 0.9918 - val_acc: 0.9677
@@ -478,16 +450,10 @@ best_model.fit(X_train,y_train_ohe,epochs=10, batch_size=64, validation_data=(X_
     4459/4459 [==============================] - 19s - loss: 0.0189 - precision: 0.9979 - acc: 0.9957 - val_loss: 0.0443 - val_precision: 0.9935 - val_acc: 0.9883
     Epoch 10/10
     4459/4459 [==============================] - 19s - loss: 0.0132 - precision: 0.9986 - acc: 0.9964 - val_loss: 0.0467 - val_precision: 0.9963 - val_acc: 0.9883
+  </pre>
 
 
-
-
-
-    <keras.callbacks.History at 0x7f905242fb38>
-
-
-
-###### We end up getting above 99.5% accuracy and a precision score of .9986 on the validation set!  We could absolutely use this to publish a spam filter.  This is a very good score on this dataset.
+_We end up getting above 99.5% accuracy and a precision score of .9986 on the validation set!  We could absolutely use this to publish a spam filter.  This is a VERY good score on this dataset._
 
 ### Grid Search Using LSTM
 
@@ -512,6 +478,7 @@ for dropout in dropouts:
         rnn.fit(X_train,y_train_ohe,epochs=3, batch_size=64, validation_data=(X_test,y_test_ohe))
 ```
 
+<pre class="output">
     Hyper Paramater Set:
     	dropout=0.1
     	recurrent_dropout=0.1
@@ -602,7 +569,7 @@ for dropout in dropouts:
     4459/4459 [==============================] - 19s - loss: 0.1016 - precision: 0.9962 - acc: 0.9673 - val_loss: 0.1256 - val_precision: 0.9879 - val_acc: 0.9578
     Epoch 3/3
     4459/4459 [==============================] - 19s - loss: 0.0874 - precision: 0.9949 - acc: 0.9706 - val_loss: 0.0956 - val_precision: 0.9929 - val_acc: 0.9668
-
+</pre>
 
 ###### As we can see, our best LSTM hyper parameter set is with a dropout of .1 and a recurrent dropout of .2.  We will create this network and train it with more epochs.
 
@@ -671,7 +638,7 @@ for train_index, test_index in sss.split(sequences, y_ohe):
     print(lstm_scores[-1])
     print(lstm_cms[-1])
 ```
-
+<pre class="output">
     Split #1
     0.996007984032
     [[ 55   2]
@@ -695,7 +662,7 @@ for train_index, test_index in sss.split(sequences, y_ohe):
      [  1 482]]
     CPU times: user 42min 51s, sys: 10min 58s, total: 53min 50s
     Wall time: 20min 33s
-
+</pre>
 
 
 ```python
@@ -716,7 +683,7 @@ plt.show()
 ```
 
 
-{{< progressive-image class="bordered-figure" style="width: 50%" src="img/posts/spam-text-classifier/output_46_0.png" >}}
+{{< progressive-image class="bordered-figure" src="img/posts/spam-text-classifier/output_46_0.png" >}}
 
 Both models perform extremely well, however the GRU model performed just a bit better.
 
@@ -738,15 +705,7 @@ sns.heatmap(gru_cm_avg, annot=True, xticklabels=labels, yticklabels=labels)
 plt.title('Heatmap of GRU')
 ```
 
-
-
-
-    <matplotlib.text.Text at 0x12aed9c88>
-
-
-
-
-{{< progressive-image class="bordered-figure" style="width: 50%" src="img/posts/spam-text-classifier/output_48_1.png" >}}
+{{< progressive-image class="bordered-figure" src="img/posts/spam-text-classifier/output_48_1.png" >}}
 
 
 ```python
@@ -762,15 +721,7 @@ sns.heatmap(lstm_cm_avg, annot=True, xticklabels=labels, yticklabels=labels)
 plt.title('Heatmap of lstm')
 ```
 
-
-
-
-    <matplotlib.text.Text at 0x1284a5240>
-
-
-
-
-{{< progressive-image class="bordered-figure" style="width: 50%" src="img/posts/spam-text-classifier/output_49_1.png" >}}
+{{< progressive-image class="bordered-figure" src="img/posts/spam-text-classifier/output_49_1.png" >}}
 
 
 From the heatmaps we can see that ham gets classified perfectly using both models, however our GRU model scores much better than the LSTM when classifying spam instances.
@@ -778,7 +729,6 @@ From the heatmaps we can see that ham gets classified perfectly using both model
 ## NLTK tokenize vs keras tokenizer
 
 We thought it could be interesting to compare the generalized NLTK tokenizer to the keras tokenizer.  We decided to compare them using basic LSTM networks.
-
 
 ```python
 from nltk.tokenize import word_tokenize
@@ -824,6 +774,7 @@ rnn.compile(loss='categorical_crossentropy',
 print(rnn.summary())
 ```
 
+<pre class="output">
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
@@ -838,8 +789,7 @@ print(rnn.summary())
     Non-trainable params: 900,800
     _________________________________________________________________
     None
-
-
+</pre>
 
 ```python
 X_train, X_test, y_train_ohe, y_test_ohe = train_test_split(X_nltk, y_ohe, test_size=0.2,
@@ -852,6 +802,7 @@ X_train, X_test, y_train_ohe, y_test_ohe = train_test_split(X_nltk, y_ohe, test_
 rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, batch_size=64)
 ```
 
+<pre class="output">
     Train on 4459 samples, validate on 1115 samples
     Epoch 1/3
     4459/4459 [==============================] - 95s - loss: 0.3282 - precision: 0.8947 - acc: 0.8767 - val_loss: 0.1758 - val_precision: 0.9685 - val_acc: 0.9408
@@ -859,13 +810,7 @@ rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, ba
     4459/4459 [==============================] - 93s - loss: 0.2239 - precision: 0.9454 - acc: 0.9206 - val_loss: 0.2723 - val_precision: 0.9344 - val_acc: 0.9076
     Epoch 3/3
     4459/4459 [==============================] - 93s - loss: 0.1768 - precision: 0.9608 - acc: 0.9477 - val_loss: 0.2153 - val_precision: 0.9479 - val_acc: 0.9471
-
-
-
-
-
-    <keras.callbacks.History at 0x7f901dcd12b0>
-
+</pre>
 
 
 # KerasGlove Published to PyPi
@@ -882,14 +827,8 @@ embed_layer = GloveEmbedding(
                             MAX_TEXT_LEN,
                             word_index)
 embed_layer
+# <keras.layers.embeddings.Embedding at 0x7f901dce3e10>
 ```
-
-
-
-
-    <keras.layers.embeddings.Embedding at 0x7f901dce3e10>
-
-
 
 
 ```python
@@ -910,6 +849,7 @@ rnn.compile(loss='categorical_crossentropy',
 print(rnn.summary())
 ```
 
+<pre class="output">
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
@@ -924,7 +864,7 @@ print(rnn.summary())
     Non-trainable params: 900,800
     _________________________________________________________________
     None
-
+</pre>
 
 
 ```python
@@ -937,7 +877,7 @@ X_train, X_test, y_train_ohe, y_test_ohe = train_test_split(sequences, y_ohe, te
 ```python
 rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, batch_size=64)
 ```
-
+<pre class="output">
     Train on 4459 samples, validate on 1115 samples
     Epoch 1/3
     4459/4459 [==============================] - 21s - loss: 0.3050 - acc: 0.8872 - precision: 0.8751 - val_loss: 0.2898 - val_acc: 0.8897 - val_precision: 0.9084
@@ -945,14 +885,7 @@ rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, ba
     4459/4459 [==============================] - 19s - loss: 0.2419 - acc: 0.8962 - precision: 0.8936 - val_loss: 0.2526 - val_acc: 0.8933 - val_precision: 0.8888
     Epoch 3/3
     4459/4459 [==============================] - 19s - loss: 0.2360 - acc: 0.9002 - precision: 0.8948 - val_loss: 0.2538 - val_acc: 0.9013 - val_precision: 0.9122
-
-
-
-
-
-    <keras.callbacks.History at 0x7f900acebe80>
-
-
+</pre>
 
 As we can see, this is far easier to construct a network with a pre trained GloVe emebedding than doing it manually.
 

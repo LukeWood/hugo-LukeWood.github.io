@@ -33,7 +33,6 @@ p, h1, h2, h3, h4, h6 {
   }
 
   code {
-    line-height: .8rem;
     font-family: 'Roboto Mono', monospace;
     -webkit-text-size-adjust: none;
   }
@@ -45,6 +44,25 @@ p, h1, h2, h3, h4, h6 {
 }
 
 pre {
-  padding: 0.5rem;
+  padding: 0.25rem;
+  line-height: normal;
   overflow: scroll;
+}
+
+pre {
+  code {
+    width: 100%;
+    display: inline-block;
+    font-size: .8rem;
+    line-height: normal;
+  }
+}
+
+.output {
+  width: 100%;
+  border-top: solid white 1.5px;
+  background-color: #272822;
+  max-height: 250px;
+  display: inline-block;
+  font-size: .8rem;
 }

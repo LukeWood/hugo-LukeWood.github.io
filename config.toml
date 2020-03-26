@@ -33,9 +33,9 @@ unsafe= true
 
 [menu]
   [[menu.main]]
-    name = "About"
-    url = "/about"
-    weight = 0
+    name = "Developer Blog"
+    url = "/posts"
+    weight = 1
   [[menu.main]]
     name = "Surfing"
     url = "/surfing"
@@ -45,9 +45,9 @@ unsafe= true
     url = "/projects"
     weight = 3
   [[menu.main]]
-    name = "Developer Blog"
-    url = "/posts"
-    weight = 1
+    name = "About"
+    url = "/about"
+    weight = 4
 
   #[[menu.main]]
   #  name = "Snippets"
