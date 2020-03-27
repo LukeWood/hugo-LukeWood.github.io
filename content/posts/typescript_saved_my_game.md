@@ -3,6 +3,9 @@ title: "Typescript Saved My Game's Performance"
 date: "2020-02-23"
 draft: false
 type: post
+tags:
+- webdev
+- typescript
 ---
 ## Background
 For quite awhile [bulletz.io](https://bulletz.io) was written in vanilla javascript.

@@ -3,6 +3,8 @@ title: Turning My Cactus into a Video Game
 date: "2020-03-16"
 draft: false
 type: post
+tags:
+- gamedev
 ---
 
 {{< progressive-image class="bordered-figure" style="width: 50%" src="img/posts/cactus/cactar.png" alt="Cactar">}}

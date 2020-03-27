@@ -124,7 +124,11 @@ p {
 }
 
 em {
-  font-weight: bold;
+  font-weight: bolder;
+}
+strong {
+  font-weight: bolder;
+  font-style: italic;
 }
 i {
   font-style: italic;

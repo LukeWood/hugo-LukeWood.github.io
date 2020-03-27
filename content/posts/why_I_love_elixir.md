@@ -3,6 +3,8 @@ title: "Why I Love Elixir"
 date: 2020-03-26
 draft: false
 type: post
+tags:
+- elixir
 ---
 
 I often talk about the [Elixir](https://elixirlang.org) programming language to friends, families, and colleagues.
@@ -13,22 +15,42 @@ While there are TONS of features in elixir that I think are fantastic... off the
 - Runtime configuration
 - CI/CD deployments
 - Phoenix and Phoenix's websocket model
-**Note:** maybe I'll revisit each of these in a follow up post if there's enough interest)
 
-One stands out to me amongst the rest.
+**Note: maybe I'll revisit each of these in a follow up post if there's enough interest**
 
-To me function head pattern matching is my favorite elixir feature.
+While some of the features above make Elixir a more compelling sell to upper management and clients - one feature not listed stands out to me as one of the most _fun_ to use.
+
+That feature is function head pattern matching.
 
 ## Function Head Pattern Matching
-This simple feature outstanding.
+This feature is simply outstanding.
 
-The beauty of this feature comes out more through example than explanation.
+The beauty of this feature comes out more in examples than it does in explanations.
 
-### So what is function head pattern matching.
+Here's a brief explanation though before we get started:
+{{<keypoint>}}
+For a language to have function head pattern matching it must allow users to define multiple function bodies for a single function.
+Each of these function bodies is gated behind a [pattern](https://elixir-lang.org/getting-started/pattern-matching.html) and a set of [guard clauses](https://hexdocs.pm/elixir/guards.html).
+When the function is called the function definitions are tried one at a time in order of definition until one matches.
+Once a match is found the code in that function body is run with the given parameter set.
+{{</keypoint>}}
 
+Still not clear?  Let's look at examples.
+
+### First examples
 Function head pattern matching is based on the concept that multiple function definitions can represent a single function.
 
-For example this function returns the absolute value of a given integer:
+Consider the absolute value function
+
+```
+abs(x) = {
+  x > 0, x
+  x < 0, -x
+  0, 0
+}
+```
+
+In Elixir code this looks like this:
 ```elixir
 def abs(n) when n > 0 do n end
 def abs(n) do -n end
@@ -40,12 +62,22 @@ abs(-1)
 > 1
 ```
 
-There is already a small example of pattern matching in the example above - the `when n > 0` statement represents a `guard` which restricts the domain of the first definition - more on those later.
+The `when n > 0` statement represents a `guard` and the `n` in the parenthesis represents the pattern.
+The pattern here does not have any restrictions other than an [arity](https://elixir-lang.org/getting-started/modules-and-functions.html) of one.
+**Note: Having an arity of one simply means the function accepts one parameter**
+
+The `when` clause limits the `domain` of each function clause.  
+In the example above `when n > 0` limits the domain of the first function body to positive numbers.
 
 Function head pattern matching allows the parameters provided in a function declaration to act not only as a set of variable declarations, but also as a `pattern` restricting the domain of a function.
 
-Here's an example of that
-```ex
+Here's an example of that.
+
+The following function has a domain of [1, 2] and returns either the atom `:one` or the atom `:two`.
+
+**Note: you can think of atoms like strings for now**
+
+```elixir
 def one_or_two(1), do: :one
 def one_or_two(2), do: :two
 ```
@@ -56,15 +88,26 @@ When the function is called the function will attempt to match the given paramet
 
 ```elixir
 one_or_two(1)
+```
+{{<output>}}
+```elixir
 > "one"
+```
+{{</output>}}
 
+```elixir
 one_or_two(3)
+```
+{{<output>}}
+```elixir
 > ** (FunctionClauseError) no function clause matching in one_or_two/1
 The following arguments were given to Test.one_or_two/1:
 
     # 1
     3
 ```
+{{</output>}}
+
 
 If no clause matches Elixir will raise a `FunctionClauseError`.
 

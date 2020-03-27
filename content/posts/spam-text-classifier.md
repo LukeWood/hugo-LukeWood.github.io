@@ -3,25 +3,28 @@ title: Spam Text Classification with RNNs
 date: "2017-05-18"
 draft: false
 type: post
+tags:
+- machine_learning
+- python
 ---
 
 ### By Justin Ledford, Luke Wood, Traian Pop
 ___
 
-## Business Understanding
+# Business Understanding
 
-### Data Background
-SMS messages play a huge role in a person's life, and the confidentiality and integrity of said messages are of the highest priority to mobile carriers around the world. Due to this fact, many unlawful individuals and groups try and take advantange of the average consumer by flooding their inbox with spam, and while the majority of people successfully avoid it, there are people out there affected negatively by falling for false messages.  
+## Data Background
+SMS messages play a huge role in a person's life, and the confidentiality and integrity of said messages are of the highest priority to mobile carriers around the world. Due to this fact, many unlawful individuals and groups try and take advantage of the average consumer by flooding their inbox with spam, and while the majority of people successfully avoid it, there are people out there affected negatively by falling for false messages.  
 
 The data we selected is a compilation of 5574 SMS messages acquired from a variety of different sources, broken down in the following way: 452 of the messages came from the Grumbletext Web Site, 3375 of the messages were taken from the NUS SMS Corpus (database with legitimate message from the University of Singapore), 450 messages collected from Caroline Tag's PhD Thesis, and the last 1324 messages were from the SMS Spam Corpus v.0.1 Big.
 
 Overall there were 4827 "ham" messages and 747 "spam" messages, and about 92,000 words.
 
-### Purpose
+## Purpose
 This data was collected initially for studies on deciphering the differences between a spam or ham (legitimate) messages. Uses for this research can involve advanced spam filtering technology or improved data sets for machine learning programs. However, a slight problem with this data set, as with most localized language-based data sets, is that due to the relatively small area of sampling, there are a lot of regional data points (such as slang, acronyms, etc) that can be considering "useless" data if a much more generalized data set is wanted. For our specific project however, we are keeping all this data in order for us to analyze it and get a better understanding of our data.
 ___
 
-## Preparation
+# Preparation
 
 
 ```python
@@ -65,7 +68,7 @@ y = [0 if y_ == "spam" else 1 for y_ in y]
 y_ohe = keras.utils.to_categorical(y)
 print(y_ohe)
 ```
-<pre class="output">
+{{<output>}}
     array([[ 0.,  1.],
            [ 0.,  1.],
            [ 1.,  0.],
@@ -73,7 +76,7 @@ print(y_ohe)
            [ 0.,  1.],
            [ 0.,  1.],
            [ 0.,  1.]])
-</pre>
+{{</output>}}
 
 
 We assign spam as a value of 0 and ham as a value of one so that we can use precision score to measure false positive scores.
@@ -98,7 +101,7 @@ MAX_TEXT_LEN = len(sequences[0]) # maximum and minimum number of words
 
 We tokenize and measure the max length of the text using keras' tokenizer.
 
-### Cross Validation Method
+## Cross Validation Method
 
 We now have an embedding matrix for our word index.
 
@@ -114,12 +117,12 @@ X_train, X_test, y_train_ohe, y_test_ohe = train_test_split(sequences, y_ohe, te
 NUM_CLASSES = len(y_train_ohe[0])
 NUM_CLASSES
 ```
-<pre class="output">
+{{<output>}}
 2
-</pre>
+{{</output>}}
 
 
-### Evaluation Metrics
+## Evaluation Metrics
 We decided that due to our business understanding being that we can potentially create a spam filter, our largest cost should be false positives.  It would be incredibly frustrating to have a real text filtered out so we should evaluate our models in accordance with this.  To evaluate this, we must implement precision score which has been removed from keras.  Luckily, the old code is available in a one of keras' old versions.
 
 
@@ -135,7 +138,7 @@ def precision(y_true, y_pred):
 
 Citation: old keras version
 
-## Modeling
+# Modeling
 To avoid the need for training our own embedding layer which is incredibly computationally expensive, we load up a pretrained glove embedding.
 
 
@@ -155,7 +158,9 @@ f.close()
 
 print('Found %s word vectors.' % len(embeddings_index))
 ```
-<pre class="output">Found 400000 word vectors.</pre>
+{{<output>}}
+Found 400000 word vectors.
+{{</output>}}
 ```python
 # now fill in the matrix, using the ordering from the
 #  keras word tokenizer from before
@@ -168,7 +173,9 @@ for word, i in word_index.items():
 
 print(embedding_matrix.shape)
 ```
-<pre class="output">(9008, 100)</pre>
+{{<output>}}
+(9008, 100)
+{{</output>}}
 
 ```python
 from keras.layers import Embedding
@@ -196,7 +203,7 @@ rnn.compile(loss='categorical_crossentropy',
               metrics=metrics)
 print(rnn.summary())
 ```
-<pre class="output">
+{{<output>}}
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
@@ -211,13 +218,13 @@ Trainable params: 80,602
 Non-trainable params: 900,800
 _________________________________________________________________
 None
-</pre>
+{{</output>}}
 
 
 ```python
 rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, batch_size=64)
 ```
-<pre class="output">
+{{<output>}}
 Train on 4459 samples, validate on 1115 samples
 Epoch 1/3
 4459/4459 [==============================] - 19s - loss: 0.1908 - precision: 0.9525 - acc: 0.9325 - val_loss: 0.1071 - val_precision: 0.9852 - val_acc: 0.9578
@@ -225,9 +232,9 @@ Epoch 2/3
 4459/4459 [==============================] - 19s - loss: 0.0982 - precision: 0.9902 - acc: 0.9684 - val_loss: 0.1500 - val_precision: 0.9794 - val_acc: 0.9471
 Epoch 3/3
 4459/4459 [==============================] - 19s - loss: 0.0742 - precision: 0.9926 - acc: 0.9751 - val_loss: 0.0779 - val_precision: 0.9885 - val_acc: 0.9731
-</pre>
+{{</output>}}
 
-### Comparing Different Model Types
+## Comparing Different Model Types
 
 To begin, we will evaluate a network using an LSTM cell, a GRU cell, and a SimpleRNN cell.  We will use a standard hyperparameter set to evaluate the results and decide which two architectures we want to explore in depth based on the results.
 
@@ -256,7 +263,7 @@ for rnn, name in zip(rnns,['simple','lstm','gru']):
     rnn.fit(X_train, y_train_ohe, epochs=3, batch_size=64, validation_data=(X_test, y_test_ohe))
 ```
 
-<pre class="output">
+{{<output>}}
     Testing Cell Type:  simple ========
     Train on 4459 samples, validate on 1115 samples
     Epoch 1/3
@@ -283,13 +290,13 @@ for rnn, name in zip(rnns,['simple','lstm','gru']):
     4459/4459 [==============================] - 19s - loss: 0.0956 - precision: 0.9921 - acc: 0.9699 - val_loss: 0.0729 - val_precision: 0.9939 - val_acc: 0.9749
     Epoch 3/3
     4459/4459 [==============================] - 19s - loss: 0.0720 - precision: 0.9947 - acc: 0.9771 - val_loss: 0.0668 - val_precision: 0.9950 - val_acc: 0.9758
-</pre>
+{{</output>}}
 
 As we can see, the GRU model performs the best by a large margin.  If we continue to train the GRU model it seems that we will get some really great results.  We will try also try to find the best hyperparameters for the GRU model.
 
 After we find the best GRU results we will use an LSTM and then measure the results of the LSTM.
 
-### Gridsearch on GRU Model
+## Gridsearch on GRU Model
 
 
 ```python
@@ -310,7 +317,7 @@ for dropout in dropouts:
         rnn.fit(X_train,y_train_ohe,epochs=3, batch_size=64, validation_data=(X_test,y_test_ohe))
 ```
 
-<pre class="output">
+{{<output>}}
     Hyper Paramater Set:
     	dropout=0.1
     	recurrent_dropout=0.1
@@ -401,15 +408,13 @@ for dropout in dropouts:
     4459/4459 [==============================] - 19s - loss: 0.1165 - precision: 0.9897 - acc: 0.9628 - val_loss: 0.0787 - val_precision: 0.9969 - val_acc: 0.9722
     Epoch 3/3
     4459/4459 [==============================] - 19s - loss: 0.0857 - precision: 0.9927 - acc: 0.9717 - val_loss: 0.0883 - val_precision: 0.9950 - val_acc: 0.9677
-</pre>
+{{</output>}}
 
-
-###### We get some pretty ridiculously high accuracy with both of our hyperparameters set to .1
-
+{{<keypoint>}}
 As we can see, with dropout and recurrent dropout at .1 we get some really great results; with accuracy getting as high as 98.6%.  This is ridiculously high.  The model gets .997 precision and .98 accuracy on the validation set with these hyperparameters.
+{{</keypoint>}}
 
 We actually get a similar precision score in a few sets of hyperparameters, but we get a higher accuracy with the .1 and .1 set so this is our most effective model.
-
 
 ```python
 best_model = Sequential()
@@ -421,14 +426,14 @@ best_model.compile(loss='categorical_crossentropy',
                       metrics=metrics)
 ```
 
-### Running Our Best Model With More Epochs
+## Running Our Best Model With More Epochs
 
 
 ```python
 best_model.fit(X_train,y_train_ohe,epochs=10, batch_size=64, validation_data=(X_test,y_test_ohe))
 ```
 
-<pre class="output">
+{{<output>}}
     Train on 4459 samples, validate on 1115 samples
     Epoch 1/10
     4459/4459 [==============================] - 20s - loss: 0.2039 - precision: 0.9513 - acc: 0.9197 - val_loss: 0.0924 - val_precision: 0.9918 - val_acc: 0.9677
@@ -450,12 +455,13 @@ best_model.fit(X_train,y_train_ohe,epochs=10, batch_size=64, validation_data=(X_
     4459/4459 [==============================] - 19s - loss: 0.0189 - precision: 0.9979 - acc: 0.9957 - val_loss: 0.0443 - val_precision: 0.9935 - val_acc: 0.9883
     Epoch 10/10
     4459/4459 [==============================] - 19s - loss: 0.0132 - precision: 0.9986 - acc: 0.9964 - val_loss: 0.0467 - val_precision: 0.9963 - val_acc: 0.9883
-  </pre>
+  {{</output>}}
 
-
+{{<keypoint>}}
 _We end up getting above 99.5% accuracy and a precision score of .9986 on the validation set!  We could absolutely use this to publish a spam filter.  This is a VERY good score on this dataset._
+{{</keypoint>}}
 
-### Grid Search Using LSTM
+## Grid Search Using LSTM
 
 Now that we know we can get results as high as 99.5% accuracy and 99.8% precision with the GRU network we will try to see how high we can get our LSTM's score.
 
@@ -478,7 +484,7 @@ for dropout in dropouts:
         rnn.fit(X_train,y_train_ohe,epochs=3, batch_size=64, validation_data=(X_test,y_test_ohe))
 ```
 
-<pre class="output">
+{{<output>}}
     Hyper Paramater Set:
     	dropout=0.1
     	recurrent_dropout=0.1
@@ -569,10 +575,11 @@ for dropout in dropouts:
     4459/4459 [==============================] - 19s - loss: 0.1016 - precision: 0.9962 - acc: 0.9673 - val_loss: 0.1256 - val_precision: 0.9879 - val_acc: 0.9578
     Epoch 3/3
     4459/4459 [==============================] - 19s - loss: 0.0874 - precision: 0.9949 - acc: 0.9706 - val_loss: 0.0956 - val_precision: 0.9929 - val_acc: 0.9668
-</pre>
+{{</output>}}
 
-###### As we can see, our best LSTM hyper parameter set is with a dropout of .1 and a recurrent dropout of .2.  We will create this network and train it with more epochs.
-
+{{<keypoint>}}
+As we can see, our best LSTM hyper parameter set is with a dropout of .1 and a recurrent dropout of .2.  We will create this network and train it with more epochs.
+{{</keypoint>}}
 
 ```python
 best_lstm = Sequential()
@@ -584,7 +591,7 @@ best_lstm.compile(loss='categorical_crossentropy',
                       metrics=metrics)
 ```
 
-### Comparison of models
+## Comparison of models
 
 
 ```python
@@ -638,7 +645,8 @@ for train_index, test_index in sss.split(sequences, y_ohe):
     print(lstm_scores[-1])
     print(lstm_cms[-1])
 ```
-<pre class="output">
+
+{{<output>}}
     Split #1
     0.996007984032
     [[ 55   2]
@@ -662,8 +670,7 @@ for train_index, test_index in sss.split(sequences, y_ohe):
      [  1 482]]
     CPU times: user 42min 51s, sys: 10min 58s, total: 53min 50s
     Wall time: 20min 33s
-</pre>
-
+{{</output>}}
 
 ```python
 # Plot bar graphs
@@ -726,7 +733,7 @@ plt.title('Heatmap of lstm')
 
 From the heatmaps we can see that ham gets classified perfectly using both models, however our GRU model scores much better than the LSTM when classifying spam instances.
 
-## NLTK tokenize vs keras tokenizer
+# NLTK tokenize vs keras tokenizer
 
 We thought it could be interesting to compare the generalized NLTK tokenizer to the keras tokenizer.  We decided to compare them using basic LSTM networks.
 
@@ -774,7 +781,7 @@ rnn.compile(loss='categorical_crossentropy',
 print(rnn.summary())
 ```
 
-<pre class="output">
+{{<output>}}
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
@@ -789,7 +796,7 @@ print(rnn.summary())
     Non-trainable params: 900,800
     _________________________________________________________________
     None
-</pre>
+{{</output>}}
 
 ```python
 X_train, X_test, y_train_ohe, y_test_ohe = train_test_split(X_nltk, y_ohe, test_size=0.2,
@@ -802,7 +809,7 @@ X_train, X_test, y_train_ohe, y_test_ohe = train_test_split(X_nltk, y_ohe, test_
 rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, batch_size=64)
 ```
 
-<pre class="output">
+{{<output>}}
     Train on 4459 samples, validate on 1115 samples
     Epoch 1/3
     4459/4459 [==============================] - 95s - loss: 0.3282 - precision: 0.8947 - acc: 0.8767 - val_loss: 0.1758 - val_precision: 0.9685 - val_acc: 0.9408
@@ -810,7 +817,7 @@ rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, ba
     4459/4459 [==============================] - 93s - loss: 0.2239 - precision: 0.9454 - acc: 0.9206 - val_loss: 0.2723 - val_precision: 0.9344 - val_acc: 0.9076
     Epoch 3/3
     4459/4459 [==============================] - 93s - loss: 0.1768 - precision: 0.9608 - acc: 0.9477 - val_loss: 0.2153 - val_precision: 0.9479 - val_acc: 0.9471
-</pre>
+{{</output>}}
 
 
 # KerasGlove Published to PyPi
@@ -849,7 +856,7 @@ rnn.compile(loss='categorical_crossentropy',
 print(rnn.summary())
 ```
 
-<pre class="output">
+{{<output>}}
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
@@ -864,7 +871,7 @@ print(rnn.summary())
     Non-trainable params: 900,800
     _________________________________________________________________
     None
-</pre>
+{{</output>}}
 
 
 ```python
@@ -877,7 +884,7 @@ X_train, X_test, y_train_ohe, y_test_ohe = train_test_split(sequences, y_ohe, te
 ```python
 rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, batch_size=64)
 ```
-<pre class="output">
+{{<output>}}
     Train on 4459 samples, validate on 1115 samples
     Epoch 1/3
     4459/4459 [==============================] - 21s - loss: 0.3050 - acc: 0.8872 - precision: 0.8751 - val_loss: 0.2898 - val_acc: 0.8897 - val_precision: 0.9084
@@ -885,9 +892,12 @@ rnn.fit(X_train, y_train_ohe, validation_data=(X_test, y_test_ohe), epochs=3, ba
     4459/4459 [==============================] - 19s - loss: 0.2419 - acc: 0.8962 - precision: 0.8936 - val_loss: 0.2526 - val_acc: 0.8933 - val_precision: 0.8888
     Epoch 3/3
     4459/4459 [==============================] - 19s - loss: 0.2360 - acc: 0.9002 - precision: 0.8948 - val_loss: 0.2538 - val_acc: 0.9013 - val_precision: 0.9122
-</pre>
+{{</output>}}
 
-As we can see, this is far easier to construct a network with a pre trained GloVe emebedding than doing it manually.
 
-The full source is here:
-https://github.com/LukeWoodSMU/KerasGlove
+{{<keypoint>}}
+Using the open source library that I published, [KerasGlove](https://github.com/LukeWood/KerasGlove), using dense embeddings in Keras neural networks is way easier.
+
+This makes it far easier to construct a network with a pre trained GloVe emebedding than doing it manually.
+
+{{</keypoint>}}

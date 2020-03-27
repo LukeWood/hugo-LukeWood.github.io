@@ -57,6 +57,7 @@ h3 {
 }
 
 pre {
+  background-color:#272822;
   padding: 0.25rem;
   line-height: normal;
   overflow: scroll;
@@ -66,7 +67,6 @@ pre {
   code {
     width: 100%;
     display: inline-block;
-    font-size: .8rem;
     line-height: normal;
   }
 }
@@ -78,6 +78,15 @@ pre {
   max-height: 250px;
   display: inline-block;
   font-size: .8rem;
+
+  div {
+    padding: 0;
+    display: inline-block;
+  }
+  pre {
+    padding: 0;
+    display: inline-block;
+  }
 }
 
 
