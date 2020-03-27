@@ -91,7 +91,7 @@ function fib(x) {
   } else if (x == 1) {
     return 1;
   } else {
-    return fib(x-1) + fib(x-1);
+    return fib(x-1) + fib(x-2);
   }
 }
 ```
@@ -154,7 +154,7 @@ The first of which is if the user is banned.
 
 To start - we will have two criteria:
 - the user is not explicitly banned
-- the user is not named "Zack" (shots fired @ my brother)
+- the user is not named "Zack"
 
 Let's check out a java implementation.
 
@@ -288,5 +288,9 @@ It allows us to write code that is:
 - easier to trace mentally
 - more closely represent mathematical function definitions
 - remain readable when requirements grow
+
+{{<keypoint>}}
+While function head pattern matching isn't a compelling argument to make to upper management on picking Elixir as a primary language - it is a nice bonus to using Elixir and is my personal favorite language feature.
+{{</keypoint>}}
 
 I find writing code this way fun and it's a refreshing take on things.
