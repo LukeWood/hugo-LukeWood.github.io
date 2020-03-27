@@ -1,0 +1,12 @@
+.keypoint {
+  border: solid gray 1px;
+  padding: .2rem;
+  b {
+    color: var(--primary_color);
+    font-weight: bold;
+    display: block;
+  }
+  i {
+    font-style: italic;
+  }
+}
