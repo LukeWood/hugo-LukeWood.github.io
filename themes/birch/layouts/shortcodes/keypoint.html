@@ -1,6 +1,0 @@
-{{$result := .Inner | markdownify}}
-{{ .Page.Scratch.Add "keypoints" 1}}
-<div class="keypoint">
-  <b>Key Point: {{ .Page.Scratch.Get "keypoints" }}</b>
-  <i>{{$result}}</i>
-</div>
