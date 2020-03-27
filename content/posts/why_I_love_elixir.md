@@ -10,11 +10,11 @@ tags:
 I often talk about the [Elixir](https://elixirlang.org) programming language to friends, families, and colleagues.
 
 While there are TONS of features in elixir that I think are fantastic... off the top of my head:
-- OTP integration
+- [OTP integration](https://erlang.org/doc/)
 - Concurrency model
-- Runtime configuration
-- CI/CD deployments
-- Phoenix and Phoenix's websocket model
+- [Runtime configuration](https://hexdocs.pm/elixir/Application.html)
+- [Erlang VMs deployment system](https://hexdocs.pm/phoenix/deployment.html)
+- [Phoenix and Phoenix's websocket model](https://hexdocs.pm/phoenix/channels.html)
 
 **Note: maybe I'll revisit each of these in a follow up post if there's enough interest**
 
