@@ -1,3 +1,0 @@
-html,body{min-height:100%}a{text-decoration:none}.container{display:flex;flex-direction:column;justify-content:space-around;width:100%;min-height:100%}h1{font-size:2rem;padding:0.5rem}li{padding:.5rem;list-style:none}.content{display:flex;justify-content:space-around;padding-left:1rem;padding-right:1rem;width:100%}.content *{max-width:100%}.controls{max-width:560px;padding:1rem;display:flex;justify-content:space-around}figure{margin:0;text-align:center}figure img{width:100%;height:auto;background-color:var(--figure_background);border:solid var(--text_color) 2px}figure *{margin:0;margin-top:.25rem;margin-bottom:0}
-
-/*# sourceMappingURL=surfing.css.map */
