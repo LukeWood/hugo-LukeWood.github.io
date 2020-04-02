@@ -116,7 +116,11 @@ I was left with:
 
 ```javascript
 function send_score_to_firebase(score) {
-  result = {"quizes/" + pollID + "/answerers/"+ userID + "/name": "luke", "quizes/" + pollID+ "/answerers/ " + userID + "/score": score}
+  nameKey = "quizes/" + pollID + "/answerers/"+ userID + "/name"
+  scoreKey = "quizes/" + pollID+ "/answerers/ " + userID + "/score"
+  result = {}
+  result[nameKey] = "luke";
+  result[scoreKey] = score;
   var database = firebase.database().ref();
   database.update(result, function(e) {
     console.log(e);
@@ -124,7 +128,21 @@ function send_score_to_firebase(score) {
 }
 ```
 
-I tried running this in the console and it worked!!!
+I tried running this in the console and it actually didn't work due to some scoping issues - but I reverted to this:
+
+```javascript
+function send_score_to_firebase(force_name, force_score) {
+    var _0x932cx3a = {};
+    _0x932cx3a[_0xb463[158] + pollID + _0xb463[159] + userID + _0xb463[160]] = force_name;
+    _0x932cx3a[_0xb463[158] + pollID + _0xb463[159] + userID + _0xb463[34]] = force_score;
+    var _0x932cx3b = firebase[_0xb463[36]]()[_0xb463[35]]();
+    _0x932cx3b[_0xb463[127]](_0x932cx3a, function(_0x932cx14) {
+        if (_0x932cx14) {} else {}
+    })
+}
+```
+
+and it worked like a charm.
 
 # Results
 
@@ -144,6 +162,7 @@ allow write if score < 10
 By this logic decimal numbers in javascript would pass.
 
 so... I tried the number `9.6969696969` and it worked!
+<center><img src="/img/posts/quiz_highscores/hackerman.gif"></center>
 
 This was really exciting!  Here are the highscores now.
 
