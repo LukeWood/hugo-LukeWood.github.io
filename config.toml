@@ -43,10 +43,6 @@ unsafe= true
     url = "/posts"
     weight = 1
   [[menu.main]]
-    name = "Surfing"
-    url = "/surfing"
-    weight = 2
-  [[menu.main]]
     name = "Projects"
     url = "/projects"
     weight = 3
